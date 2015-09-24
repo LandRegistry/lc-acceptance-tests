@@ -16,7 +16,7 @@ def assert( condition, message = nil )
     end
 end
 
-class RestAPI
+class RestAPIOLD
 	attr_reader :response, :data
 
     def initialize(uri)
@@ -75,11 +75,7 @@ registration_api = nil
 
 When(/^I submit valid data to the registration system$/) do
 	registration_api = RestAPI.new("http://localhost:5004")
-	registration_api.post_data("/registration", no_alias)
-end
-
-Then(/^it returns a 200 OK response$/) do
-	expect(registration_api.response.code).to eql "200"
+	registration_api.post("/registration", no_alias)
 end
 
 Then(/^it returns the new registration number$/) do
@@ -98,7 +94,7 @@ end
 
 When(/^I submit valid data with an alias to the registration system$/) do
 	registration_api = RestAPI.new("http://localhost:5004")
-	registration_api.post_data("/registration", one_alias)
+	registration_api.post("/registration", one_alias)
 end
 
 Then(/^it returns the (\d+) new registration numbers$/) do |arg1|
@@ -131,7 +127,7 @@ end
 
 When(/^I submit Bob Howard to the registration system$/) do
 	registration_api = RestAPI.new("http://localhost:5004")
-	registration_api.post_data("/registration", bob_howard)
+	registration_api.post("/registration", bob_howard)
 end
 
 Then(/^the name has been correctly transformed$/) do
@@ -165,13 +161,13 @@ end
 
 When(/^Invalid registration numbers are sent to the synchroniser$/) do
 	registration_api = RestAPI.new("http://localhost:5004")
-	registration_api.post_data("/synchronise", '["42"]')
+	registration_api.post("/synchronise", '["42"]')
 	sleep(1)
 end
 
 Then(/^it posts an error message to its error queue$/) do
 	error_api = RestAPI.new("http://localhost:5006")
-	result = error_api.get_data("/errors").last
+	result = error_api.get("/errors").last
 	expect(result['source']).to eq 'Synchroniser'
 	expect(result['data']['registration_no']).to eq '42'
 	expect(result['data']['status_code']).to eq 404

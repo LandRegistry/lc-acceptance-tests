@@ -13,7 +13,7 @@ def disconnect(connection)
 end
 
 
-def execute(clear, setup)
+def execute(clear, setup, quiet = false)
     if File.directory?("/vagrant/apps")
         folders = Dir["/vagrant/apps/*"]
     else
@@ -22,7 +22,7 @@ def execute(clear, setup)
 
     folders.each do |folder|
         if File.directory?("#{folder}/data") && File.exists?("#{folder}/data/data.json")
-            puts "Processing #{folder}"
+            puts "Processing #{folder}" unless(quiet)
             info = JSON.parse(File.read("#{folder}/data/data.json"))
 
             db_name = info['name']
@@ -30,7 +30,7 @@ def execute(clear, setup)
 
             conn = connect(db_name)
             if clear
-                puts("  clear")
+                puts("  clear") unless(quiet)
                 tables.each do |table|
                     conn.exec("DELETE FROM #{table}")
                 end
@@ -41,7 +41,7 @@ def execute(clear, setup)
             end
 
             if setup
-                puts("  setup")
+                puts("  setup") unless(quiet)
                 tables.reverse.each do |table|
                     # Credit: http://www.kadrmasconcepts.com/blog/2013/12/15/copy-millions-of-rows-to-postgresql-with-rails/
                     conn.exec("COPY #{table} FROM STDIN DELIMITER '|' CSV")
@@ -77,7 +77,7 @@ def setup_data
 end
 
 def reset_data
-    execute(true, true)
+    execute(true, true, true)
 end
 
 if __FILE__ == $0
