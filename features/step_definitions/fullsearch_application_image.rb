@@ -5,7 +5,7 @@ When(/^I select an application type of Full Search the application is displayed$
   #then  find(:id, app_type =='Search').click
   #find(:xpath,'html/body/div[1]/div/div/div[3]/div/table/tbody/tr[1]/td[1]').click
   visit( "http://localhost:5010/get_list?appn=search" )
-    find(:id,'app_type2').click
+    find(:id,'app_type3').click
 end
 
 When(/^I click on a page the image of the full search is visible$/) do
@@ -24,7 +24,7 @@ Given(/^I am on the bankruptcy full search details screen$/) do
 end
 
 When(/^I click on entered details in the address box I can make an amendment$/) do
-  fill_in('customer_address',:with => '21 long street' "\n"'London'"\n"'SW1 1BP')
+  fill_in('customer_address',:with => '4749 DUBUQUE Terrace'"\n"'JAYSONFURT'"\n"'SOUTH VINCENZA'"\n"'NORTHAMPTONSHIRE'"\n"'FC13 4WX')
 end
 
 When(/^I click on the search areas tab all counties check box search area  List of Areas to search is displayed$/) do
@@ -64,3 +64,9 @@ end
 When(/^the application has been submitted a confirmation screen is displayed$/) do
   expect(page).to have_content('Application Complete')
 end
+
+Then(/^click on View Search Result$/) do
+  click_link('View Search Result')
+  visit("http://localhost:5010/process_search/full")
+end
+

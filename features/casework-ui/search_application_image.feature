@@ -20,7 +20,9 @@ When I select an application type of Search the application is displayed
 Given I am on the bankruptcy search details screen
 When I click on the name details tab I can enter six names
 When I click on the Customer details tab I can enter the key number Customer Name Customer Address Customer Reference
-Then I can click the complete search button
+When I can click the complete search button
+When the application has been submitted a confirmation screen is displayed
+Then the user can return to the worklist from the bankruptcy search complete screen
 
 
 
