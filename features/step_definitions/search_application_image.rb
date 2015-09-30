@@ -50,13 +50,15 @@ When(/^I click on the Customer details tab I can enter the key number Customer N
 end
 
 Then(/^I can click the complete search button$/) do
+  sleep(1)
   click_button('search')
+  sleep(1)
 end
 
 Then(/^the user can return to the worklist from the bankruptcy search complete screen$/) do
-   click_link('View Search Result')
-   sleep(10)
-   visit("http://localhost:5010/process_search/banks")
+   #click_link('View Search Result')
+   #sleep(10)
+   #visit("http://localhost:5010/process_search/banks")
    #click_link('Return to Worklist')
    #sleep(1)
 end
