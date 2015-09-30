@@ -94,7 +94,7 @@ end
 Then(/^I see the searches application list page$/) do
     page.should have_content("Searches")
     page.should have_content("21 August 2015")
-    page.should have_css('div#search_total', :text => '3')
+    page.should have_css('div#search_total', :text => '4')
 end
 
 Then(/^I see the OC application list page$/) do
