@@ -25,20 +25,6 @@ When(/^I click on the different thumbnails the editable details are displayed be
   find(:xpath, 'html/body/form/div/div[2]/div[2]').click
 end
 
-
-When(/^I am on a original large image of the amendment form I can zoom in$/) do
-                   
-  find(:xpath, '//*[@id="container0"]/img[2]').click 
-  thing = find(:csspath, '#container0 > div:nth-child(2)')
-  expect(thing.text).to eq "2x Magnify"
-end
-
-When(/^I am on a original large image of the amendment form I can zoom out$/) do
-  find(:xpath, '//*[@id="container0"]/img[3]').click
-  thing = find(:csspath, '#container0 > div:nth-child(2)')
-  expect(thing.text).to eq "1x Magnify"
-end
-
 When(/^I can overtype any detail that needs to be amended$/) do 
   fill_in('forenames', :with => 'Jack')
   fill_in('surname', :with => 'Jones')

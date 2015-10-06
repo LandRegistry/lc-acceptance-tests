@@ -19,34 +19,6 @@ When(/^I click on an amendment form thumbnail the image is expanded to large ima
 	#find(:xpath, '/html/body/form/div/div/div/div[2]/div[1]/div[2]/div/div/div/img[1]').click
 end 
 
-
-When(/^I am on a Large image of the amendment form I can zoom in$/) do 
-   if is_gui?
-       find(:xpath, '//*[@id="container0"]/img[2]').click
-   else
-       find(:xpath, '//*[@id="container0"]/img[2]').trigger('click')
-   end
-  #container0>div
-  #all('.zoomcontrols')[0].click
- thing = find(:csspath, '#container0 > div:nth-child(2)')
- expect(thing.text).to eq "2x Magnify"
-end 
-
-When(/^I am on a Large image of the amendment form I can zoom out$/) do 
-  if is_gui?
-    find(:xpath, '//*[@id="container0"]/img[3]').click
-  else
-    find(:xpath, '//*[@id="container0"]/img[3]').trigger('click')
-  end
-   
-  #container0>div
-  #all('.zoomcontrols')[0].click
-  #container0 > div:nth-child(2)
-   
- thing = find(:csspath, '#container0 > div:nth-child(2)')
-  expect(thing.text).to eq "1x Magnify"
-end 
-
 When(/^I must have a registration number before the continue button can be clicked$/) do 
    fill_in('reg_no', :with => $regnote)
    sleep(1)

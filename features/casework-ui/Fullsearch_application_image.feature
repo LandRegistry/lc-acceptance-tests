@@ -13,8 +13,8 @@ Given I am on the bankruptcy searches screen
 When I select an application type of Full Search the application is displayed
 When the image of the full search application is displayed I can click on all available pages
 When I click on a page the image of the full search is visible
-When I am on a page I can zoom in
-Then I am on a page I can zoom out
+When I am on a Large image I can zoom in
+Then I am on a Large image I can zoom out
 
 #SH-US019 - Full Search - Capture Customer Details
 Given I am on the bankruptcy full search details screen

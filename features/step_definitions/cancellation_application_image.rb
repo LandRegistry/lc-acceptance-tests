@@ -89,7 +89,8 @@ When(/^the cancellation application has been submitted the unique identifier is 
   # page.has_content?('Cancelled on '+ date_format)
 end 
 
-When(/^I can click the reject button the system will go next screen$/) do 
+When(/^I can click the reject button the system will go next screen$/) do
+  sleep(1) 
   click_button('reject')
 end 
 
