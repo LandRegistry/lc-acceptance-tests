@@ -1,11 +1,6 @@
 When(/^I select an application type of Full Search the application is displayed$/) do
-  #apptype_search = find(:xpath, '//*[@id="results"]/tbody/tr[1]/td[3]').text
- #apptype_fullsearch = find(:id, 'app_type2').text
- #if app type == 'Search'
-  #then  find(:id, app_type =='Search').click
-  #find(:xpath,'html/body/div[1]/div/div/div[3]/div/table/tbody/tr[1]/td[1]').click
   visit( "http://localhost:5010/get_list?appn=search" )
-    find(:id,'app_type3').click
+  find(:id,'app_type3').click
 end
 
 When(/^I click on a page the image of the full search is visible$/) do
@@ -65,8 +60,5 @@ When(/^the application has been submitted a confirmation screen is displayed$/) 
   expect(page).to have_content('Application Complete')
 end
 
-Then(/^click on View Search Result$/) do
-  click_link('View Search Result')
-  visit("http://localhost:5010/process_search/full")
-end
+
 

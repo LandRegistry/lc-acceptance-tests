@@ -8,12 +8,7 @@ Given(/^I am on the bankruptcy searches screen$/) do
  end
 
 When(/^I select an application type of Search the application is displayed$/) do
- # if app type == 'Search'
-  
-  #then  find(:id, app_type =='Search').click
-  # find(:xpath,'html/body/div[1]/div/div/div[3]/div/table/tbody/tr[1]/td[1]').click
-  visit( "http://localhost:5010/get_list?appn=search" )
-    find(:xpath,".//*[@id='results']/tbody/tr[1]/td[1]/a").click
+   find(:id,'app_type1').click
 end
 
 When(/^the image of the search application is displayed I can click on all available pages$/) do
@@ -56,9 +51,6 @@ Then(/^I can click the complete search button$/) do
 end
 
 Then(/^the user can return to the worklist from the bankruptcy search complete screen$/) do
-   #click_link('View Search Result')
-   #sleep(10)
-   #visit("http://localhost:5010/process_search/banks")
-   #click_link('Return to Worklist')
-   #sleep(1)
+   click_link('Return to Worklist')
+   sleep(1)
 end

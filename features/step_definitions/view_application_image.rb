@@ -14,7 +14,8 @@ When(/^the image of the application is displayed I can click on all available pa
 end
 
 When(/^I click on a page the image it is visible$/) do
-  find(:xpath, "html/body/div[1]/div/div/div[2]/div[1]/div[1]/img[1]").click 
+  #find(:xpath, "html/body/div[1]/div/div/div[2]/div[1]/div[1]/img[1]").click 
+  find(:id, 'thumbnail1').click
   #page.has_src("http://localhost:5010/static/images/page1.jpg")
 end
 

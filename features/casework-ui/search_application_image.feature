@@ -11,10 +11,10 @@ Scenario: Using the bankruptcy searchs task on the  Land Charges system
 #SH-US002 Bankruptcy Search - View Postal Search
 Given I am on the bankruptcy searches screen
 When I select an application type of Search the application is displayed
-#When the image of the search application is displayed I can click on all available pages
-#When I click on a page the image it is visible
-#When I am on a page I can zoom in
-#Then I am on a page I can zoom out
+When the image of the search application is displayed I can click on all available pages
+When I click on a page the image it is visible
+When I am on a page I can zoom in
+Then I am on a page I can zoom out
 
 #SH-US003 Bankruptcy Search - Capture Customer Details
 Given I am on the bankruptcy search details screen
