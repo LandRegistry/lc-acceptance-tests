@@ -36,4 +36,4 @@ When add area button is clicked the search area details are added to the List of
 When I click on entered details in the list of areas search box I can make an amendment
 When I can click the complete search button when the customer address field is complete
 When the application has been submitted a confirmation screen is displayed
-Then the user can return to the worklist from the bankruptcy search complete screen
+Then the user can return to the worklist

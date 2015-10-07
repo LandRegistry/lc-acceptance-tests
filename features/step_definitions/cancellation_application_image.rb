@@ -96,7 +96,6 @@ end
 
 Then(/^the next screen will be the rejection screen$/) do 
     expect(page).to have_content('Application Rejected')
-    find(:id, 'return_to_worklist').click
 end 
 
 Given(/^the application has been cancelled$/) do

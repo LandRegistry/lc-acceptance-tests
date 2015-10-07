@@ -50,7 +50,6 @@ end
 
 Then(/^the next screen will be the amendment rejection screen$/) do
   expect(page).to have_content('Application Rejected')
-  find(:id, 'return_to_worklist').click
 end
 
 When(/^I can click the amend button the system will go next screen$/) do
@@ -149,11 +148,7 @@ When(/^the amendments application has been submitted the unique identifier is di
   registereddate = find(:id, 'registereddate').text
   puts(registereddate)
   expect(registereddate).to eq 'Registered on '+ date_format
-end
-
-Then(/^the user can return to the worklist from the amendment screens$/) do
-    expect(page).to have_content('Application Complete')
-    find(:id, 'return_to_worklist').click
+   expect(page).to have_content('Application Complete')
 end
 
 Given(/^the application has been amended$/) do
@@ -162,10 +157,7 @@ Given(/^the application has been amended$/) do
    fill_in('reg_no', :with => $regnote3)
    click_button('continue')
    find(:id, 'save_changes').click
- # step "I am on the bankruptcy details worklist screen with amendments still listed"
-  #step "I must have a different registration number before the continue button can be clicked"
-  #step "I can click submit button to save all new information"
-  step "the user can return to the worklist from the amendment screens"
+   step "the user can return to the worklist"
 end
 
 When(/^we check the bankruptcy database record there must be a indicator for amended$/) do

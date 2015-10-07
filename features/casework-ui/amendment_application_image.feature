@@ -26,7 +26,8 @@ Then the next screen will be the amendment confirmation screen
 Given I am on the bankruptcy details screen
 When the application details become visible they must be the correct ones for the registration detailed on the previous screen 
 When I can click the reject button on the amendment screen the system will go next screen
-Then the next screen will be the amendment rejection screen
+When the next screen will be the amendment rejection screen
+Then the user can return to the worklist
 
 #AM-US003	Amend Details
 Given I am on the bankruptcy details worklist screen with amendments still listed
@@ -57,7 +58,7 @@ Then I can click submit button to save all new information
 #AM-US005	Unique Identifier
 Given the amendment confirmation screen is visible	
 When the amendments application has been submitted the unique identifier is displayed to the user on the screen	
-Then the user can return to the worklist from the amendment screens
+Then the user can return to the worklist
 
 #CR-US010 Amend Indicator
 Given the application has been amended 	

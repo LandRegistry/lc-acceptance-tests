@@ -32,7 +32,8 @@ Given I have selected to view a specific record on the cancellation application 
 When I must have a registration number value before the continue button can be clicked
 When I can click the continue button to go to the next screen
 When I can click the reject button the system will go next screen
-Then the next screen will be the rejection screen
+And the next screen will be the rejection screen
+Then the user can return to the worklist
 
 #CR-US006 Cancel Indicator
 Given the application has been cancelled 	

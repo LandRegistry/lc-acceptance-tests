@@ -50,7 +50,4 @@ Then(/^I can click the complete search button$/) do
   sleep(1)
 end
 
-Then(/^the user can return to the worklist from the bankruptcy search complete screen$/) do
-   click_link('Return to Worklist')
-   sleep(1)
-end
+
