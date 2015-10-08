@@ -25,7 +25,8 @@ Then I amend the Surname of the Alias Surname and the new details remain visible
 #US020 Supplying the occupation details
 Given I am on the debtors name and details screen 
 When I enter an Occupation the details remain visible
-Then I click the continue button and the debtors address screen is displayed
+Then I can click the continue button to go to the next screen
+#above statement displays the debtors address screen is displayed
 
 #US010 Supplying the debtors address
 Given I am on the debtors address screen
@@ -33,7 +34,8 @@ When I supply the address details in the address fields they remain visible
 When I click the add address button the address is added to the top of the screen
 When I supply additional address details 
 When I click the add address button the address is added to the top of the screen
-Then I click the continue button and the case information screen is displayed
+Then I can click the continue button to go to the next screen
+#above statement displays the case information screen is displayed
 
 #US007 Supplying class of charge
 Given I am on the case information screen

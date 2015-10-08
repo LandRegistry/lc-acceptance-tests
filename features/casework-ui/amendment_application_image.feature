@@ -19,7 +19,7 @@ Then I can click the amendment screen continue button to go to the next screen
 #AM-US002	View Original Application confirm
 Given I am on the bankruptcy details screen
 When the application details become visible they must be the correct ones for the registration detailed on the previous screen 
-When I can click the amendment screen continue button the system will go next screen
+When I can click the continue button to go to the next screen
 Then the next screen will be the amendment confirmation screen
 
 #AM-US002	View Original Application reject
@@ -32,26 +32,27 @@ Then the user can return to the worklist
 #AM-US003	Amend Details
 Given I am on the bankruptcy details worklist screen with amendments still listed
 When I must have a different registration number before the continue button can be clicked
+And I can click the continue button to go to the next screen
 When I am on the amend details screen I can click on the amend name button
 When the Debtor details screen is displayed I can overtype the details
-And click the continue button the new details are stored
+And I can click the continue button to go to the next screen
 When I click the add button for alias name the debtor alias name screen is displayed
 When I enter the alias names 
-And click the continue button the new details are stored
+And I can click the continue button to go to the next screen
 When I click the add button for alias name the debtor alias name screen is displayed
 When I enter the additional alias names 
-And click the continue button the new details are stored 
+And I can click the continue button to go to the next screen
 When I select an alias name and click the remove button the name is removed from the screen
 When I click on the add button for address the address details screen is displayed
 When I enter the address details 
-And click the continue button the new details are stored
+And I can click the continue button to go to the next screen
 When I am on the amend details screen I can click on the amend address button
 When the address details screen is displayed I can overtype the details
-And click the continue button the new details are stored
+And I can click the continue button to go to the next screen
 When I select an address and click the remove button the address is removed from the screen
 When I am on the amend details screen I can click on the amend court button
 When the court details screen is displayed I can overtype the details
-And click the continue button the new details are stored
+And I can click the continue button to go to the next screen
 Then I can click submit button to save all new information
 
 

@@ -24,10 +24,6 @@ When(/^I must have a registration number before the continue button can be click
    sleep(1)
 end  
 
-Then(/^I can click the amendment screen continue button to go to the next screen$/) do 
-  click_button('continue')
-end 
-
 Given(/^I am on the bankruptcy details screen$/) do #amend details screen
   expect(page).to have_content('Amend details')
 end 
@@ -65,8 +61,6 @@ end
 
 When(/^I must have a different registration number before the continue button can be clicked$/) do
   fill_in('reg_no', :with => $regnote2)
-  click_button('continue')
-  
 end
 
 When(/^I am on the amend details screen I can click on the amend name button$/) do 
@@ -76,10 +70,6 @@ end
 When(/^the Debtor details screen is displayed I can overtype the details$/) do 
   fill_in('forenames', :with => 'Nicola')
   fill_in('surname', :with => 'Andrews')
-end 
-
-When(/^click the continue button the new details are stored$/) do 
-  click_button('continue')
 end 
 
 When(/^I click the add button for alias name the debtor alias name screen is displayed$/) do 

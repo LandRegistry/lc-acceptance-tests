@@ -19,7 +19,7 @@ Then I can click the continue button to go to the next screen
 #CR-US002 View original application(s) completed
 Given I am on the Application details screen
 When the application details become visible they must be the correct ones for the registration number detailed on the previous screen 
-When I can click the continue button the system will go next screen
+When I can click the continue button to go to the next screen
 Then the next screen will be the confirmation screen
 
 #CR-US004 Unique Identifier

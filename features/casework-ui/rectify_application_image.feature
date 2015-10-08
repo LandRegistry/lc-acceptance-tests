@@ -11,7 +11,7 @@ Scenario: Using the bankruptcy rectifications task on the  Land Charges system
 #RC-US001 View original application
 Given I am on the Bankruptcy Rectification document request screen
 When I enter a registration number 
-Then click on the continue button the screen displayed will shown the correct application details
+Then I can click the continue button to go to the next screen
 
 #RC-US002 View Details
 Given I am on the Rectify screen

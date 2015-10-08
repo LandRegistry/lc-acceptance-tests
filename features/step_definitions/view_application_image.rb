@@ -50,10 +50,6 @@ When(/^I enter an Occupation the details remain visible$/) do
   fill_in('occupation', :with => 'civil servant')
 end
 
-Then(/^I click the continue button and the debtors address screen is displayed$/) do
-  click_button('Continue')
-end
-
 Given(/^I am on the debtors address screen$/) do
   expect(page).to have_content('Debtor address')
 end
@@ -77,10 +73,6 @@ When(/^I supply additional address details$/) do
   fill_in('address3', :with => 'New Forest')
   fill_in('county', :with => 'Hants')
   fill_in('postcode', :with => 'BH23 1NY')
-end
-
-Then(/^I click the continue button and the case information screen is displayed$/) do
-  click_button('Continue')
 end
 
 Given(/^I am on the case information screen$/) do
