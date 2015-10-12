@@ -12,8 +12,10 @@ def disconnect(connection)
     connection.close
 end
 
+def save()
+end
 
-def execute(clear, setup, quiet = false)
+def execute(clear, setup, save = false, quiet = false)
     if File.directory?("/vagrant/apps")
         folders = Dir["/vagrant/apps/*"]
     else
@@ -29,6 +31,19 @@ def execute(clear, setup, quiet = false)
             tables = info['tables']
 
             conn = connect(db_name)
+            if save
+                #out_dir = "#{folder}/data/
+
+                puts "  save" unless(quiet)
+                tables.each do |table|
+                    `psql #{db_name} -c "COPY #{table} TO '#{folder}/data/#{table}.txt' DELIMITER '|' CSV`
+                end
+
+                if File.exists?("#{folder}/data/save.rb")
+                    `ruby "#{folder}/data/save.rb" #{folder}`
+                end
+            end
+
             if clear
                 puts("  clear") unless(quiet)
                 tables.each do |table|
@@ -56,6 +71,11 @@ def execute(clear, setup, quiet = false)
                             puts res.error_message
                         end
                     end
+
+                    if db_name != 'db2'
+                        command = "SELECT setval('#{table}_id_seq', (SELECT MAX(id) FROM #{table})+1);"
+                        conn.exec(command)
+                    end
                 end
 
                 if File.exists?("#{folder}/data/setup.rb")
@@ -69,15 +89,15 @@ def execute(clear, setup, quiet = false)
 end
 
 def clear_data
-    execute(true, false)
+    execute(true, false, false)
 end
 
 def setup_data
-    execute(false, true)
+    execute(false, true, false)
 end
 
 def reset_data
-    execute(true, true, true)
+    execute(true, true, false, true)
 end
 
 if __FILE__ == $0
@@ -86,11 +106,13 @@ if __FILE__ == $0
     if ARGV.length == 0
         clear = true
         setup = true
+        save = false
     else
         clear = ARGV.include?('clear')
         setup = ARGV.include?('setup')
+        save = ARGV.include?('save')
     end
-    execute(clear, setup)
+    execute(clear, setup, save)
 end
 
 
