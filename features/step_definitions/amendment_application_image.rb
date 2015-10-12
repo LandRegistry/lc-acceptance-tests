@@ -40,12 +40,10 @@ Then(/^the next screen will be the amendment confirmation screen$/) do
    #no action needed due to screen changes 
 end 
 
-When(/^I can click the reject button on the amendment screen the system will go next screen$/) do
+When(/^I click on the reject button the next screen is displayed$/) do
   click_button('reject')
-end
-
-Then(/^the next screen will be the amendment rejection screen$/) do
   expect(page).to have_content('Application Rejected')
+  sleep(1)
 end
 
 When(/^I can click the amend button the system will go next screen$/) do
@@ -56,7 +54,7 @@ end
 Given(/^I am on the bankruptcy details worklist screen with amendments still listed$/) do
    #$regnote2 = create_registration
    $regnote2 = '50013'
-   find(:xpath,'html/body/div[1]/div/div/div[3]/div/table/tbody/tr[1]/td[1]').click
+   #find(:xpath,'html/body/div[1]/div/div/div[3]/div/table/tbody/tr[1]/td[1]').click
 end
 
 When(/^I must have a different registration number before the continue button can be clicked$/) do
@@ -142,11 +140,11 @@ When(/^the amendments application has been submitted the unique identifier is di
 end
 
 Given(/^the application has been amended$/) do
-   $regnote3 = '50010'
-   find(:xpath,'html/body/div[1]/div/div/div[3]/div/table/tbody/tr[1]/td[1]').click
+   $regnote3 = '50016'
+   find(:id,'app_type1').click
    fill_in('reg_no', :with => $regnote3)
    click_button('continue')
-   find(:id, 'save_changes').click
+   click_button('save_changes')
    step "the user can return to the worklist"
 end
 
@@ -158,4 +156,12 @@ Then(/^the indicator must have a value for amended$/) do
   PostgreSQL.connect('landcharges')
   result = PostgreSQL.query("SELECT a.cancelled_by FROM register_details a, register b WHERE b.registration_no=#{$regnote2} AND b.details_id = a.id")
   expect(result.values[0][0]).not_to be_empty
+end
+
+When(/^I can click on the submit button to go to the next screen$/) do
+  click_button('Submit')
+end
+
+Given(/^I have selected to view a specific record from the worklist$/) do
+  find(:id,'app_type1').click
 end

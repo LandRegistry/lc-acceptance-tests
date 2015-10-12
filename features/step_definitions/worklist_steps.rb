@@ -82,7 +82,7 @@ end
 Then(/^I see the amendments application list page$/) do
     page.should have_content("Amendments")
     page.should have_content("21 August 2015")
-    page.should have_css('div#amend_total', :text => '2')
+    page.should have_css('div#amend_total', :text => '4')
 end
 
 Then(/^I see the cancellations application list page$/) do
