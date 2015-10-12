@@ -19,42 +19,10 @@ When(/^I click on an amendment form thumbnail the image is expanded to large ima
 	#find(:xpath, '/html/body/form/div/div/div/div[2]/div[1]/div[2]/div/div/div/img[1]').click
 end 
 
-
-When(/^I am on a Large image of the amendment form I can zoom in$/) do 
-   if is_gui?
-       find(:xpath, '//*[@id="container0"]/img[2]').click
-   else
-       find(:xpath, '//*[@id="container0"]/img[2]').trigger('click')
-   end
-  #container0>div
-  #all('.zoomcontrols')[0].click
- thing = find(:csspath, '#container0 > div:nth-child(2)')
- expect(thing.text).to eq "2x Magnify"
-end 
-
-When(/^I am on a Large image of the amendment form I can zoom out$/) do 
-  if is_gui?
-    find(:xpath, '//*[@id="container0"]/img[3]').click
-  else
-    find(:xpath, '//*[@id="container0"]/img[3]').trigger('click')
-  end
-   
-  #container0>div
-  #all('.zoomcontrols')[0].click
-  #container0 > div:nth-child(2)
-   
- thing = find(:csspath, '#container0 > div:nth-child(2)')
-  expect(thing.text).to eq "1x Magnify"
-end 
-
 When(/^I must have a registration number before the continue button can be clicked$/) do 
    fill_in('reg_no', :with => $regnote)
    sleep(1)
 end  
-
-Then(/^I can click the amendment screen continue button to go to the next screen$/) do 
-  click_button('continue')
-end 
 
 Given(/^I am on the bankruptcy details screen$/) do #amend details screen
   expect(page).to have_content('Amend details')
@@ -78,7 +46,6 @@ end
 
 Then(/^the next screen will be the amendment rejection screen$/) do
   expect(page).to have_content('Application Rejected')
-  find(:id, 'return_to_worklist').click
 end
 
 When(/^I can click the amend button the system will go next screen$/) do
@@ -94,8 +61,6 @@ end
 
 When(/^I must have a different registration number before the continue button can be clicked$/) do
   fill_in('reg_no', :with => $regnote2)
-  click_button('continue')
-  
 end
 
 When(/^I am on the amend details screen I can click on the amend name button$/) do 
@@ -105,10 +70,6 @@ end
 When(/^the Debtor details screen is displayed I can overtype the details$/) do 
   fill_in('forenames', :with => 'Nicola')
   fill_in('surname', :with => 'Andrews')
-end 
-
-When(/^click the continue button the new details are stored$/) do 
-  click_button('continue')
 end 
 
 When(/^I click the add button for alias name the debtor alias name screen is displayed$/) do 
@@ -177,11 +138,7 @@ When(/^the amendments application has been submitted the unique identifier is di
   registereddate = find(:id, 'registereddate').text
   puts(registereddate)
   expect(registereddate).to eq 'Registered on '+ date_format
-end
-
-Then(/^the user can return to the worklist from the amendment screens$/) do
-    expect(page).to have_content('Application Complete')
-    find(:id, 'return_to_worklist').click
+   expect(page).to have_content('Application Complete')
 end
 
 Given(/^the application has been amended$/) do
@@ -190,10 +147,7 @@ Given(/^the application has been amended$/) do
    fill_in('reg_no', :with => $regnote3)
    click_button('continue')
    find(:id, 'save_changes').click
- # step "I am on the bankruptcy details worklist screen with amendments still listed"
-  #step "I must have a different registration number before the continue button can be clicked"
-  #step "I can click submit button to save all new information"
-  step "the user can return to the worklist from the amendment screens"
+   step "the user can return to the worklist"
 end
 
 When(/^we check the bankruptcy database record there must be a indicator for amended$/) do

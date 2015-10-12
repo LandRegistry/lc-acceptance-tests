@@ -14,37 +14,9 @@ When(/^the image of the application is displayed I can click on all available pa
 end
 
 When(/^I click on a page the image it is visible$/) do
-  find(:xpath, "html/body/div[1]/div/div/div[2]/div[1]/div[1]/img[1]").click 
+  #find(:xpath, "html/body/div[1]/div/div/div[2]/div[1]/div[1]/img[1]").click 
+  find(:id, 'thumbnail1').click
   #page.has_src("http://localhost:5010/static/images/page1.jpg")
-end
-
-When(/^I am on a page I can zoom in$/) do
-  sleep(1)
-   if is_gui?
-       find(:xpath, '//*[@id="container0"]/img[2]').click
-   else
-       find(:xpath, '//*[@id="container0"]/img[2]').trigger('click')
-   end
-  #container0>div
-  #all('.zoomcontrols')[0].click
- thing = find(:csspath, '#container0 > div:nth-child(2)')
- expect(thing.text).to eq "2x Magnify"
-end
-
-Then(/^I am on a page I can zoom out$/) do
-sleep(1)
-   if is_gui?
-       find(:xpath, '//*[@id="container0"]/img[3]').click
-   else
-       find(:xpath, '//*[@id="container0"]/img[3]').trigger('click')
-   end
-
-  #container0>div
-  #all('.zoomcontrols')[0].click
-  #container0 > div:nth-child(2)
-   
- thing = find(:csspath, '#container0 > div:nth-child(2)')
-  expect(thing.text).to eq "1x Magnify"
 end
 
 Given(/^I am on the debtors name and details screen$/) do
@@ -78,10 +50,6 @@ When(/^I enter an Occupation the details remain visible$/) do
   fill_in('occupation', :with => 'civil servant')
 end
 
-Then(/^I click the continue button and the debtors address screen is displayed$/) do
-  click_button('Continue')
-end
-
 Given(/^I am on the debtors address screen$/) do
   expect(page).to have_content('Debtor address')
 end
@@ -105,10 +73,6 @@ When(/^I supply additional address details$/) do
   fill_in('address3', :with => 'New Forest')
   fill_in('county', :with => 'Hants')
   fill_in('postcode', :with => 'BH23 1NY')
-end
-
-Then(/^I click the continue button and the case information screen is displayed$/) do
-  click_button('Continue')
 end
 
 Given(/^I am on the case information screen$/) do

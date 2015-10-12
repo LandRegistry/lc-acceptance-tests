@@ -13,8 +13,8 @@ Given I am on the bankruptcy searches screen
 When I select an application type of Full Search the application is displayed
 When the image of the full search application is displayed I can click on all available pages
 When I click on a page the image of the full search is visible
-When I am on a page I can zoom in
-Then I am on a page I can zoom out
+When I am on a Large image I can zoom in
+Then I am on a Large image I can zoom out
 
 #SH-US019 - Full Search - Capture Customer Details
 Given I am on the bankruptcy full search details screen
@@ -36,5 +36,4 @@ When add area button is clicked the search area details are added to the List of
 When I click on entered details in the list of areas search box I can make an amendment
 When I can click the complete search button when the customer address field is complete
 When the application has been submitted a confirmation screen is displayed
-#Then click on View Search Result
-
+Then the user can return to the worklist

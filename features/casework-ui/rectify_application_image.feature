@@ -11,13 +11,13 @@ Scenario: Using the bankruptcy rectifications task on the  Land Charges system
 #RC-US001 View original application
 Given I am on the Bankruptcy Rectification document request screen
 When I enter a registration number 
-Then click on the continue button the screen displayed will shown the correct application details
+Then I can click the continue button to go to the next screen
 
 #RC-US002 View Details
 Given I am on the Rectify screen
 When I click on the different thumbnails the editable details are displayed below
-#When I am on a original large image of the amendment form I can zoom in
-#When I am on a original large image of the amendment form I can zoom out
+#When I am on a Large image I can zoom in
+#When I am on a Large image I can zoom out
 When I can overtype any detail that needs to be amended
 When there is more that one alias name
 When I add an address the new datails are visible

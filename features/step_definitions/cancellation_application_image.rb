@@ -68,10 +68,6 @@ When(/^the application details become visible they must be the correct ones for 
   expect(page).to have_content(result.values[0][0])
 end 
 
-When(/^I can click the continue button the system will go next screen$/) do 
-  click_button('continue')
-end 
-
 Then(/^the next screen will be the confirmation screen$/) do
   expect(page).to have_content('Application Complete')
 end
@@ -89,20 +85,20 @@ When(/^the cancellation application has been submitted the unique identifier is 
   # page.has_content?('Cancelled on '+ date_format)
 end 
 
-When(/^I can click the reject button the system will go next screen$/) do 
+When(/^I can click the reject button the system will go next screen$/) do
+  sleep(1) 
   click_button('reject')
 end 
 
 Then(/^the next screen will be the rejection screen$/) do 
     expect(page).to have_content('Application Rejected')
-    find(:id, 'return_to_worklist').click
 end 
 
 Given(/^the application has been cancelled$/) do
   step "I have selected to view a specific record on the cancellation application list the individual record is display"
   step "I must have a registration number value before the continue button can be clicked"
-  step "I can click the continue button to go to the next screen"
-  step "I can click the continue button the system will go next screen"
+  step "I can click the continue button to go to the next screen" #continue button of first screen
+  step "I can click the continue button to go to the next screen" #continue button on second screen
 end
 
 When(/^we check the bankruptcy database record there must be a indicator for cancelled$/) do

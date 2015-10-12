@@ -11,11 +11,6 @@ When(/^I enter a registration number$/) do
   fill_in('reg_no', :with => $regnote)
 end
 
-Then(/^click on the continue button the screen displayed will shown the correct application details$/) do
-    fill_in('reg_no', :with => $regnote)
-    click_button('continue')
-end
-
 Given(/^I am on the Rectify screen$/) do
   expect(page).to have_content('Bankruptcy Rectification')
 end
@@ -23,20 +18,6 @@ end
 When(/^I click on the different thumbnails the editable details are displayed below$/) do
   find(:id, 'thumbnail_1').click
   find(:xpath, 'html/body/form/div/div[2]/div[2]').click
-end
-
-
-When(/^I am on a original large image of the amendment form I can zoom in$/) do
-                   
-  find(:xpath, '//*[@id="container0"]/img[2]').click 
-  thing = find(:csspath, '#container0 > div:nth-child(2)')
-  expect(thing.text).to eq "2x Magnify"
-end
-
-When(/^I am on a original large image of the amendment form I can zoom out$/) do
-  find(:xpath, '//*[@id="container0"]/img[3]').click
-  thing = find(:csspath, '#container0 > div:nth-child(2)')
-  expect(thing.text).to eq "1x Magnify"
 end
 
 When(/^I can overtype any detail that needs to be amended$/) do 
@@ -101,7 +82,8 @@ end
 Given(/^an acknowledgement has been requested$/) do
   step "I am on the Bankruptcy Rectification document request screen"
   $regnote = '50011'
-  step "click on the continue button the screen displayed will shown the correct application details"
+  fill_in('reg_no', :with => $regnote)
+  step "I can click the continue button to go to the next screen"
   step "there is more that one alias name"
   step "all amended details will need to be updated to reflect the stored changes"
   step "I click on the Yes for acknowledgement required checkbox is highlighted"
@@ -121,7 +103,8 @@ end
 Given(/^an acknowledgement has not been requested$/) do 
   step "I am on the Bankruptcy Rectification document request screen"
   $regnote = create_registration
-  step "click on the continue button the screen displayed will shown the correct application details"
+  fill_in('reg_no', :with => $regnote)
+  step "I can click the continue button to go to the next screen"
   step "I can overtype any detail that needs to be amended"
   step "all amended details will need to be updated to reflect the stored changes"
   step "I click on the No for acknowledgement required checkbox is highlighted"
