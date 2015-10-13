@@ -25,6 +25,7 @@ Given(/^I am on the bankruptcy search details screen$/) do
 end
 
 When(/^I click on the name details tab I can enter six names$/) do
+  sleep(1)
   fill_in('fullname0', :with => 'Miss Piggy')
   fill_in('fullname1', :with => 'Gonzo')
   fill_in('fullname2', :with => 'Kermit T Frog')
