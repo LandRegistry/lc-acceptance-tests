@@ -56,9 +56,7 @@ Then(/^I can click the complete search button when the customer address field is
    click_button('Complete Search')
 end
 
-When(/^the application has been submitted a confirmation screen is displayed$/) do
-  expect(page).to have_content('Application Complete')
-end
+
 
 
 

@@ -63,6 +63,7 @@ end
 
 Given(/^I am on the Application complete screen$/) do
   expect(page).to have_content('Application Complete')
+
 end
 
 Then(/^the application complete screen is displayed with the original unique identifier displayed$/) do

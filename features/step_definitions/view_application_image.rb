@@ -107,10 +107,6 @@ Then(/^I click the submit button and the application complete screen is displaye
   click_button('Submit') 
 end 
 
-Given(/^the Application complete screen is visible$/) do
-  expect(page).to have_content('Application Complete')
-  
-end
 
 When(/^the Application has been submitted the unique identifier is displayed to the user on the screen$/) do
   expect(page).to have_content('Your application reference number')

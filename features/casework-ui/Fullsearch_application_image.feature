@@ -24,7 +24,7 @@ When I click on the Customer details tab I can enter the key number Customer Nam
 When I click on entered details in the address box I can make an amendment
 When I click on the search areas tab all counties check box search area  List of Areas to search is displayed
 When I can click the complete search button when the customer address field is complete
-When the application has been submitted a confirmation screen is displayed
+When I am on the Application complete screen
 When the user can return to the worklist
 When I select an application type of Full Search the application is displayed
 When I click on the name details tab I can enter six names
@@ -35,5 +35,5 @@ When I enter details into the search area edit box I can click on the add area b
 When add area button is clicked the search area details are added to the List of areas to search box
 When I click on entered details in the list of areas search box I can make an amendment
 When I can click the complete search button when the customer address field is complete
-When the application has been submitted a confirmation screen is displayed
+When I am on the Application complete screen
 Then the user can return to the worklist

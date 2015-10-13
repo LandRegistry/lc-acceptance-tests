@@ -50,7 +50,7 @@ When I enter a court number and year the details remain visible
 Then I click the submit button and the application complete screen is displayed
 
 #US006 and US018 Unique Identifier
-Given the Application complete screen is visible
+Given I am on the Application complete screen
 When the Application has been submitted the unique identifier is displayed to the user on the screen
 And the Application has been submitted the date is displayed to the user on the screen
 Then the user can return to the worklist

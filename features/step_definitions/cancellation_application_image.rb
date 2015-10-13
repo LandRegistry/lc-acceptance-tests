@@ -68,15 +68,9 @@ When(/^the application details become visible they must be the correct ones for 
   expect(page).to have_content(result.values[0][0])
 end 
 
-Then(/^the next screen will be the confirmation screen$/) do
-  expect(page).to have_content('Application Complete')
-end
 
-Given(/^the  confirmation screen is visible$/) do
-end 
 
 When(/^the cancellation application has been submitted the unique identifier is displayed to the user on the screen$/) do 
-  expect(page).to have_content('Application Complete')
   expect(page).to have_content('been cancelled:')
   date_format = Date.today.strftime('%d.%m.%Y')
   canceldate = find(:id, 'canceldate').text

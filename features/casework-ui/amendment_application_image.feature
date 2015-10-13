@@ -59,7 +59,7 @@ Then I can click submit button to save all new information
 
 
 #AM-US005    Unique Identifier
-Given the amendment confirmation screen is visible   
+Given I am on the Application complete screen   
 When the amendments application has been submitted the unique identifier is displayed to the user on the screen     
 Then the user can return to the worklist
 

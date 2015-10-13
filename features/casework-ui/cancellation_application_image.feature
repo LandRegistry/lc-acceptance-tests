@@ -20,10 +20,10 @@ Then I can click the continue button to go to the next screen
 Given I am on the Application details screen
 When the application details become visible they must be the correct ones for the registration number detailed on the previous screen 
 When I can click the continue button to go to the next screen
-Then the next screen will be the confirmation screen
+Then I am on the Application complete screen
 
 #CR-US004 Unique Identifier
-Given the  confirmation screen is visible	
+Given I am on the Application complete screen	
 When the cancellation application has been submitted the unique identifier is displayed to the user on the screen	
 Then the user can return to the worklist
 

@@ -121,22 +121,15 @@ When(/^the court details screen is displayed I can overtype the details$/) do
   
 end 
 
-
 Then(/^I can click submit button to save all new information$/) do 
   find(:id, 'save_changes').click
 end 
-
-Given(/^the amendment confirmation screen is visible$/) do
-   expect(page).to have_content('Application Complete')
-   expect(page).to have_content('Your application reference')
-end
 
 When(/^the amendments application has been submitted the unique identifier is displayed to the user on the screen$/) do
   date_format = Date.today.strftime('%d.%m.%Y')
   registereddate = find(:id, 'registereddate').text
   puts(registereddate)
   expect(registereddate).to eq 'Registered on '+ date_format
-   expect(page).to have_content('Application Complete')
 end
 
 Given(/^the application has been amended$/) do
