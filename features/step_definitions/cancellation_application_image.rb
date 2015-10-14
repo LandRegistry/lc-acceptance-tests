@@ -79,15 +79,6 @@ When(/^the cancellation application has been submitted the unique identifier is 
   # page.has_content?('Cancelled on '+ date_format)
 end 
 
-When(/^I can click the reject button the system will go next screen$/) do
-  sleep(1) 
-  click_button('reject')
-end 
-
-Then(/^the next screen will be the rejection screen$/) do 
-    expect(page).to have_content('Application Rejected')
-end 
-
 Given(/^the application has been cancelled$/) do
   step "I have selected to view a specific record on the cancellation application list the individual record is display"
   step "I must have a registration number value before the continue button can be clicked"
