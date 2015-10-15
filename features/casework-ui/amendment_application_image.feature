@@ -18,7 +18,7 @@ Then I can click the continue button to go to the next screen
 
 #AM-US002    View Original Application reject
 Given I am on the bankruptcy details screen
-When the application details become visible they must be the correct ones for the registration detailed on the previous screen 
+When the application details become visible they must be the correct ones for the registration number detailed on the previous screen 
 When I click on the reject button the next screen is displayed
 Then the user can return to the worklist
 
@@ -26,7 +26,7 @@ Then the user can return to the worklist
 Given I have selected to view a specific record from the worklist
 When I must have a registration number before the continue button can be clicked
 When I can click the continue button to go to the next screen
-When the application details become visible they must be the correct ones for the registration detailed on the previous screen 
+When the application details become visible they must be the correct ones for the registration number detailed on the previous screen 
 When I can click on the submit button to go to the next screen
 Then the user can return to the worklist
 

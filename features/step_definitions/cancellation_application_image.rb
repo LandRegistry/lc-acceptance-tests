@@ -64,6 +64,7 @@ end
 
 When(/^the application details become visible they must be the correct ones for the registration number detailed on the previous screen$/) do 
   PostgreSQL.connect('landcharges')
+  puts($regnote)
   result = PostgreSQL.query("SELECT a.surname FROM party_name a, register b WHERE b.registration_no=#{$regnote} AND b.debtor_reg_name_id = a.id")
   expect(page).to have_content(result.values[0][0])
 end 

@@ -28,18 +28,6 @@ Given(/^I am on the bankruptcy details screen$/) do #amend details screen
   expect(page).to have_content('Amend details')
 end 
 
-When(/^the application details become visible they must be the correct ones for the registration detailed on the previous screen$/) do 
- #database check
-end 
-
-When(/^I can click the amendment screen continue button the system will go next screen$/) do 
-  #no action needed due to screen changes 
-end 
-
-Then(/^the next screen will be the amendment confirmation screen$/) do 
-   #no action needed due to screen changes 
-end 
-
 When(/^I click on the reject button the next screen is displayed$/) do
   click_button('reject')
   expect(page).to have_content('Application Rejected')
