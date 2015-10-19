@@ -36,7 +36,7 @@ When I am on the bankruptcy details worklist screen with amendments still listed
 When I must have a different registration number before the continue button can be clicked
 When I can click the continue button to go to the next screen
 When I am on the amend details screen I can click on the amend name button
-When the Debtor details screen is displayed I can overtype the details
+When the application details screen is displayed I can overtype the details
 And I can click the continue button to go to the next screen
 When I click the add button for alias name the debtor alias name screen is displayed
 When I enter the alias names 

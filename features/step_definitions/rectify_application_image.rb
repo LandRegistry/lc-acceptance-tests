@@ -7,10 +7,6 @@ Given(/^I am on the Bankruptcy Rectification document request screen$/) do
   find(:id, 'Rectify').click
 end
 
-When(/^I enter a registration number$/) do
-  fill_in('reg_no', :with => $regnote)
-end
-
 Given(/^I am on the Rectify screen$/) do
   expect(page).to have_content('Bankruptcy Rectification')
 end
@@ -20,7 +16,7 @@ When(/^I click on the different thumbnails the editable details are displayed be
   find(:xpath, 'html/body/form/div/div[2]/div[2]').click
 end
 
-When(/^I can overtype any detail that needs to be amended$/) do 
+When(/^the application details screen is displayed I can overtype the details$/) do
   fill_in('forenames', :with => 'Jack')
   fill_in('surname', :with => 'Jones')
 end 
@@ -31,7 +27,7 @@ When(/^there is more that one alias name$/) do
   fill_in('aliassurname1', :with => 'Fisher')
 end 
 
-When(/^I add an address the new datails are visible$/) do
+When(/^I add an address the new details are visible$/) do
   click_button('addaddr')
   fill_in('address11', :with =>'1 long Street')
   fill_in('address21', :with =>'Plymouth')
@@ -97,7 +93,7 @@ Given(/^an acknowledgement has not been requested$/) do
   $regnote = create_registration
   fill_in('reg_no', :with => $regnote)
   step "I can click the continue button to go to the next screen"
-  step "I can overtype any detail that needs to be amended"
+  step "the application details screen is displayed I can overtype the details"
   step "all amended details will need to be updated to reflect the stored changes"
   step "I click on the No for acknowledgement required checkbox is highlighted"
   step "I click on the Submit button"

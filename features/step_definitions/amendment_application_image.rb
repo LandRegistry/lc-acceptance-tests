@@ -48,10 +48,6 @@ When(/^I am on the amend details screen I can click on the amend name button$/) 
   find(:id, 'amend_name').click
 end 
 
-When(/^the Debtor details screen is displayed I can overtype the details$/) do 
-  fill_in('forenames', :with => 'Nicola')
-  fill_in('surname', :with => 'Andrews')
-end 
 
 When(/^I click the add button for alias name the debtor alias name screen is displayed$/) do 
   find(:id, 'add_alias').click
