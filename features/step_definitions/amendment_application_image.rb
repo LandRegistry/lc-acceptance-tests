@@ -14,11 +14,6 @@ When(/^I am on the retrieve original documents  screen  the accompanying evidenc
 
 end 
 
-When(/^I click on an amendment form thumbnail the image is expanded to large image$/) do 
-	find(:id, 'thumbnails').click
-	#find(:xpath, '/html/body/form/div/div/div/div[2]/div[1]/div[2]/div/div/div/img[1]').click
-end 
-
 When(/^I must have a registration number before the continue button can be clicked$/) do 
    fill_in('reg_no', :with => $regnote)
    sleep(1)

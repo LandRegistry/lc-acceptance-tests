@@ -9,7 +9,7 @@ So that I can ensure that details are captured correctly onto the land charges r
 Scenario: Using the land charges system for cancellations
 #CR-US001 View application and evidence
 Given I have selected to view a specific record on the cancellation application list the individual record is display
-When I am on the request original documents  screen  the accompanying evidence is visible as thumbnails
+When I am on the retrieve original documents  screen  the accompanying evidence is visible as thumbnails
 When I click on a thumbnail the image is expanded to large image
 When I am on a Large image I can zoom in
 When I am on a Large image I can zoom out

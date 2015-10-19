@@ -66,15 +66,6 @@ Given(/^I am on the Application complete screen$/) do
 
 end
 
-Then(/^the application complete screen is displayed with the original unique identifier displayed$/) do
-  current_date = Date.today
-  date_format = current_date.strftime('%d.%m.%Y')
-  registereddate = find(:id, 'registereddate').text
-  puts(registereddate)
-  expect(registereddate).to eq 'Registered on '+ date_format
-  expect(page).to have_content('Your application reference')
-end 
-
 When(/^the rectification to the application has been submitted the amended unique identifier is displayed to the user on the screen$/) do 
   #expect(page).to have_content($regnote) 
   #this should be the same number as input but does not work defect raised for fix at later stage Database changes required

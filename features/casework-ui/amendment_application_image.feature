@@ -10,7 +10,7 @@ Scenario: Using the land charges system for amendments
 #AM-US001    View Application
 Given I have selected to view a specific record on the amendments application list the individual record is displayed
 When I am on the retrieve original documents  screen  the accompanying evidence is visible as thumbnails
-When I click on an amendment form thumbnail the image is expanded to large image
+When I click on a thumbnail the image is expanded to large image
 When I am on a Large image I can zoom in
 When I am on a Large image I can zoom out
 When I must have a registration number before the continue button can be clicked

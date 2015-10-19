@@ -3,14 +3,6 @@ When(/^I select an application type of Full Search the application is displayed$
   find(:id,'app_type3').click
 end
 
-When(/^I click on a page the image of the full search is visible$/) do
-  find(:id, 'thumbnail1').click
-end
-
-When(/^the image of the full search application is displayed I can click on all available pages$/) do
-  find(:id, 'thumbnail1').click
-end
-
 Given(/^I am on the bankruptcy full search details screen$/) do
   expect(page).to have_content('Full Search')
   expect(page).to have_content('Full Name')

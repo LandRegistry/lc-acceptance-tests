@@ -33,7 +33,7 @@ Then I click on the Yes for acknowledgement required checkbox is highlighted
 #RC-US004 Submit
 Given I am on the Rectify screen
 When I click on the Submit button 
-Then the application complete screen is displayed with the original unique identifier displayed
+Then the Application has been submitted the date is displayed to the user on the screen
 
 #RC-US005 Request acknowledgement
 Given I am on the Application complete screen

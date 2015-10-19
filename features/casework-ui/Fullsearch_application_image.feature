@@ -11,8 +11,7 @@ Scenario: Using the bankruptcy searchs task on the  Land Charges system
 #SH-US018 Full search - View Postal Search
 Given I am on the bankruptcy searches screen
 When I select an application type of Full Search the application is displayed
-When the image of the full search application is displayed I can click on all available pages
-When I click on a page the image of the full search is visible
+When I click on a thumbnail the image is expanded to large image
 When I am on a Large image I can zoom in
 Then I am on a Large image I can zoom out
 

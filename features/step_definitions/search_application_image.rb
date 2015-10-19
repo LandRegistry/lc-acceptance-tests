@@ -7,10 +7,6 @@ Given(/^I am on the bankruptcy searches screen$/) do
     #find(:id,'amend_total').click
  end
 
-When(/^I select an application type of Search the application is displayed$/) do
-   find(:id,'app_type1').click
-end
-
 When(/^the image of the search application is displayed I can click on all available pages$/) do
   #find(:xpath, '//*[@id="container0]/img[1]').click
                  

@@ -8,13 +8,9 @@ Given(/^I have selected to view a specific record on the cancellation applicatio
                 
 end 
 
-When(/^I am on the request original documents  screen  the accompanying evidence is visible as thumbnails$/) do 
- page.should have_xpath('/html/body/form/div/div/div/div[2]/div[1]/div[1]/img')
-end 
-
 When(/^I click on a thumbnail the image is expanded to large image$/) do 
-  # find(:id, 'thumbnails').click
-  find(:xpath, '//*[@id="thumbnails"]/img[1]').click
+  #find(:id, 'thumbnail_1').click
+ find(:xpath, '//*[@id="thumbnails"]/img[1]').click
 end
 
 
