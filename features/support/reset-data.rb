@@ -58,23 +58,27 @@ def execute(clear, setup, save = false, quiet = false)
             if setup
                 puts("  setup") unless(quiet)
                 tables.reverse.each do |table|
-                    # Credit: http://www.kadrmasconcepts.com/blog/2013/12/15/copy-millions-of-rows-to-postgresql-with-rails/
-                    conn.exec("COPY #{table} FROM STDIN DELIMITER '|' CSV")
-                    file = File.open("#{folder}/data/#{table}.txt", "r")
-                    while !file.eof?
-                        conn.put_copy_data(file.readline)
-                    end
-                    conn.put_copy_end
+                    if File.exists?("#{folder}/data/#{table}.txt")
 
-                    while res = conn.get_result
-                        unless res.error_message == ""
-                            puts res.error_message
+                        # Credit: http://www.kadrmasconcepts.com/blog/2013/12/15/copy-millions-of-rows-to-postgresql-with-rails/
+                        conn.exec("COPY #{table} FROM STDIN DELIMITER '|' CSV")
+                        file = File.open("#{folder}/data/#{table}.txt", "r")
+                        while !file.eof?
+                            conn.put_copy_data(file.readline)
                         end
-                    end
+                        conn.put_copy_end
 
-                    if db_name != 'db2'
-                        command = "SELECT setval('#{table}_id_seq', (SELECT MAX(id) FROM #{table})+1);"
-                        conn.exec(command)
+                        while res = conn.get_result
+                            unless res.error_message == ""
+                                puts res.error_message
+                            end
+                        end
+
+                        if db_name != 'db2'
+                            command = "SELECT setval('#{table}_id_seq', (SELECT MAX(id) FROM #{table})+1);"
+                            conn.exec(command)
+                        end
+
                     end
                 end
 
