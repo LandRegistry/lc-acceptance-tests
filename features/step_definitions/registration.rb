@@ -24,34 +24,6 @@ def assert( condition, message = nil )
     end
 end
 
-class RestAPIOLD
-    attr_reader :response, :data
-
-    def initialize(uri)
-        @uri = URI(uri)
-        @http = Net::HTTP.new(@uri.host, @uri.port)
-    end
-
-    def post_data(url, data)
-        puts(data)
-        request = Net::HTTP::Post.new(url)
-        request.body = data
-        request["Content-Type"] = "application/json"
-        @response = @http.request(request)
-        if @response.body == ""
-            nil
-        else
-            @data = JSON.parse(@response.body)
-        end
-    end
-
-    def get_data(url)
-        request = Net::HTTP::Get.new(url)
-        @response = @http.request(request)
-        @data = JSON.parse(@response.body)
-    end
-end
-
 class PostgreSQL
     def self.connect(database)
         @@pg = PGconn.connect( 'localhost', 5432,  '', '', database, 'landcharges', 'lcalpha')
