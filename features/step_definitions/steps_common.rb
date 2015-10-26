@@ -15,7 +15,7 @@ def prepare_data
     else
         reset_data
     end
-    `rabbitmqadmin purge queue name=bank-process`
+    # `rabbitmqadmin purge queue name=bank-process`
 end
 
 def maximise_browser
