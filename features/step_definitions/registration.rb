@@ -122,7 +122,7 @@ Then(/^the data is recorded on DB2$/) do
 end
 
 Then(/^the debtor details are recorded on the IOPN DB2 tables$/) do
-    sleep(3)
+    sleep(10)
     PostgreSQL.connect('db2')
     reg_no = '50027'
     result = PostgreSQL.query("SELECT * FROM debtor_detail WHERE reg_no='#{reg_no}'")
@@ -131,7 +131,7 @@ Then(/^the debtor details are recorded on the IOPN DB2 tables$/) do
 end
 
 Then(/^positive search results are recorded on the IOPN DB2 tables$/) do
-    sleep(3)
+    sleep(10)
     PostgreSQL.connect('db2')
     reg_no = '50027'
     result_id = PostgreSQL.query("SELECT id FROM debtor_detail WHERE reg_no='#{reg_no}'")
@@ -142,7 +142,7 @@ Then(/^positive search results are recorded on the IOPN DB2 tables$/) do
 end
 
 Then(/^negative search results are recorded on the IOPN DB2 tables$/) do
-    sleep(3)
+    sleep(10)
     PostgreSQL.connect('db2')
     reg_no = '50027'
     date = DateTime.now.strftime('%d.%m.%Y')

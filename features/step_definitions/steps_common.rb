@@ -15,6 +15,7 @@ def prepare_data
     else
         reset_data
     end
+    `rabbitmqadmin purge queue name=bank-process`
 end
 
 def maximise_browser
@@ -55,7 +56,7 @@ Before do |scenario|
 end
 
 After do |scenario|
-    prepare_data
+    # Cucumber.wants_to_quit = true if scenario.failed?
 end
 
 def create_registration
