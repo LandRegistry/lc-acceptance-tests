@@ -33,21 +33,6 @@ class RestAPI
 
 end
 
-class PostgreSQL
-	def self.connect(database)
-		@@pg = PGconn.connect( 'localhost', 5432,  '', '', database, 'vagrant', 'vagrant')
-	end
-
-	def self.disconnect
-		@@pg.close
-	end
-
-	def self.query(sql)
-		@@pg.exec(sql)
-	end
-
-end
-
 Given(/^I have selected to view the main worklist$/) do
   visit( 'http://localhost:5010')
 end
