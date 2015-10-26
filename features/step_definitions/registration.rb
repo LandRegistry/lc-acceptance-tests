@@ -2,6 +2,7 @@ require 'net/http'
 require 'json'
 require 'rspec'
 require 'pg'
+require 'date'
 
 no_alias = '{"key_number":"9056267","application_type":"PA(B)","application_ref":"9763603","date":"2014-11-12","debtor_name":{"forenames":["Lamar","Sigmund"],"surname":"Effertz"},"debtor_alternative_name":[],"gender":"N/A","occupation":"Ship builder","residence":[{"address_lines":["942 Carley Unions","Cullenberg","Dimitrimouth"],"county":"Buckinghamshire","postcode":"QF47 0HG"}],"residence_withheld":false,"business_address":{"address_lines":["122 Leuschke Creek","Alvaburgh"],"county":"Fife","postcode":"NO03 1EU"},"date_of_birth":"1974-10-03","investment_property":[]}'
 one_alias = '{"key_number":"6269524","application_type":"PA(B)","application_ref":"7282631","date":"2015-02-19","debtor_name":{"forenames":["Helga","Nelda"],"surname":"Hessel"},"debtor_alternative_name":[{"forenames":["Nelda","Helga"],"surname":"Hessel"}],"gender":"N/A","occupation":"Flower arranger","residence":[{"address_lines":["45633 Wyman Corner","Huelshire","Lake Jennings"],"county":"West Yorkshire","postcode":"YL23 2FD"}],"residence_withheld":false,"business_address":{"address_lines":["423 Zander Mount","Konopelskifurt","South Shyannberg"],"county":"Shropshire","postcode":"AE64 7DF"},"date_of_birth":"1953-01-11","investment_property":[]}'
@@ -94,6 +95,7 @@ end
 
 Then(/^it returns the (\d+) new registration numbers$/) do |arg1|
     assert(registration_api.data["new_registrations"].length.to_s == arg1)
+    puts registration_api.data
 end
 
 Then(/^(\d+) new records are stored on the database$/) do |arg1|
@@ -120,7 +122,7 @@ Then(/^the data is recorded on DB2$/) do
 end
 
 Then(/^the debtor details are recorded on the IOPN DB2 tables$/) do
-    sleep(1)
+    sleep(3)
     PostgreSQL.connect('db2')
     reg_no = '50027'
     result = PostgreSQL.query("SELECT * FROM debtor_detail WHERE reg_no='#{reg_no}'")
@@ -129,7 +131,7 @@ Then(/^the debtor details are recorded on the IOPN DB2 tables$/) do
 end
 
 Then(/^positive search results are recorded on the IOPN DB2 tables$/) do
-    sleep(1)
+    sleep(3)
     PostgreSQL.connect('db2')
     reg_no = '50027'
     result_id = PostgreSQL.query("SELECT id FROM debtor_detail WHERE reg_no='#{reg_no}'")
@@ -140,12 +142,11 @@ Then(/^positive search results are recorded on the IOPN DB2 tables$/) do
 end
 
 Then(/^negative search results are recorded on the IOPN DB2 tables$/) do
-    sleep(1)
+    sleep(3)
     PostgreSQL.connect('db2')
     reg_no = '50027'
-    result_id = PostgreSQL.query("SELECT sequence_no FROM debtor_detail WHERE reg_no='#{reg_no}'")
-    expect(result_id.values.length).to eq 1
-    search_results = PostgreSQL.query("SELECT * FROM no_hit WHERE sequence='#{result_id.values[0][0]}'")
+    date = DateTime.now.strftime('%d.%m.%Y')
+    search_results = PostgreSQL.query("SELECT * FROM no_hit WHERE date='#{date}'")
     expect(search_results.values.length).to eq 1
     PostgreSQL.disconnect
 end
