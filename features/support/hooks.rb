@@ -1,5 +1,6 @@
 Before do |scenario|
     prepare_data
+    sleep(1)
 end
 
 After do |scenario|
