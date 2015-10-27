@@ -51,7 +51,8 @@ def execute(clear, setup, save = false, quiet = false)
                 end
 
                 if File.exists?("#{folder}/data/clear.rb")
-                    `ruby "#{folder}/data/clear.rb" #{folder}`
+                    out = `ruby "#{folder}/data/clear.rb" #{folder}`
+                    puts out unless(quiet)
                 end
             end
 
@@ -83,7 +84,8 @@ def execute(clear, setup, save = false, quiet = false)
                 end
 
                 if File.exists?("#{folder}/data/setup.rb")
-                    `ruby "#{folder}/data/setup.rb" #{folder}`
+                    out = `ruby "#{folder}/data/setup.rb" #{folder}`
+                    puts out unless(quiet)
                 end
             end
             disconnect(conn)
