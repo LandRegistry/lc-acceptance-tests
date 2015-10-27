@@ -3,5 +3,5 @@ Before do |scenario|
 end
 
 After do |scenario|
-    # Cucumber.wants_to_quit = true if scenario.failed?
+    Cucumber.wants_to_quit = true if scenario.failed?
 end

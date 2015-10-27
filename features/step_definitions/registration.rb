@@ -46,12 +46,12 @@ Then(/^a new record is stored on the database$/) do
         data = @registration_api.data["new_registrations"]
     end
 
+    get_api = RestAPI.new($BANKRUPTCY_REGISTRATION_URI)
     data.each do |reg_no|
-        regn = @registration_api.get("/registration/#{reg_no}")
-        expect(@registration_api.response.code).to eql "200"
+        regn = get_api.get("/registration/#{reg_no}")
+        expect(get_api.response.code).to eql "200"
         expect(regn['registration_no']).to eq reg_no
     end
-    PostgreSQL.disconnect
 end
 
 When(/^I submit valid data with an alias to the registration system$/) do
@@ -66,7 +66,7 @@ end
 
 Then(/^(\d+) new records are stored on the database$/) do |count|
     new_regs = @registration_api.data["new_registrations"]
-    expect(new_regs.length).to eql count
+    expect(new_regs.length.to_s).to eq count
     new_regs.each do |reg_no|
       regn = @registration_api.get("/registration/#{reg_no}")
       expect(@registration_api.response.code).to eql "200"
