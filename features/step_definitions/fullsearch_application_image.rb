@@ -1,5 +1,5 @@
 When(/^I select an application type of Full Search the application is displayed$/) do
-  visit( "http://localhost:5010/get_list?appn=search" )
+  visit("#{$FRONTEND_URI}/get_list?appn=search")
   find(:id,'app_type3').click
 end
 

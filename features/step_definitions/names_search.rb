@@ -4,7 +4,7 @@ end
 
 names_api = nil
 When(/^I search the name database for '([^']+)'$/) do |name|
-    names_api = RestAPI.new("http://localhost:5013")
+    names_api = RestAPI.new($NAMES_SEARCH_URI)
     names = name.split(' ')
     surname = names.last
     forenames = names[0..-2].join('%20')

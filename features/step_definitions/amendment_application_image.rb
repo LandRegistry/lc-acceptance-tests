@@ -1,22 +1,19 @@
 Given(/^I have selected to view a specific record on the amendments application list the individual record is displayed$/) do
-   #$regnote = create_registration
-   $regnote = '50011'
-  visit('http://localhost:5010')
+  @regnote = '50011'
+  visit($FRONTEND_URI)
   maximise_browser
-  visit( "http://localhost:5010/get_list?appn=amend" )
-    #find(:id,'amend_total').click
-    find(:xpath,'html/body/div[1]/div/div/div[3]/div/table/tbody/tr[1]/td[1]').click
-                 
+  visit("#{$FRONTEND_URI}/get_list?appn=amend")
+  #find(:id,'amend_total').click
+  find(:xpath,'html/body/div[1]/div/div/div[3]/div/table/tbody/tr[1]/td[1]').click     
 end 
 
 When(/^I am on the retrieve original documents  screen  the accompanying evidence is visible as thumbnails$/) do 
- page.should have_xpath('//*[@id="container0"]/img[1]')
-
-end 
+  page.should have_xpath('//*[@id="container0"]/img[1]')
+end
 
 When(/^I must have a registration number before the continue button can be clicked$/) do 
-   fill_in('reg_no', :with => $regnote)
-   sleep(1)
+  fill_in('reg_no', :with => @regnote)
+  sleep(1)
 end  
 
 Given(/^I am on the bankruptcy details screen$/) do #amend details screen
@@ -31,23 +28,20 @@ end
 
 When(/^I can click the amend button the system will go next screen$/) do
   expect(page).to have_content('Date Received')
-
 end
 
 Given(/^I am on the bankruptcy details worklist screen with amendments still listed$/) do
-   #$regnote2 = create_registration
-   $regnote2 = '50013'
+   @regnote = '50013'
    #find(:xpath,'html/body/div[1]/div/div/div[3]/div/table/tbody/tr[1]/td[1]').click
 end
 
 When(/^I must have a different registration number before the continue button can be clicked$/) do
-  fill_in('reg_no', :with => $regnote2)
+  fill_in('reg_no', :with => @regnote)
 end
 
 When(/^I am on the amend details screen I can click on the amend name button$/) do 
   find(:id, 'amend_name').click
 end 
-
 
 When(/^I click the add button for alias name the debtor alias name screen is displayed$/) do 
   find(:id, 'add_alias').click
@@ -112,9 +106,9 @@ When(/^the amendments application has been submitted the unique identifier is di
 end
 
 Given(/^the application has been amended$/) do
-   $regnote3 = '50016'
+   @regnote = '50016'
    find(:id,'app_type1').click
-   fill_in('reg_no', :with => $regnote3)
+   fill_in('reg_no', :with => @regnote)
    click_button('continue')
    click_button('save_changes')
    step "the user can return to the worklist"
@@ -125,9 +119,9 @@ When(/^we check the bankruptcy database record there must be a indicator for ame
 end
 
 Then(/^the indicator must have a value for amended$/) do
-  PostgreSQL.connect('landcharges')
-  result = PostgreSQL.query("SELECT a.cancelled_by FROM register_details a, register b WHERE b.registration_no=#{$regnote2} AND b.details_id = a.id")
-  expect(result.values[0][0]).not_to be_empty
+  api = RestAPI.new($BANKRUPTCY_REGISTRATION_URI)
+  data = api.get("/registration/#{@regnote}")
+  assert(data.key?('amended_by'))
 end
 
 When(/^I can click on the submit button to go to the next screen$/) do
