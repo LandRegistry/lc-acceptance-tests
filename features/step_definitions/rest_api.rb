@@ -17,12 +17,12 @@ class RestAPI
             request.body = data
             request["Content-Type"] = "application/json"
         end
-        @@last_response = @http.request(request)
-
-        if @@last_response.body == ""
+        @response = @http.request(request)
+        @@last_response = @response
+        if @response.body == ""
             nil
         else
-            @data = JSON.parse(@@last_response.body)
+            @data = JSON.parse(@response.body)
         end
     end
 
@@ -32,15 +32,17 @@ class RestAPI
             request.body = data
             request["Content-Type"] = "application/json"
         end
-        @@last_response = @http.request(request)
-        @data = JSON.parse(@@last_response.body)
+        @response = @http.request(request)
+        @@last_response = @response
+        @data = JSON.parse(@response.body)
     end
 
     def put(url, data)
         request = Net::HTTP::Put.new(url)
         request.body = data
         request["Content-Type"] = "application/json"
-        @@last_response = @http.request(request)
+        @response = @http.request(request)
+        @@last_response = @response
         @@last_response.body
     end
 end

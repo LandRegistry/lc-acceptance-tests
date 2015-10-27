@@ -55,20 +55,17 @@ Given(/^I am on the Application details screen$/) do
 end 
 
 When(/^the application details become visible they must be the correct ones for the registration number detailed on the previous screen$/) do 
-  PostgreSQL.connect('landcharges')
-  # puts(@regnote)
-  result = PostgreSQL.query("SELECT a.surname FROM party_name a, register b WHERE 
-    b.registration_no=#{@regnote} AND b.debtor_reg_name_id = a.id")
-  expect(page).to have_content(result.values[0][0])
+  api = RestAPI.new($BANKRUPTCY_REGISTRATION_URI)
+  data = api.get("/registration/#{@regnote}")
+  surname = data['debtor_name']['surname']
+  expect(page).to have_content(surname)
 end 
 
 When(/^the cancellation application has been submitted the unique identifier is displayed to the user on the screen$/) do 
   expect(page).to have_content('been cancelled:')
   date_format = Date.today.strftime('%d.%m.%Y')
   canceldate = find(:id, 'canceldate').text
-  # puts(canceldate)
   expect(canceldate).to eq 'Cancelled on '+ date_format
-  # page.has_content?('Cancelled on '+ date_format)
 end 
 
 Given(/^the application has been cancelled$/) do
@@ -83,8 +80,7 @@ When(/^we check the bankruptcy database record there must be a indicator for can
 end
 
 Then(/^the indicator must have a value for cancelled$/) do
-  PostgreSQL.connect('landcharges')
-  result = PostgreSQL.query("SELECT a.cancelled_by FROM register_details a, register b WHERE 
-    b.registration_no=#{@regnote} AND b.details_id = a.id")
-  expect(result.values[0][0]).not_to be_empty
+  api = RestAPI.new($BANKRUPTCY_REGISTRATION_URI)
+  data = api.get("/registration/#{@regnote}")
+  expect(data['status']).to eql 'cancelled'
 end 

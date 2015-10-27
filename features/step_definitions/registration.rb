@@ -21,78 +21,63 @@ def assert( condition, message = nil )
     end
 end
 
-Before do |scenario|
-    `vagrant ssh -c reset-data 2> /dev/null`
-end
-
-After do |scenario|
-    `vagrant ssh -c reset-data 2> /dev/null`
-end
-
-
 Given(/^anything$/) do
-    sleep(1)
 end
-
-registration_api = nil
 
 When(/^I submit a valid INS request$/) do
-    registration_api = RestAPI.new($B2B_API_URI )
-    registration_api.post("/register", ins_request)
+    @registration_api = RestAPI.new($B2B_API_URI)
+    @registration_api.post("/register", ins_request)
 end
 
 When(/^I submit valid data to the registration system$/) do
-    registration_api = RestAPI.new($BANKRUPTCY_REGISTRATION_URI)
-    registration_api.post("/registration", no_alias)
+    @registration_api = RestAPI.new($BANKRUPTCY_REGISTRATION_URI)
+    @registration_api.post("/registration", no_alias)
 end
 
 Then(/^it returns the new registration number$/) do
-    assert(registration_api.data["new_registrations"].length == 1)
-    puts registration_api.data
+    assert(@registration_api.data["new_registrations"].length == 1)
+    # puts @registration_api.data
 end
 
 Then(/^a new record is stored on the database$/) do
-    PostgreSQL.connect('landcharges')
-
-    if registration_api.data['result']
-        data = registration_api.data['result']['new_registrations']
+    if @registration_api.data['result']
+        data = @registration_api.data['result']['new_registrations']
     else
-        data = registration_api.data["new_registrations"]
+        data = @registration_api.data["new_registrations"]
     end
 
     data.each do |reg_no|
-        result = PostgreSQL.query("SELECT * FROM register WHERE registration_no=#{reg_no}")
-        expect(result.values.length).to be 1
+        regn = @registration_api.get("/registration/#{reg_no}")
+        expect(@registration_api.response.code).to eql "200"
+        expect(regn['registration_no']).to eq reg_no
     end
     PostgreSQL.disconnect
 end
 
 When(/^I submit valid data with an alias to the registration system$/) do
-    registration_api = RestAPI.new($BANKRUPTCY_REGISTRATION_URI)
-    registration_api.post("/registration", one_alias)
+    @registration_api = RestAPI.new($BANKRUPTCY_REGISTRATION_URI)
+    @registration_api.post("/registration", one_alias)
 end
 
-Then(/^it returns the (\d+) new registration numbers$/) do |arg1|
-    assert(registration_api.data["new_registrations"].length.to_s == arg1)
-    puts registration_api.data
+Then(/^it returns the (\d+) new registration numbers$/) do |count|
+    assert(@registration_api.data["new_registrations"].length.to_s == count)
+    # puts @registration_api.data
 end
 
-Then(/^(\d+) new records are stored on the database$/) do |arg1|
-    PostgreSQL.connect('landcharges')
-    c = 0
-    registration_api.data["new_registrations"].each do |reg_no|
-        result = PostgreSQL.query("SELECT * FROM register WHERE registration_no=#{reg_no}")
-        expect(result.values.length).to be 1
-        c += 1
+Then(/^(\d+) new records are stored on the database$/) do |count|
+    new_regs = @registration_api.data["new_registrations"]
+    expect(new_regs.length).to eql count
+    new_regs.each do |reg_no|
+      regn = @registration_api.get("/registration/#{reg_no}")
+      expect(@registration_api.response.code).to eql "200"
+      expect(regn['registration_no']).to eq reg_no
     end
-    expect(c.to_s).to eql arg1
-    PostgreSQL.disconnect
 end
 
 Then(/^the data is recorded on DB2$/) do
     sleep(1)
     PostgreSQL.connect('db2')
-    registration_api.data["new_registrations"].each do |reg_no|
+    @registration_api.data["new_registrations"].each do |reg_no|
         reg_str = reg_no.to_s.rjust(8)
         result = PostgreSQL.query("SELECT * FROM lc_mock WHERE registration_no='#{reg_str}'")
         expect(result.values.length).to eq 1
@@ -136,23 +121,23 @@ When(/^it returns a 202 ACCEPTED response$/) do
 end
 
 Then(/^it returns the new registration number \(in result format\)$/) do # a bit hacky
-    data = registration_api.data['result']['new_registrations']
+    data = @registration_api.data['result']['new_registrations']
     expect(data.length).to eq 2
 end
 
 When(/^I submit Bob Howard to the registration system$/) do
-    registration_api = RestAPI.new($BANKRUPTCY_REGISTRATION_URI)
-    registration_api.post("/registration", bob_howard)
+    @registration_api = RestAPI.new($BANKRUPTCY_REGISTRATION_URI)
+    @registration_api.post("/registration", bob_howard)
 end
 
 When(/^I submit Steven Smith to the registration system$/) do
-    registration_api = RestAPI.new($BANKRUPTCY_REGISTRATION_URI)
-    registration_api.post("/registration", steven_smith)
+    @registration_api = RestAPI.new($BANKRUPTCY_REGISTRATION_URI)
+    @registration_api.post("/registration", steven_smith)
 end
 
 Then(/^the name has been correctly transformed$/) do
     PostgreSQL.connect('db2')
-    registration_api.data["new_registrations"].each do |reg_no|
+    @registration_api.data["new_registrations"].each do |reg_no|
         reg_str = reg_no.to_s.rjust(8)
         result = PostgreSQL.query("SELECT reverse_name, remainder_name, punctuation_code FROM lc_mock WHERE registration_no='#{reg_str}'")
         expect(result.values.length).to eq 1
@@ -166,7 +151,7 @@ end
 
 Then(/^the class of bankruptcy is correctly recorded$/) do
     PostgreSQL.connect('db2')
-    registration_api.data["new_registrations"].each do |reg_no|
+    @registration_api.data["new_registrations"].each do |reg_no|
         reg_str = reg_no.to_s.rjust(8)
         result = PostgreSQL.query("SELECT class_type FROM lc_mock WHERE registration_no='#{reg_str}'")
         expect(result.values.length).to eq 1
@@ -180,8 +165,8 @@ Given(/^I have registered a bankruptcy$/) do
 end
 
 When(/^Invalid registration numbers are sent to the synchroniser$/) do
-    registration_api = RestAPI.new($BANKRUPTCY_REGISTRATION_URI)
-    registration_api.post("/synchronise", '["42"]')
+    @registration_api = RestAPI.new($BANKRUPTCY_REGISTRATION_URI)
+    @registration_api.post("/synchronise", '["42"]')
     sleep(1)
 end
 
