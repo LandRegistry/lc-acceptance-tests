@@ -1,7 +1,6 @@
 Given(/^I am on the Bankruptcy Rectification document request screen$/) do
- # $regnote = create_registration
-  $regnote = '50013'
-  visit('http://localhost:5010')
+  @regnote = '50013'
+  visit($FRONTEND_URI)
   maximise_browser
   find(:id, 'Tasks').click
   find(:id, 'Rectify').click
@@ -56,21 +55,19 @@ When(/^I click on the Submit button$/) do
   click_button('submit') 
 end 
 
-
 Given(/^I am on the Application complete screen$/) do
   expect(page).to have_content('Application Complete')
-
 end
 
 When(/^the rectification to the application has been submitted the amended unique identifier is displayed to the user on the screen$/) do 
-  #expect(page).to have_content($regnote) 
+  #expect(page).to have_content(@regnote) 
   #this should be the same number as input but does not work defect raised for fix at later stage Database changes required
 end 
 
 Given(/^an acknowledgement has been requested$/) do
   step "I am on the Bankruptcy Rectification document request screen"
-  $regnote = '50011'
-  fill_in('reg_no', :with => $regnote)
+  @regnote = '50011'
+  fill_in('reg_no', :with => @regnote)
   step "I can click the continue button to go to the next screen"
   step "there is more that one alias name"
   step "all amended details will need to be updated to reflect the stored changes"
@@ -90,14 +87,14 @@ end
 
 Given(/^an acknowledgement has not been requested$/) do 
   step "I am on the Bankruptcy Rectification document request screen"
-  $regnote = create_registration
-  fill_in('reg_no', :with => $regnote)
+  @regnote = create_registration
+  fill_in('reg_no', :with => @regnote)
   step "I can click the continue button to go to the next screen"
   step "the application details screen is displayed I can overtype the details"
   step "all amended details will need to be updated to reflect the stored changes"
   step "I click on the No for acknowledgement required checkbox is highlighted"
   step "I click on the Submit button"
-  end 
+end 
 
 Then(/^there is not link to view notification$/) do 
   expect(page).not_to have_content('View Notification')

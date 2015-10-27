@@ -1,9 +1,3 @@
-require 'net/http'
-require 'json'
-require 'rspec'
-require 'pg'
-require 'date'
-
 no_alias = '{"key_number":"9056267","application_type":"PA(B)","application_ref":"9763603","date":"2014-11-12","debtor_name":{"forenames":["Lamar","Sigmund"],"surname":"Effertz"},"debtor_alternative_name":[],"gender":"N/A","occupation":"Ship builder","residence":[{"address_lines":["942 Carley Unions","Cullenberg","Dimitrimouth"],"county":"Buckinghamshire","postcode":"QF47 0HG"}],"residence_withheld":false,"business_address":{"address_lines":["122 Leuschke Creek","Alvaburgh"],"county":"Fife","postcode":"NO03 1EU"},"date_of_birth":"1974-10-03","investment_property":[]}'
 one_alias = '{"key_number":"6269524","application_type":"PA(B)","application_ref":"7282631","date":"2015-02-19","debtor_name":{"forenames":["Helga","Nelda"],"surname":"Hessel"},"debtor_alternative_name":[{"forenames":["Nelda","Helga"],"surname":"Hessel"}],"gender":"N/A","occupation":"Flower arranger","residence":[{"address_lines":["45633 Wyman Corner","Huelshire","Lake Jennings"],"county":"West Yorkshire","postcode":"YL23 2FD"}],"residence_withheld":false,"business_address":{"address_lines":["423 Zander Mount","Konopelskifurt","South Shyannberg"],"county":"Shropshire","postcode":"AE64 7DF"},"date_of_birth":"1953-01-11","investment_property":[]}'
 bob_howard = '{"key_number":"1479067","application_type":"PA(B)","application_ref":"9045789","date":"2014-10-28","debtor_name":{"forenames":["Bob","Oscar","Francis"],"surname":"Howard"},"debtor_alternative_name":[],"gender":"N/A","occupation":"Bookmaker","residence":[{"address_lines":["1940 Huels Fort","North Glennamouth","South Nonafort"],"county":"West Yorkshire","postcode":"PA85 4RH"}],"residence_withheld":false,"business_address":{"address_lines":["831 Hailee Burg","Chasityborough","East Tamara"],"county":"Northamptonshire","postcode":"IP81 2CM"},"date_of_birth":"1974-10-07","investment_property":[]}'
@@ -27,21 +21,6 @@ def assert( condition, message = nil )
     end
 end
 
-class PostgreSQL
-    def self.connect(database)
-        @@pg = PGconn.connect( 'localhost', 5432,  '', '', database, 'landcharges', 'lcalpha')
-    end
-
-    def self.disconnect
-        @@pg.close
-    end
-
-    def self.query(sql)
-        @@pg.exec(sql)
-    end
-
-end
-
 Before do |scenario|
     `vagrant ssh -c reset-data 2> /dev/null`
 end
@@ -58,12 +37,12 @@ end
 registration_api = nil
 
 When(/^I submit a valid INS request$/) do
-    registration_api = RestAPI.new("http://localhost:5001")
+    registration_api = RestAPI.new($B2B_API_URI )
     registration_api.post("/register", ins_request)
 end
 
 When(/^I submit valid data to the registration system$/) do
-    registration_api = RestAPI.new("http://localhost:5004")
+    registration_api = RestAPI.new($BANKRUPTCY_REGISTRATION_URI)
     registration_api.post("/registration", no_alias)
 end
 
@@ -89,7 +68,7 @@ Then(/^a new record is stored on the database$/) do
 end
 
 When(/^I submit valid data with an alias to the registration system$/) do
-    registration_api = RestAPI.new("http://localhost:5004")
+    registration_api = RestAPI.new($BANKRUPTCY_REGISTRATION_URI)
     registration_api.post("/registration", one_alias)
 end
 
@@ -162,12 +141,12 @@ Then(/^it returns the new registration number \(in result format\)$/) do # a bit
 end
 
 When(/^I submit Bob Howard to the registration system$/) do
-    registration_api = RestAPI.new("http://localhost:5004")
+    registration_api = RestAPI.new($BANKRUPTCY_REGISTRATION_URI)
     registration_api.post("/registration", bob_howard)
 end
 
 When(/^I submit Steven Smith to the registration system$/) do
-    registration_api = RestAPI.new("http://localhost:5004")
+    registration_api = RestAPI.new($BANKRUPTCY_REGISTRATION_URI)
     registration_api.post("/registration", steven_smith)
 end
 
@@ -201,13 +180,13 @@ Given(/^I have registered a bankruptcy$/) do
 end
 
 When(/^Invalid registration numbers are sent to the synchroniser$/) do
-    registration_api = RestAPI.new("http://localhost:5004")
+    registration_api = RestAPI.new($BANKRUPTCY_REGISTRATION_URI)
     registration_api.post("/synchronise", '["42"]')
     sleep(1)
 end
 
 Then(/^it posts an error message to its error queue$/) do
-    error_api = RestAPI.new("http://localhost:5006")
+    error_api = RestAPI.new($CASEWORK_API_URI)
     result = error_api.get("/errors").last
     expect(result['source']).to eq 'Synchroniser'
     expect(result['data']['registration_no']).to eq '42'

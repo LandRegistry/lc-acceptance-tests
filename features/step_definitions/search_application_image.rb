@@ -1,11 +1,9 @@
 Given(/^I am on the bankruptcy searches screen$/) do
-  $regnote = create_registration
-   #$regnote = '50011'
-  visit('http://localhost:5010')
+  @regnote = create_registration
+  visit($FRONTEND_URI)
   maximise_browser
-  visit( "http://localhost:5010/get_list?appn=search" )
-    #find(:id,'amend_total').click
- end
+  visit("#{$FRONTEND_URI}/get_list?appn=search" )
+end
 
 When(/^the image of the search application is displayed I can click on all available pages$/) do
   #find(:xpath, '//*[@id="container0]/img[1]').click

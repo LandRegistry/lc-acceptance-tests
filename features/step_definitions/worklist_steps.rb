@@ -34,11 +34,11 @@ class RestAPI
 end
 
 Given(/^I have selected to view the main worklist$/) do
-  visit( 'http://localhost:5010')
+  visit($FRONTEND_URI)
 end
 
 When(/^I have selected to view specific the application list "(.*)"$/) do |type|
-    visit( "http://localhost:5010/get_list?appn=#{type}" )
+    visit("#{$FRONTEND_URI}/get_list?appn=#{type}" )
 end
 
 When(/^I can see the total bankruptcy applications$/) do
@@ -46,7 +46,7 @@ When(/^I can see the total bankruptcy applications$/) do
 end
 
 When(/^I have submitted a new PAB$/) do
-    registration_api = RestAPI.new("http://localhost:5006")
+    registration_api = RestAPI.new($CASEWORK_API_URI)
     registration_api.post_data("/lodge_manual", bob_howard)
 end
 
@@ -102,7 +102,7 @@ Then(/^I see the application totals$/) do
 end
 
 When(/^I select a pab application$/) do
-    visit( "http://localhost:5010/get_application/bank_regn/37/PA(B)" )
+    visit("#{$FRONTEND_URI}/get_application/bank_regn/37/PA(B)" )
 end
 
 Then(/^I see the application details page$/) do

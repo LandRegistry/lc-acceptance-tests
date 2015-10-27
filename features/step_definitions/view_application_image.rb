@@ -1,10 +1,10 @@
 Given(/^I am on the view application screen$/) do
-  visit('http://localhost:5010')
+  visit($FRONTEND_URI)
   maximise_browser
 end 
 
 When(/^I have selected to view specific the application list$/) do 
-    visit( "http://localhost:5010/get_list?appn=bank_regn" )
+    visit( "#{$FRONTEND_URI}/get_list?appn=bank_regn" )
     find(:xpath,"html/body/div[1]/div/div/div[3]/div/table/tbody/tr[1]/td[1]/a").click
     
 end 
