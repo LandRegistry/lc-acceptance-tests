@@ -1,4 +1,4 @@
-@vai
+@bri
 
 Feature: View Application Image
 
