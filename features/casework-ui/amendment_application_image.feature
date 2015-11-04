@@ -1,4 +1,4 @@
-@aai
+b@aai
 
 Feature: amendment application image
 
