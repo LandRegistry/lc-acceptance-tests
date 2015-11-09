@@ -21,6 +21,7 @@ def execute(clear, setup, quiet = false)
     end
 
     folders.each do |folder|
+		puts folder
         if File.directory?("#{folder}/data") && File.exists?("#{folder}/data/data.json")
             puts "Processing #{folder}" unless(quiet)
             info = JSON.parse(File.read("#{folder}/data/data.json"))
