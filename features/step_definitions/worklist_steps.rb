@@ -33,27 +33,12 @@ class RestAPI
 
 end
 
-class PostgreSQL
-	def self.connect(database)
-		@@pg = PGconn.connect( 'localhost', 5432,  '', '', database, 'vagrant', 'vagrant')
-	end
-
-	def self.disconnect
-		@@pg.close
-	end
-
-	def self.query(sql)
-		@@pg.exec(sql)
-	end
-
-end
-
 Given(/^I have selected to view the main worklist$/) do
-  visit( 'http://localhost:5010')
+  visit($FRONTEND_URI)
 end
 
 When(/^I have selected to view specific the application list "(.*)"$/) do |type|
-    visit( "http://localhost:5010/get_list?appn=#{type}" )
+    visit("#{$FRONTEND_URI}/get_list?appn=#{type}" )
 end
 
 When(/^I can see the total bankruptcy applications$/) do
@@ -61,7 +46,7 @@ When(/^I can see the total bankruptcy applications$/) do
 end
 
 When(/^I have submitted a new PAB$/) do
-    registration_api = RestAPI.new("http://localhost:5006")
+    registration_api = RestAPI.new($CASEWORK_API_URI)
     registration_api.post_data("/lodge_manual", bob_howard)
 end
 
@@ -82,7 +67,7 @@ end
 Then(/^I see the amendments application list page$/) do
     page.should have_content("Amendments")
     page.should have_content("21 August 2015")
-    page.should have_css('div#amend_total', :text => '2')
+    page.should have_css('div#amend_total', :text => '4')
 end
 
 Then(/^I see the cancellations application list page$/) do
@@ -117,7 +102,7 @@ Then(/^I see the application totals$/) do
 end
 
 When(/^I select a pab application$/) do
-    visit( "http://localhost:5010/get_application/bank_regn/37/PA(B)" )
+    visit("#{$FRONTEND_URI}/get_application/bank_regn/37/PA(B)" )
 end
 
 Then(/^I see the application details page$/) do

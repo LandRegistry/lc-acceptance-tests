@@ -1,19 +1,8 @@
 Given(/^I am on the bankruptcy searches screen$/) do
-  $regnote = create_registration
-   #$regnote = '50011'
-  visit('http://localhost:5010')
+  @regnote = create_registration
+  visit($FRONTEND_URI)
   maximise_browser
-  visit( "http://localhost:5010/get_list?appn=search" )
-    #find(:id,'amend_total').click
- end
-
-When(/^I select an application type of Search the application is displayed$/) do
- # if app type == 'Search'
-  
-  #then  find(:id, app_type =='Search').click
-  # find(:xpath,'html/body/div[1]/div/div/div[3]/div/table/tbody/tr[1]/td[1]').click
-  visit( "http://localhost:5010/get_list?appn=search" )
-    find(:xpath,".//*[@id='results']/tbody/tr[1]/td[1]/a").click
+  visit("#{$FRONTEND_URI}/get_list?appn=search" )
 end
 
 When(/^the image of the search application is displayed I can click on all available pages$/) do
@@ -30,6 +19,7 @@ Given(/^I am on the bankruptcy search details screen$/) do
 end
 
 When(/^I click on the name details tab I can enter six names$/) do
+  sleep(1)
   fill_in('fullname0', :with => 'Miss Piggy')
   fill_in('fullname1', :with => 'Gonzo')
   fill_in('fullname2', :with => 'Kermit T Frog')
@@ -55,10 +45,4 @@ Then(/^I can click the complete search button$/) do
   sleep(1)
 end
 
-Then(/^the user can return to the worklist from the bankruptcy search complete screen$/) do
-   #click_link('View Search Result')
-   #sleep(10)
-   #visit("http://localhost:5010/process_search/banks")
-   #click_link('Return to Worklist')
-   #sleep(1)
-end
+

@@ -11,10 +11,9 @@ Scenario: Using the bankruptcy searchs task on the  Land Charges system
 #SH-US018 Full search - View Postal Search
 Given I am on the bankruptcy searches screen
 When I select an application type of Full Search the application is displayed
-When the image of the full search application is displayed I can click on all available pages
-When I click on a page the image of the full search is visible
-When I am on a page I can zoom in
-Then I am on a page I can zoom out
+When I click on a thumbnail the image is expanded to large image
+When I am on a Large image I can zoom in
+Then I am on a Large image I can zoom out
 
 #SH-US019 - Full Search - Capture Customer Details
 Given I am on the bankruptcy full search details screen
@@ -24,7 +23,7 @@ When I click on the Customer details tab I can enter the key number Customer Nam
 When I click on entered details in the address box I can make an amendment
 When I click on the search areas tab all counties check box search area  List of Areas to search is displayed
 When I can click the complete search button when the customer address field is complete
-When the application has been submitted a confirmation screen is displayed
+When I am on the Application complete screen
 When the user can return to the worklist
 When I select an application type of Full Search the application is displayed
 When I click on the name details tab I can enter six names
@@ -35,6 +34,5 @@ When I enter details into the search area edit box I can click on the add area b
 When add area button is clicked the search area details are added to the List of areas to search box
 When I click on entered details in the list of areas search box I can make an amendment
 When I can click the complete search button when the customer address field is complete
-When the application has been submitted a confirmation screen is displayed
-#Then click on View Search Result
-
+When I am on the Application complete screen
+Then the user can return to the worklist
