@@ -3,7 +3,7 @@
 Feature: complex names within searches
 
 As a land charges caseworker 
-I want to be able to indicate that a name is complex
+I want to be able to indicate that a name is complex through searches
 So that I can see a list of complex and simple names that are associated to the input name
 
 Scenario: using search facility within the land charges system indicate, search and return complex and simple names
