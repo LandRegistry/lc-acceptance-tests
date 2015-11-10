@@ -35,27 +35,6 @@ def execute(clear, setup, save = false, quiet = false)
     end
 
     folders.each do |folder|
-<<<<<<< HEAD
-		puts folder
-        if File.directory?("#{folder}/data") && File.exists?("#{folder}/data/data.json")
-            puts "Processing #{folder}" unless(quiet)
-            info = JSON.parse(File.read("#{folder}/data/data.json"))
-
-            db_name = info['name']
-            tables = info['tables']
-
-            conn = connect(db_name)
-            if clear
-                puts("  clear") unless(quiet)
-                tables.each do |table|
-                    conn.exec("DELETE FROM #{table}")
-                end
-
-                if File.exists?("#{folder}/data/clear.rb")
-                    `ruby "#{folder}/data/clear.rb" #{folder}`
-                end
-=======
-
         puts "Processing #{folder}" unless(quiet)
 
         if clear
@@ -63,7 +42,6 @@ def execute(clear, setup, save = false, quiet = false)
             if File.exists?("#{folder}/data/delete.py")
                 out = `python3 #{folder}/data/delete.py`
                 puts out unless(quiet)
->>>>>>> 1e73d7146bbcccd2b7d9a06192b4a4d2dcfca8ef
             end
 
             if File.exists?("#{folder}/data/clear.rb")
