@@ -102,7 +102,8 @@ Then(/^I see the application totals$/) do
 end
 
 When(/^I select a pab application$/) do
-    visit("#{$FRONTEND_URI}/get_application/bank_regn/37/PA(B)" )
+    #visit("#{$FRONTEND_URI}/get_application/bank_regn/37/PA(B)" )
+    find(:id,'app_type1').click
 end
 
 Then(/^I see the application details page$/) do

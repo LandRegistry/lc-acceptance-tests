@@ -36,9 +36,9 @@ When(/^I add an address the new details are visible$/) do
 end
 
 Then(/^all amended details will need to be updated to reflect the stored changes$/) do
-  sleep(10)
+  sleep(1)
   click_button('save_changes')
-  sleep(10)
+  sleep(1)
 end
 
 When(/^I can the new details on the screen$/) do
