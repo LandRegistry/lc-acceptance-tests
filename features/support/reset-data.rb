@@ -49,7 +49,9 @@ def execute(clear, setup, save = false, quiet = false)
                 puts out unless(quiet)
             end
         end
-
+    end
+    
+    folders.each do |folder|
         if setup
             puts("  setup") unless(quiet)
 
