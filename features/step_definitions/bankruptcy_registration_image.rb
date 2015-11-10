@@ -10,7 +10,8 @@ When(/^I have selected to view specific the application list$/) do
 end
 
 When(/^the image of the application is displayed I can click on all available pages$/) do
-  find(:xpath, '//*[@id="thumbnails"]/img[2]').click
+  #find(:xpath, '//*[@id="thumbnails"]/img[1]').click
+  find(:id, 'thumbnail1').click
 end
 
 Given(/^I am on the debtors name and details screen$/) do

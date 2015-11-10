@@ -21,7 +21,7 @@ end
 When(/^I click on the name details tab I can enter six names$/) do
   sleep(1)
   fill_in('fullname0', :with => 'Miss Piggy')
-  fill_in('fullname1', :with => 'Gonzo')
+  fill_in('fullname1', :with => 'Gonzo T Great')
   fill_in('fullname2', :with => 'Kermit T Frog')
   fill_in('fullname3', :with => 'Rolfe')
   fill_in('fullname4', :with => 'Animal')
@@ -45,4 +45,6 @@ Then(/^I can click the complete search button$/) do
   sleep(1)
 end
 
-
+When(/^I select an application type of Search the application is displayed$/) do
+  find(:id,'app_type3').click
+end

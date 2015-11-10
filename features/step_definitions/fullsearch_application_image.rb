@@ -1,6 +1,6 @@
 When(/^I select an application type of Full Search the application is displayed$/) do
   visit("#{$FRONTEND_URI}/get_list?appn=search")
-  find(:id,'app_type3').click
+  find(:id,'app_type1').click
 end
 
 Given(/^I am on the bankruptcy full search details screen$/) do
