@@ -4,7 +4,7 @@ Given(/^I have selected to view a specific record on the amendments application 
   maximise_browser
   visit("#{$FRONTEND_URI}/get_list?appn=amend")
   #find(:id,'amend_total').click
-  find(:xpath,'html/body/div[1]/div/div/div[3]/div/table/tbody/tr[1]/td[1]').click     
+  find(:xpath,'//*[@id="app_type1"]').click
 end 
 
 When(/^I am on the retrieve original documents  screen  the accompanying evidence is visible as thumbnails$/) do 
@@ -17,11 +17,12 @@ When(/^I must have a registration number before the continue button can be click
 end  
 
 Given(/^I am on the bankruptcy details screen$/) do #amend details screen
-  expect(page).to have_content('Amend details')
+  expect(page).to have_content('Bankruptcy amendment')
 end 
 
 When(/^I click on the reject button the next screen is displayed$/) do
-  click_button('reject')
+  # click_link('reject')
+  find(:id, 'reject').click
   expect(page).to have_content('Application Rejected')
   sleep(1)
 end
@@ -43,9 +44,13 @@ When(/^I am on the amend details screen I can click on the amend name button$/) 
   find(:id, 'amend_name').click
 end 
 
-When(/^I click the add button for alias name the debtor alias name screen is displayed$/) do 
-  find(:id, 'add_alias').click
-end 
+# When(/^I click the add button for alias name the debtor alias name screen is displayed$/) do
+#   find(:id, 'amend_name').click
+# end
+
+When(/^I click add alternative name the debtor alternative name fields are displayed$/) do
+   find(:id, 'addname').click
+end
 
 When(/^I enter the alias names$/) do 
   fill_in('forenames', :with => 'Sue')
@@ -61,23 +66,23 @@ When(/^I select an alias name and click the remove button the name is removed fr
   find(:id,'remove_alias_1').click
 end
 
-When(/^I click on the add button for address the address details screen is displayed$/) do 
+When(/^I click yes to add an address the address details screen is displayed$/) do
   find(:id, 'add_address').click
 end 
 
 When(/^I enter the address details$/) do 
-  fill_in('address1', :with => '1 long Street')
-  fill_in('address2', :with => 'Plymouth')
-  fill_in('county', :with => 'DEVON')
-  fill_in('postcode', :with => 'PL1 1AB')
+  fill_in('add_2_line1', :with => '1 long Street')
+  fill_in('add_2_line2', :with => 'Plymouth')
+  fill_in('add_2_county', :with => 'DEVON')
+  fill_in('add_2_postcode', :with => 'PL1 1AB')
 end
 
 When(/^I am on the amend details screen I can click on the amend address button$/) do 
-  find(:id,'amend_address_1').click 
+  find(:id,'amend_address').click
 end 
 
 When(/^the address details screen is displayed I can overtype the details$/) do 
-  fill_in('address1', :with => '1 longer changed Street') 
+  fill_in('add_1_line1', :with => '1 longer changed Street')
 end 
 
 When(/^I select an address and click the remove button the address is removed from the screen$/) do
@@ -94,15 +99,21 @@ When(/^the court details screen is displayed I can overtype the details$/) do
   
 end 
 
+When(/^I click the check box to confirm verification of the amendment$/) do
+  find(:id, 'check_box').click
+end
+
 Then(/^I can click submit button to save all new information$/) do 
-  find(:id, 'save_changes').click
+  find(:id, 'register_amends').click
 end 
 
 When(/^the amendments application has been submitted the unique identifier is displayed to the user on the screen$/) do
-  date_format = Date.today.strftime('%d.%m.%Y')
-  registereddate = find(:id, 'registereddate').text
-  puts(registereddate)
-  expect(registereddate).to eq 'Registered on '+ date_format
+#  date_format = Date.today.strftime('%d.%m.%Y')
+#  registereddate = find(:id, 'registereddate').text
+#  puts(registereddate)
+#  expect(registereddate).to eq 'Registered on '+ date_format
+  reference = find(:id, 'reg_nos').text
+  expect(reference).to have_content('Reference(s)')
 end
 
 Given(/^the application has been amended$/) do
@@ -110,8 +121,11 @@ Given(/^the application has been amended$/) do
    find(:id,'app_type1').click
    fill_in('reg_no', :with => @regnote)
    click_button('continue')
-   click_button('save_changes')
-   step "the user can return to the worklist"
+   click_link('amend_name')
+   click_button('continue')
+   find(:id, 'check_box').click
+   click_button('register_amends')
+   step "the user can return to the amend worklist"
 end
 
 When(/^we check the bankruptcy database record there must be a indicator for amended$/) do
@@ -130,4 +144,9 @@ end
 
 Given(/^I have selected to view a specific record from the worklist$/) do
   find(:id,'app_type1').click
+end
+
+Then(/^the user can return to the amend worklist$/) do
+  find(:id, 'return_worklist').click
+  sleep(1)
 end

@@ -64,8 +64,8 @@ end
 When(/^the application details become visible they must be the correct ones for the registration number detailed on the previous screen$/) do 
   api = RestAPI.new($BANKRUPTCY_REGISTRATION_URI)
   data = api.get("/registration/#{@regnote}")
-  surname = data['debtor_name']['surname']
-  expect(page).to have_content(surname)
+  forename = data['debtor_name']['forename']
+  expect(page).to have_content(forename)
 end 
 
 When(/^the cancellation application has been submitted the unique identifier is displayed to the user on the screen$/) do 

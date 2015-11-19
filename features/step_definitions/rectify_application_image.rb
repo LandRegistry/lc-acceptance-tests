@@ -58,7 +58,8 @@ When(/^I click on the Submit button$/) do
 end 
 
 Given(/^I am on the Application complete screen$/) do
-  expect(page).to have_content('Application Complete')
+  expect(page).to have_content('Confirmation')
+  expect(page).to have_content('successfully submitted')
 end
 
 When(/^the rectification to the application has been submitted the amended unique identifier is displayed to the user on the screen$/) do 
