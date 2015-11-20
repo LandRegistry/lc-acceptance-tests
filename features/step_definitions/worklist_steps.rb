@@ -42,7 +42,7 @@ When(/^I have selected to view specific the application list "(.*)"$/) do |type|
 end
 
 When(/^I can see the total bankruptcy applications$/) do
-    page.should have_css("div#banks_total", :text => '9')
+    page.should have_css("div#reg", :text => '9')
 end
 
 When(/^I have submitted a new PAB$/) do
@@ -55,7 +55,7 @@ When(/^I have waited (\d+) seconds$/) do |seconds|
 end
 
 Then(/^I see the totals refresh$/) do
-    page.should have_css("div#banks_total", :text => '0')
+    page.should have_css("div#reg", :text => '0')
 end
 
 Then(/^I see the bankruptcy application list page$/) do

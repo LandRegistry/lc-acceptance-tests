@@ -2,8 +2,7 @@ Given(/^I am on the Bankruptcy Rectification document request screen$/) do
   @regnote = '50013'
   visit($FRONTEND_URI)
   maximise_browser
-  find(:id, 'Tasks').click
-  find(:id, 'Rectify').click
+  find(:id, 'rectify').click
 end
 
 Given(/^I am on the Rectify screen$/) do

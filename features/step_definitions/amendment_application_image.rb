@@ -99,12 +99,12 @@ When(/^the court details screen is displayed I can overtype the details$/) do
   
 end 
 
-When(/^I click the check box to confirm verification of the amendment$/) do
+When(/^I click the check box to confirm verification$/) do
   find(:id, 'check_box').click
 end
 
 Then(/^I can click submit button to save all new information$/) do 
-  find(:id, 'register_amends').click
+  find(:id, 'submit').click
 end 
 
 When(/^the amendments application has been submitted the unique identifier is displayed to the user on the screen$/) do
@@ -124,7 +124,7 @@ Given(/^the application has been amended$/) do
    click_link('amend_name')
    click_button('continue')
    find(:id, 'check_box').click
-   click_button('register_amends')
+   click_button('submit')
    step "the user can return to the amend worklist"
 end
 
@@ -147,6 +147,6 @@ Given(/^I have selected to view a specific record from the worklist$/) do
 end
 
 Then(/^the user can return to the amend worklist$/) do
-  find(:id, 'return_worklist').click
+  find(:id, 'worklist').click
   sleep(1)
 end

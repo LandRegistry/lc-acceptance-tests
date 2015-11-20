@@ -3,7 +3,7 @@ Given(/^I have selected to view a specific record on the cancellation applicatio
   visit($FRONTEND_URI)
   maximise_browser
   visit( "#{$FRONTEND_URI}/get_list?appn=cancel" )
-  find(:xpath,'/html/body/div/div/div/div[3]/div/table/tbody/tr[1]/td[1]/a').click              
+  find(:xpath,'//*[@id="app_type1"]').click
 end 
 
 When(/^I click on a thumbnail the image is expanded to large image$/) do 
@@ -52,13 +52,17 @@ When(/^I must have a registration number value before the continue button can be
  
 end
 
+When(/^I can click the Register cancellation button to go to the next screen$/) do
+  click_button('submit')
+end
+
 Then(/^I can click the continue button to go to the next screen$/) do 
   click_button('continue')
 end 
 
 Given(/^I am on the Application details screen$/) do 
  sleep(1)
-  expect(page).to have_content('Application details')
+  expect(page).to have_content('Review registration details')
 end 
 
 When(/^the application details become visible they must be the correct ones for the registration number detailed on the previous screen$/) do 
@@ -69,17 +73,16 @@ When(/^the application details become visible they must be the correct ones for 
 end 
 
 When(/^the cancellation application has been submitted the unique identifier is displayed to the user on the screen$/) do 
-  expect(page).to have_content('been cancelled:')
-  date_format = Date.today.strftime('%d.%m.%Y')
-  canceldate = find(:id, 'canceldate').text
-  expect(canceldate).to eq 'Cancelled on '+ date_format
+  expect(page).to have_content('Confirmation')
+  expect(page).to have_content('successfully submitted')
 end 
 
 Given(/^the application has been cancelled$/) do
   step "I have selected to view a specific record on the cancellation application list the individual record is display"
   step "I must have a registration number value before the continue button can be clicked"
-  step "I can click the continue button to go to the next screen" #continue button of first screen
-  step "I can click the continue button to go to the next screen" #continue button on second screen
+  step "I can click the continue button to go to the next screen"
+  step "I click the check box to confirm verification"
+  step "I can click the Register cancellation button to go to the next screen"
 end
 
 When(/^we check the bankruptcy database record there must be a indicator for cancelled$/) do

@@ -19,7 +19,7 @@ Then I am on a Large image I can zoom out
 #SH-US003 Bankruptcy Search - Capture Customer Details
 Given I am on the bankruptcy search details screen
 When I click on the name details tab I can enter six names
-When I click on the Customer details tab I can enter the key number Customer Name Customer Address Customer Reference
+When I click continue the customer details screen is displayed
 When I can click the complete search button
 When I am on the Application complete screen
 Then the user can return to the worklist

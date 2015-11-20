@@ -57,7 +57,7 @@ And I can click the continue button to go to the next screen
 When I am on the amend details screen I can click on the amend court button
 When the court details screen is displayed I can overtype the details
 And I can click the continue button to go to the next screen
-When I click the check box to confirm verification of the amendment
+When I click the check box to confirm verification
 Then I can click submit button to save all new information
 
 

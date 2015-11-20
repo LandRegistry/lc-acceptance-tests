@@ -123,6 +123,6 @@ When(/^the Application has been submitted the date is displayed to the user on t
 end
 
 Then(/^the user can return to the worklist$/) do
-  click_link('return_worklist')
+  click_link('worklist')
   sleep(1)
 end

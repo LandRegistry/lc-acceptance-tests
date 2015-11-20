@@ -10,7 +10,7 @@ Scenario: using search facility within the land charges system indicate, search 
 
 #sh-us008 Full and bankruptcy searches
 Given I am on the bankruptcy searches screen
-When I have selected to view a specific record from the worklist
+When I select an application type of Search the application is displayed
 When a complex name checkbox is available I can click it to confirm that the input name is complex	
 When I can submit the completed search the complex name indicator is saved with all the search details	
 Then I can check the database to confirm the complex name setting

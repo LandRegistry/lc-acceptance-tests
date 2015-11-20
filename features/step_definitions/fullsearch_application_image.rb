@@ -3,20 +3,23 @@ When(/^I select an application type of Full Search the application is displayed$
   find(:id,'app_type1').click
 end
 
-Given(/^I am on the bankruptcy full search details screen$/) do
-  expect(page).to have_content('Full Search')
-  expect(page).to have_content('Full Name')
-  expect(page).to have_content('Complete the debtor')
-  expect(page).to have_button('Complete Search')
+Given(/^I am on the full search details screen$/) do
+  expect(page).to have_content('Land charge and bankruptcy search')
+  expect(page).to have_content('Full name')
+  expect(page).to have_content('Name(s) to be searched')
+  expect(page).to have_button('Continue')
 end
 
 When(/^I click on entered details in the address box I can make an amendment$/) do
   fill_in('customer_address',:with => '4749 DUBUQUE Terrace'"\n"'JAYSONFURT'"\n"'SOUTH VINCENZA'"\n"'NORTHAMPTONSHIRE'"\n"'FC13 4WX')
 end
 
-When(/^I click on the search areas tab all counties check box search area  List of Areas to search is displayed$/) do
-  click_link('Search Areas')
-  check('all_counties')
+When(/^I click yes to search all counties$/) do
+  find(:id, 'hide').click
+end
+
+When(/^I click continue the county details screen is displayed$/) do
+  click_button('continue')
 end
 
 When(/^I enter details into the search area edit box I can click on the add area button$/) do
@@ -45,7 +48,7 @@ When(/^I click in the search to field I can add the current year$/) do
 end
 
 Then(/^I can click the complete search button when the customer address field is complete$/) do
-   click_button('Complete Search')
+   click_button('submit')
 end
 
 

@@ -16,23 +16,25 @@ When I am on a Large image I can zoom in
 Then I am on a Large image I can zoom out
 
 #SH-US019 - Full Search - Capture Customer Details
-Given I am on the bankruptcy full search details screen
+Given I am on the full search details screen
 When I click on the name details tab I can enter six names
 When I click in the search to field I can add the current year
-When I click on the Customer details tab I can enter the key number Customer Name Customer Address Customer Reference
+When I click continue the county details screen is displayed
+When I click yes to search all counties
+When I click continue the customer details screen is displayed
 When I click on entered details in the address box I can make an amendment
-When I click on the search areas tab all counties check box search area  List of Areas to search is displayed
 When I can click the complete search button when the customer address field is complete
 When I am on the Application complete screen
 When the user can return to the worklist
 When I select an application type of Full Search the application is displayed
 When I click on the name details tab I can enter six names
-When I click on the Customer details tab I can enter the key number Customer Name Customer Address Customer Reference
-When I click on entered details in the address box I can make an amendment
-When I click on the search areas tab all counties check box search area  List of Areas to search is displayed
+When I click continue the county details screen is displayed
 When I enter details into the search area edit box I can click on the add area button
 When add area button is clicked the search area details are added to the List of areas to search box
 When I click on entered details in the list of areas search box I can make an amendment
+When I click continue the customer details screen is displayed
+When I click on entered details in the address box I can make an amendment
+
 When I can click the complete search button when the customer address field is complete
 When I am on the Application complete screen
 Then the user can return to the worklist
