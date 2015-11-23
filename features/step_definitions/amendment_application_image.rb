@@ -17,14 +17,13 @@ When(/^I must have a registration number before the continue button can be click
 end  
 
 Given(/^I am on the bankruptcy details screen$/) do #amend details screen
-  expect(page).to have_content('Bankruptcy amendment')
+  expect(page).to have_content('Particulars of bankrupt')
 end 
 
 When(/^I click on the reject button the next screen is displayed$/) do
   # click_link('reject')
   find(:id, 'reject').click
   expect(page).to have_content('Application Rejected')
-  sleep(1)
 end
 
 When(/^I can click the amend button the system will go next screen$/) do

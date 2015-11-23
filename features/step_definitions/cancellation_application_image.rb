@@ -57,8 +57,12 @@ When(/^I can click the Register cancellation button to go to the next screen$/) 
 end
 
 Then(/^I can click the continue button to go to the next screen$/) do 
-  click_button('continue')
-end 
+  if is_gui?
+    find(:id, 'continue').click
+  else
+    find(:id, 'continue').trigger('click')
+  end
+end
 
 Given(/^I am on the Application details screen$/) do 
  sleep(1)
