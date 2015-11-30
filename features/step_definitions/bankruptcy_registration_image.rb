@@ -102,8 +102,18 @@ When(/^I enter a court number and year the details remain visible$/) do
   fill_in('court_year', :with => '2015')
 end
 
-Then(/^I click the submit button and the application complete screen is displayed$/) do
+When(/^I click the continue button the application verification page is displayed$/) do
   click_button('continue')
+  expect(page).to have_content('Verify registration')
+end
+
+When(/^I click the verification checkbox$/) do
+  find(:id, 'check_box').click
+end
+
+
+Then(/^I click the submit button and the application complete screen is displayed$/) do
+  click_button('submit')
 end
 
 
