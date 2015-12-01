@@ -26,6 +26,9 @@ When(/^I am on a Large image I can zoom in$/) do
 
   #thing = find(:csspath, '#container0 > div:nth-child(5)')
   #expect(thing.text).to eq "2x Magnify"
+  
+  #expect(page).to have_content("Zoom In")
+  find(:id, 'zoom_button').click
 end 
 
 When(/^I am on a Large image I can zoom out$/) do 
@@ -43,7 +46,9 @@ When(/^I am on a Large image I can zoom out$/) do
   #container0>div
   #all('.zoomcontrols')[0].click
   #container0 > div:nth-child(2)
-   
+  
+  #expect(page).to have_content('Zoom Out')
+  find(:id, 'zoom_button').click 
 
 end 
 

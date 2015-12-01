@@ -1,14 +1,18 @@
 Given(/^I have selected to view a specific record on the amendments application list the individual record is displayed$/) do
-  @regnote = '50011'
+  @regnote = '50010'
   visit($FRONTEND_URI)
   maximise_browser
   visit("#{$FRONTEND_URI}/get_list?appn=amend")
   #find(:id,'amend_total').click
-  find(:xpath,'//*[@id="app_type1"]').click
+  find(:id, 'app_type1').click
 end 
 
 When(/^I am on the retrieve original documents  screen  the accompanying evidence is visible as thumbnails$/) do 
-  page.should have_xpath('//*[@id="container0"]/img[1]')
+  expect(page).to have_xpath('//*[@id="container0"]/img[1]')
+end
+
+When(/^there is more than one image I can click on the next button to change images$/) do 
+  click_link('clickNext')
 end
 
 When(/^I must have a registration number before the continue button can be clicked$/) do 
