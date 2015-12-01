@@ -34,7 +34,7 @@ def create_registration
     uri = URI($BANKRUPTCY_REGISTRATION_URI)
     http = Net::HTTP.new(uri.host, uri.port)
 
-    request = Net::HTTP::Post.new("/registration")
+    request = Net::HTTP::Post.new("/registrations")
     request.body = no_alias
     request["Content-Type"] = "application/json"
 
