@@ -48,6 +48,8 @@ Given I am on the case information screen
 When I enter the key number the details remain visible
 When I enter a court name the details remain visible
 When I enter a court number and year the details remain visible
+When I click the continue button the application verification page is displayed
+When I click the verification checkbox
 Then I click the submit button and the application complete screen is displayed
 
 #US006 and US018 Unique Identifier
