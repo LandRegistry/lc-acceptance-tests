@@ -26,12 +26,12 @@ end
 
 When(/^I submit a valid INS request$/) do
     @registration_api = RestAPI.new($B2B_API_URI)
-    @registration_api.post("/register", ins_request)
+    @registration_api.post("/bankruptcies", ins_request)
 end
 
 When(/^I submit valid data to the registration system$/) do
     @registration_api = RestAPI.new($BANKRUPTCY_REGISTRATION_URI)
-    @registration_api.post("/registration", no_alias)
+    @registration_api.post("/registrations", no_alias)
 end
 
 Then(/^it returns the new registration number$/) do
@@ -48,7 +48,7 @@ Then(/^a new record is stored on the database$/) do
 
     get_api = RestAPI.new($BANKRUPTCY_REGISTRATION_URI)
     data.each do |reg_no|
-        regn = get_api.get("/registration/#{reg_no}")
+        regn = get_api.get("/registrations/#{reg_no}")
         expect(get_api.response.code).to eql "200"
         expect(regn['registration_no']).to eq reg_no
     end
@@ -56,7 +56,7 @@ end
 
 When(/^I submit valid data with an alias to the registration system$/) do
     @registration_api = RestAPI.new($BANKRUPTCY_REGISTRATION_URI)
-    @registration_api.post("/registration", one_alias)
+    @registration_api.post("/registrations", one_alias)
 end
 
 Then(/^it returns the (\d+) new registration numbers$/) do |count|
@@ -68,7 +68,7 @@ Then(/^(\d+) new records are stored on the database$/) do |count|
     new_regs = @registration_api.data["new_registrations"]
     expect(new_regs.length.to_s).to eq count
     new_regs.each do |reg_no|
-      regn = @registration_api.get("/registration/#{reg_no}")
+      regn = @registration_api.get("/registrations/#{reg_no}")
       expect(@registration_api.response.code).to eql "200"
       expect(regn['registration_no']).to eq reg_no
     end
@@ -127,12 +127,12 @@ end
 
 When(/^I submit Bob Howard to the registration system$/) do
     @registration_api = RestAPI.new($BANKRUPTCY_REGISTRATION_URI)
-    @registration_api.post("/registration", bob_howard)
+    @registration_api.post("/registrations", bob_howard)
 end
 
 When(/^I submit Steven Smith to the registration system$/) do
     @registration_api = RestAPI.new($BANKRUPTCY_REGISTRATION_URI)
-    @registration_api.post("/registration", steven_smith)
+    @registration_api.post("/registrations", steven_smith)
 end
 
 Then(/^the name has been correctly transformed$/) do
@@ -171,10 +171,5 @@ When(/^Invalid registration numbers are sent to the synchroniser$/) do
 end
 
 Then(/^it posts an error message to its error queue$/) do
-    error_api = RestAPI.new($CASEWORK_API_URI)
-    result = error_api.get("/errors").last
-    expect(result['source']).to eq 'Synchroniser'
-    expect(result['data']['registration_no']).to eq '42'
-    expect(result['data']['status_code']).to eq 404
-    expect(result['data']['uri']).to eq '/registration'
+    pending
 end
