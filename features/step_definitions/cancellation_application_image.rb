@@ -76,7 +76,7 @@ end
 
 When(/^the application details become visible they must be the correct ones for the registration number detailed on the previous screen$/) do 
   api = RestAPI.new($BANKRUPTCY_REGISTRATION_URI)
-  data = api.get("/registration/#{@regnote}")
+  data = api.get("/registrations/#{@regnote}")
   forename = data['debtor_name']['forename']
   expect(page).to have_content(forename)
 end 

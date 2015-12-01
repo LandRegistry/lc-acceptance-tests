@@ -12,7 +12,7 @@ When(/^I am on the retrieve original documents  screen  the accompanying evidenc
 end
 
 When(/^there is more than one image I can click on the next button to change images$/) do 
-  click_link('clickNext')
+  click_link('next_image')
 end
 
 When(/^I must have a registration number before the continue button can be clicked$/) do 
@@ -137,7 +137,7 @@ end
 
 Then(/^the indicator must have a value for amended$/) do
   api = RestAPI.new($BANKRUPTCY_REGISTRATION_URI)
-  data = api.get("/registration/#{@regnote}")
+  data = api.get("/registrations/#{@regnote}")
   assert(data.key?('amended_by'))
 end
 
