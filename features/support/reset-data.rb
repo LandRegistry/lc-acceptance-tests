@@ -5,7 +5,19 @@ require_relative 'utility'
 
 
 def connect(database)
-    PGconn.connect( 'localhost', 5432,  '', '', database, 'landcharges', 'lcalpha')
+    user = ''
+    if database == "landcharges"
+      user = "landcharges"
+    elsif database == "working"
+      user = "lc-working-data"
+    elsif database == "db2"
+      user = "lc-db2-mock"
+    elsif database == "docstore"
+      user = "lc-documents"
+    end
+
+
+    PGconn.connect( 'localhost', 5432,  '', '', database, user, 'lcalpha')
 end
 
 def disconnect(connection)
@@ -23,74 +35,38 @@ def execute(clear, setup, save = false, quiet = false)
     end
 
     folders.each do |folder|
-        if File.directory?("#{folder}/data") && File.exists?("#{folder}/data/data.json")
-            puts "Processing #{folder}" unless(quiet)
-            info = JSON.parse(File.read("#{folder}/data/data.json"))
+        puts "Processing #{folder}" unless(quiet)
 
-            db_name = info['name']
-            tables = info['tables']
-
-            conn = connect(db_name)
-            if save
-                #out_dir = "#{folder}/data/
-
-                puts "  save" unless(quiet)
-                tables.each do |table|
-                    `psql #{db_name} -c "COPY #{table} TO '#{folder}/data/#{table}.txt' DELIMITER '|' CSV`
-                end
-
-                if File.exists?("#{folder}/data/save.rb")
-                    `ruby "#{folder}/data/save.rb" #{folder}`
-                end
+        if clear
+            puts("  clear") unless(quiet)
+            if File.exists?("#{folder}/data/delete.py")
+                out = `python3 #{folder}/data/delete.py`
+                puts out unless(quiet)
             end
 
-            if clear
-                puts("  clear") unless(quiet)
-                tables.each do |table|
-                    conn.exec("DELETE FROM #{table}")
-                end
-
-                if File.exists?("#{folder}/data/clear.rb")
-                    out = `ruby "#{folder}/data/clear.rb" #{folder}`
-                    puts out unless(quiet)
-                end
+            if File.exists?("#{folder}/data/clear.rb")
+                out = `ruby "#{folder}/data/clear.rb" #{folder}`
+                puts out unless(quiet)
             end
-
-            if setup
-                puts("  setup") unless(quiet)
-                tables.reverse.each do |table|
-                    if File.exists?("#{folder}/data/#{table}.txt")
-
-                        # Credit: http://www.kadrmasconcepts.com/blog/2013/12/15/copy-millions-of-rows-to-postgresql-with-rails/
-                        conn.exec("COPY #{table} FROM STDIN DELIMITER '|' CSV")
-                        file = File.open("#{folder}/data/#{table}.txt", "r")
-                        while !file.eof?
-                            conn.put_copy_data(file.readline)
-                        end
-                        conn.put_copy_end
-
-                        while res = conn.get_result
-                            unless res.error_message == ""
-                                puts res.error_message
-                            end
-                        end
-
-                        if db_name != 'db2'
-                            command = "SELECT setval('#{table}_id_seq', (SELECT MAX(id) FROM #{table})+1);"
-                            conn.exec(command)
-                        end
-
-                    end
-                end
-
-                if File.exists?("#{folder}/data/setup.rb")
-                    out = `ruby "#{folder}/data/setup.rb" #{folder}`
-                    puts out unless(quiet)
-                end
-            end
-            disconnect(conn)
-
         end
+    end
+    
+    folders.each do |folder|
+        if setup
+            puts("  setup") unless(quiet)
+
+            if File.exists?("#{folder}/data/load.py")
+                out = `python3 #{folder}/data/load.py`
+                puts out unless(quiet)
+            end
+
+
+            if File.exists?("#{folder}/data/setup.rb")
+                out = `ruby "#{folder}/data/setup.rb" #{folder}`
+                puts out unless(quiet)
+            end
+        end
+
     end
 end
 

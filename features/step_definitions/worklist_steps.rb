@@ -42,7 +42,7 @@ When(/^I have selected to view specific the application list "(.*)"$/) do |type|
 end
 
 When(/^I can see the total bankruptcy applications$/) do
-    page.should have_css("div#banks_total", :text => '21')
+    page.should have_css("div#reg", :text => '9')
 end
 
 When(/^I have submitted a new PAB$/) do
@@ -55,37 +55,31 @@ When(/^I have waited (\d+) seconds$/) do |seconds|
 end
 
 Then(/^I see the totals refresh$/) do
-    page.should have_css("div#banks_total", :text => '22')
+    page.should have_css("div#reg", :text => '0')
 end
 
 Then(/^I see the bankruptcy application list page$/) do
-    page.should have_content("Bankruptcy Registrations")
-    page.should have_content("21 August 2015")
-    page.should have_css('div#banks_total', :text => '21')
+    page.should have_content("bankruptcy registration applications")
+    page.should have_content("05 November 2015")
 end
 
 Then(/^I see the amendments application list page$/) do
-    page.should have_content("Amendments")
-    page.should have_content("21 August 2015")
-    page.should have_css('div#amend_total', :text => '4')
+    page.should have_content("amendment applications")
+    page.should have_content("05 November 2015")
 end
 
 Then(/^I see the cancellations application list page$/) do
-    page.should have_content("Cancellations")
-    page.should have_content("21 August 2015")
-    page.should have_css('div#canc_total', :text => '2')
+    page.should have_content("cancellation applications")
+    page.should have_content("05 November 2015")
 end
 
 Then(/^I see the searches application list page$/) do
-    page.should have_content("Searches")
-    page.should have_content("21 August 2015")
-    page.should have_css('div#search_total', :text => '4')
+    page.should have_content("search applications")
+    page.should have_content("05 November 2015")
 end
 
 Then(/^I see the OC application list page$/) do
     page.should have_content("Office Copies")
-    page.should have_content("21 August 2015")
-    page.should have_css('div#oc_total', :text => '3')
 end
 
 Then(/^I see the application list page with no waiting apps$/) do
@@ -93,20 +87,20 @@ Then(/^I see the application list page with no waiting apps$/) do
 end
 
 Then(/^I see the application totals$/) do
-    page.should have_css("div#banks_total")
-    page.should have_css("div#lcreg_total")
-    page.should have_css("div#amend_total")
-    page.should have_css("div#canc_total")
-    page.should have_css("div#search_total")
-    page.should have_css("div#oc_total")
+    page.should have_css("div#reg")
+    page.should have_css("div#amend")
+    page.should have_css("div#canc")
+    page.should have_css("div#search")
+    page.should have_css("div#oc")
 end
 
 When(/^I select a pab application$/) do
-    visit("#{$FRONTEND_URI}/get_application/bank_regn/37/PA(B)" )
+    #visit("#{$FRONTEND_URI}/get_application/bank_regn/37/PA(B)" )
+    find(:id,'app_type1').click
 end
 
 Then(/^I see the application details page$/) do
-    page.should have_content("Debtor name and details")
+    page.should have_content("Debtor details")
 end
 
 Then(/^I close browser$/) do

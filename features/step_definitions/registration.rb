@@ -88,7 +88,7 @@ end
 Then(/^the debtor details are recorded on the IOPN DB2 tables$/) do
     sleep(1)
     PostgreSQL.connect('db2')
-    reg_no = '50027'
+    reg_no = '50112'
     result = PostgreSQL.query("SELECT * FROM debtor_detail WHERE reg_no='#{reg_no}'")
     expect(result.values.length).to eq 1
     PostgreSQL.disconnect
@@ -97,7 +97,7 @@ end
 Then(/^positive search results are recorded on the IOPN DB2 tables$/) do
     sleep(1)
     PostgreSQL.connect('db2')
-    reg_no = '50027'
+    reg_no = '50112'
     result_id = PostgreSQL.query("SELECT id FROM debtor_detail WHERE reg_no='#{reg_no}'")
     expect(result_id.values.length).to eq 1
     search_results = PostgreSQL.query("SELECT * FROM property_detail WHERE id='#{result_id.values[0][0]}'")

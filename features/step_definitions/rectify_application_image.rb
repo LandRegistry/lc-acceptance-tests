@@ -2,8 +2,7 @@ Given(/^I am on the Bankruptcy Rectification document request screen$/) do
   @regnote = '50013'
   visit($FRONTEND_URI)
   maximise_browser
-  find(:id, 'Tasks').click
-  find(:id, 'Rectify').click
+  find(:id, 'rectify').click
 end
 
 Given(/^I am on the Rectify screen$/) do
@@ -36,7 +35,9 @@ When(/^I add an address the new details are visible$/) do
 end
 
 Then(/^all amended details will need to be updated to reflect the stored changes$/) do
+  sleep(1)
   click_button('save_changes')
+  sleep(1)
 end
 
 When(/^I can the new details on the screen$/) do
@@ -56,7 +57,8 @@ When(/^I click on the Submit button$/) do
 end 
 
 Given(/^I am on the Application complete screen$/) do
-  expect(page).to have_content('Application Complete')
+  expect(page).to have_content('Confirmation')
+  expect(page).to have_content('successfully submitted')
 end
 
 When(/^the rectification to the application has been submitted the amended unique identifier is displayed to the user on the screen$/) do 
