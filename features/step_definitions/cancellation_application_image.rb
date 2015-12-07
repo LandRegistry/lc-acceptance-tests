@@ -28,7 +28,9 @@ When(/^I am on a Large image I can zoom in$/) do
   #expect(thing.text).to eq "2x Magnify"
   
   #expect(page).to have_content("Zoom In")
+
   find(:id, 'zoom_button').click
+  
 end 
 
 When(/^I am on a Large image I can zoom out$/) do 

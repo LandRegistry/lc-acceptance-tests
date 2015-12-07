@@ -4,7 +4,7 @@ Given(/^I have selected to view a specific record on the amendments application 
   maximise_browser
   visit("#{$FRONTEND_URI}/get_list?appn=amend")
   #find(:id,'amend_total').click
-  find(:id, 'app_type1').click
+  find(:id, 'app_type3').click
 end 
 
 When(/^I am on the retrieve original documents  screen  the accompanying evidence is visible as thumbnails$/) do 
@@ -12,7 +12,8 @@ When(/^I am on the retrieve original documents  screen  the accompanying evidenc
 end
 
 When(/^there is more than one image I can click on the next button to change images$/) do 
-  click_link('clickNext')
+ click_link('next_image')
+ 
 end
 
 When(/^I must have a registration number before the continue button can be clicked$/) do 
