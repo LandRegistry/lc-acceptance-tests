@@ -138,7 +138,7 @@ end
 
 Then(/^the indicator must have a value for amended$/) do
   api = RestAPI.new($BANKRUPTCY_REGISTRATION_URI)
-  data = api.get("/registration/#{@regnote}")
+  data = api.get("/registrations/#{@regnote}")
   assert(data.key?('amended_by'))
 end
 
