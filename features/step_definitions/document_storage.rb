@@ -21,7 +21,9 @@ When(/^document is added retrieved deleted replaced the system returns a positiv
   puts response.code
   expect(response.code).to eql "201"
 
-
+  puts "#{upload} was uploaded"
+  
+  
   # Retrieve the image
   get = Net::HTTP::Get.new('/forms/66/images/2')
   get_resp = http.request(get)
@@ -35,7 +37,7 @@ When(/^document is added retrieved deleted replaced the system returns a positiv
     output.write get_resp.body
   end
   
-  puts "#{upload} was uploaded"
+  
   puts "#{download} was downloaded"
   
   # Delete the image
@@ -51,6 +53,8 @@ When(/^document is added retrieved deleted replaced the system returns a positiv
     output.write get_resp.body
   end
   
+  
+  
   uri = URI("http://localhost:5014")
   http = Net::HTTP.new(uri.host, uri.port)
   
@@ -65,7 +69,9 @@ When(/^document is added retrieved deleted replaced the system returns a positiv
   expect(response.code).to eql "201"
 
 
-  # Retrieve the image
+  # Replace the image
+  
+  #recall image
   get = Net::HTTP::Get.new('/forms/66/images/2')
   get_resp = http.request(get)
   
@@ -78,12 +84,42 @@ When(/^document is added retrieved deleted replaced the system returns a positiv
     output.write get_resp.body
   end
   
+ 
+  puts "#{download} was downloaded"
+  
+  f = IO.binread('img2_1.jpeg')
+
+  
+  # replace the image to the API
+  request = Net::HTTP::Put.new('/forms/66/images/2')
+  request['Content-Type'] = 'image/jpeg'
+  request.body = f
+  upload = Digest::SHA1.hexdigest(f)
+  response = http.request(request)
+  
+  puts response.code
+  expect(response.code).to eql "201"
+  
   puts "#{upload} was uploaded"
   puts "#{download} was downloaded"
   
+  #recall replacement image
+  get = Net::HTTP::Get.new('/forms/66/images/2')
+  get_resp = http.request(get)
+  
+  expect(get_resp.code).to eql "200"
 
+  download = Digest::SHA1.hexdigest(get_resp.body)
+  
+  puts get_resp.code
+  File.open("output.jpg", 'wb' ) do |output|
+    output.write get_resp.body
+  end
+  
+ 
+  puts "#{download} was downloaded"
 end
 
 Then(/^I access the DB(\d+) table to confirm row exists$/) do |arg1|
-  pending # Write code here that turns the phrase above into concrete actions
+  #this will be done with synchronise
 end
