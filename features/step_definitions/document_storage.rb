@@ -8,11 +8,11 @@ When(/^document is added retrieved deleted replaced the system returns a positiv
   f = IO.binread('test.tiff')
 
 
-  uri = URI("http://localhost:5014")
+  uri = URI("http://localhost:5006")
   http = Net::HTTP.new(uri.host, uri.port)
   
   # Save the image to the API
-  request = Net::HTTP::Post.new('/forms/66/images')
+  request = Net::HTTP::Post.new('/forms/A4')
   request['Content-Type'] = 'image/tiff'
   request.body = f
   upload = Digest::SHA1.hexdigest(f)
@@ -25,7 +25,7 @@ When(/^document is added retrieved deleted replaced the system returns a positiv
   
   
   # Retrieve the image
-  get = Net::HTTP::Get.new('/forms/66/images/2')
+  get = Net::HTTP::Get.new('/forms/66')
   get_resp = http.request(get)
   
   expect(get_resp.code).to eql "200"
@@ -44,14 +44,23 @@ When(/^document is added retrieved deleted replaced the system returns a positiv
   get = Net::HTTP::Delete.new('/forms/66/images/2')
   get_resp = http.request(get)
   
-  expect(get_resp.code).to eql "404"
+  expect(get_resp.code).to eql "200" #delete was successful
+  
+  puts "#{download} was deleted"
+  puts get_resp.code
+  
+  # Try to Retrieve the deleted image
+  get = Net::HTTP::Get.new('/forms/66/images/2')
+  get_resp = http.request(get)
+  
+  expect(get_resp.code).to eql "500"
 
-  download = Digest::SHA1.hexdigest(get_resp.body)
+  #download = Digest::SHA1.hexdigest(get_resp.body)
   
   puts get_resp.code
-  File.open("output.jpg", 'wb' ) do |output|
-    output.write get_resp.body
-  end
+  #File.open("output.jpg", 'wb' ) do |output|
+  #output.write get_resp.body
+  #end
   
   
   
