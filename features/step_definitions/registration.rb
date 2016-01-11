@@ -24,20 +24,12 @@ end
 Given(/^anything$/) do
 end
 
-When(/^I submit a valid INS request$/) do
-    @registration_api = RestAPI.new($B2B_API_URI)
-    @registration_api.post("/bankruptcies", ins_request)
-end
 
 When(/^I submit valid data to the registration system$/) do
     @registration_api = RestAPI.new($BANKRUPTCY_REGISTRATION_URI)
     @registration_api.post("/registrations", no_alias)
 end
 
-Then(/^it returns the new registration number$/) do
-    assert(@registration_api.data["new_registrations"].length == 1)
-    # puts @registration_api.data
-end
 
 Then(/^a new record is stored on the database$/) do
     if @registration_api.data['result']
