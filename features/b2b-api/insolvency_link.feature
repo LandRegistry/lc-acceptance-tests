@@ -47,3 +47,18 @@ Scenario: Receive and register an INS bankruptcy
   And the response contains 2 errors
   And the error indicates that the keynumber is missing
   And the error indicates that the date is missing
+
+  Given a successfully submitted registration
+  When I query the land charge API for the registration
+  Then the registration is returned
+  And the details match
+
+  Given a successfully submitted registration with residence withheld
+  When I query the land charge API for the registration
+  Then the registration is returned
+  And the details match
+  
+  Given a successfully submitted registration with all of the data
+  When I query the land charge API for the registration
+  Then the registration is returned
+  And the details match
