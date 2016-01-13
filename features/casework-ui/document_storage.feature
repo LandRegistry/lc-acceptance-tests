@@ -10,7 +10,6 @@ Scenario: Document storage
 
 #DS-US002 ADD A DOCUMENT
 Given I have a document that has been scanned onto the system	
-When document is added retrieved deleted replaced the system returns a positive response code
 When document is added the correct response code is returned
 When document is retrieved the correct response code is returned
 When document is deleted the correct response code is returned
