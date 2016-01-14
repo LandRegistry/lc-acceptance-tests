@@ -2,6 +2,7 @@
 $B2B_API_URI = ENV['B2B_API_URI'] || 'http://localhost:5001'
 $B2B_PROCESSOR_URI = ENV['B2B_PROCESSOR_URI'] || 'http://localhost:5002'
 $BANKRUPTCY_REGISTRATION_URI = ENV['BANKRUPTCY_REGISTRATION_URI'] || 'http://localhost:5004'
+$LAND_CHARGES_URI = ENV['LAND_CHARGES_URI'] || 'http://localhost:5004'
 $CASEWORK_API_URI = ENV['CASEWORK_API_URI'] || 'http://localhost:5006'
 $LEGACY_DB_URI = ENV['LEGACY_DB_URI'] || 'http://localhost:5007'
 $MIGRATOR_URI = ENV['MIGRATOR_URI'] || 'http://localhost:5009'
