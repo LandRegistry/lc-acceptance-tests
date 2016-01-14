@@ -9,8 +9,10 @@ def is_gui?
 end
 
 def prepare_data
+    puts "Prepare data"
     if is_gui?
-        `vagrant ssh -c reset-data 2> /dev/null`
+        puts "vagrant"
+        puts `vagrant ssh -c reset-data`# 2> /dev/null`
     else
         reset_data
     end
