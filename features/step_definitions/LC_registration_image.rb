@@ -152,4 +152,5 @@ end
 
 When(/^I can then click the close button$/) do
   find(:id,'close').click
+  expect(page).to have_content('KING STARK OF THE NORTH (1000167)')
 end

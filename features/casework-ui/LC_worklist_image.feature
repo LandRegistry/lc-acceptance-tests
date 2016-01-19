@@ -20,7 +20,7 @@ And I can view the application on their worklist
 Then the applications are displayed in descending order by date time	
 
 #WLUS006 lock application
-Given two users are accessing the same application at the same time	
-When the selected application is accessed by the second user	
-Then an error message is displayed stating that the current application is being processed
+#Given two users are accessing the same application at the same time	
+#When the selected application is accessed by the second user	
+#Then an error message is displayed stating that the current application is being processed
 
