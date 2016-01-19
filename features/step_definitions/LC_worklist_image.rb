@@ -7,7 +7,7 @@ When(/^there are applications available$/) do
 end
 
 Then(/^I can view the totals on the worklist$/) do
- page.should have_xpath(".//*[@id='lc_regn']", :text => '3')
+ page.should have_xpath(".//*[@id='lc_regn']", :text => '12')
 end
 
 When(/^I click on the Registration Application link there are applications visible$/) do
