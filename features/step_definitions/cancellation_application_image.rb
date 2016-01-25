@@ -8,7 +8,7 @@ end
 
 When(/^I click on a thumbnail the image is expanded to large image$/) do 
   #find(:id, 'thumbnail_1').click
- find(:xpath, '//*[@id="thumbnails"]/img[1]').click
+ #find(:xpath, '//*[@id="thumbnails"]/img[1]').click
 end
 
 

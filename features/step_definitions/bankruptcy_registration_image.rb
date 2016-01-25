@@ -5,12 +5,12 @@ end
 
 When(/^I have selected to view specific the application list$/) do
   visit( "#{$FRONTEND_URI}/get_list?appn=bank_regn" )
-  find(:xpath, '//*[@id="app_type1"]').click
+  find(:id, 'row_1').click
 end
 
 When(/^the image of the application is displayed I can click on all available pages$/) do
   #find(:xpath, '//*[@id="thumbnails"]/img[1]').click
-  find(:id, 'thumbnail1').click
+  #find(:id, 'thumbnail1').click
 end
 
 Given(/^I am on the debtors name and details screen$/) do
