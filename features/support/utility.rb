@@ -32,7 +32,7 @@ def close_browser
 end
 
 def create_registration
-    no_alias = '{"key_number":"9056267","application_type":"PA(B)", "document_id":"22", "application_ref":"9763603","date":"2014-11-12","debtor_name":{"forenames":["Lamar","Sigmund"],"surname":"Effertz"},"debtor_alternative_name":[],"gender":"N/A","occupation":"Ship builder","residence":[{"address_lines":["942 Carley Unions","Cullenberg","Dimitrimouth"],"county": "Buckinghamshire", "postcode":"QF47 0HG"}],"residence_withheld":false,"business_address":{"address_lines":["122 Leuschke Creek","Alvaburgh"],"county": "Fife", "postcode":"NO03 1EU"},"date_of_birth":"1974-10-03","investment_property":[]}'
+    no_alias = '{"key_number":"9056267","class_of_charge":"PA(B)", "application_type":"PA(B)", "document_id":"22", "application_ref":"9763603","date":"2014-11-12","debtor_names":[{"forenames":["Lamar","Sigmund"],"surname":"Effertz"}],"gender":"N/A","occupation":"Ship builder","residence":[{"address_lines":["942 Carley Unions","Cullenberg","Dimitrimouth"],"county": "Buckinghamshire", "postcode":"QF47 0HG"}],"residence_withheld":false,"business_address":[],"date_of_birth":"1974-10-03","investment_property":[],"customer_name":"", "customer_address":""}'
     uri = URI($BANKRUPTCY_REGISTRATION_URI)
     http = Net::HTTP.new(uri.host, uri.port)
 
@@ -44,6 +44,6 @@ def create_registration
     puts response.body
     data = JSON.parse(response.body)
 
-
+    puts(data)
     data['new_registrations'][0]
 end

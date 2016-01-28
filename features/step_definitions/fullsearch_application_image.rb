@@ -1,12 +1,13 @@
 When(/^I select an application type of Full Search the application is displayed$/) do
   visit("#{$FRONTEND_URI}/get_list?appn=search")
-  find(:id,'app_type1').click
+  find(:id,'search_full').click
+  find(:id,'row_1').click
 end
 
 Given(/^I am on the full search details screen$/) do
-  expect(page).to have_content('Land charge and bankruptcy search')
-  expect(page).to have_content('Full name')
-  expect(page).to have_content('Name(s) to be searched')
+  expect(page).to have_content('Full search')
+  expect(page).to have_content('Forename')
+  expect(page).to have_content('First name to be searched')
   expect(page).to have_button('Continue')
 end
 
@@ -14,44 +15,78 @@ When(/^I click on entered details in the address box I can make an amendment$/) 
   fill_in('customer_address',:with => '4749 DUBUQUE Terrace'"\n"'JAYSONFURT'"\n"'SOUTH VINCENZA'"\n"'NORTHAMPTONSHIRE'"\n"'FC13 4WX')
 end
 
-When(/^I click yes to search all counties$/) do
-  find(:id, 'hide').click
+When(/^I click box to search all counties the county edit box is disbled$/) do
+  find(:id, 'all_counties').click
+  #county text not active
 end
 
-When(/^I click continue the county details screen is displayed$/) do
-  click_button('continue')
+When(/^I access the application screen a dropdown list is visible for categories of name type$/) do
+  select 'Limited company', from: "nameType_1"
+  select 'Local authority', from: "nameType_1"
+  select 'Complex name', from: "nameType_1"
+  select 'Other', from: "nameType_1"
+  select 'Private individual', from: "nameType_1"
 end
 
-When(/^I enter details into the search area edit box I can click on the add area button$/) do
-  fill_in('search_area',:with =>'Plymouth')
-  click_link('Add Area')
-  fill_in('search_area',:with =>'Saltash')
-  click_link('Add Area')
+When(/^I enter fee details I can choose prepaid$/) do
+  expect(page).to have_content('Fees')
+  choose('pre_paid')
 end
 
-When(/^add area button is clicked the search area details are added to the List of areas to search box$/) do
-  #expect('area_list').to have_content('Plymouth')
-
+When(/^I change it to choose direct debit$/) do
+  choose('direct_debit')
 end
 
-When(/^I click on entered details in the list of areas search box I can make an amendment$/) do
-  fill_in('area_list',:with =>'Plymouth')
+When(/^I enter a county the details are displayed county edit box$/) do
+  fill_in('county_0', :with => 'Devon')
 end
 
-
-
-When(/^I click in the search to field I can add the current year$/) do
-  fill_in('year_from0',:with =>'1975')
-  fill_in('year_to0',:with =>'1976')
-  fill_in('year_from3',:with =>'1969')
-  fill_in('year_from4',:with =>'2000')
+When(/^I click the add additional county a new county edit box is displayed where I enter the next county$/) do
+  find(:id,'addcounty').click
+  fill_in('county_1', :with =>'Somerset')
 end
 
-Then(/^I can click the complete search button when the customer address field is complete$/) do
-   click_button('submit')
+When(/^I click on the name details tab I can enter six names$/) do
+  expect(page).to have_content('First name to be searched')
+  fill_in('forename_1', :with => 'Ella')
+  fill_in('surname_1', :with => 'Piggy')
+  fill_in('year_from_1', :with => '1981')
+  fill_in('year_to_1', :with => '2013')
+  
+  expect(page).to have_content('Second name to be searched')
+  fill_in('forename_2', :with => 'Gonzo')
+  fill_in('surname_2', :with => 'Great')
+  fill_in('year_from_2', :with => '1999')
+  fill_in('year_to_2', :with => '2000')
+  
+  find(:id,'add_name').click
+  
+  expect(page).to have_content('Third name to be searched')
+  fill_in('forename_3', :with => 'Kermit')
+  fill_in('surname_3', :with => 'Frog')
+  fill_in('year_from_3', :with => '1991')
+  fill_in('year_to_3', :with => '2013')
+  
+  find(:id,'add_name').click
+  
+  expect(page).to have_content('Fourth name to be searched')
+  fill_in('forename_4', :with => 'Benjamin')
+  fill_in('surname_4', :with => 'Fawkes')
+
+
+  find(:id,'add_name').click
+
+  expect(page).to have_content('Fifth name to be searched')
+  fill_in('forename_5', :with => 'Kermit')
+  fill_in('surname_5', :with => 'Frogson')
+  fill_in('year_from_5', :with => '1991')
+  fill_in('year_to_5', :with => '2013')
+  
+  find(:id,'add_name').click
+  
+  expect(page).to have_content('Sixth name to be searched')
+  fill_in('forename_6', :with => 'Benjamin')
+  fill_in('surname_6', :with => 'Fawkeson') 
 end
-
-
-
 
 

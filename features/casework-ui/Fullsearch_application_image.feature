@@ -17,24 +17,25 @@ Then I am on a Large image I can zoom out
 
 #SH-US019 - Full Search - Capture Customer Details
 Given I am on the full search details screen
+When I access the application screen a dropdown list is visible for categories of name type
 When I click on the name details tab I can enter six names
-When I click in the search to field I can add the current year
-When I click continue the county details screen is displayed
-When I click yes to search all counties
-When I click continue the customer details screen is displayed
+When I click box to search all counties the county edit box is disbled
+When I click continue the applicant details screen is displayed
 When I click on entered details in the address box I can make an amendment
-When I can click the complete search button when the customer address field is complete
+When I enter fee details I can choose prepaid
+And I change it to choose direct debit
+When I can click the complete search button
 When I am on the Application complete screen
-When the user can return to the worklist
+Then the user can return to the worklist
+
+#Given I am on the full search details screen
 When I select an application type of Full Search the application is displayed
 When I click on the name details tab I can enter six names
-When I click continue the county details screen is displayed
-When I enter details into the search area edit box I can click on the add area button
-When add area button is clicked the search area details are added to the List of areas to search box
-When I click on entered details in the list of areas search box I can make an amendment
-When I click continue the customer details screen is displayed
+When I enter a county the details are displayed county edit box 
+When I click the add additional county a new county edit box is displayed where I enter the next county
+When I click continue the applicant details screen is displayed
 When I click on entered details in the address box I can make an amendment
-
-When I can click the complete search button when the customer address field is complete
+When I enter fee details I can choose prepaid
+When I can click the complete search button
 When I am on the Application complete screen
 Then the user can return to the worklist
