@@ -90,3 +90,16 @@ When(/^I click on the name details tab I can enter six names$/) do
 end
 
 
+When(/^I am on the Application complete screen a new record is stored on the register database in the correct format$/) do
+  expect(page).to have_content('Confirmation')
+  expect(page).to have_content('successfully submitted')
+  PostgreSQL.connect('landcharges')
+  result = PostgreSQL.query("SELECT id FROM search_name WHERE forenames = 'Ella'")
+  #expect(result.values.length).to eq >= 1
+  row = result
+  puts row[0]['id']
+  #expect(row[0]).to eq "146"
+  PostgreSQL.disconnect
+  
+end
+

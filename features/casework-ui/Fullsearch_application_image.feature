@@ -25,7 +25,7 @@ When I click on entered details in the address box I can make an amendment
 When I enter fee details I can choose prepaid
 And I change it to choose direct debit
 When I can click the complete search button
-When I am on the Application complete screen
+When I am on the Application complete screen a new record is stored on the register database in the correct format
 Then the user can return to the worklist
 
 #Given I am on the full search details screen
@@ -37,5 +37,6 @@ When I click continue the applicant details screen is displayed
 When I click on entered details in the address box I can make an amendment
 When I enter fee details I can choose prepaid
 When I can click the complete search button
-When I am on the Application complete screen
+When I am on the Application complete screen a new record is stored on the register database in the correct format
 Then the user can return to the worklist
+

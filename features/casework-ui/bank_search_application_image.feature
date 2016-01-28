@@ -21,7 +21,7 @@ Given I am on the bankruptcy search details screen
 When I click on the name details tab I can enter six names for a bankruptcy search
 When I click continue the applicant details screen is displayed
 When I can click the complete search button
-When I am on the Application complete screen
+When I am on the Application complete screen a new record is stored on the register database in the correct format
 Then the user can return to the worklist
 
 

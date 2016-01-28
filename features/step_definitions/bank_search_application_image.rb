@@ -1,6 +1,6 @@
 Given(/^I am on the bankruptcy searches screen$/) do
-  @regnote = create_registration
-  puts @regnote
+  #@regnote = create_registration
+  #puts @regnote
   visit($FRONTEND_URI)
   maximise_browser
   visit("#{$FRONTEND_URI}/get_list?appn=search" )
