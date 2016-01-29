@@ -11,6 +11,7 @@ end
 When(/^the image of the application is displayed I can click on all available pages$/) do
   #find(:xpath, '//*[@id="thumbnails"]/img[1]').click
   #find(:id, 'thumbnail1').click
+  expect(page).to have_xpath("//*[@id='container0']/img")
 end
 
 Given(/^I am on the debtors name and details screen$/) do
