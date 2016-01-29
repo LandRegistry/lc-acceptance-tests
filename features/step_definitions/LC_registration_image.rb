@@ -16,13 +16,13 @@ When(/^I can select the appropiate class of charge$/) do
   select 'ANN', from:  "class"
   select 'A', from:  "class"
   select 'B', from:  "class"
-  select 'C(I)', from:  "class"
-  select 'C(II)', from:  "class"
-  select 'C(III)', from:  "class"
-  select 'C(IV)', from:  "class"
-  select 'D(I)', from:  "class"
-  select 'D(II)', from:  "class"
-  select 'D(III)', from:  "class"
+  select 'C1', from:  "class"
+  select 'C2', from:  "class"
+  select 'C3', from:  "class"
+  select 'C4', from:  "class"
+  select 'D1', from:  "class"
+  select 'D2', from:  "class"
+  select 'D3', from:  "class"
   select 'E', from:  "class"
   select 'F', from:  "class"
   select 'PA', from:  "class"
@@ -74,7 +74,7 @@ end
 
 When(/^Limited Company is selected I can complete the company details$/) do
   select 'Limited company', from: "estateOwnerTypes"
-  expect(page).to have_content('Company name')
+  expect(page).to have_content('company')
   fill_in('company', :with  => 'Barrington Storage Ltd')
 end
 
@@ -85,10 +85,10 @@ When(/^Local authority is selected I can complete the local authority details$/)
 end
 
 When(/^Complex name is selected I can complete the complex name details$/) do
-  select 'Complex name', from: "estateOwnerTypes"
-  expect(page).to have_content('Complex name')
-  fill_in('complex_name_field',:with => 'king stark')
-  expect(page).to have_content('Look up complex name')
+  select 'Complex Name', from: "estateOwnerTypes"
+  #expect(page).to have_content('Complex name')
+  #fill_in('complex_name_field',:with => 'king stark')
+  #expect(page).to have_content('Look up complex name')
 end
 
 When(/^other is selected I can complete the name$/) do
@@ -117,6 +117,12 @@ Then(/^I can click the land charges continue button to go to the next screen$/) 
   find(:id,'complete').click  
   sleep(1)
 end
+
+
+Then(/^I can click on Continue button to submit the form$/) do
+  find(:id,'continue').click
+end
+
 
 
 
