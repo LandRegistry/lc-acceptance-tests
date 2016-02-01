@@ -12,6 +12,7 @@ When(/^the image of the application is displayed I can click on all available pa
   #find(:xpath, '//*[@id="thumbnails"]/img[1]').click
   #find(:id, 'thumbnail1').click
   expect(page).to have_xpath("//*[@id='container0']/img")
+  find(:id, 'zoom_button').click
 end
 
 Given(/^I am on the debtors name and details screen$/) do
