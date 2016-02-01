@@ -37,24 +37,25 @@ When I click the add address button further address fields are displayed
 Then I can click the continue button to go to the next screen
 #above statement displays the case information screen is displayed
 
+#EA: Case information screen currently unavailable. Execute tests IN SPRINT 4
 #US007 Supplying class of charge
-Given I am on the case information screen
+# Given I am on the case information screen
 # When I first see the class of charge neither PAB or WOB are checked
 # When I select a Class of Charge of PAB this becomes checked
 # Then I select a Class of Charge of WOB this becomes checked and PAB becomes unchecked
 
 #US014 AND US015 Supplying the court details
-Given I am on the case information screen
-When I enter the key number the details remain visible
-When I enter a court name the details remain visible
-When I enter a court number and year the details remain visible
-When I click the continue button the application verification page is displayed
-When I click the verification checkbox
-Then I click the submit button and the application complete screen is displayed
+#Given I am on the case information screen
+#When I enter the key number the details remain visible
+#When I enter a court name the details remain visible
+#When I enter a court number and year the details remain visible
+#When I click the continue button the application verification page is displayed
+#When I click the verification checkbox
+#Then I click the submit button and the application complete screen is displayed
 
 #US006 and US018 Unique Identifier
-Given I am on the Application complete screen
-When the Application has been submitted the unique identifier is displayed to the user on the screen
+#Given I am on the Application complete screen
+#When the Application has been submitted the unique identifier is displayed to the user on the screen
 # And the Application has been submitted the date is displayed to the user on the screen
-Then the user can return to the worklist
+#Then the user can return to the worklist
 
