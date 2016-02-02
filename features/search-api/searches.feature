@@ -53,9 +53,3 @@ Scenario: Complete Full and Bankruptcy searches
   When I submit a combined C2 and WO search with search period pre registration
   And I query the C2 and WO search result
   Then the WO returns a hit but the C2 does not
-
-  # test that plurals registered are returned on singular search
-  Given  I have submitted a new registration for a name containing plural Decorators
-  When I submit a full search for Decorators
-  And I query the search result using name searched Decorators
-  Then the response contains the registration details

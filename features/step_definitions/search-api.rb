@@ -126,15 +126,6 @@ Given(/^I have submitted a registration for a C2 and (.+)$/) do |charge|
   @reg_no_pawo = @return_data['new_registrations'][0]['number']
 end
 
-Given(/^I have submitted a new registration for a name containing (.+)$/) do |name|
-
-end
-
-Given  I have submitted a new registration for a containing Decorators
-  When I submit a full search for Decorators
-  And I query the search result using name searched Decorators
-  Then the response contains the registration details
-
 When(/^I submit a full search for a (.+)$/) do |name_type|
   if name_type == 'private individual'
     @current_data = pi_search
