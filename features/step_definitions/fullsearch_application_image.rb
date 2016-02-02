@@ -4,6 +4,12 @@ When(/^I select an application type of Full Search the application is displayed$
   find(:id,'row_1').click
 end
 
+When(/^I select a application type of Full Search with a single image$/) do
+  visit("#{$FRONTEND_URI}/get_list?appn=search")
+  find(:id,'search_full').click
+  find(:id,'row_2').click
+end
+
 Given(/^I am on the full search details screen$/) do
   expect(page).to have_content('Full search')
   expect(page).to have_content('Forename')

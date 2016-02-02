@@ -11,7 +11,8 @@ Scenario: Using the land charges system
 Given I am on the view application screen
 When I have selected to view specific the application list
 When the image of the application is displayed I can click on all available pages
-When I click on a thumbnail the image is expanded to large image
+#EA: Test below was commented out because the selected data will not have multiple images
+#When I click on a thumbnail the image is expanded to large image
 When I am on a Large image I can zoom in
 Then I am on a Large image I can zoom out
 

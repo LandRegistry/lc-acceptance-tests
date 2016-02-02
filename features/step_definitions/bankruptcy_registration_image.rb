@@ -9,10 +9,7 @@ When(/^I have selected to view specific the application list$/) do
 end
 
 When(/^the image of the application is displayed I can click on all available pages$/) do
-  #find(:xpath, '//*[@id="thumbnails"]/img[1]').click
-  #find(:id, 'thumbnail1').click
   expect(page).to have_xpath("//*[@id='container0']/img")
-  find(:id, 'zoom_button').click
 end
 
 Given(/^I am on the debtors name and details screen$/) do
@@ -59,7 +56,7 @@ When(/^I supply the address details in the address fields they remain visible$/)
 end
 
 When(/^I click the add address button further address fields are displayed$/) do
-  find(:id, 'addaddr').click
+  find(:xpath, "//*[@id='form_panel']/fieldset/div[1]/label").click
   #check that address is displayed at top
 end
 
