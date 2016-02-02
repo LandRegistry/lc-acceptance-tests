@@ -28,6 +28,16 @@ When I can click the complete search button
 When I am on the Application complete screen a new record is stored on the register database in the correct format
 Then the user can return to the worklist
 
+Scenario: BUS-099 Verify mandatory two step verification for a full search application
+Given I am on the bankruptcy searches screen
+When I select an application type of Full Search the application is displayed
+And I am on the full search details screen
+When I access the application screen a dropdown list is visible for categories of name type
+When I can only see a two stage name entry fields
+When I click box to search all counties the county edit box is disbled
+When I click on continue button
+Then I am on the full search details screen
+
 #Given I am on the full search details screen
 When I select an application type of Full Search the application is displayed
 When I click on the name details tab I can enter six names

@@ -10,7 +10,7 @@ When(/^I select a application type of Full Search with a single image$/) do
   find(:id,'row_2').click
 end
 
-Given(/^I am on the full search details screen$/) do
+Then(/^I am on the full search details screen$/) do
   expect(page).to have_content('Full search')
   expect(page).to have_content('Forename')
   expect(page).to have_content('First name to be searched')
@@ -50,6 +50,14 @@ end
 When(/^I click the add additional county a new county edit box is displayed where I enter the next county$/) do
   find(:id,'addcounty').click
   fill_in('county_1', :with =>'Somerset')
+end
+
+When(/^I can only see a two stage name entry fields$/) do
+  expect(page).to have_content('First name to be searched')
+  expect(page).to have_content('Second name to be searched')
+  expect(page).to have_no_content('Third name to be searched')
+  expect(page).to have_no_content('Fourth name to be searched')
+  expect(page).to have_no_content('Fifth name to be searched')
 end
 
 When(/^I click on the name details tab I can enter six names$/) do

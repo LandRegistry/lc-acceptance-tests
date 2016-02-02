@@ -52,6 +52,10 @@ When(/^I click on the name details tab I can enter six names for a bankruptcy se
   fill_in('surname_6', :with => 'Fawkeson') 
 end
 
+When(/^I click on continue button$/) do
+  click_button('continue')
+end
+
 When(/^I click continue the applicant details screen is displayed$/) do
   click_button('continue')
   expect(page).to have_content('Key number')
