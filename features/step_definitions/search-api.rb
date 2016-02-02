@@ -64,6 +64,62 @@ c2_registration = '{"class_of_charge": "New Registration", "application_data": {
 
 search_res_c2 = 'Paul%20Harris%20Jones'
 
+reg_template = '{"document_id": 66, "date_of_birth": "1980-01-01", "key_number": "244095", "date": "' + today + '", "form": "K1", "date_received": "2015-11-05 14:01:57", "status": "new", "application_type": "K1", "residence_withheld": false, "customer_address": "2 New Street", "application_data": {"document_id": 66}, "class_of_charge": "New Registration", "appn_id": "5382", "application_ref": "reference 11", "assigned_to": null, "customer_name": "Mr Conveyancer", "work_type": "lc_regn", "lc_register_details": {"class": "WO", "estate_owner_ind": "Company", "district": "Penzance", "additional_info": "", "county": ["Cornwall (including Isles of Scilly)"], "short_description": "A slight dwelling", "occupation": "", "estate_owner": {"other": "", "private": {"forenames": [""], "surname": ""}, "local": {"area": "", "name": ""}, "complex": {"number": 0, "name": ""}, "estate_owner_ind": "Company", "company": "A Company '
+
+search_template = '{"document_id": 60, "expiry_date": "2016-02-18", "customer": {"name": "S & H Legal Group", "reference": "ref", "address": "49 Camille Circles\r\nPort Eulah\r\nPP39 6BY", "key_number": "1234567"}, "search_date": "' + today + '", "parameters": {"search_type": "full", "counties": ["ALL"], "search_items": ["name_type": "Company", "year_to": 2016, "year_from": 1925}, {"name": {"company_name": "A Company '
+
+search_template = '{"document_id": 60, "expiry_date": "2016-02-18", "customer": {"name": "S & H Legal Group", "reference": "ref", "address": "49 Camille Circles\r\nPort Eulah\r\nPP39 6BY", "key_number": "1234567"}, "search_date": "2016-02-02", "parameters": {"search_type": "full", "counties": ["ALL"], "search_items": [{"name_type": "Company", "year_to": 2016, "year_from": 1925, "name": {"company_name": "A Company '
+
+search_res_template = 'A%20Company%20'
+
+name_array = ['BROKER', 'BUILDER', 'COLLEGE', 'COMMISSIONER', 'CONSTRUCTION', 'CONTRACTOR', 'DECORATOR','DEVELOPER', 'DEVELOPMENT', 'ENTERPRISE', 'ESTATE', 'GARAGE', 'HOLDING', 'HOTEL', 'INVESTMENT', 'MOTOR', 'PRODUCTION', 'SCHOOL', 'SON', 'STORE', 'TRUST', 'WARDEN', 'CHARITY', 'PROPERTY', 'INDUSTRY']
+search_array = ['BROKERS', 'BUILDERS', 'COLLEGES', 'COMMISSIONERS', 'CONSTRUCTIONS', 'CONTRACTORS', 'DECORATORS', 'DEVELOPERS', 'DEVELOPMENTS', 'ENTERPRISES', 'ESTATES', 'GARAGES', 'HOLDINGS', 'HOTELS', 'INVESTMENTS', 'MOTORS', 'PRODUCTIONS', 'SCHOOLS', 'SONS', 'STORES', 'TRUSTS', 'WARDENS', 'CHARITIES', 'PROPERTIES', 'INDUSTRIES']
+
+array_len = name_array.length
+cntr = 0
+reg_name = []
+searched_name = []
+
+Given(/^I have submitted a singular company name$/) do
+  while cntr < name_array.length
+    @current_data = reg_template + name_array[cntr] + '"}}}'
+    @registration_api = RestAPI.new($LAND_CHARGES_URI)
+    @return_data = @registration_api.post("/registrations", @current_data)
+    reg_name[cntr] = @return_data['new_registrations'][0]['number']
+    cntr += 1
+  end
+  cntr = 0
+end
+
+When(/^I submit a full search for th plural of the company$/) do
+  while cntr < search_array.length
+    @current_data = search_template + search_array[cntr] + '"}}]}}'
+    @search_api = RestAPI.new($LAND_CHARGES_URI)
+    @return_data = @search_api.post("/searches", @current_data)
+    cntr += 1
+  end
+  cntr = 0
+end
+
+When(/^I query the search result using the plural company name$/) do
+  while cntr < search_array.length
+    @current_data = search_res_template + search_array[cntr]
+    @search_api = RestAPI.new($LAND_CHARGES_URI)
+    searched_name[cntr] = @search_api.get("/searches?name=#{@current_data}")
+    cntr += 1
+  end
+  cntr = 0
+end
+
+Then(/^the response contains the registration details for the singular company registered$/) do
+  while cntr < search_array.length
+    expect(searched_name[cntr][0].has_key?('reg_no')).to be true
+    expect(searched_name[cntr][0]['reg_no'] == reg_name[cntr]).to be true
+    cntr += 1
+  end
+  cntr = 0
+end
+
 Given(/^I have submitted a new registration for a (.+)$/) do |name_type|
   puts name_type
   if name_type == 'private individual'

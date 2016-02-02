@@ -4,6 +4,10 @@ Feature: Submit a Search
 
 Scenario: Complete Full and Bankruptcy searches
 
+  Given I have submitted a singular company name
+  When I submit a full search for th plural of the company
+  And I query the search result using the plural company name
+  Then the response contains the registration details for the singular company registered
 
   Given  I have submitted a new registration for a private individual
   When I submit a full search for a private individual
