@@ -7,8 +7,8 @@ Given(/^I have selected to view a specific record on the cancellation applicatio
 end 
 
 When(/^I click on a thumbnail the image is expanded to large image$/) do 
-  #find(:id, 'thumbnail_1').click
- #find(:xpath, '//*[@id="thumbnails"]/img[1]').click
+  find(:id, 'thumbnail1').click
+  find(:id, 'thumbnail2').click
 end
 
 
