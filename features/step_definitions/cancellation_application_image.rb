@@ -11,6 +11,9 @@ When(/^I click on a thumbnail the image is expanded to large image$/) do
   find(:id, 'thumbnail2').click
 end
 
+When(/^I should not see the thumbnail on the image$/) do 
+  page.should have_no_selector(:xpath, "//img[@id='thumbnail1']")
+end
 
 
 When(/^I am on a Large image I can zoom in$/) do 
