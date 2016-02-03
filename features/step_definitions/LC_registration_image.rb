@@ -72,6 +72,14 @@ When(/^Private Individual is selected I can complete the names details$/) do
   fill_in('Surname', :with => 'Andrews')
 end
 
+Then(/^I can re-key estate owner's full name$/) do
+  expect(page).to have_content('Re-key estate owner details')
+  expect(page).to have_content('Forename')
+  expect(page).to have_content('Surname')
+  fill_in('forename', :with => 'Nicola')
+  fill_in('Surname', :with => 'Andrews')
+end
+
 When(/^Limited Company is selected I can complete the company details$/) do
   select 'Limited company', from: "estateOwnerTypes"
   expect(page).to have_content('company')
@@ -151,12 +159,17 @@ end
 
 When(/^I select a complex name then radio button is highlighted$/) do
   expect(page).to have_content('Complex name result')
-   choose('comp_name_1')
-   choose('comp_name_0')
-   choose('comp_name_1')
+   #choose('comp_name_1')
+   #choose('comp_name_3')
+   choose('comp_name_2')
+end
+
+When(/^I enter Complex name in given field$/) do
+  fill_in('complex_name_field', :with =>'king stark')
 end
 
 When(/^I can then click the close button$/) do
   find(:id,'close').click
-  expect(page).to have_content('KING STARK OF THE NORTH (1000167)')
+  #commenting the line below out because it isn't relevant to the description
+  #expect(page).to have_content('KING STARK OF THE NORTH (1000167)')
 end
