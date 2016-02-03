@@ -17,6 +17,14 @@ Then(/^I am on the full search details screen$/) do
   expect(page).to have_button('Continue')
 end
 
+Then(/^I can capture customer details on the full search screen$/) do
+  fill_in('key_number', :with => '1234567')
+  fill_in('customer_name', :with => 'Ashton Thomas')
+  fill_in('customer_address',:with => '4749 DUBUQUE Terrace'"\n"'JAYSONFURT'"\n"'SOUTH VINCENZA'"\n"'NORTHAMPTONSHIRE'"\n"'FC13 4WX')
+  fill_in('customer_ref', :with => '100/102')
+  choose('pre_paid')
+end
+
 When(/^I click on entered details in the address box I can make an amendment$/) do
   fill_in('customer_address',:with => '4749 DUBUQUE Terrace'"\n"'JAYSONFURT'"\n"'SOUTH VINCENZA'"\n"'NORTHAMPTONSHIRE'"\n"'FC13 4WX')
 end

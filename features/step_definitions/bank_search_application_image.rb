@@ -6,6 +6,17 @@ Given(/^I am on the bankruptcy searches screen$/) do
   visit("#{$FRONTEND_URI}/get_list?appn=search" )
 end
 
+Given(/^I am on the LR searches screen$/) do
+  visit($FRONTEND_URI)
+  maximise_browser
+  visit("#{$FRONTEND_URI}/get_list?appn=search" )
+end
+
+When(/^I click to launch Bankruptcy search and select a record$/) do
+  find(:id,'search_bank').click
+  find(:id,'row_1').click
+end
+
 When(/^the image of the search application is displayed I can click on all available pages$/) do
   #find(:xpath, '//*[@id="container0]/img[1]').click
                  
@@ -53,7 +64,14 @@ When(/^I click on the name details tab I can enter six names for a bankruptcy se
 end
 
 When(/^I click on continue button$/) do
-  click_button('continue')
+  find(:id, 'continue').click
+end
+
+Then(/^I can see Applicant data input fields for the Bankruptcy search request$/) do
+  expect(page).to have_content('Key number')
+  expect(page).to have_content('Applicant name')
+  expect(page).to have_content('Applicant address')
+  expect(page).to have_content('Applicant reference')
 end
 
 When(/^I click continue the applicant details screen is displayed$/) do
