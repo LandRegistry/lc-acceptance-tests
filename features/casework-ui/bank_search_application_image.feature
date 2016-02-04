@@ -25,6 +25,16 @@ When I can click the complete search button
 #When I am on the Application complete screen a new record is stored on the register database in the correct format
 #Then the user can return to the worklist
 
+Scenario: BUS-013 Return expected values when key number is entered during a Bankruptcy search request
+Given I am on the LR searches screen
+And I click to launch Bankruptcy search and select a record
+And I am on the bankruptcy search details screen
+And I enter valid data in all fields on Input details page
+And I click on continue button
+When I enter a specific value in Key number field
+Then I can see the expected values prepopulated in Applicant name field
+#And I can see the expected values prepopulated in Address field
+
 
 
 

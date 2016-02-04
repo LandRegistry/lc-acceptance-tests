@@ -55,6 +55,10 @@ When(/^I enter a county the details are displayed county edit box$/) do
   fill_in('county_0', :with => 'Devon')
 end
 
+When(/^I enter a Welsh county name$/) do
+  fill_in('county_0', :with => 'Caerffilli')
+end
+
 When(/^I click the add additional county a new county edit box is displayed where I enter the next county$/) do
   find(:id,'addcounty').click
   fill_in('county_1', :with =>'Somerset')

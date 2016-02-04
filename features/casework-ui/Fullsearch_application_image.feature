@@ -60,3 +60,8 @@ When I click on the name details tab I can enter six names for a bankruptcy sear
 Then I click continue the applicant details screen is displayed
 And I can see Applicant data input fields for the Bankruptcy search request
 
+#EA:WIP
+Scenario: BUS-021 Reveal English equivalence of Welsh county names selected
+When I select an application type of Full Search the application is displayed
+When I click on the name details tab I can enter six names
+When I enter a county the details are displayed county edit box 

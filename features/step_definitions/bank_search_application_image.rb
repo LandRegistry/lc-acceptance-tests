@@ -30,6 +30,16 @@ Given(/^I am on the bankruptcy search details screen$/) do
 
 end
 
+When(/^I enter valid data in all fields on Input details page$/) do
+    expect(page).to have_content('First name to be searched')
+  fill_in('forename_1', :with => 'Ella')
+  fill_in('surname_1', :with => 'Piggy')
+  
+  expect(page).to have_content('Second name to be searched')
+  fill_in('forename_2', :with => 'Gonzo')
+  fill_in('surname_2', :with => 'Great')
+end
+
 When(/^I click on the name details tab I can enter six names for a bankruptcy search$/) do
     expect(page).to have_content('First name to be searched')
   fill_in('forename_1', :with => 'Ella')
@@ -83,6 +93,20 @@ When(/^I click continue the applicant details screen is displayed$/) do
   expect(page).to have_button('Complete')
   fill_in('key_number', :with => '1234567')
   fill_in('customer_ref', :with => '100/102')
+end
+
+When(/^I enter a specific value in Key number field$/) do
+  fill_in('key_number', :with => '1234567')
+end
+
+Then(/^I can see the expected values prepopulated in Applicant name field$/) do
+  name = 'S & H Legal Group' 
+  expect(name).to eq page.find_field("customer_name").value  
+end
+
+Then(/^I can see the expected values prepopulated in Address field$/) do
+address = '49 Camille Circles' and 'Port Eulah' and 'PP39 6BY'
+  expect(address).to eq page.find_field("customer_address").value
 end
 
 Then(/^I can click the complete search button$/) do
