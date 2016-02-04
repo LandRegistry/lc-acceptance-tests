@@ -30,7 +30,7 @@ Given(/^I am on the bankruptcy search details screen$/) do
 
 end
 
-When(/^I enter valid data in all fields on Input details page$/) do
+When(/^I enter names in all fields on Input details page$/) do
     expect(page).to have_content('First name to be searched')
   fill_in('forename_1', :with => 'Ella')
   fill_in('surname_1', :with => 'Piggy')
@@ -105,7 +105,7 @@ Then(/^I can see the expected values prepopulated in Applicant name field$/) do
 end
 
 Then(/^I can see the expected values prepopulated in Address field$/) do
-address = '49 Camille Circles' and 'Port Eulah' and 'PP39 6BY'
+  address = '49 Camille Circles' && 'Port Eulah' && 'PP39 6BY'
   expect(address).to eq page.find_field("customer_address").value
 end
 

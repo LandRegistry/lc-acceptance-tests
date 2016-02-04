@@ -72,6 +72,14 @@ When(/^I can only see a two stage name entry fields$/) do
   expect(page).to have_no_content('Fifth name to be searched')
 end
 
+When(/^I have verified the default value in Search Period From field$/) do
+  find_field('year_from_2').value.should eq '1925'
+end
+
+When(/^I have verified the default value in Search Period To field$/) do
+  find_field('year_to_2').value.should eq '2016'
+end
+
 When(/^I click on the name details tab I can enter six names$/) do
   expect(page).to have_content('First name to be searched')
   fill_in('forename_1', :with => 'Ella')
