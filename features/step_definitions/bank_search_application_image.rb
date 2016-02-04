@@ -99,6 +99,10 @@ When(/^I enter valid values in Key number field$/) do
   fill_in('key_number', :with => '1234567')
 end
 
+Then(/^I can override it with new address details$/) do
+  fill_in('customer_name', :with => '13 Shambles Street')
+end
+
 When(/^I enter invalid values in Key number field$/) do
   fill_in('key_number', :with => '123U1')
 end
