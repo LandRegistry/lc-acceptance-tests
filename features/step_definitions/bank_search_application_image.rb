@@ -95,8 +95,12 @@ When(/^I click continue the applicant details screen is displayed$/) do
   fill_in('customer_ref', :with => '100/102')
 end
 
-When(/^I enter a specific value in Key number field$/) do
+When(/^I enter valid values in Key number field$/) do
   fill_in('key_number', :with => '1234567')
+end
+
+When(/^I enter invalid values in Key number field$/) do
+  fill_in('key_number', :with => '123U1')
 end
 
 Then(/^I can see the expected values prepopulated in Applicant name field$/) do
@@ -106,6 +110,20 @@ end
 
 Then(/^I can see the expected values prepopulated in Address field$/) do
   address = '49 Camille Circles' && 'Port Eulah' && 'PP39 6BY'
+  expect(address).to eq page.find_field("customer_address").value
+end
+
+When(/^I enter an invalid value in Key number field$/) do
+  fill_in('key_number', :with => '123U1')
+end
+
+Then(/^I can see NO values prepopulated in Applicant name field$/) do
+  name = '' 
+  expect(name).to eq page.find_field("customer_name").value  
+end
+
+Then(/^I can see NO values prepopulated in Address field$/) do
+  address = ''
   expect(address).to eq page.find_field("customer_address").value
 end
 

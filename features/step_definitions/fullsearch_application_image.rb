@@ -17,6 +17,10 @@ Then(/^I am on the full search details screen$/) do
   expect(page).to have_button('Continue')
 end
 
+Then(/^And I can see Application Successful text on Search list page$/) do
+  expect(page).to have_content('Your application has been successfully completed!')
+end
+
 Then(/^I can capture customer details on the full search screen$/) do
   fill_in('key_number', :with => '1234567')
   fill_in('customer_name', :with => 'Ashton Thomas')

@@ -12,7 +12,7 @@ Scenario: Using the bankruptcy searchs task on the  Land Charges system
 Given I am on the bankruptcy searches screen
 When I select an application type of Search the application is displayed
 When the image of the search application is displayed I can click on all available pages
-When I click on a thumbnail the image is expanded to large image
+#When I click on a thumbnail the image is expanded to large image
 When I am on a Large image I can zoom in
 Then I am on a Large image I can zoom out
 
@@ -31,11 +31,19 @@ And I click to launch Bankruptcy search and select a record
 And I am on the bankruptcy search details screen
 And I enter names in all fields on Input details page
 And I click on continue button
-When I enter a specific value in Key number field
+When I enter valid values in Key number field
 Then I can see the expected values prepopulated in Applicant name field
 #And I can see the expected values prepopulated in Address field
 
 
+Scenario: BUS-013 Do not Return any values when invalid key number is entered for a Bankruptcy search request
+Given I am on the LR searches screen
+And I click to launch Bankruptcy search and select a record
+And I am on the bankruptcy search details screen
+And I enter names in all fields on Input details page
+And I click on continue button
+When I enter invalid values in Key number field
+Then I can see NO values prepopulated in Applicant name field
 
 
 
