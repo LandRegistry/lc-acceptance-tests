@@ -19,7 +19,7 @@ Then I am on a Large image I can zoom out
 Given I am on the full search details screen
 When I access the application screen a dropdown list is visible for categories of name type
 When I click on the name details tab I can enter six names
-When I click box to search all counties the county edit box is disbled
+When I click box to search all counties
 When I click continue the applicant details screen is displayed
 When I click on entered details in the address box I can make an amendment
 When I enter fee details I can choose prepaid
@@ -62,6 +62,8 @@ And I can see Applicant data input fields for the Bankruptcy search request
 
 #EA:WIP
 Scenario: BUS-021 Reveal English equivalence of Welsh county names selected
+Given I am on the full search details screen
 When I select an application type of Full Search the application is displayed
 When I click on the name details tab I can enter six names
 When I enter a county the details are displayed county edit box 
+When I click box to search all counties

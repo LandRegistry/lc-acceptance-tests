@@ -41,7 +41,7 @@ Scenario: BUS-014 Return expected values associated with a key number for a Full
 Given I am on the LR searches screen
 When I select an application type of Full Search the application is displayed
 And I am on the full search details screen
-And I enter names in all fields on Input details page
+And I enter Names in all fields on Input details page
 And I have verified the default value in Search Period From field
 And I have verified the default value in Search Period To field
 And I enter a county the details are displayed county edit box
@@ -54,7 +54,7 @@ Scenario: BUS-014 Do not return any values when invalid key number is entered fo
 Given I am on the LR searches screen
 When I select an application type of Full Search the application is displayed
 And I am on the full search details screen
-And I enter names in all fields on Input details page
+And I enter Names in all fields on Input details page
 And I have verified the default value in Search Period From field
 And I have verified the default value in Search Period To field
 And I enter a county the details are displayed county edit box
@@ -66,7 +66,7 @@ Scenario: BUS-015 Override despatch address associated with a key number display
 Given I am on the LR searches screen
 When I select an application type of Full Search the application is displayed
 And I am on the full search details screen
-And I enter names in all fields on Input details page
+And I enter Names in all fields on Input details page
 And I have verified the default value in Search Period From field
 And I have verified the default value in Search Period To field
 And I enter a county the details are displayed county edit box
@@ -74,6 +74,22 @@ And I click on continue button
 When I enter valid values in Key number field
 Then I can override it with new address details
 Then I can click the complete search button
+
+Scenario: BUS-030 Verify that Counties free format field is ignored when All counties is selected in a Full search 
+Given I am on the LR searches screen
+And I select an application type of Full Search the application is displayed
+And I am on the full search details screen
+And I enter Names in all fields on Input details page
+And I click on continue button
+And I can see Specify County error message flagged up
+When I click box to search all counties 
+#EA: The next test will fail until the change by SM is deployed. Review before end of sprint 4
+Then I can confirm that the county edit box is disabled
+And I click on continue button
+And I can see Applicant data input fields for the Bankruptcy search request
+
+
+
 
 
 

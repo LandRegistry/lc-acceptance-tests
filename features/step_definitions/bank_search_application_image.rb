@@ -30,7 +30,7 @@ Given(/^I am on the bankruptcy search details screen$/) do
 
 end
 
-When(/^I enter names in all fields on Input details page$/) do
+When(/^I enter Names in all fields on Input details page$/) do
     expect(page).to have_content('First name to be searched')
   fill_in('forename_1', :with => 'Ella')
   fill_in('surname_1', :with => 'Piggy')
@@ -75,6 +75,10 @@ end
 
 When(/^I click on continue button$/) do
   find(:id, 'continue').click
+end
+
+When(/^I can see Specify County error message flagged up$/) do
+  expect(page).to have_content('Please specify a county choice')
 end
 
 Then(/^I can see Applicant data input fields for the Bankruptcy search request$/) do

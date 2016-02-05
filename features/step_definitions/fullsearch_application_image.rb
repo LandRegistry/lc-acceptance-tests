@@ -33,9 +33,12 @@ When(/^I click on entered details in the address box I can make an amendment$/) 
   fill_in('customer_address',:with => '4749 DUBUQUE Terrace'"\n"'JAYSONFURT'"\n"'SOUTH VINCENZA'"\n"'NORTHAMPTONSHIRE'"\n"'FC13 4WX')
 end
 
-When(/^I click box to search all counties the county edit box is disbled$/) do
+When(/^I click box to search all counties$/) do
   find(:id, 'all_counties').click
-  #county text not active
+end
+
+Then(/^I can confirm that the county edit box is disabled$/) do
+  field_labeled("county_0", disabled: true)
 end
 
 When(/^I access the application screen a dropdown list is visible for categories of name type$/) do
