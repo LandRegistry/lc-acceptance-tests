@@ -17,6 +17,10 @@ When(/^I click to launch Bankruptcy search and select a record$/) do
   find(:id,'row_1').click
 end
 
+When(/^I click on the Pre paid button$/) do
+  find(:id, 'pre_paid').click
+end
+
 When(/^the image of the search application is displayed I can click on all available pages$/) do
   #find(:xpath, '//*[@id="container0]/img[1]').click
                  
@@ -117,7 +121,7 @@ Then(/^I can see the expected values prepopulated in Applicant name field$/) do
 end
 
 Then(/^I can see the expected values prepopulated in Address field$/) do
-  address = '49 Camille Circles' && 'Port Eulah' && 'PP39 6BY'
+  address = '49 Camille Circles Port Eulah PP39 6BY'
   expect(address).to eq page.find_field("customer_address").value
 end
 

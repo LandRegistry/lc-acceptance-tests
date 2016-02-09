@@ -20,10 +20,10 @@ Then I am on a Large image I can zoom out
 Given I am on the bankruptcy search details screen
 When I click on the name details tab I can enter six names for a bankruptcy search
 When I click continue the applicant details screen is displayed
+And I click on the Pre paid button
 When I can click the complete search button
-#EA: NEXT TWO LINES TEST WILL BE IMPLEMENTED AS PART OF FUTURE WORK.
-#When I am on the Application complete screen a new record is stored on the register database in the correct format
-#Then the user can return to the worklist
+When I am on the Application complete screen a new record is stored on the register database in the correct format
+Then the user can return to the worklist
 
 Scenario: BUS-013 Return expected values associated with a key number for a Bankruptcy search request
 Given I am on the LR searches screen

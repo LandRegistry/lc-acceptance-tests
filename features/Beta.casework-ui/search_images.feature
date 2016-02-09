@@ -1,6 +1,6 @@
 @sai
 
-Feature: search application image
+Feature: search application images
 
 As a land charges caseworker 
 I want to be able to view images of a search request that has been posted to LR
@@ -19,7 +19,6 @@ When I select a application type of Full Search with a single image
 And I should not see the thumbnail on the image
 When I am on a Large image I can zoom in
 Then I am on a Large image I can zoom out
-
 
 Scenario: #BUS-009 View a single image on a Bankruptcy Search application screen
 Given I am on the view application screen
