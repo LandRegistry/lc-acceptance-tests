@@ -2,78 +2,90 @@ date = Date.today.prev_day
 yesterday = date.strftime("%Y-%m-%d")
 today = Date.today.strftime("%Y-%m-%d")
 
-pi_registration = '{"class_of_charge": "New Registration", "application_data": {"document_id": 66}, "work_type": "lc_regn", "application_type": "K1", "customer_address": "2 New Street", "document_id": 66, "date_received": "2015-11-05 14:01:57", "lc_register_details": {"short_description": "description", "district": "district", "occupation": "", "additional_info": "", "estate_owner": {"private": {"surname": "West", "forenames": ["Joycelyn"]}, "company": "", "local": {"name": "", "area": ""}, "complex": {"name": "", "number": 0}, "other": "", "estate_owner_ind": "Private Individual"}, "estate_owner_ind": "Private Individual", "county": ["Devon"], "class": "C(I)"}, "customer_name": "Mr Conveyancer", "application_ref": "reference 11", "assigned_to": null, "form": "K1", "date_of_birth": "1980-01-01", "key_number": "244095", "appn_id": "843", "date": "' + today + '", "residence_withheld": false, "status": "new"}'
+pi_registration = '{"parties": [{"names": [{"private": {"forenames": ["Joyce", "Lyn"], "surname": "West"}, "type": "Private Individual"}], "type": "Estate Owner"}], "particulars": {"counties": ["Devon"], "description": "45 New street", "district": "Plymouth"}, "class_of_charge": "C1", "applicant": {"address": "2 New Street", "name": "Mr Conveyancer", "key_number": "244095", "reference": "reference 11"}}'
 
 pi_search = '{"document_id": 60, "expiry_date": "2016-02-18", "parameters": {"search_items": [{"name": {"forenames": "Joyce Lyn", "surname": "West"}, "name_type": "Private Individual", "year_to": 2016, "year_from": 1925}], "search_type": "full", "counties": ["ALL"]}, "customer": {"name": "S & H Legal Group", "reference": "ref", "address": "49 Camille Circles\r\nPort Eulah\r\nPP39 6BY", "key_number": "1234567"}, "search_date": "' + today + '"}'
 
 search_res_pi = 'Joyce%20Lyn%20West'
 
-co_registration = '{"customer_name": "Mr Conveyancer", "date": "' + today + '", "form": "K1", "residence_withheld": false, "application_data": {"document_id": 66}, "application_ref": "reference 11", "assigned_to": null, "lc_register_details": {"estate_owner_ind": "Limited Company", "class": "C(I)", "county": ["Cornwall (including Isles of Scilly)"], "district": "Redruth", "short_description": "A small dwelling", "estate_owner": {"estate_owner_ind": "Limited Company", "other": "", "company": "ABC Builder And Son Public Limited Company", "complex": {"number": 0, "name": ""}, "local": {"area": "", "name": ""}, "private": {"surname": "", "forenames": [""]}}, "additional_info": "", "occupation": ""}, "application_type": "K1", "work_type": "lc_regn", "document_id": 66, "class_of_charge": "New Registration", "date_received": "2015-11-05 14:01:57", "status": "new", "appn_id": "2730", "customer_address": "2 New Street", "date_of_birth": "1980-01-01", "key_number": "244095"}'
+co_registration = '{"parties": [{"names": [{"company": "ABC Builders and Sons PLC", "type": "Limited Company"}], "type": "Estate Owner"}], "particulars": {"counties": ["Devon"], "description": "sdfskajh", "district": "Plymouth"}, "class_of_charge": "C1", "applicant": {"address": "2 New Street", "name": "Mr Conveyancer", "key_number": "244095", "reference": "reference 11"}}'
 
 co_search = '{"document_id": 60, "expiry_date": "2016-02-18", "parameters": {"search_items": [{"name": {"company_name": "ABC Builders And Sons P L C"}, "name_type": "Company", "year_to": 2016, "year_from": 1925}], "search_type": "full", "counties": ["ALL"]}, "customer": {"name": "S & H Legal Group", "reference": "ref", "address": "49 Camille Circles\r\nPort Eulah\r\nPP39 6BY", "key_number": "1234567"}, "search_date": "' + today + '"}'
 
 search_res_co = 'ABC%20Builders%20And%20Sons%20P%20L%20C'
 
-council_reg = '{"form": "K1", "date": "' + today + '", "document_id": 66, "work_type": "lc_regn", "lc_register_details": {"class": "C(I)", "estate_owner_ind": "County Council", "occupation": "", "additional_info": "", "district": "Plymouth", "county": ["Devon"], "short_description": "A big house", "estate_owner": {"company": "", "complex": {"number": 0, "name": ""}, "other": "", "estate_owner_ind": "County Council", "local": {"area": "Plymouth", "name": "Plymouth City Council"}, "private": {"surname": "", "forenames": [""]}}}, "application_ref": "reference 11", "residence_withheld": false, "date_of_birth": "1980-01-01", "customer_name": "Mr Conveyancer", "status": "new", "customer_address": "2 New Street", "date_received": "2015-11-05 14:01:57", "application_data": {"document_id": 66}, "key_number": "244095", "appn_id": "4515", "class_of_charge": "New Registration", "application_type": "K1", "assigned_to": null}'
+council_reg = '{"parties": [{"names": [{"local": {"name": "Plymouth City Council", "area": "Plymouth"}, "type": "County Council"}], "type": "Estate Owner"}], "particulars": {"counties": ["Devon"], "description": "33", "district": "Plymouth"}, "class_of_charge": "C1", "applicant": {"address": "2 New Street", "name": "Mr Conveyancer", "key_number": "244095", "reference": "reference 11"}}'
 
 council_search = '{"customer": {"key_number": "1234567", "reference": "Ref", "address": "49 Camille Circles\r\nPort Eulah\r\nPP39 6BY", "name": "S & H Legal Group"}, "parameters": {"search_items": [{"year_from": 1925, "year_to": 2016, "name": {"local_authority_area": "Plymouth", "local_authority_name": "Plymouth City Council"}, "name_type": "Local Authority"}], "search_type": "full", "counties": ["ALL"]}, "document_id": 60, "expiry_date": "2016-02-21", "search_date": "' + today + '"}'
 
 search_council = 'Plymouth%20City%20Council'
 
-complex_name_reg = '{"application_ref": "reference 11", "customer_name": "Mr Conveyancer", "assigned_to": null, "application_type": "K1", "key_number": "244095", "customer_address": "2 New Street", "residence_withheld": false, "application_data": {"document_id": 66}, "date": "' + today + '", "class_of_charge": "New Registration", "work_type": "lc_regn", "form": "K1", "document_id": 66, "appn_id": "4821", "date_of_birth": "1980-01-01", "date_received": "2015-11-05 14:01:57", "status": "new", "lc_register_details": {"occupation": "", "estate_owner_ind": "Complex Name", "additional_info": "", "estate_owner": {"other": "", "complex": {"number": 1000167, "name": "HRH KING STARK"}, "estate_owner_ind": "Complex Name", "private": {"surname": "", "forenames": [""]}, "local": {"area": "", "name": ""}, "company": ""}, "short_description": "Town and county", "county": ["Cornwall (including Isles of Scilly)"], "class": "D(I)", "district": "Redruth"}}'
+complex_name_reg = '{"parties": [{"names": [{"complex": {"name": "HRH KING STARK", "number": 1000167}, "type": "Complex Name"}], "type": "Estate Owner"}], "particulars": {"counties": ["Devon"], "description": "House", "district": "PLymouth"}, "class_of_charge": "C1", "applicant": {"address": "2 New Street", "name": "Mr Conveyancer", "key_number": "244095", "reference": "reference 11"}}'
 
-complex_name_search = '{"document_id": 60, "parameters": {"search_items": [{"name_type": "Complex", "name": {"complex_name": "HRH KING STARK", "complex_variations": [{"complex_name": "KING STARK OF THE NORTH", "complex_number": 1000167}, {"complex_name": "HRH KING STARK", "complex_number": 1000167}, {"complex_name": "His Royal Highness Robert Stark of Winterfell and King in the North", "complex_number": 1000167}], "complex_number": 1000167}, "year_to": 2016, "year_from": 1925}], "search_type": "full", "counties": ["ALL"]}, "search_date": "' + today + '", "customer": {"reference": "ref", "name": "S & H Legal Group", "address": "49 Camille Circles\r\nPort Eulah\r\nPP39 6BY", "key_number": "1234567"}, "expiry_date": "2016-02-21"}'
+complex_name_search = '{"document_id": 60, "search_date": "' + today + '", "parameters": {"search_items": [{"year_from": 1925, "name_type": "Complex", "year_to": 2016, "name": {"complex_variations": [{"name": "KING STARK OF THE NORTH", "number": 1000167}, {"name": "HRH KING STARK", "number": 1000167}, {"name": "THE KING IN THE NORTH", "number": 1000167}, {"name": "His Royal Highness Robert Stark of Winterfell and King in the North", "number": 1000167}], "complex_name": "HRH KING STARK", "complex_number": 1000167}}], "counties": ["ALL"], "search_type": "full"}, "expiry_date": "2016-02-29", "customer": {"name": "S & H Legal Group", "reference": "sdfdf", "address": "49 Camille Circles\r\nPort Eulah\r\nPP39 6BY", "key_number": "1234567"}}'
 
 search_res_complex = 'HRH%20KING%20STARK'
 
-other_reg = '{"date": "' + today + '", "date_of_birth": "1980-01-01", "appn_id": "5127", "date_received": "2015-11-05 14:01:57", "assigned_to": null, "customer_name": "Mr Conveyancer", "application_ref": "reference 11", "lc_register_details": {"estate_owner_ind": "Other", "additional_info": "", "estate_owner": {"estate_owner_ind": "Other", "complex": {"name": "", "number": 0}, "company": "", "other": "Jessop Society and Associations for Brothers and Companies Limited", "private": {"forenames": [""], "surname": ""}, "local": {"name": "", "area": ""}}, "occupation": "", "district": "Torquay", "short_description": "Kents Cavens", "county": ["Torbay"], "class": "C(III)"}, "work_type": "lc_regn", "customer_address": "2 New Street", "status": "new", "document_id": 66, "application_type": "K1", "residence_withheld": false, "key_number": "244095", "application_data": {"document_id": 66}, "class_of_charge": "New Registration", "form": "K1"}'
+other_reg = '{"parties": [{"names": [{"other": "Jessop Society and Associations for Brothers and Companies Limited", "type": "Other"}], "type": "Estate Owner"}], "particulars": {"counties": ["Devon"], "description": "dsakj", "district": "Plymouth"}, "class_of_charge": "C1", "applicant": {"address": "2 New Street", "name": "Mr Conveyancer", "key_number": "244095", "reference": "reference 11"}}'
 
 other_search = '{"customer": {"name": "S & H Legal Group", "key_number": "1234567", "reference": "sdf", "address": "49 Camille Circles\r\nPort Eulah\r\nPP39 6BY"}, "search_date": "' + today + '", "document_id": 60, "parameters": {"search_items": [{"name_type": "Other", "name": {"other_name": "Jessop Societies and Associates for Bros and Comp Ltd"}, "year_to": 2016, "year_from": 1925}], "search_type": "full", "counties": ["ALL"]}, "expiry_date": "2016-02-21"}'
 
 search_res_other = 'Jessop%20Societies%20and%20Associates%20for%20Bros%20and%20Comp%20Ltd'
 
-pa_reg = '{"document_id": 66, "date_of_birth": "1980-01-01", "key_number": "244095", "date": "' + today + '", "form": "K1", "date_received": "2015-11-05 14:01:57", "status": "new", "application_type": "K1", "residence_withheld": false, "lc_register_details": {"class": "PA", "estate_owner_ind": "Private Individual", "estate_owner": {"other": "", "company": "", "private": {"forenames": ["Joe"], "surname": "Bloggs"}, "local": {"area": "", "name": ""}, "complex": {"number": 0, "name": ""}, "estate_owner_ind": "Private Individual"}, "district": "Penzance", "additional_info": "", "county": ["Cornwall (including Isles of Scilly)"], "short_description": "A slight dwelling", "occupation": ""}, "customer_address": "2 New Street", "application_data": {"document_id": 66}, "class_of_charge": "New Registration", "appn_id": "5382", "application_ref": "reference 11", "assigned_to": null, "customer_name": "Mr Conveyancer", "work_type": "lc_regn"}'
+pa_reg = '{"parties": [{"names": [{"private": {"forenames": ["Joe"], "surname": "Bloggs"}, "type": "Private Individual"}], "type": "Estate Owner"}], "particulars": {"counties": ["Devon"], "description": "A well", "district": "Plymouth"}, "class_of_charge": "PA", "applicant": {"address": "2 New Street", "name": "Mr Conveyancer", "key_number": "244095", "reference": "reference 11"}}'
 
 pa_search = '{"search_date": "' + today + '", "expiry_date": "2016-02-21", "customer": {"address": "49 Camille Circles\r\nPort Eulah\r\nPP39 6BY", "key_number": "1234567", "reference": "ref", "name": "S & H Legal Group"}, "parameters": {"search_type": "full", "search_items": [{"name_type": "Private Individual", "year_from": 1925, "year_to": 2016, "name": {"forenames": "Joe", "surname": "Bloggs"}}, {"name_type": "Private Individual", "year_from": 1925, "year_to": 2016, "name": {"forenames": "Joyce Lyn ", "surname": "Peterson"}}], "counties": ["Dorset"]}, "document_id": 60}'
 
 search_res_pa = 'Joe%20Bloggs'
 
-wo_reg = '{"document_id": 66, "date_of_birth": "1980-01-01", "key_number": "244095", "date": "' + today + '", "form": "K1", "date_received": "2015-11-05 14:01:57", "status": "new", "application_type": "K1", "residence_withheld": false, "lc_register_details": {"class": "WO", "estate_owner_ind": "Private Individual", "estate_owner": {"other": "", "company": "", "private": {"forenames": ["Jock"], "surname": "Bloggs"}, "local": {"area": "", "name": ""}, "complex": {"number": 0, "name": ""}, "estate_owner_ind": "Private Individual"}, "district": "Penzance", "additional_info": "", "county": ["Cornwall (including Isles of Scilly)"], "short_description": "A slight dwelling", "occupation": ""}, "customer_address": "2 New Street", "application_data": {"document_id": 66}, "class_of_charge": "New Registration", "appn_id": "5382", "application_ref": "reference 11", "assigned_to": null, "customer_name": "Mr Conveyancer", "work_type": "lc_regn"}'
+wo_reg = '{"parties": [{"names": [{"private": {"forenames": ["Jock"], "surname": "Bloggs"}, "type": "Private Individual"}], "type": "Estate Owner"}], "particulars": {"counties": ["Devon"], "description": "A well", "district": "Plymouth"}, "class_of_charge": "WO", "applicant": {"address": "2 New Street", "name": "Mr Conveyancer", "key_number": "244095", "reference": "reference 11"}}'
 
 wo_search = '{"search_date": "' + today + '", "expiry_date": "2016-02-21", "customer": {"address": "49 Camille Circles\r\nPort Eulah\r\nPP39 6BY", "key_number": "1234567", "reference": "ref", "name": "S & H Legal Group"}, "parameters": {"search_type": "full", "search_items": [{"name_type": "Private Individual", "year_from": 1925, "year_to": 2016, "name": {"forenames": "Jock", "surname": "Bloggs"}}, {"name_type": "Private Individual", "year_from": 1925, "year_to": 2016, "name": {"forenames": "Joyce Lyn ", "surname": "Peterson"}}], "counties": ["Dorset"]}, "document_id": 60}'
 
 search_res_wo = 'Jock%20Bloggs'
 
-c1_registration = '{"class_of_charge": "New Registration", "application_data": {"document_id": 66}, "work_type": "lc_regn", "application_type": "K1", "customer_address": "2 New Street", "document_id": 66, "date_received": "2015-11-05 14:01:57", "lc_register_details": {"short_description": "description", "district": "district", "occupation": "", "additional_info": "", "estate_owner": {"private": {"surname": "Peterson", "forenames": ["Joycelyn"]}, "company": "", "local": {"name": "", "area": ""}, "complex": {"name": "", "number": 0}, "other": "", "estate_owner_ind": "Private Individual"}, "estate_owner_ind": "Private Individual", "county": ["Devon"], "class": "C(I)"}, "customer_name": "Mr Conveyancer", "application_ref": "reference 11", "assigned_to": null, "form": "K1", "date_of_birth": "1980-01-01", "key_number": "244095", "appn_id": "843", "date": "' + today + '", "residence_withheld": false, "status": "new"}'
+c1_registration = '{"parties": [{"names": [{"private": {"forenames": ["Joycelyn"], "surname": "Peterson"}, "type": "Private Individual"}], "type": "Estate Owner"}], "particulars": {"counties": ["Devon"], "description": "My house", "district": "Plymouth"}, "class_of_charge": "C1", "applicant": {"address": "2 New Street", "name": "Mr Conveyancer", "key_number": "244095", "reference": "reference 11"}}'
 
 search_res_c1 = 'Joyce%20Lyn%20Peterson'
 
-pa_date_reg = '{"document_id": 66, "date_of_birth": "1980-01-01", "key_number": "244095", "date": "' + today + '", "form": "K1", "date_received": "2015-11-05 14:01:57", "status": "new", "application_type": "K1", "residence_withheld": false, "lc_register_details": {"class": "PA", "estate_owner_ind": "Private Individual", "estate_owner": {"other": "", "company": "", "private": {"forenames": ["Jack"], "surname": "Jones"}, "local": {"area": "", "name": ""}, "complex": {"number": 0, "name": ""}, "estate_owner_ind": "Private Individual"}, "district": "Penzance", "additional_info": "", "county": ["Cornwall (including Isles of Scilly)"], "short_description": "A slight dwelling", "occupation": ""}, "customer_address": "2 New Street", "application_data": {"document_id": 66}, "class_of_charge": "New Registration", "appn_id": "5382", "application_ref": "reference 11", "assigned_to": null, "customer_name": "Mr Conveyancer", "work_type": "lc_regn"}'
+pa_date_reg = '{"parties": [{"names": [{"private": {"forenames": ["Jack"], "surname": "Jones"}, "type": "Private Individual"}], "type": "Estate Owner"}], "particulars": {"counties": ["Devon"], "description": "A well", "district": "Plymouth"}, "class_of_charge": "PA", "applicant": {"address": "2 New Street", "name": "Mr Conveyancer", "key_number": "244095", "reference": "reference 11"}}'
 
 pa_date_search = '{"search_date": "' + today + '", "expiry_date": "2016-02-21", "customer": {"address": "49 Camille Circles\r\nPort Eulah\r\nPP39 6BY", "key_number": "1234567", "reference": "ref", "name": "S & H Legal Group"}, "parameters": {"search_type": "full", "search_items": [{"name_type": "Private Individual", "year_from": 1925, "year_to": 1966, "name": {"forenames": "Jack", "surname": "Jones"}}, {"name_type": "Private Individual", "year_from": 1925, "year_to": 1966, "name": {"forenames": "Paul ", "surname": "Harris-Jones"}}], "counties": ["Cornwall (including Isles of Scilly)"]}, "document_id": 60}'
 
 search_res_pa_date = 'Jack%20Jones'
 
-wo_date_reg = '{"document_id": 66, "date_of_birth": "1980-01-01", "key_number": "244095", "date": "' + today + '", "form": "K1", "date_received": "2015-11-05 14:01:57", "status": "new", "application_type": "K1", "residence_withheld": false, "lc_register_details": {"class": "WO", "estate_owner_ind": "Private Individual", "estate_owner": {"other": "", "company": "", "private": {"forenames": ["Jason"], "surname": "Smith"}, "local": {"area": "", "name": ""}, "complex": {"number": 0, "name": ""}, "estate_owner_ind": "Private Individual"}, "district": "Penzance", "additional_info": "", "county": ["Cornwall (including Isles of Scilly)"], "short_description": "A slight dwelling", "occupation": ""}, "customer_address": "2 New Street", "application_data": {"document_id": 66}, "class_of_charge": "New Registration", "appn_id": "5382", "application_ref": "reference 11", "assigned_to": null, "customer_name": "Mr Conveyancer", "work_type": "lc_regn"}'
+wo_date_reg = '{"parties": [{"names": [{"private": {"forenames": ["Jason"], "surname": "Smith"}, "type": "Private Individual"}], "type": "Estate Owner"}], "particulars": {"counties": ["Devon"], "description": "A well", "district": "Plymouth"}, "class_of_charge": "WO", "applicant": {"address": "2 New Street", "name": "Mr Conveyancer", "key_number": "244095", "reference": "reference 11"}}'
 
 wo_date_search = '{"search_date": "' + today + '", "expiry_date": "2016-02-21", "customer": {"address": "49 Camille Circles\r\nPort Eulah\r\nPP39 6BY", "key_number": "1234567", "reference": "ref", "name": "S & H Legal Group"}, "parameters": {"search_type": "full", "search_items": [{"name_type": "Private Individual", "year_from": 1925, "year_to": 1966, "name": {"forenames": "Jason", "surname": "Smith"}}, {"name_type": "Private Individual", "year_from": 1925, "year_to": 1966, "name": {"forenames": "Paul ", "surname": "Harris-Jones"}}], "counties": ["Cornwall (including Isles of Scilly)"]}, "document_id": 60}'
 
 search_res_wo_date = 'Jason%20Smith'
 
-c2_registration = '{"class_of_charge": "New Registration", "application_data": {"document_id": 66}, "work_type": "lc_regn", "application_type": "K1", "customer_address": "2 New Street", "document_id": 66, "date_received": "2015-11-05 14:01:57", "lc_register_details": {"short_description": "description", "district": "district", "occupation": "", "additional_info": "", "estate_owner": {"private": {"surname": "Harris Jones", "forenames": ["Paul"]}, "company": "", "local": {"name": "", "area": ""}, "complex": {"name": "", "number": 0}, "other": "", "estate_owner_ind": "Private Individual"}, "estate_owner_ind": "Private Individual", "county": ["Cornwall (including Isles of Scilly)"], "class": "C(II)"}, "customer_name": "Mr Conveyancer", "application_ref": "reference 11", "assigned_to": null, "form": "K1", "date_of_birth": "1980-01-01", "key_number": "244095", "appn_id": "843", "date": "' + today + '", "residence_withheld": false, "status": "new"}'
+c2_registration = '{"parties": [{"names": [{"private": {"forenames": ["Paul"], "surname": "Harris-Jones"}, "type": "Private Individual"}], "type": "Estate Owner"}], "particulars": {"counties": ["Devon"], "description": "My house", "district": "Plymouth"}, "class_of_charge": "C1", "applicant": {"address": "2 New Street", "name": "Mr Conveyancer", "key_number": "244095", "reference": "reference 11"}}'
 
 search_res_c2 = 'Paul%20Harris%20Jones'
 
-reg_template = '{"document_id": 66, "date_of_birth": "1980-01-01", "key_number": "244095", "date": "' + today + '", "form": "K1", "date_received": "2015-11-05 14:01:57", "status": "new", "application_type": "K1", "residence_withheld": false, "customer_address": "2 New Street", "application_data": {"document_id": 66}, "class_of_charge": "New Registration", "appn_id": "5382", "application_ref": "reference 11", "assigned_to": null, "customer_name": "Mr Conveyancer", "work_type": "lc_regn", "lc_register_details": {"class": "WO", "estate_owner_ind": "Company", "district": "Penzance", "additional_info": "", "county": ["Cornwall (including Isles of Scilly)"], "short_description": "A slight dwelling", "occupation": "", "estate_owner": {"other": "", "private": {"forenames": [""], "surname": ""}, "local": {"area": "", "name": ""}, "complex": {"number": 0, "name": ""}, "estate_owner_ind": "Company", "company": "A Company '
+reg_template = '{"particulars": {"counties": ["Devon"], "description": "dsfkj", "district": "Plymouth"}, "class_of_charge": "C1", "applicant": {"address": "2 New Street", "name": "Mr Conveyancer", "key_number": "244095", "reference": "reference 11"}, "parties": [{"type": "Estate Owner", "names": [{"type": "Limited Company", "company": "A company '
 
-search_template = '{"document_id": 60, "expiry_date": "2016-02-18", "customer": {"name": "S & H Legal Group", "reference": "ref", "address": "49 Camille Circles\r\nPort Eulah\r\nPP39 6BY", "key_number": "1234567"}, "search_date": "' + today + '", "parameters": {"search_type": "full", "counties": ["ALL"], "search_items": ["name_type": "Company", "year_to": 2016, "year_from": 1925}, {"name": {"company_name": "A Company '
-
-search_template = '{"document_id": 60, "expiry_date": "2016-02-18", "customer": {"name": "S & H Legal Group", "reference": "ref", "address": "49 Camille Circles\r\nPort Eulah\r\nPP39 6BY", "key_number": "1234567"}, "search_date": "2016-02-02", "parameters": {"search_type": "full", "counties": ["ALL"], "search_items": [{"name_type": "Company", "year_to": 2016, "year_from": 1925, "name": {"company_name": "A Company '
+search_template = '{"document_id": 60, "expiry_date": "2016-02-18", "customer": {"name": "S & H Legal Group", "reference": "ref", "address": "49 Camille Circles\r\nPort Eulah\r\nPP39 6BY", "key_number": "1234567"}, "search_date": "' + today + '", "parameters": {"search_type": "full", "counties": ["ALL"], "search_items": [{"name_type": "Company", "year_to": 2016, "year_from": 1925, "name": {"company_name": "A Company '
 
 search_res_template = 'A%20Company%20'
 
 name_array = ['BROKER', 'BUILDER', 'COLLEGE', 'COMMISSIONER', 'CONSTRUCTION', 'CONTRACTOR', 'DECORATOR','DEVELOPER', 'DEVELOPMENT', 'ENTERPRISE', 'ESTATE', 'GARAGE', 'HOLDING', 'HOTEL', 'INVESTMENT', 'MOTOR', 'PRODUCTION', 'SCHOOL', 'SON', 'STORE', 'TRUST', 'WARDEN', 'CHARITY', 'PROPERTY', 'INDUSTRY']
 search_array = ['BROKERS', 'BUILDERS', 'COLLEGES', 'COMMISSIONERS', 'CONSTRUCTIONS', 'CONTRACTORS', 'DECORATORS', 'DEVELOPERS', 'DEVELOPMENTS', 'ENTERPRISES', 'ESTATES', 'GARAGES', 'HOLDINGS', 'HOTELS', 'INVESTMENTS', 'MOTORS', 'PRODUCTIONS', 'SCHOOLS', 'SONS', 'STORES', 'TRUSTS', 'WARDENS', 'CHARITIES', 'PROPERTIES', 'INDUSTRIES']
+
+initials_reg = '{"parties": [{"names": [{"private": {"forenames": ["J", "L"], "surname": "West"}, "type": "Private Individual"}], "type": "Estate Owner"}], "particulars": {"counties": ["Devon"], "description": "45 New street", "district": "Plymouth"}, "class_of_charge": "C1", "applicant": {"address": "2 New Street", "name": "Mr Conveyancer", "key_number": "244095", "reference": "reference 11"}}'
+
+initials_search = '{"document_id": 60, "expiry_date": "2016-02-18", "parameters": {"search_items": [{"name": {"forenames": "J L", "surname": "West"}, "name_type": "Private Individual", "year_to": 2016, "year_from": 1925}], "search_type": "full", "counties": ["ALL"]}, "customer": {"name": "S & H Legal Group", "reference": "ref", "address": "49 Camille Circles\r\nPort Eulah\r\nPP39 6BY", "key_number": "1234567"}, "search_date": "' + today + '"}'
+
+initials_result = 'J%20L%20West'
+
+surname_reg = '{"parties": [{"names": [{"private": {"forenames": [" "], "surname": "West"}, "type": "Private Individual"}], "type": "Estate Owner"}], "particulars": {"counties": ["Devon"], "description": "45 New street", "district": "Plymouth"}, "class_of_charge": "C1", "applicant": {"address": "2 New Street", "name": "Mr Conveyancer", "key_number": "244095", "reference": "reference 11"}}'
+
+surname_search = '{"document_id": 60, "expiry_date": "2016-02-18", "parameters": {"search_items": [{"name": {"forenames": " ", "surname": "West"}, "name_type": "Private Individual", "year_to": 2016, "year_from": 1925}], "search_type": "full", "counties": ["ALL"]}, "customer": {"name": "S & H Legal Group", "reference": "ref", "address": "49 Camille Circles\r\nPort Eulah\r\nPP39 6BY", "key_number": "1234567"}, "search_date": "' + today + '"}'
+
+surname_result = '%20%20West'
+
+
 
 array_len = name_array.length
 cntr = 0
@@ -82,7 +94,7 @@ searched_name = []
 
 Given(/^I have submitted a singular company name$/) do
   while cntr < name_array.length
-    @current_data = reg_template + name_array[cntr] + '"}}}'
+    @current_data = reg_template + name_array[cntr] + '"}]}]}'
     @registration_api = RestAPI.new($LAND_CHARGES_URI)
     @return_data = @registration_api.post("/registrations", @current_data)
     reg_name[cntr] = @return_data['new_registrations'][0]['number']
@@ -121,7 +133,6 @@ Then(/^the response contains the registration details for the singular company r
 end
 
 Given(/^I have submitted a new registration for a (.+)$/) do |name_type|
-  puts name_type
   if name_type == 'private individual'
     @current_data = pi_registration
   elsif name_type == 'company'
@@ -294,3 +305,58 @@ Then(/^the (.+) returns a hit but the C2 does not$/) do |charge|
   expect(@pawo_data[0]['reg_no'] == @reg_no_pawo).to be true
   expect(@c2_data).to be_empty
 end
+
+Given(/^I have submitted registration for all private individual variations$/) do
+  @current_data = pi_registration
+  @registration_api = RestAPI.new($LAND_CHARGES_URI)
+  @return_data = @registration_api.post("/registrations", @current_data)
+  expect(@return_data.has_key?('new_registrations')).to be true
+  @full_name = @return_data['new_registrations'][0]['number']
+  @current_data = initials_reg
+  @registration_api = RestAPI.new($LAND_CHARGES_URI)
+  @return_data = @registration_api.post("/registrations", @current_data)
+  expect(@return_data.has_key?('new_registrations')).to be true
+  @initials = @return_data['new_registrations'][0]['number']
+  @current_data = surname_reg
+  @registration_api = RestAPI.new($LAND_CHARGES_URI)
+  @return_data = @registration_api.post("/registrations", @current_data)
+  expect(@return_data.has_key?('new_registrations')).to be true
+  @surname = @return_data['new_registrations'][0]['number']
+end
+
+When(/^I have requested a search using (.+)$/) do |name|
+  if name == 'initials and surname'
+    @current_data = initials_search
+  elsif name == 'surname only'
+    @current_data = surname_search
+  end
+  @search_api = RestAPI.new($LAND_CHARGES_URI)
+  @return_data = @search_api.post("/searches", @current_data)
+end
+
+When(/^I query the (.+) searched result$/) do |name|
+  if name == 'initials and surname'
+    @current_data = initials_result
+  elsif name == 'surname only'
+    @current_data = surname_result
+  end
+  @search_api = RestAPI.new($LAND_CHARGES_URI)
+  @return_data = @search_api.get("/searches?name=#{@current_data}")
+end
+
+Then(/^all 3 private individual names are returned$/) do
+  expect(@return_data[0].has_key?('reg_no')).to be true
+  expect(@return_data).to have_content(@full_name)
+  expect(@return_data).to have_content(@initials)
+  expect(@return_data).to have_content(@surname)
+end
+
+Then(/^only the (.+) appear in the result$/) do |name|
+  if name == 'initials and surname'
+    expect(@return_data).to have_content(@initials)
+    expect(@return_data).to have_content(@surname)
+  elsif name == 'surname only'
+    expect(@return_data).to have_content(@surname)
+  end
+end
+
