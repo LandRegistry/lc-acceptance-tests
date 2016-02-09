@@ -62,3 +62,7 @@ Scenario: Receive and register an INS bankruptcy
   When I query the land charge API for the registration
   Then the registration is returned
   And the details match
+  
+  Given registration data in XML
+  When I submit the XML data to the public API
+  Then it returns a 415 INVALID MEDIA TYPE response

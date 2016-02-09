@@ -16,6 +16,8 @@ one_name_no_kno_date = '{"application_ref":"APP01","application_type":"PA(B)","d
 
 lots_of_data = '{"key_number":"1234567","application_ref":"APP01","application_type":"PA(B)","application_date":"2016-01-01","debtor_names":[{"forenames":["Bob","Oscar","Francis"],"surname":"Howard"}, {"forenames": ["Robert"], "surname": "Howard"}],"gender":"Unknown","occupation":"Civil Servant","trading_name":"","residence_withheld":false,"date_of_birth":"1980-01-01","residence":[{"address_lines": ["1 The Street","The Town"],"postcode":"AA1 1AA","county":"The County"},{"address_lines": ["2 The Road","The Village"],"postcode":"AA2 2AA","county":"The County"}],"investment_property":[{"address_lines": ["3 The Lane","The Hamlet"],"postcode":"AA3 3AA","county":"The County"},{"address_lines": ["4 The Avenue","The City"],"postcode":"AA4 4AA","county":"The County"}],"business_address":[{"address_lines": ["5 The Promenade","The Metropolis"],"postcode":"AA5 5AA","county":"The County"},{"address_lines": ["6 The Way","The Larger Urban Area"],"postcode":"AA6 6AA","county":"The County"}]}'
 
+xml_data = 'This doesn\'t have to be XML - we\'re testing the header behaviour'
+
 def errors_to_array(data)
   errors = []
   @return_data['errors'].each do |e|
@@ -24,6 +26,9 @@ def errors_to_array(data)
   errors
 end
 
+Given(/^registration data in XML/) do
+  @current_data = xml_data
+end
 
 Given(/^valid registration data with (\d+) name(?:s?)$/) do |num|
   if num == '1'
@@ -60,6 +65,11 @@ end
 When(/^I submit the data to the public API$/) do
   @public_api = RestAPI.new($B2B_API_URI)
   @return_data = @public_api.post("/bankruptcies", @current_data)
+end
+
+When(/^I submit the XML data to the public API/) do
+  @public_api = RestAPI.new($B2B_API_URI)
+  @return_data = @public_api.postXML("/bankruptcies", @current_data)
 end
 
 Then(/^it returns a (\d+) (.+) response$/) do |code, msg|
@@ -129,7 +139,7 @@ When(/^I query the land charge API for the registration$/) do
   number = @return_data['new_registrations'][0]['number']
   
   @reg_api = RestAPI.new($LAND_CHARGES_URI)
-  @reg_result = @reg_api.get("/registrations/#{date}/#{number}")  
+  @reg_result = @reg_api.get("/registrations/#{date}/#{number}") 
 end
 
 Then(/^the registration is returned$/) do
@@ -138,7 +148,7 @@ end
 
 Then(/^the details match$/) do
   expect(@reg_result["debtor_names"].length).to be @submitted['debtor_names'].length
-  expect(@reg_result["debtor_names"][0]['surname']).to eql @submitted['debtor_names'][0]['surname']
+  expect(@reg_result["debtor_names"][0]['private']['surname']).to eql @submitted['debtor_names'][0]['surname']
   expect(@reg_result["occupation"]).to eql @submitted['occupation']
   expect(@reg_result["status"]).to eql "current"  
   
