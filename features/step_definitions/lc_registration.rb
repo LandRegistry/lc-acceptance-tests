@@ -8,6 +8,39 @@ lc_private = '{"parties": [{"type": "Estate Owner","names":[{
 "applicant": {"name": "Some Court","address": "11 Court Road, Court Town","key_number": "7654321",
 "reference": "ARGL1234567"},"additional_information": ""}'
 
+lc_existing_t_123 = '{"parties": [{"type": "Estate Owner","names":[{
+"type": "Private Individual","private": {"forenames": ["B", "O"],"surname": "Howard"}
+}]}],
+"priority_notice": false,
+"class_of_charge": "C1",	
+"particulars": {"counties": ["Devon"],"district": "South Hams","description": "The House At The Beach"},
+"applicant": {"name": "Some Court","address": "11 Court Road, Court Town","key_number": "7654321",
+"reference": "ARGL1234567"},"additional_information": ""}'
+
+lc_rectify_t_1 = '{"parties": [{"type": "Estate Owner","names":[{
+"type": "Private Individual","private": {"forenames": ["B", "O"],"surname": "Howard"}
+}]}],
+"class_of_charge": "C1",	
+"particulars": {"counties": ["Devon"],"district": "South Hams","description": "The House Under the Sea"},
+"applicant": {"name": "Some Court","address": "11 Court Road, Court Town","key_number": "7654321",
+"reference": "ARGL1234567"},"additional_information": ""'
+
+lc_rectify_t_2 = '{"parties": [{"type": "Estate Owner","names":[{
+"type": "Private Individual","private": {"forenames": ["Robert", "Francis"],"surname": "Howard"}
+}]}],
+"class_of_charge": "C1",	
+"particulars": {"counties": ["Devon"],"district": "South Hams","description": "The House At The Beach"},
+"applicant": {"name": "Some Court","address": "11 Court Road, Court Town","key_number": "7654321",
+"reference": "ARGL1234567"},"additional_information": ""'
+
+lc_rectify_t_3 = '{"parties": [{"type": "Estate Owner","names":[{
+"type": "Private Individual","private": {"forenames": ["Bob", "Oscar"],"surname": "Howard"}
+}]}],
+"class_of_charge": "C1",	
+"particulars": {"counties": ["Devon"],"district": "South Hams","description": "The House At The Beach"},
+"applicant": {"name": "Some Court","address": "11 Court Road, Court Town","key_number": "7654321",
+"reference": "ARGL1234567"},"additional_information": ""'
+
 pn_private = '{"parties": [{"type": "Estate Owner","names":[{
 "type": "Private Individual","private": {"forenames": ["Bob", "Oscar", "Francis"],"surname": "Howard"}
 }]}],
@@ -111,4 +144,48 @@ end
 Then(/^the response contains the priority notice registration number and request id$/) do
   expect(@return_data.has_key?('priority_notices')).to be true
   expect(@return_data.has_key?('request_id')).to be true
+end
+
+Given(/^an existing land charge$/) do
+  data = lc_existing_t_123
+  @registration_api = RestAPI.new($LAND_CHARGES_URI)
+  @registration = @registration_api.post("/registrations", data)
+end
+
+When(/^I submit a type (\d+) rectifcation to the charge$/) do |t|
+  if t == '1'
+    data = lc_rectify_t_1
+  elsif t == '2'
+    data = lc_rectify_t_2
+  elsif t == '3'
+    data = lc_rectify_t_3
+  end
+  data += ', "update_registration": {"type": "Rectification"}}'
+  date = @registration['new_registrations'][0]['date']
+  regno = @registration['new_registrations'][0]['number']
+  uri = "/registrations/#{date}/#{regno}"
+  @rectified = JSON.parse(@registration_api.put(uri, data))
+end
+
+Then(/^the response contains the new registration numbers as well as the old$/) do
+  expect(@rectified.has_key?('new_registrations')).to be true
+  expect(@rectified.has_key?('amended_registrations')).to be true
+  expect(@rectified['new_registrations'].length).to eq 1
+  expect(@rectified['amended_registrations'].length).to eq 1
+end
+
+Then(/^the old registration is no longer revealed$/) do
+  date = @rectified['amended_registrations'][0]['date']
+  regno = @rectified['amended_registrations'][0]['number']
+  uri = "/registrations/#{date}/#{regno}"
+  oldreg = @registration_api.get(uri)
+  expect(oldreg['revealed']).to be false
+end
+
+Then(/^the old registration is still revealed$/) do
+  date = @rectified['amended_registrations'][0]['date']
+  regno = @rectified['amended_registrations'][0]['number']
+  uri = "/registrations/#{date}/#{regno}"
+  oldreg = @registration_api.get(uri)
+  expect(oldreg['revealed']).to be true
 end

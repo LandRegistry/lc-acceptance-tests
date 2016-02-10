@@ -40,3 +40,21 @@ Scenario: Register Land Charge
   When I submit the data to the registrations API
   Then a 200 response is returned
   And the response contains the priority notice registration number and request id
+  
+  Given an existing land charge
+  When I submit a type 1 rectifcation to the charge
+  Then a 200 response is returned
+  And the response contains the new registration numbers as well as the old
+  And the old registration is no longer revealed
+  
+  Given an existing land charge
+  When I submit a type 2 rectifcation to the charge
+  Then a 200 response is returned
+  And the response contains the new registration numbers as well as the old
+  And the old registration is still revealed
+  
+  Given an existing land charge
+  When I submit a type 3 rectifcation to the charge
+  Then a 200 response is returned
+  And the response contains the new registration numbers as well as the old
+  And the old registration is no longer revealed
