@@ -6,6 +6,16 @@ As a land charges caseworker
 I want to be able to capture data for bankruptcy search application requests that have been posted to LR
 So that I can ensure that the search request details submitted can be correcly processed
 
+Scenario: Basic bankruptcy research journey 
+Given I am on the LR searches screen
+And I click to launch Bankruptcy search and select a record
+And I am on the bankruptcy search details screen
+And I enter Names in all fields on Input details page
+And I click on continue button
+And I can capture customer details on the full search screen
+Then I can click the complete search button
+And I can see Application Successful text on Search list page 
+
 Scenario: BUS-013 Return expected values associated with a key number for a Bankruptcy search request
 Given I am on the LR searches screen
 And I click to launch Bankruptcy search and select a record

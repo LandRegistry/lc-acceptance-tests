@@ -161,7 +161,6 @@ Then(/^I can confirm that certificate date stored in database SHOULD NOT be toda
   PostgreSQL.disconnect
 end
 
-
 Then(/^I can confirm that the search expiry date stored in database should be in the future$/) do
   PostgreSQL.connect('landcharges')
   cert_date = PostgreSQL.query("SELECT expiry_date FROM search_details ORDER BY search_timestamp DESC LIMIT 1")
@@ -169,4 +168,10 @@ Then(/^I can confirm that the search expiry date stored in database should be in
   row = cert_date.values[0]
   expect(row[0]).to be > today
   PostgreSQL.disconnect
+end
+
+Then(/^I am returned to the LR searches screen$/) do
+  expect(page).to have_content('Search')
+  expect(page).to have_content('Full')
+  expect(page).to have_content('Bankruptcy')
 end

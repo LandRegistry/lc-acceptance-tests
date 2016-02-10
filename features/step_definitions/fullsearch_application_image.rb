@@ -17,8 +17,11 @@ Then(/^I am on the full search details screen$/) do
   expect(page).to have_button('Continue')
 end
 
-Then(/^And I can see Application Successful text on Search list page$/) do
-  expect(page).to have_content('Your application has been successfully completed!')
+Then(/^I can see Application Successful text on Search list page$/) do
+  #expect(page).to have_content('Your application has been successfully completed')
+  expect(page).to have_content('Search')
+  expect(page).to have_content('Full')
+  expect(page).to have_content('Bankruptcy')
 end
 
 Then(/^I can capture customer details on the full search screen$/) do
