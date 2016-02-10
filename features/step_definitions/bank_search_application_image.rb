@@ -44,6 +44,10 @@ When(/^I enter Names in all fields on Input details page$/) do
   fill_in('surname_2', :with => 'Great')
 end
 
+When(/^I enter an Applicant reference number$/) do
+  fill_in('customer_ref', :with => 'B123/239')
+end
+
 When(/^I click on the name details tab I can enter six names for a bankruptcy search$/) do
     expect(page).to have_content('First name to be searched')
   fill_in('forename_1', :with => 'Ella')
@@ -146,4 +150,13 @@ end
 When(/^I select an application type of Search the application is displayed$/) do
   find(:id,'search_bank').click
   find(:id,'row_1').click
+end
+
+When(/^I can confirm that certificate date stored in database is the previous day of the search request$/) do
+  PostgreSQL.connect('landcharges')
+  cert_date = PostgreSQL.query("SELECT certificate_date FROM search_details")
+  prev_day = (Date.today - 1).strftime("%Y-%m-%d")
+  row = cert_date.values[0]
+  expect(row[0]).to eq prev_day
+  PostgreSQL.disconnect
 end
