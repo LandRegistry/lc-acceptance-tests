@@ -1,0 +1,62 @@
+@bri
+
+Feature: View Application Image
+
+As a land charges caserworker
+I want to be able to view an image on a bankruptsy application form
+So that I can ensure that details are captured correctly onto the land charges register
+
+#Scenario: Using the land charges system
+##US005 View Image of Application
+#Given I am on the view application screen
+#When I have selected to view specific the application list
+#When the image of the application is displayed I can click on all available pages
+##EA: Test below was commented out because the selected data will not have multiple images
+##When I click on a thumbnail the image is expanded to large image
+#When I am on a Large image I can zoom in
+#Then I am on a Large image I can zoom out
+
+##US008 Supplying the Debtors name 
+#Given I am on the debtors name and details screen
+#When I complete the Forename and Surname details remain visible 
+#When I click add alternative name Alternative name is displayed with Forename(s) and Surname fields
+#When I amend a Forename the new details remain visable
+#Then I amend the Surname of the Alias Surname and the new details remain visible
+
+##US020 Supplying the occupation details
+#Given I am on the debtors name and details screen 
+#When I enter an Occupation the details remain visible
+#Then I can click the continue button to go to the next screen
+##above statement displays the debtors address screen is displayed
+
+##US010 Supplying the debtors address
+#Given I am on the debtors address screen
+#When I supply the address details in the address fields they remain visible
+#When I click the add address button further address fields are displayed
+#When I supply additional address details 
+#When I click the add address button further address fields are displayed
+#Then I can click the continue button to go to the next screen
+##above statement displays the case information screen is displayed
+
+##EA: Case information screen currently unavailable. Execute tests IN SPRINT 4
+##US007 Supplying class of charge
+## Given I am on the case information screen
+## When I first see the class of charge neither PAB or WOB are checked
+## When I select a Class of Charge of PAB this becomes checked
+## Then I select a Class of Charge of WOB this becomes checked and PAB becomes unchecked
+
+##US014 AND US015 Supplying the court details
+##Given I am on the case information screen
+##When I enter the key number the details remain visible
+##When I enter a court name the details remain visible
+##When I enter a court number and year the details remain visible
+##When I click the continue button the application verification page is displayed
+##When I click the verification checkbox
+##Then I click the submit button and the application complete screen is displayed
+
+##US006 and US018 Unique Identifier
+##Given I am on the Application complete screen
+##When the Application has been submitted the unique identifier is displayed to the user on the screen
+## And the Application has been submitted the date is displayed to the user on the screen
+##Then the user can return to the worklist
+
