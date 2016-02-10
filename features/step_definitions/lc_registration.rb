@@ -2,7 +2,6 @@
 lc_private = '{"parties": [{"type": "Estate Owner","names":[{
 "type": "Private Individual","private": {"forenames": ["Bob", "Oscar", "Francis"],"surname": "Howard"}
 }]}],
-"priority_notice": false,
 "class_of_charge": "C1",	
 "particulars": {"counties": ["Devon"],"district": "South Hams","description": "The House At The Beach"},
 "applicant": {"name": "Some Court","address": "11 Court Road, Court Town","key_number": "7654321",
@@ -11,7 +10,6 @@ lc_private = '{"parties": [{"type": "Estate Owner","names":[{
 lc_existing_t_123 = '{"parties": [{"type": "Estate Owner","names":[{
 "type": "Private Individual","private": {"forenames": ["B", "O"],"surname": "Howard"}
 }]}],
-"priority_notice": false,
 "class_of_charge": "C1",	
 "particulars": {"counties": ["Devon"],"district": "South Hams","description": "The House At The Beach"},
 "applicant": {"name": "Some Court","address": "11 Court Road, Court Town","key_number": "7654321",
@@ -44,7 +42,7 @@ lc_rectify_t_3 = '{"parties": [{"type": "Estate Owner","names":[{
 pn_private = '{"parties": [{"type": "Estate Owner","names":[{
 "type": "Private Individual","private": {"forenames": ["Bob", "Oscar", "Francis"],"surname": "Howard"}
 }]}],
-"priority_notice": true,
+"priority_notice": {"expires": "2017-01-01"},
 "class_of_charge": "C1",	
 "particulars": {"counties": ["Devon"],"district": "South Hams","description": "The House At The Beach"},
 "applicant": {"name": "Some Court","address": "11 Court Road, Court Town","key_number": "7654321",
@@ -53,7 +51,6 @@ pn_private = '{"parties": [{"type": "Estate Owner","names":[{
 lc_company = '{"parties": [{"type": "Estate Owner","names":[{
 "type": "Limited Company","company": "Bob\'s Company"
 }]}],
-"priority_notice": false,
 "class_of_charge": "C1",	
 "particulars": {"counties": ["Devon"],"district": "South Hams","description": "The House At The Beach"},
 "applicant": {"name": "Some Court","address": "11 Court Road, Court Town","key_number": "7654321",
@@ -62,7 +59,6 @@ lc_company = '{"parties": [{"type": "Estate Owner","names":[{
 lc_local_authority = '{"parties": [{"type": "Estate Owner","names":[{
 "type": "County Council","local": {"name": "Devon County Council", "area": "Devon"}
 }]}],
-"priority_notice": false,
 "class_of_charge": "C1",	
 "particulars": {"counties": ["Devon"],"district": "South Hams","description": "The House At The Beach"},
 "applicant": {"name": "Some Court","address": "11 Court Road, Court Town","key_number": "7654321",
@@ -71,7 +67,6 @@ lc_local_authority = '{"parties": [{"type": "Estate Owner","names":[{
 lc_complex_name = '{"parties": [{"type": "Estate Owner","names":[{
 "type": "Complex Name","complex": {"name": "Lord Complexity", "number": 12345}
 }]}],
-"priority_notice": false,
 "class_of_charge": "C1",	
 "particulars": {"counties": ["Devon"],"district": "South Hams","description": "The House At The Beach"},
 "applicant": {"name": "Some Court","address": "11 Court Road, Court Town","key_number": "7654321",
@@ -80,7 +75,6 @@ lc_complex_name = '{"parties": [{"type": "Estate Owner","names":[{
 lc_other = '{"parties": [{"type": "Estate Owner","names":[{
 "type": "Other", "other": "My Other Name"
 }]}],
-"priority_notice": false,
 "class_of_charge": "C1",	
 "particulars": {"counties": ["Devon"], "district": "South Hams","description": "The House At The Beach"},
 "applicant": {"name": "Some Court","address": "11 Court Road, Court Town","key_number": "7654321",
@@ -89,7 +83,6 @@ lc_other = '{"parties": [{"type": "Estate Owner","names":[{
 lc_2_counties = '{"parties": [{"type": "Estate Owner","names":[{
 "type": "County Council", "local": {"name": "Devon County Council", "area": "Devon"}
 }]}],
-"priority_notice": false,
 "class_of_charge": "C1",
 "particulars": {"counties": ["Devon", "Dorset"],"district": "South Hams", "description": "The House At The Beach"},
 "applicant": {"name": "Some Court","address": "11 Court Road, Court Town","key_number": "7654321",
