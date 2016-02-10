@@ -1,4 +1,4 @@
-@fsa
+@Beta @fsa
 
 Feature: full search application journey
 

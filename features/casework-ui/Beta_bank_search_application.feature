@@ -1,4 +1,4 @@
-@Bbsa
+@Beta @bsa
 
 Feature: bankruptcy search application journey
 

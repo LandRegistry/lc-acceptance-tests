@@ -1,4 +1,4 @@
-@lcr
+@Beta @lcr
 
 Feature: Land Charges Registration
 
