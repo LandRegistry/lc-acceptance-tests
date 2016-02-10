@@ -152,11 +152,21 @@ When(/^I select an application type of Search the application is displayed$/) do
   find(:id,'row_1').click
 end
 
-When(/^I can confirm that certificate date stored in database is the previous day of the search request$/) do
+Then(/^I can confirm that certificate date stored in database SHOULD NOT be today's$/) do
   PostgreSQL.connect('landcharges')
   cert_date = PostgreSQL.query("SELECT certificate_date FROM search_details")
-  prev_day = (Date.today - 1).strftime("%Y-%m-%d")
+  today = (Date.today).strftime("%Y-%m-%d")
   row = cert_date.values[0]
-  expect(row[0]).to eq prev_day
+  expect(row[0]).should_not eq today
+  PostgreSQL.disconnect
+end
+
+
+Then(/^I can confirm that the search expiry date stored in database should be in the future$/) do
+  PostgreSQL.connect('landcharges')
+  cert_date = PostgreSQL.query("SELECT expiry_date FROM search_details ORDER BY search_timestamp DESC LIMIT 1")
+  today = (Date.today).strftime("%Y-%m-%d")
+  row = cert_date.values[0]
+  expect(row[0]).to be > today
   PostgreSQL.disconnect
 end
