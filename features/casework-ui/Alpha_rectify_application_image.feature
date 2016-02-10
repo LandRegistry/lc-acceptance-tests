@@ -6,7 +6,7 @@ As a land charges caseworker
 I want to be able to view an image on a rectify application form
 So that I can amend the original details and save the changes
 
-Scenario: Using the bankruptcy rectifications task on the  Land Charges system
+#Scenario: Using the bankruptcy rectifications task on the  Land Charges system
 
 #RC-US001 View original application
 #Given I am on the Bankruptcy Rectification document request screen

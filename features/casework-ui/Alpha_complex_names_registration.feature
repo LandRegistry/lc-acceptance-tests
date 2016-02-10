@@ -6,7 +6,7 @@ As a land charges caseworker
 I want to be able to indicate that a name is complex through bankruptcy registration
 So that I can see a list of complex and simple names that are associated to the input name
 
-Scenario: using search facility within the land charges system indicate, search and return complex and simple names
+#Scenario: using search facility within the land charges system indicate, search and return complex and simple names
 
 #sh-us008 Full and bankruptcy searches
 #Given I am on the view application screen
