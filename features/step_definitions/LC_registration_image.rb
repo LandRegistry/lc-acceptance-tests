@@ -38,6 +38,24 @@ When(/^I access the application screen the county Unitary Authority dropdown box
     fill_in('county_0', :with => "Portsmouth")
     find(:id, 'addcounty').click
     fill_in('county_1', :with => 'Poole')
+  elsif  @formtype == 'K2'
+    expect(page).to have_content('County or unitary authority area')
+    expect(page).to have_content('District')
+    fill_in('county_0', :with => "Portsmouth")
+    find(:id, 'addcounty').click
+    fill_in('county_1', :with => 'Poole') 
+  elsif  @formtype == 'K3'
+    expect(page).to have_content('County or unitary authority area')
+    expect(page).to have_content('District')
+    fill_in('county_0', :with => "Portsmouth")
+    find(:id, 'addcounty').click
+    fill_in('county_1', :with => 'Poole') 
+  elsif  @formtype == 'K4'
+    expect(page).to have_content('County or unitary authority area')
+    expect(page).to have_content('District')
+    fill_in('county_0', :with => "Portsmouth")
+    find(:id, 'addcounty').click
+    fill_in('county_1', :with => 'Poole')   
   else
     nil
   end
@@ -72,7 +90,7 @@ When(/^Private Individual is selected I can complete the names details$/) do
   fill_in('Surname', :with => 'Andrews')
 end
 
-Then(/^I can re-key estate owner's full name$/) do
+When(/^I am on the verification screen I can rekey estate owner's full name$/) do
   expect(page).to have_content('Re-key estate owner details')
   expect(page).to have_content('Forename')
   expect(page).to have_content('Surname')
@@ -129,6 +147,7 @@ end
 
 Then(/^I can click on Continue button to submit the form$/) do
   find(:id,'continue').click
+  #click_button('continue')
 end
 
 
@@ -172,4 +191,23 @@ When(/^I can then click the close button$/) do
   find(:id,'close').click
   #commenting the line below out because it isn't relevant to the description
   #expect(page).to have_content('KING STARK OF THE NORTH (1000167)')
+end
+
+When(/^I am on the verification screen I can rekey the class of charge$/) do
+  if @formtype == 'K1'
+    select 'DA', from:  "class"
+  elsif  @formtype == 'K2'
+    select 'F', from:  "class"
+  elsif  @formtype == 'K3'
+    select 'PA', from:  "class"
+  elsif  @formtype == 'K4'
+    select 'WO', from:  "class"  
+  else
+    nil
+  end  
+end
+
+
+When(/^I am on the Conveyancer and fees screen I can enter a valid key number$/) do
+  fill_in('key_number', :with =>'1234567')
 end
