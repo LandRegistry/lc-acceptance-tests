@@ -1,4 +1,4 @@
-@sai
+@Beta @sai
 
 Feature: search application images
 

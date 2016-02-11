@@ -9,7 +9,7 @@ So that I can ensure that details are captured correctly onto the land charges r
 #Scenario: Using the land charges system
 #NR-US001 View Image of Application
 #Given I am on the view application screen
-When I am on a Large image I can zoom in
+#When I am on a Large image I can zoom in
 ##When I have selected to view a specific Land Charges application from the application list
 #When viewing the application screen a dropdown list is visible for class of charge 	
 #When I am on a Large image I can zoom out

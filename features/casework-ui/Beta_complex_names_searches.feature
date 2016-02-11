@@ -1,4 +1,4 @@
-@cns
+@Beta @cns
 
 Feature: complex names within searches
 

@@ -120,13 +120,11 @@ When(/^I enter invalid values in Key number field$/) do
 end
 
 Then(/^I can see the expected values prepopulated in Applicant name field$/) do
-  name = 'S & H Legal Group' 
-  expect(name).to eq page.find_field("customer_name").value  
+  expect(page).to have_field('customer_name', with: 'S & H Legal Group') 
 end
 
 Then(/^I can see the expected values prepopulated in Address field$/) do
-  address = '49 Camille Circles Port Eulah PP39 6BY'
-  expect(address).to eq page.find_field("customer_address").value
+  expect(page).to have_field('customer_address', with: '49 Camille Circles Port Eulah PP39 6BY') 
 end
 
 When(/^I enter an invalid value in Key number field$/) do
