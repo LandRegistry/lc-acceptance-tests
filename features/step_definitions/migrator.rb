@@ -32,9 +32,9 @@ When(/^I submit a date range to the legacy db$/) do
   legacy_api.get(legacy_date_range)
 end
 
-When(/^it returns a 200 OK response$/) do
-  expect(RestAPI.last_response.code).to eql "200"
-end
+# When(/^it returns a 200 OK response$/) do
+#   expect(RestAPI.last_response.code).to eql "200"
+# end
 
 Then(/^a new record is stored on the register database in the correct format$/) do
   PostgreSQL.connect('landcharges')
