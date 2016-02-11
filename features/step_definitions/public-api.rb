@@ -73,7 +73,7 @@ When(/^I submit the XML data to the public API/) do
 end
 
 Then(/^it returns a (\d+) (.+) response$/) do |code, msg|
-  expect(@public_api.response.code).to eql code 
+  expect(RestAPI.last_response.code).to eql code 
 end
 
 Then(/^the response contains the new registration details$/) do
@@ -147,35 +147,33 @@ Then(/^the registration is returned$/) do
 end
 
 Then(/^the details match$/) do
-  expect(@reg_result["debtor_names"].length).to be @submitted['debtor_names'].length
-  expect(@reg_result["debtor_names"][0]['private']['surname']).to eql @submitted['debtor_names'][0]['surname']
-  expect(@reg_result["occupation"]).to eql @submitted['occupation']
+  expect(@reg_result["parties"][0]["names"].length).to be @submitted['debtor_names'].length
+  expect(@reg_result["parties"][0]["names"][0]['private']['surname']).to eql @submitted['debtor_names'][0]['surname']
+  expect(@reg_result["parties"][0]["occupation"]).to eql @submitted['occupation']
   expect(@reg_result["status"]).to eql "current"  
   
-  if @submitted['residence_withheld']
-    expect(@reg_result['residence'].length).to be 0
-  else
-    expect(@reg_result['residence'].length).to be @submitted['residence'].length
-    expect(@reg_result["residence"][0]["address_lines"][1]).to eql @submitted['residence'][0]['address_lines'][1]
-  end
+#   if !@submitted['residence_withheld']
+#     expect(@reg_result['residence'].length).to be @submitted['residence'].length
+#     expect(@reg_result["residence"][0]["address_lines"][1]).to eql @submitted['residence'][0]['address_lines'][1]
+#   end
   
-  if @submitted.has_key?('business_address')
-    expect(@reg_result['business_address'].length).to be @submitted['business_address'].length
-  else
-    expect(@reg_result['business_address'].length).to be 0
-  end 
+#   if @submitted.has_key?('business_address')
+#     expect(@reg_result['business_address'].length).to be @submitted['business_address'].length
+#   else
+#     expect(@reg_result['business_address'].length).to be 0
+#   end 
   
-  if @submitted.has_key?('investment_property')
-    expect(@reg_result['investment_property'].length).to be @submitted['investment_property'].length
-  else
-    expect(@reg_result['investment_property'].length).to be 0
-  end
+#   if @submitted.has_key?('investment_property')
+#     expect(@reg_result['investment_property'].length).to be @submitted['investment_property'].length
+#   else
+#     expect(@reg_result['investment_property'].length).to be 0
+#   end
   
-  if @submitted.has_key?('investment_property') && @submitted['investment_property'].length > 0
-    expect(@reg_result["investment_property"][0]["address_lines"][1]).to eql @submitted['investment_property'][0]['address_lines'][1]
-  end
+#   if @submitted.has_key?('investment_property') && @submitted['investment_property'].length > 0
+#     expect(@reg_result["investment_property"][0]["address_lines"][1]).to eql @submitted['investment_property'][0]['address_lines'][1]
+#   end
   
-  if @submitted.has_key?('business_address') && @submitted['business_address'].length > 0
-    expect(@reg_result["business_address"][0]["address_lines"][1]).to eql @submitted['business_address'][0]['address_lines'][1]
-  end
+#   if @submitted.has_key?('business_address') && @submitted['business_address'].length > 0
+#     expect(@reg_result["business_address"][0]["address_lines"][1]).to eql @submitted['business_address'][0]['address_lines'][1]
+#   end
 end

@@ -360,3 +360,119 @@ Then(/^only the (.+) appear in the result$/) do |name|
   end
 end
 
+
+Given(/^a land charges register containing the following records:$/) do |table|
+  data = table.hashes
+  @registration_api = RestAPI.new($LAND_CHARGES_URI)
+  
+  
+  data.each do |row|
+    party_type = 'Estate Owner'
+    if ['PAB', 'WOB'].include?(row['class'])
+      party_type = 'Debtor'
+    end
+
+    registration = {
+      "applicant" => {"name" => "X","address" => "X","key_number" => "1111111","reference" => "X"},
+      "parties" => [{"type" => party_type, "names"=>[]}],
+      "particulars" => {"counties" => row['counties'].split(' '), "district" => "x", "description" => "x" },
+      "class_of_charge" => row['class']
+    }
+    
+    if row['nametype'] == 'Private Individual'
+      name_list = row['name'].split(' ')
+      registration['parties'][0]['names'].push({
+        "type" => "Private Individual",
+        "private" => {
+          "forenames" => name_list[0..-2],
+          "surname" => name_list[-1]          
+        }
+      })
+      
+      if party_type == 'Debtor'
+        registration['parties'][0]['addresses'] = [{"type" => "Residence", "address_lines" => ['x','x'], "county" => 'x', "postcode" => 'x'}]
+        registration['parties'][0]['occupation'] = 'x'
+        registration['parties'][0]['trading_name'] = 'x'
+        registration['parties'][0]['residence_withheld'] = false
+        registration['parties'][0]['case_reference'] = '1 of 2'
+      end
+    end
+    
+    @return_data = @registration_api.post("/registrations?suppress_queue=yes&dev_date=#{row['date']}", JSON.dump(registration))
+    expect(@registration_api.response.code).to eql "200"  
+  end
+end
+
+When(/^I full search for the Private Individual (.+) in (all counties)$/) do |name, counties|
+  if counties == 'all counties'
+    c_search = ['ALL']
+  end
+  
+  name_list = name.split(' ')
+
+  search = {
+    "customer" => {"name" => "X","address" => "X","key_number" => "1111111","reference" => "X"},
+    "expiry_date" => "2100-01-01",
+    "search_date" => "2016-02-11",
+    "parameters" => {
+      "search_type" => "full",
+      "counties" => c_search,
+      "search_items" => [ {
+        "name_type" => "Private Individual",
+        "year_from" => 1925,
+        "year_to" => 2017,
+        "name" => {
+          "forenames" => name_list[0..-2].join(' '),
+          "surname" => name_list[-1]
+        }
+      }]      
+    } 
+  }
+  
+  @search_api = RestAPI.new($LAND_CHARGES_URI)
+  @return_data = @search_api.post("/searches", JSON.dump(search))
+  @request_id = @return_data[0]
+end
+
+When(/^I banks search for the Private Individual (.+)$/) do |name|
+  name_list = name.split(' ')
+  search = {
+    "customer" => {"name" => "X","address" => "X","key_number" => "1111111","reference" => "X"},
+    "expiry_date" => "2100-01-01",
+    "search_date" => "2016-02-11",
+    "parameters" => {
+      "search_type" => "banks",
+      "search_items" => [ {
+        "name_type" => "Private Individual",
+        "name" => {
+          "forenames" => name_list[0..-2].join(' '),
+          "surname" => name_list[-1]
+        }
+      }]      
+    } 
+  }
+  
+  @search_api = RestAPI.new($LAND_CHARGES_URI)
+  @return_data = @search_api.post("/searches", JSON.dump(search))
+  @request_id = @return_data[0]
+end
+
+Then(/^the result will contain no entries$/) do
+  request = @search_api.get("/request_details/search/#{@request_id}")
+  expect(request["search_details"][0]["results"].length).to eq 0
+end
+
+Then(/^the result will contain the entries:$/) do |table|
+  request = @search_api.get("/request_details/search/#{@request_id}")
+  data = table.hashes  
+  data.each do |row|
+    # Look for a corresponding hit
+    found = false
+    request['search_details'][0]['results'].each do |result|
+      if result[0]['class_of_charge'] == row['class'] && result[0]['registration']['date'] == row['date']
+        found = true
+      end
+    end    
+    expect(found).to be true
+  end
+end
