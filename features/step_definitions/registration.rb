@@ -1,7 +1,6 @@
-no_alias = '{"key_number":"9056267","application_type":"PA(B)","application_ref":"9763603","date":"2014-11-12","debtor_name":{"forenames":["Lamar","Sigmund"],"surname":"Effertz"},"debtor_alternative_name":[],"gender":"N/A","occupation":"Ship builder","residence":[{"address_lines":["942 Carley Unions","Cullenberg","Dimitrimouth"],"county":"Buckinghamshire","postcode":"QF47 0HG"}],"residence_withheld":false,"business_address":{"address_lines":["122 Leuschke Creek","Alvaburgh"],"county":"Fife","postcode":"NO03 1EU"},"date_of_birth":"1974-10-03","investment_property":[]}'
-one_alias = '{"key_number":"6269524","application_type":"PA(B)","application_ref":"7282631","date":"2015-02-19","debtor_name":{"forenames":["Helga","Nelda"],"surname":"Hessel"},"debtor_alternative_name":[{"forenames":["Nelda","Helga"],"surname":"Hessel"}],"gender":"N/A","occupation":"Flower arranger","residence":[{"address_lines":["45633 Wyman Corner","Huelshire","Lake Jennings"],"county":"West Yorkshire","postcode":"YL23 2FD"}],"residence_withheld":false,"business_address":{"address_lines":["423 Zander Mount","Konopelskifurt","South Shyannberg"],"county":"Shropshire","postcode":"AE64 7DF"},"date_of_birth":"1953-01-11","investment_property":[]}'
-bob_howard = '{"key_number":"1479067","application_type":"PA(B)","application_ref":"9045789","date":"2014-10-28","debtor_name":{"forenames":["Bob","Oscar","Francis"],"surname":"Howard"},"debtor_alternative_name":[],"gender":"N/A","occupation":"Bookmaker","residence":[{"address_lines":["1940 Huels Fort","North Glennamouth","South Nonafort"],"county":"West Yorkshire","postcode":"PA85 4RH"}],"residence_withheld":false,"business_address":{"address_lines":["831 Hailee Burg","Chasityborough","East Tamara"],"county":"Northamptonshire","postcode":"IP81 2CM"},"date_of_birth":"1974-10-07","investment_property":[]}'
-steven_smith = '{"key_number":"1479067","application_type":"PA(B)","application_ref":"9045789","date":"2014-10-28","debtor_name":{"forenames":["Steven"],"surname":"Smith"},"debtor_alternative_name":[],"gender":"N/A","occupation":"Bookmaker","residence":[{"address_lines":["1940 Huels Fort","North Glennamouth","South Nonafort"],"county":"West Yorkshire","postcode":"PA85 4RH"}],"residence_withheld":false,"business_address":{"address_lines":["831 Hailee Burg","Chasityborough","East Tamara"],"county":"Northamptonshire","postcode":"IP81 2CM"},"date_of_birth":"1974-10-07","investment_property":[]}'
+no_alias = '{"applicant": {"address": "Customer, Address, Lines", "name": "Mr. Conveyancer", "reference": "APP01", "key_number": "1234567"}, "parties": [{"case_reference": "[WHAT GOES HERE] FIXME!", "trading_name": "", "residence_withheld": false, "date_of_birth": "1980-01-01", "names": [{"private": {"forenames": ["Bob", "Oscar", "Francis"], "surname": "Howard"}, "type": "Private Individual"}], "occupation": "Civil Servant", "addresses": [{"address_lines": ["1 The Street", "The Town"], "county": "The County", "postcode": "AA1 1AA", "type": "Residence"}], "type": "Debtor"}], "class_of_charge": "PAB"}'
+
+one_alias = '{"applicant": {"address": "Customer, Address, Lines", "name": "Mr. Conveyancer", "reference": "APP01", "key_number": "1234567"}, "parties": [{"case_reference": "[WHAT GOES HERE] FIXME!", "trading_name": "", "residence_withheld": false, "date_of_birth": "1980-01-01", "names": [{"private": {"forenames": ["Bob", "Oscar", "Francis"], "surname": "Howard"}, "type": "Private Individual"}, {"private": {"forenames": ["Robert"], "surname": "Howard"}, "type": "Private Individual"}], "occupation": "Civil Servant", "addresses": [{"address_lines": ["1 The Street", "The Town"], "county": "The County", "postcode": "AA1 1AA", "type": "Residence"}], "type": "Debtor"}], "class_of_charge": "PAB"}'
 
 
 ins_request = '{"key_number": "1234567", "application_ref": "9192245", "debtor_names": [ { "surname": "Hills",' +
@@ -39,16 +38,22 @@ Then(/^a new record is stored on the database$/) do
     end
 
     get_api = RestAPI.new($BANKRUPTCY_REGISTRATION_URI)
-    data.each do |reg_no|
-        regn = get_api.get("/registrations/#{reg_no}")
+    data.each do |reg|
+        reg_no = reg['number']
+        date = reg['date']
+        regn = get_api.get("/registrations/#{date}/#{reg_no}")
         expect(get_api.response.code).to eql "200"
-        expect(regn['registration_no']).to eq reg_no
+        expect(regn['registration']['number']).to eq reg_no
     end
 end
 
 When(/^I submit valid data with an alias to the registration system$/) do
     @registration_api = RestAPI.new($BANKRUPTCY_REGISTRATION_URI)
     @registration_api.post("/registrations", one_alias)
+end
+
+Then(/^it returns the new registration number$/) do
+    expect(@registration_api.data["new_registrations"].length).to eq 1
 end
 
 Then(/^it returns the (\d+) new registration numbers$/) do |count|
@@ -59,10 +64,14 @@ end
 Then(/^(\d+) new records are stored on the database$/) do |count|
     new_regs = @registration_api.data["new_registrations"]
     expect(new_regs.length.to_s).to eq count
-    new_regs.each do |reg_no|
-      regn = @registration_api.get("/registrations/#{reg_no}")
-      expect(@registration_api.response.code).to eql "200"
-      expect(regn['registration_no']).to eq reg_no
+    
+    get_api = RestAPI.new($BANKRUPTCY_REGISTRATION_URI)
+    new_regs.each do |reg|
+      reg_no = reg['number']
+      date = reg['date']
+      regn = get_api.get("/registrations/#{date}/#{reg_no}")
+      expect(get_api.response.code).to eql "200"
+      expect(regn['registration']['number']).to eq reg_no
     end
 end
 
