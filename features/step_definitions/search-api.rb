@@ -458,12 +458,12 @@ When(/^I banks search for the Private Individual (.+)$/) do |name|
 end
 
 Then(/^the result will contain no entries$/) do
-  request = @search_api.get("/request_details/search/#{@request_id}")
+  request = @search_api.get("/request_details/#{@request_id}")
   expect(request["search_details"][0]["results"].length).to eq 0
 end
 
 Then(/^the result will contain the entries:$/) do |table|
-  request = @search_api.get("/request_details/search/#{@request_id}")
+  request = @search_api.get("/request_details/#{@request_id}")
   data = table.hashes  
   data.each do |row|
     # Look for a corresponding hit
