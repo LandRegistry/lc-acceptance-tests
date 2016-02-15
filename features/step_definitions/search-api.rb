@@ -90,13 +90,13 @@ surname_result = '%20%20West'
 array_len = name_array.length
 cntr = 0
 reg_name = []
-searched_name = []
+reg_date = '2016-01-01'
 
 Given(/^I have submitted a singular company name$/) do
   while cntr < name_array.length
     @current_data = reg_template + name_array[cntr] + '"}]}]}'
     @registration_api = RestAPI.new($LAND_CHARGES_URI)
-    @return_data = @registration_api.post("/registrations", @current_data)
+    @return_data = @registration_api.post("/registrations?dev_date=#{reg_date}", @current_data)
     reg_name[cntr] = @return_data['new_registrations'][0]['number']
     cntr += 1
   end
@@ -104,32 +104,30 @@ Given(/^I have submitted a singular company name$/) do
 end
 
 When(/^I submit a full search for th plural of the company$/) do
-  while cntr < search_array.length
+  search_array.length.times do |cntr|
     @current_data = search_template + search_array[cntr] + '"}}]}}'
     @search_api = RestAPI.new($LAND_CHARGES_URI)
     @return_data = @search_api.post("/searches", @current_data)
-    cntr += 1
   end
-  cntr = 0
 end
 
 When(/^I query the search result using the plural company name$/) do
-  while cntr < search_array.length
+  @searched_name = []
+
+  search_array.length.times do |cntr|
     @current_data = search_res_template + search_array[cntr]
     @search_api = RestAPI.new($LAND_CHARGES_URI)
-    searched_name[cntr] = @search_api.get("/searches?name=#{@current_data}")
-    cntr += 1
+    data = @search_api.get("/searches?name=#{@current_data}")
+    @searched_name[cntr] = data
   end
-  cntr = 0
+
 end
 
 Then(/^the response contains the registration details for the singular company registered$/) do
-  while cntr < search_array.length
-    expect(searched_name[cntr][0].has_key?('reg_no')).to be true
-    expect(searched_name[cntr][0]['reg_no'] == reg_name[cntr]).to be true
-    cntr += 1
+  search_array.length.times do |cntr|
+    expect(@searched_name[cntr][0].has_key?('reg_no')).to be true
+    expect(@searched_name[cntr][0]['reg_no'] == reg_name[cntr]).to be true
   end
-  cntr = 0
 end
 
 Given(/^I have submitted a new registration for a (.+)$/) do |name_type|
