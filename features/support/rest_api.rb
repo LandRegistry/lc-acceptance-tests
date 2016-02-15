@@ -49,6 +49,17 @@ class RestAPI
         @@last_response = @response
         @data = JSON.parse(@response.body)
     end
+    
+    def getbin(url, data = nil)
+        request = Net::HTTP::Get.new(url)
+        unless data.nil?
+            request.body = data
+            request["Content-Type"] = "application/json"
+        end
+        @response = @http.request(request)
+        @@last_response = @response
+        @data = @response.body
+    end
 
     def put(url, data)
         request = Net::HTTP::Put.new(url)

@@ -13,7 +13,8 @@ end
 When(/^I request an office copy$/) do
   @oc_api = RestAPI.new($CASEWORK_API_URI)
   @number = @return_data['new_registrations'][0]['number']
-  @result = @oc_api.get("/office_copy?class=PAB&reg_no=#{@number}&date=#{today}")
+  @date = @return_data['new_registrations'][0]['date']
+  @result = @oc_api.getbin("/office_copy?class=PAB&reg_no=#{@number}&date=#{@date}")
 end
 
 Then(/^I receive the office copy result$/) do
