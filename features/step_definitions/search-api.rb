@@ -377,6 +377,12 @@ Given(/^a land charges register containing the following records:$/) do |table|
       "class_of_charge" => row['class']
     }
     
+    if row['pnoticeexp'] != ''
+      registration['priority_notice'] = {
+          'expires' => row['pnoticeexp']
+      }
+    end
+    
     if row['nametype'] == 'Private Individual'
       name_list = row['name'].split(' ')
       registration['parties'][0]['names'].push({
@@ -386,6 +392,7 @@ Given(/^a land charges register containing the following records:$/) do |table|
           "surname" => name_list[-1]          
         }
       })
+
       
       if party_type == 'Debtor'
         registration['parties'][0]['addresses'] = [{"type" => "Residence", "address_lines" => ['x','x'], "county" => 'x', "postcode" => 'x'}]
