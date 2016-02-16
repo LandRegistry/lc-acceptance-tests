@@ -373,7 +373,7 @@ Given(/^a land charges register containing the following records:$/) do |table|
     registration = {
       "applicant" => {"name" => "X","address" => "X","key_number" => "1111111","reference" => "X"},
       "parties" => [{"type" => party_type, "names"=>[]}],
-      "particulars" => {"counties" => row['counties'].split(' '), "district" => "x", "description" => "x" },
+      "particulars" => {"counties" => row['counties'].split(','), "district" => "x", "description" => "x" },
       "class_of_charge" => row['class']
     }
     
