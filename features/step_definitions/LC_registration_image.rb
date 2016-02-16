@@ -56,6 +56,13 @@ When(/^I access the application screen the county Unitary Authority dropdown box
     fill_in('county_0', :with => "Portsmouth")
     find(:id, 'addcounty').click
     fill_in('county_1', :with => 'Poole')   
+  elsif  @formtype == 'K6'
+    expect(page).to have_content('County or unitary authority area')
+    expect(page).to have_content('District')
+    fill_in('county_0', :with => "Portsmouth")
+    find(:id, 'addcounty').click
+    fill_in('county_1', :with => 'Poole')   
+    
   else
     nil
   end
@@ -146,6 +153,7 @@ end
 
 
 Then(/^I can click on Continue button to submit the form$/) do
+  puts @formtype
   find(:id,'continue').click
   #click_button('continue')
 end
@@ -195,13 +203,15 @@ end
 
 When(/^I am on the verification screen I can rekey the class of charge$/) do
   if @formtype == 'K1'
-    select 'DA', from:  "class"
+    select 'LC', from:  "class"
   elsif  @formtype == 'K2'
     select 'F', from:  "class"
   elsif  @formtype == 'K3'
     select 'PA', from:  "class"
   elsif  @formtype == 'K4'
     select 'WO', from:  "class"  
+  elsif  @formtype == 'K6'
+    select 'LC', from:  "class"    
   else
     nil
   end  
