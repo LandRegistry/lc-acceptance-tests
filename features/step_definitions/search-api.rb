@@ -408,9 +408,11 @@ Given(/^a land charges register containing the following records:$/) do |table|
   end
 end
 
-When(/^I full search for the Private Individual (.+) in (all counties)$/) do |name, counties|
+When(/^I full search for the Private Individual (.+) in (.*)$/) do |name, counties|
   if counties == 'all counties'
     c_search = ['ALL']
+  else
+    c_search = [counties]
   end
   
   name_list = name.split(' ')
@@ -469,15 +471,24 @@ end
 
 Then(/^the result will contain the entries:$/) do |table|
   request = @search_api.get("/request_details/#{@request_id}")
-  data = table.hashes  
+  data = table.hashes
+
   data.each do |row|
     # Look for a corresponding hit
     found = false
     request['search_details'][0]['results'].each do |result|
       if result[0]['class_of_charge'] == row['class'] && result[0]['registration']['date'] == row['date']
+        # puts "Found #{row['class']} | #{row['date']}"
         found = true
       end
-    end    
+    end 
+    
+    if found == false
+        puts "Not revealed: #{row['date']} #{row['class']}"
+    end
+       
     expect(found).to be true
   end
+  
+  expect(request['search_details'][0]['results'].length).to eq data.length
 end
