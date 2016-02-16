@@ -155,7 +155,7 @@ Then(/^I can confirm that certificate date stored in database SHOULD NOT be toda
   cert_date = PostgreSQL.query("SELECT certificate_date FROM search_details")
   today = (Date.today).strftime("%Y-%m-%d")
   row = cert_date.values[0]
-  expect(row[0]).should_not eq today
+  expect(row[0]).should_not eq today #should be less than today
   PostgreSQL.disconnect
 end
 
