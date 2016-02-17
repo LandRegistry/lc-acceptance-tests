@@ -8,9 +8,3 @@ When(/^I have selected to view a priority notice Land Charges application from t
   find(:id, "row_1").click
 end
 
-
-When(/^I can select the appropiate Particulars of intended registration$/) do
-  choose('wo')
-  choose('pa')
-  choose('lc')
-end
