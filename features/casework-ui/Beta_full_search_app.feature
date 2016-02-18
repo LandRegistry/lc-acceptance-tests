@@ -125,6 +125,17 @@ Then I can confirm that the search expiry date stored in database should be in t
 
 
 
+Scenario: BUS-141 Capture details of customer who lodged a bankruptcy search request by surname only
+Given I am on the LR searches screen
+When I select an application type of Full Search the application is displayed
+And I am on the full search details screen
+When I click on the name details tab I can enter the surname only
+When I enter a county the details are displayed county edit box 
+When I click the add additional county a new county edit box is displayed where I enter the next county
+When I click continue the applicant details screen is displayed
+And I can capture customer details on the full search screen
+Then I can click the complete search button
+And I can see Application Successful text on Search list page 
 
 
 

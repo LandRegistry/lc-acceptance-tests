@@ -135,8 +135,7 @@ end
 
 
 When(/^I am on the Application complete screen a new record is stored on the register database in the correct format$/) do
-  expect(page).to have_content('Confirmation')
-  expect(page).to have_content('successfully submitted')
+  expect(page).to have_content('successfully completed')
   PostgreSQL.connect('landcharges')
   result = PostgreSQL.query("SELECT id FROM search_name WHERE forenames = 'Ella'")
   #expect(result.values.length).to eq >= 1
@@ -145,5 +144,12 @@ When(/^I am on the Application complete screen a new record is stored on the reg
   #expect(row[0]).to eq "146"
   PostgreSQL.disconnect
   
+end
+
+When(/^I click on the name details tab I can enter the surname only$/) do
+  expect(page).to have_content('First name to be searched')
+  fill_in('surname_1', :with => 'Piggy')
+  fill_in('year_from_1', :with => '1981')
+  fill_in('year_to_1', :with => '2013')
 end
 
