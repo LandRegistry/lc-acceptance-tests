@@ -12,6 +12,17 @@ When(/^I select an application type of PAB with a single image$/) do
   find(:id, "row_1").click
 end
 
+
+When(/^I select an application type of WOB with a single image$/) do
+  within(:xpath, ".//*[@id='row_3']/td[2]") do
+  page.should have_content('WOB')
+  @formtype = 'WOB'
+  puts(@formtype)
+  end
+  find(:id, "row_3").click
+end
+
+
 When(/^I enter court name the details are visible$/) do
   fill_in('court', :with => 'County Court of Portsmouth')
 end
@@ -41,7 +52,7 @@ When(/^I enter occupation the details are visible$/) do
     fill_in('occupation', :with => 'singer')
 end
 
-When(/^i click add AKA new fields are displayed$/) do
+When(/^I click add AKA new fields are displayed$/) do
   find(:id, 'aka').click
 end
 
