@@ -11,3 +11,10 @@ $POSTGRES_HOST = ENV['POSTGRES_HOST'] || 'localhost'
 $POSTGRES_PORT = ENV['POSTGRES_PORT'] || '5432'
 $POSTGRES_USER = ENV['POSTGRES_USER'] || 'vagrant'
 $POSTGRES_PASSWORD = ENV['POSTGRES_PASSWORD'] || 'vagrant'
+
+
+puts '======================='
+puts "ENVIRONMENT SET"
+puts $B2B_PROCESSOR_URI
+puts ENV['AUTOMATIC_PROCESS_URL']
+puts '======================='
