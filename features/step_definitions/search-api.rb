@@ -384,16 +384,17 @@ Given(/^a land charges register containing the following records:$/) do |table|
     end
     
     if row['nametype'] == 'Private Individual'
-      name_list = row['name'].split(' ')
-      registration['parties'][0]['names'].push({
-        "type" => "Private Individual",
-        "private" => {
-          "forenames" => name_list[0..-2],
-          "surname" => name_list[-1]          
-        }
-      })
-
-      
+      names = row['name'].split(', ')
+      names.each do |name|    
+        name_list = name.split(' ')
+        registration['parties'][0]['names'].push({
+            "type" => "Private Individual",
+            "private" => {
+            "forenames" => name_list[0..-2],
+            "surname" => name_list[-1]          
+            }
+        })
+      end      
       if party_type == 'Debtor'
         registration['parties'][0]['addresses'] = [{"type" => "Residence", "address_lines" => ['x','x'], "county" => 'x', "postcode" => 'x'}]
         registration['parties'][0]['occupation'] = 'x'
@@ -401,6 +402,36 @@ Given(/^a land charges register containing the following records:$/) do |table|
         registration['parties'][0]['residence_withheld'] = false
         registration['parties'][0]['case_reference'] = '1 of 2'
       end
+    elsif row['nametype'] == 'Other'
+      registration['parties'][0]['names'].push({
+        'type' => 'Other',
+        'other' => row['name']
+      })
+    elsif row['nametype'] == 'Limited Company'
+      registration['parties'][0]['names'].push({
+        'type' => 'Limited Company',
+        'company' => row['name']
+      })
+    elsif row['nametype'] == 'County Council'
+      name_list = row['name'].split(', ')
+    
+      registration['parties'][0]['names'].push({
+        'type' => 'County Council',
+        'local' => {
+          'name' => name_list[0],
+          'area' => name_list[1]
+        }
+      })
+    elsif row['nametype'] == 'Rural Council'
+      name_list = row['name'].split(', ')
+    
+      registration['parties'][0]['names'].push({
+        'type' => 'Rural Council',
+        'local' => {
+          'name' => name_list[0],
+          'area' => name_list[1]
+        }
+      })
     end
     
     @return_data = @registration_api.post("/registrations?suppress_queue=yes&dev_date=#{row['date']}", JSON.dump(registration))
@@ -438,6 +469,133 @@ When(/^I full search for the Private Individual (.+) in (.*)$/) do |name, counti
   
   @search_api = RestAPI.new($LAND_CHARGES_URI)
   @return_data = @search_api.post("/searches", JSON.dump(search))
+  puts @return_data
+  @request_id = @return_data[0]
+end
+
+When(/^I full search for the Other (.+) in (.*)$/) do |name, counties|
+  if counties == 'all counties'
+    c_search = ['ALL']
+  else
+    c_search = [counties]
+  end
+  
+  search = {
+    "customer" => {"name" => "X","address" => "X","key_number" => "1111111","reference" => "X"},
+    "expiry_date" => "2100-01-01",
+    "search_date" => "2016-02-11",
+    "parameters" => {
+      "search_type" => "full",
+      "counties" => c_search,
+      "search_items" => [ {
+        "name_type" => "Other",
+        "year_from" => 1925,
+        "year_to" => 2017,
+        "name" => {
+          "other_name" => name
+        }
+      }]      
+    } 
+  }
+  
+  @search_api = RestAPI.new($LAND_CHARGES_URI)
+  @return_data = @search_api.post("/searches", JSON.dump(search))
+  puts @return_data
+  @request_id = @return_data[0]
+end
+
+When(/^I full search for the Limited Company (.+) in (.*)$/) do |name, counties|
+  if counties == 'all counties'
+    c_search = ['ALL']
+  else
+    c_search = [counties]
+  end
+  
+  search = {
+    "customer" => {"name" => "X","address" => "X","key_number" => "1111111","reference" => "X"},
+    "expiry_date" => "2100-01-01",
+    "search_date" => "2016-02-11",
+    "parameters" => {
+      "search_type" => "full",
+      "counties" => c_search,
+      "search_items" => [ {
+        "name_type" => "Limited Company",
+        "year_from" => 1925,
+        "year_to" => 2017,
+        "name" => {
+          "company_name" => name
+        }
+      }]      
+    } 
+  }
+  
+  @search_api = RestAPI.new($LAND_CHARGES_URI)
+  @return_data = @search_api.post("/searches", JSON.dump(search))
+  # puts @return_data
+  @request_id = @return_data[0]
+end
+
+When(/^I full search for the County Council (.*) \((.*)\) in (.*)$/) do |name, area, counties|
+  if counties == 'all counties'
+    c_search = ['ALL']
+  else
+    c_search = [counties]
+  end
+  
+  search = {
+    "customer" => {"name" => "X","address" => "X","key_number" => "1111111","reference" => "X"},
+    "expiry_date" => "2100-01-01",
+    "search_date" => "2016-02-11",
+    "parameters" => {
+      "search_type" => "full",
+      "counties" => c_search,
+      "search_items" => [ {
+        "name_type" => "County Council",
+        "year_from" => 1925,
+        "year_to" => 2017,
+        "name" => {
+          "local_authority_name" => name,
+          "local_authority_area" => area
+        }
+      }]      
+    } 
+  }
+  
+  @search_api = RestAPI.new($LAND_CHARGES_URI)
+  @return_data = @search_api.post("/searches", JSON.dump(search))
+  # puts @return_data
+  @request_id = @return_data[0]
+end
+
+When(/^I full search for the Rural Council (.*) \((.*)\) in (.*)$/) do |name, area, counties|
+  if counties == 'all counties'
+    c_search = ['ALL']
+  else
+    c_search = [counties]
+  end
+  
+  search = {
+    "customer" => {"name" => "X","address" => "X","key_number" => "1111111","reference" => "X"},
+    "expiry_date" => "2100-01-01",
+    "search_date" => "2016-02-11",
+    "parameters" => {
+      "search_type" => "full",
+      "counties" => c_search,
+      "search_items" => [ {
+        "name_type" => "Rural Council",
+        "year_from" => 1925,
+        "year_to" => 2017,
+        "name" => {
+          "local_authority_name" => name,
+          "local_authority_area" => area
+        }
+      }]      
+    } 
+  }
+  
+  @search_api = RestAPI.new($LAND_CHARGES_URI)
+  @return_data = @search_api.post("/searches", JSON.dump(search))
+  # puts @return_data
   @request_id = @return_data[0]
 end
 
@@ -465,13 +623,17 @@ When(/^I banks search for the Private Individual (.+)$/) do |name|
 end
 
 Then(/^the result will contain no entries$/) do
+  # puts "/request_details/#{@request_id}" 
   request = @search_api.get("/request_details/#{@request_id}")
+  # puts request
   expect(request["search_details"][0]["results"].length).to eq 0
 end
 
 Then(/^the result will contain the entries:$/) do |table|
   request = @search_api.get("/request_details/#{@request_id}")
   data = table.hashes
+  
+  # puts request
 
   data.each do |row|
     # Look for a corresponding hit
