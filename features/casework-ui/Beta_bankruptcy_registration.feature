@@ -63,11 +63,12 @@ When I can click on Continue button to submit the form
 When I am on the verification screen I can rekey debtor's name
 When I am on the verification screen I can change debtor's AKA name
 When I am on the verification screen I can rekey debtor's AKA name
+When I am on the verification screen I can rekey debtor's name
 When I am on the verification screen I can rekey court name
 When I am on the verification screen I can view reference numbers
 When I can click on Continue button to submit the form
 When I am on the Court screen I can enter a valid key number
-When I can click the complete search button
+When I can click the complete bankruptcy button
 Then the susuccessfully completed Registration number is banner is displayed
 
 
