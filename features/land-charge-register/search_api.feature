@@ -107,6 +107,16 @@ Then the result will contain the entries:
     | date       | class | 
     | 2015-02-03 | PAB   |
     
+When I full search for the Private Individual Test User Nine in all counties
+Then the result will contain the entries:
+    | date       | class | 
+    | 2015-02-03 | PAB   |
+    
+When I full search for the Private Individual Test User Nine in Devon
+Then the result will contain the entries:
+    | date       | class | 
+    | 2015-02-03 | PAB   |
+    
 When I full search for the Other Bob Ross and Brothers Associated in all counties
 Then the result will contain the entries:
     | date       | class | 
