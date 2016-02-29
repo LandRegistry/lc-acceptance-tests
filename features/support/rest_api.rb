@@ -68,5 +68,6 @@ class RestAPI
         @response = @http.request(request)
         @@last_response = @response
         @@last_response.body
+        @data = JSON.parse(@response.body)
     end
 end
