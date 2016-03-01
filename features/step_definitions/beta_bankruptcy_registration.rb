@@ -168,6 +168,31 @@ When(/^I can confirm successful submission of details for a bankruptcy applicati
   page.find(:id, "conf_reg_numbers").text
 end
 
-Then(/^I can verify the registration number is displayed$/) do
+When(/^I parse a new registration number as Original registration number$/) do
+  fill_in('court', :with => 'Northants County Court')
+  fill_in('ref_no', :with => '911')
+  fill_in('ref_year', :with => '2013')
+  click_button('continue')
+  fill_in('forenames_1', :with => 'Johnny')
+  fill_in('surname_1', :with => 'Lee')
+  fill_in('occupation', :with => 'Dancer')
+  fill_in('add_1_line1', :with => '123 New Street')
+  fill_in('add_1_line2', :with => 'Middlebrook')
+  fill_in('add_1_line3', :with => 'Winchester')
+  fill_in('add_1_line4', :with => 'Hampshire')
+  fill_in('county_1', :with => 'Hants')
+  fill_in('postcode_1', :with => 'SO14 1AA')
+  click_button('continue')
+  fill_in('forename_1', :with => 'Johnny')
+  fill_in('surname_1', :with => 'Lee') 
+  fill_in('court_name', :with => 'Northants County Court')
+  click_button('continue')
+  fill_in('key_number', :with =>'1234567')
+  click_button('continue')
+  page.find(:id, "conf_reg_numbers").text
   results = page.find(:id, "conf_reg_numbers").text
+  visit( "#{$FRONTEND_URI}/get_list?appn=cancel" )
+   find(:xpath,'//*[@id="row_1"]').click
+   sleep(2)
+   fill_in('reg_no', :with => results)
 end

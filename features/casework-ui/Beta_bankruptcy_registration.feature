@@ -91,7 +91,7 @@ And the susuccessfully completed Registration number is banner is displayed
 
 Scenario: BUS-038 Confirm Bankruptcy registration number
 Given I am on the bankruptcy registration screen
-And I select an application type of PAB with a single image
-When I can confirm successful submission of details for a bankruptcy application
-Then I can verify the registration number is displayed
+When I select an application type of PAB with a single image
+Then I can confirm successful submission of details for a bankruptcy application
+
 

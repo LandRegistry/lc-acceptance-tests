@@ -14,3 +14,8 @@ When I am on a Large image I can zoom out
 When I must have a registration number value before the continue button can be clicked
 Then I can click the continue button to go to the next screen
 
+Scenario: Retrieve a newly submitted application
+Given I am on the bankruptcy registration screen
+And I select an application type of PAB with a single image
+When I parse a new registration number as Original registration number
+Then I can retrieve the application details with valid data submitted

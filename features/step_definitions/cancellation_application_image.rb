@@ -122,3 +122,14 @@ Then(/^the indicator must have a value for cancelled$/) do
   data = api.get("/registration/#{@regnote}")
   expect(data['status']).to eql 'cancelled'
 end 
+
+Then(/^I can retrieve the application details with valid data submitted$/) do
+  today = Date.today.strftime("%d-%m-%Y")
+  fill_in('reg_date', :with => today)
+  find(:id, 'full_cans').click
+  click_button('continue')
+end
+
+Then(/^I can see Original registration details page$/) do
+  expect(page).to have_content('Original registration details')
+end
