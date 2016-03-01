@@ -3,7 +3,7 @@ require 'json'
 require 'digest/sha1'
 
 
-uri = URI(ENV['CASEWORK_API_URI'] || 'http://localhost:5006')
+uri = URI(ENV['CASEWORK_API_URL'] || 'http://localhost:5006')
 http = Net::HTTP.new(uri.host, uri.port)
 
 stock_data = '[' +
@@ -267,7 +267,7 @@ standard_data = [
 ]
 
 folder = File.dirname(__FILE__)
-uri = URI(ENV['CASEWORK_API_URI'] || 'http://localhost:5006')
+uri = URI(ENV['CASEWORK_API_URL'] || 'http://localhost:5006')
 http = Net::HTTP.new(uri.host, uri.port)
 
 standard_data.each do |item|

@@ -1,7 +1,7 @@
 require 'net/http'
 require 'json'
 
-uri = URI(ENV['LAND_CHARGES_URI'] || 'http://localhost:5004')
+uri = URI(ENV['LAND_CHARGES_URL'] || 'http://localhost:5004')
 http = Net::HTTP.new(uri.host, uri.port)
 
 counties = counties = '[' +
