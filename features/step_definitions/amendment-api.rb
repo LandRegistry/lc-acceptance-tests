@@ -6,10 +6,6 @@ pab_reg = '{"registration": {"parties": [{"legal_body": "Exeter County Court", "
 
 wob_reg = '{"registration": {"parties": [{"legal_body": "Exeter County Court", "legal_body_ref_year": "2016", "type": "Debtor", "names": [{"private": {"surname": "Smith", "forenames": ["John", "Alan"]}, "type": "Private Individual"}], "legal_body_ref_no": "101", "addresses": [{"type": "Residence", "address_string": "23 New Road East Exeter Devon EX1 1AA", "postcode": "EX1 1AA", "county": "Devon", "address_lines": ["23 New Road East", "Exeter"]}], "occupation": "Carpenter", "trading_name": " ", "case_reference": "Exeter County Court 101 of 2016", "residence_withheld": false}], "class_of_charge": "WOB", "applicant": {"address": "49 Camille Circles Port Eulah PP39 6BY", "reference": " ", "key_number": "1234567", "name": "S & H Legal Group"}}, "form": "WO(B)", "application_data": {"document_id": 27}}'
 
-# amend_one_name = '{"application_data": {"document_id": 44}, "pab_original": {"date": "' + today + '", "number": "' + pab_no + '"}, "form": "WO(B) Amend", "registration": {"parties": [{"legal_body": "Exeter County Court", "legal_body_ref_year": "2016", "type": "Debtor", "names": [{"private": {"surname": "Smith", "forenames": ["John", "Alan"]}, "type": "Private Individual"}], "legal_body_ref_no": "101", "addresses": [{"type": "Residence", "address_string": "23 New Road East Exeter Devon EX1 1AA", "postcode": "EX1 1AA", "county": "Devon", "address_lines": ["23 New Road East", "Exeter"]}, {"type": "Residence", "address_string": "24 Old Road East Exeter Devon EX1 1AA", "postcode": "EX1 1AA", "county": "Devon", "address_lines": ["24 Old Road East", "Exeter"]}], "occupation": "Carpenter", "trading_name": " ", "case_reference": "Exeter County Court 101 of 2016", "residence_withheld": false}], "class_of_charge": "WOB", "update_registration": {"type": "Amendment"}, "applicant": {"address": "49 Camille Circles Port Eulah PP39 6BY", "reference": " ", "key_number": "1234567", "name": "S & H Legal Group"}}, "wob_original": {"date": "' + today + '", "number": "' + wob_no + '"}, "update_registration": {"type": "Amendment"}}'
-
-# amend_two_name = '{"application_data": {"document_id": 47}, "pab_original": {"date": "' + today + '", "number": "' + pab_no + '"}, "form": "WO(B) Amend", "registration": {"parties": [{"legal_body": "Exeter County Court", "legal_body_ref_year": "2016", "type": "Debtor", "names": [{"private": {"surname": "Smith", "forenames": ["John", "Allen"]}, "type": "Private Individual"}, {"private": {"surname": "Smyth", "forenames": ["John", "Allen"]}, "type": "Private Individual"}], "legal_body_ref_no": "101", "addresses": [{"type": "Residence", "address_string": "23 New Road East Exeter Devon EX1 1AA", "postcode": "EX1 1AA", "county": "Devon", "address_lines": ["23 New Road East", "Exeter"]}], "occupation": "Carpenter", "trading_name": " ", "case_reference": "Exeter County Court 101 of 2016", "residence_withheld": false}], "class_of_charge": "WOB", "update_registration": {"type": "Amendment"}, "applicant": {"address": "49 Camille Circles Port Eulah PP39 6BY", "reference": " ", "key_number": "1234567", "name": "S & H Legal Group"}}, "wob_original": {"date": "' + today + '", "number": "' + wob_no + '"}, "update_registration": {"type": "Amendment"}}'
-
 wob_reg_diff_name = '{"registration": {"parties": [{"legal_body": "Exeter County Court", "legal_body_ref_year": "2016", "type": "Debtor", "names": [{"private": {"surname": "Smith", "forenames": ["John", "Allen"]}, "type": "Private Individual"}], "legal_body_ref_no": "101", "addresses": [{"type": "Residence", "address_string": "23 New Road East Exeter Devon EX1 1AA", "postcode": "EX1 1AA", "county": "Devon", "address_lines": ["23 New Road East", "Exeter"]}], "occupation": "Carpenter", "trading_name": " ", "case_reference": "Exeter County Court 101 of 2016", "residence_withheld": false}], "class_of_charge": "WOB", "applicant": {"address": "49 Camille Circles Port Eulah PP39 6BY", "reference": " ", "key_number": "1234567", "name": "S & H Legal Group"}}, "form": "WO(B)", "application_data": {"document_id": 27}}'
 
 pab_reg_diff_name = '{"registration": {"parties": [{"legal_body": "Exeter County Court", "legal_body_ref_year": "2016", "type": "Debtor", "names": [{"private": {"surname": "Smith", "forenames": ["John", "Allen"]}, "type": "Private Individual"}], "legal_body_ref_no": "101", "addresses": [{"type": "Residence", "address_string": "23 New Road East Exeter Devon EX1 1AA", "postcode": "EX1 1AA", "county": "Devon", "address_lines": ["23 New Road East", "Exeter"]}], "occupation": "Carpenter", "trading_name": " ", "case_reference": "Exeter County Court 101 of 2016", "residence_withheld": false}], "class_of_charge": "PAB", "applicant": {"address": "49 Camille Circles Port Eulah PP39 6BY", "reference": " ", "key_number": "1234567", "name": "S & H Legal Group"}}, "form": "PA(B)", "application_data": {"document_id": 13}}'
@@ -52,7 +48,7 @@ Then(/^both applications are set to cancelled and not revealed on a search$/) do
   expect(@pab_data['revealed']).to eql false
   expect(@pab_data['cancellation']['reference']). to be > 0
   expect(@wob_data['revealed']).to eql false
-  # expect(@wob_data['cancellation']['reference']). to be > 0
+  expect(@wob_data['status']). to eql 'superseded'
 end
 
 Given(/^I have submitted a WOB with a different name$/) do
@@ -75,12 +71,10 @@ When(/^I submit an amendment application with an additional name$/) do
 end
 
 Then(/^both applications are set to cancelled but the PAB is set to reveal on a search$/) do
-  puts @pab_data
-  puts @wob_data
   expect(@pab_data['revealed']).to eql true
   expect(@pab_data['cancellation']['reference']). to be > 0
   expect(@wob_data['revealed']).to eql false
-  # expect(@wob_data['cancellation']['reference']). to be > 0
+  expect(@wob_data['status']). to eql 'superseded'
 end
 
 Given(/^I have submitted a PAB with a different name$/) do
@@ -95,14 +89,14 @@ Then(/^both applications are set to cancelled but the WOB is set to reveal on a 
   expect(@pab_data['revealed']).to eql false
   expect(@pab_data['cancellation']['reference']). to be > 0
   expect(@wob_data['revealed']).to eql true
-  # expect(@wob_data['cancellation']['reference']). to be > 0
+  expect(@wob_data['status']). to eql 'superseded'
 end
 
 Then(/^both applications are set to cancelled and both revealed on a search$/) do
   expect(@pab_data['revealed']).to eql true
   expect(@pab_data['cancellation']['reference']). to be > 0
   expect(@wob_data['revealed']).to eql true
-  # expect(@wob_data['cancellation']['reference']). to be > 0
+  expect(@wob_data['status']). to eql 'superseded'
 end
 
 When(/^I submit a PAB only amendment application with a different name$/) do
@@ -121,8 +115,7 @@ When(/^I request details of the amended PAB$/) do
 end
 
 Then(/^the PAB is cancelled but is set to revealed on a search$/) do
-  puts @pab_data
   expect(@pab_data['revealed']).to eql true
-  # expect(@pab_data['cancellation']['reference']). to be > 0
+  expect(@pab_data['status']). to eql 'superseded'
 end
 

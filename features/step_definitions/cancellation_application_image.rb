@@ -6,6 +6,15 @@ Given(/^I have selected to view a specific record on the cancellation applicatio
   find(:xpath,'//*[@id="app_type1"]').click
 end 
 
+Given(/^I launch Application Cancellation page$/) do
+  visit( "#{$FRONTEND_URI}/get_list?appn=cancel" )
+   maximise_browser
+end 
+
+When(/^I select the first registration application$/) do
+  find(:xpath,'//*[@id="row_1"]').click
+end
+
 When(/^I click on a thumbnail the image is expanded to large image$/) do 
   find(:id, 'thumbnail1').click
   find(:id, 'thumbnail2').click
@@ -78,6 +87,11 @@ Given(/^I am on the Application details screen$/) do
  sleep(1)
   expect(page).to have_content('Review registration details')
 end 
+
+Given(/^I am on the Application retrieval screen$/) do 
+  expect(page).to have_content('Retrieve original')
+end 
+
 
 When(/^the application details become visible they must be the correct ones for the registration number detailed on the previous screen$/) do 
   api = RestAPI.new($BANKRUPTCY_REGISTRATION_URI)

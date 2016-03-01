@@ -48,6 +48,13 @@ When(/^I enter debtors name the details are visible$/) do
     
 end
 
+When(/^I enter debtors name$/) do
+  expect(page).to have_content('Forename')
+  expect(page).to have_content('Surname')
+  fill_in('forenames_1', :with => 'John')
+  fill_in('surname_1', :with => 'Paddy') 
+end
+
 When(/^I enter occupation the details are visible$/) do
     fill_in('occupation', :with => 'singer')
 end
@@ -96,6 +103,13 @@ When(/^I am on the verification screen I can rekey debtor's name$/) do
   fill_in('surname_1', :with => 'Ryan')
 end
 
+When(/^I can rekey debtor's name on the verification screen$/) do
+  expect(page).to have_content('Forename')
+  expect(page).to have_content('Surname')
+  fill_in('forename_1', :with => 'John')
+  fill_in('surname_1', :with => 'Paddy')
+end
+
 When(/^I am on the verification screen I can change debtor's AKA name$/) do
   find(:id, 'change_debtor').click
   fill_in('forenames_2', :with => 'Javine')
@@ -117,6 +131,10 @@ When(/^I am on the verification screen I can rekey court name$/) do
   fill_in('court_name', :with => 'County Court of Portsmouth')
 end
 
+When(/^I can rekey court name on the verification screen$/) do
+  fill_in('court_name', :with => 'Northamptonshire County Court')
+end
+
 When(/^I am on the Court screen I can enter a valid key number$/) do
   fill_in('key_number', :with =>'1234567')
 end
@@ -126,6 +144,7 @@ When(/^I can click the complete bankruptcy button$/) do
   click_button('continue')
 end
 
+<<<<<<< HEAD
 When(/^I enter the specific court details$/) do
    fill_in('court', :with => 'Plympton County Court')
    fill_in('ref_no', :with => '111')
@@ -137,3 +156,32 @@ Then(/^the registered names are displayed on the screen$/) do
   expect(page).to have_content('John Smith')
   expect(page).to have_content('John Alan Smithe')
 end
+=======
+When(/^I can confirm successful submission of details for a bankruptcy application$/) do
+  fill_in('court', :with => 'Northants County Court')
+  fill_in('ref_no', :with => '911')
+  fill_in('ref_year', :with => '2013')
+  click_button('continue')
+  fill_in('forenames_1', :with => 'Johnny')
+  fill_in('surname_1', :with => 'Lee')
+  fill_in('occupation', :with => 'Dancer')
+  fill_in('add_1_line1', :with => '123 New Street')
+  fill_in('add_1_line2', :with => 'Middlebrook')
+  fill_in('add_1_line3', :with => 'Winchester')
+  fill_in('add_1_line4', :with => 'Hampshire')
+  fill_in('county_1', :with => 'Hants')
+  fill_in('postcode_1', :with => 'SO14 1AA')
+  click_button('continue')
+  fill_in('forename_1', :with => 'Johnny')
+  fill_in('surname_1', :with => 'Lee') 
+  fill_in('court_name', :with => 'Northants County Court')
+  click_button('continue')
+  fill_in('key_number', :with =>'1234567')
+  click_button('continue')
+  page.find(:id, "conf_reg_numbers").text
+end
+
+Then(/^I can verify the registration number is displayed$/) do
+  results = page.find(:id, "conf_reg_numbers").text
+end
+>>>>>>> 30f553792d8650840a208a794add3cc54a86ae8d
