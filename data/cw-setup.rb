@@ -314,7 +314,7 @@ if response.code != "200"
     puts "/results: #{response.code}"
 end
 
-`cp #{folder}/images/*.tiff ~/interim/`
+#`cp #{folder}/images/*.tiff ~/interim/`
 
 
 
