@@ -144,6 +144,18 @@ When(/^I can click the complete bankruptcy button$/) do
   click_button('continue')
 end
 
+When(/^I enter the specific court details$/) do
+   fill_in('court', :with => 'Plympton County Court')
+   fill_in('ref_no', :with => '111')
+   fill_in('ref_year', :with => '2016')
+   click_button('continue')
+end
+
+Then(/^the registered names are displayed on the screen$/) do
+  expect(page).to have_content('John Smith')
+  expect(page).to have_content('John Alan Smithe')
+end
+
 When(/^I can confirm successful submission of details for a bankruptcy application$/) do
   fill_in('court', :with => 'Northants County Court')
   fill_in('ref_no', :with => '911')
@@ -196,3 +208,4 @@ When(/^I parse a new registration number as Original registration number$/) do
    sleep(2)
    fill_in('reg_no', :with => results)
 end
+

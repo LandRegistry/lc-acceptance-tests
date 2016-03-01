@@ -9,16 +9,16 @@ So that I can ensure that details are captured correctly onto the land charges r
 Scenario: BUS-045 View images of bankruptcy registration forms 
 Given I am on the bankruptcy registration screen
 When I select an application type of PAB with a single image
-When I click on a thumbnail the image is expanded to large image
-When I am on a Large image I can zoom in
-Then I am on a Large image I can zoom out
+#When I click on a thumbnail the image is expanded to large image
+#When I am on a Large image I can zoom in
+#Then I am on a Large image I can zoom out
 
 Scenario: #BUS-045 View single image on a bankruptcy registration screen
 Given I am on the bankruptcy registration screen
 When I select an application type of WOB with a single image
-And I should not see the thumbnail on the image
-When I am on a Large image I can zoom in
-Then I am on a Large image I can zoom out
+#And I should not see the thumbnail on the image
+#When I am on a Large image I can zoom in
+#Then I am on a Large image I can zoom out
 
 Scenario: #BUS-046 #BUS-043 #BUS-042 #BUS-132 #BUS-131 Input bankruptcy registration deatils
 Given I am on the bankruptcy registration screen
@@ -45,6 +45,12 @@ When I enter the address the details are visible
 When I click to add additional address new fields are visible
 And can be completed
 Then I can click on Continue button to submit the form
+
+Scenario: Return registered names
+Given I am on the bankruptcy registration screen
+When I select an application type of PAB with a single image
+When I enter the specific court details
+Then the registered names are displayed on the screen
 
 Scenario: #BUS-139 #BUS-130 #BUS-038 #BUS-053 Verify mandatory two stage name re-entry when completing a bankruptcy registration application 
 Given I am on the bankruptcy registration screen
@@ -93,5 +99,7 @@ Scenario: BUS-038 Confirm Bankruptcy registration number
 Given I am on the bankruptcy registration screen
 When I select an application type of PAB with a single image
 Then I can confirm successful submission of details for a bankruptcy application
+
+
 
 
