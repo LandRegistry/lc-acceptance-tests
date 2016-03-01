@@ -180,7 +180,7 @@ When(/^I can confirm successful submission of details for a bankruptcy applicati
   page.find(:id, "conf_reg_numbers").text
 end
 
-When(/^I parse a new registration number as Original registration number$/) do
+When(/^I parse the new registration number as Original registration number$/) do
   fill_in('court', :with => 'Northants County Court')
   fill_in('ref_no', :with => '911')
   fill_in('ref_year', :with => '2013')
@@ -205,7 +205,6 @@ When(/^I parse a new registration number as Original registration number$/) do
   results = page.find(:id, "conf_reg_numbers").text
   visit( "#{$FRONTEND_URI}/get_list?appn=cancel" )
    find(:xpath,'//*[@id="row_1"]').click
-   sleep(2)
    fill_in('reg_no', :with => results)
 end
 

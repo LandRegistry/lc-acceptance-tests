@@ -123,13 +123,66 @@ Then(/^the indicator must have a value for cancelled$/) do
   expect(data['status']).to eql 'cancelled'
 end 
 
-Then(/^I can retrieve the application details with valid data submitted$/) do
-  today = Date.today.strftime("%d-%m-%Y")
+When(/^I can retrieve the application details with valid data submitted$/) do
+  today = Date.today.strftime("%d/%m/%Y")
   fill_in('reg_date', :with => today)
   find(:id, 'full_cans').click
   click_button('continue')
 end
 
 Then(/^I can see Original registration details page$/) do
-  expect(page).to have_content('Original registration details')
+  expect(page).to have_content("Original registration details")
 end
+
+Then(/^I can submit conveyancer details$/) do
+  #fill_in('key_number', :with =>'1234567')
+  #fill_in('customer_ref', :with => '911')
+  #choose('pre_paid')
+  click_button('continue')
+#results = page.find(:id, "conf_reg_numbers").text
+   #fill_in('reg_no', :with => results)
+end
+
+When(/^I attempt to resubmit a cancelled new application number$/) do
+  fill_in('court', :with => 'Northants County Court')
+  fill_in('ref_no', :with => '911')
+  fill_in('ref_year', :with => '2013')
+  click_button('continue')
+  fill_in('forenames_1', :with => 'Johnny')
+  fill_in('surname_1', :with => 'Lee')
+  fill_in('occupation', :with => 'Dancer')
+  fill_in('add_1_line1', :with => '123 New Street')
+  fill_in('add_1_line2', :with => 'Middlebrook')
+  fill_in('add_1_line3', :with => 'Winchester')
+  fill_in('add_1_line4', :with => 'Hampshire')
+  fill_in('county_1', :with => 'Hants')
+  fill_in('postcode_1', :with => 'SO14 1AA')
+  click_button('continue')
+  fill_in('forename_1', :with => 'Johnny')
+  fill_in('surname_1', :with => 'Lee') 
+  fill_in('court_name', :with => 'Northants County Court')
+  click_button('continue')
+  fill_in('key_number', :with =>'1234567')
+  click_button('continue')
+  page.find(:id, "conf_reg_numbers").text
+  results = page.find(:id, "conf_reg_numbers").text
+  visit( "#{$FRONTEND_URI}/get_list?appn=cancel" )
+  find(:xpath,'//*[@id="row_1"]').click
+  fill_in('reg_no', :with => results)
+  today = Date.today.strftime("%d/%m/%Y")
+  fill_in('reg_date', :with => today)
+  find(:id, 'full_cans').click
+  click_button('continue')
+end
+
+Then(/^I will still be on the application retrieval page$/) do
+expect(page).to have_content("Retrieve original")
+end
+
+Then(/^I can see successful cancellation registration number$/) do
+  results = page.find(:id, "conf_reg_numbers").text
+   find(:xpath,'//*[@id="row_1"]').click
+   fill_in('reg_no', :with => results)
+end
+
+
