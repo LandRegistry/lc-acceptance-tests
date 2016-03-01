@@ -12,11 +12,11 @@ When(/^I can submit the completed search the complex name indicator is saved wit
 end
 
 When(/^I select Complex names from First name section$/) do
-  select 'Complex name', from: "nameType_1"
+  select 'Complex Name', from: "nameType_1"
 end
 
 When(/^I select Complex names from Second name section$/) do
-  select 'Complex name', from: "nameType_2"
+  select 'Complex Name', from: "nameType_2"
 end
 
 
