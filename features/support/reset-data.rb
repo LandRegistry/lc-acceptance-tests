@@ -28,46 +28,66 @@ def save()
 end
 
 def execute(clear, setup, save = false, quiet = false)
-    if File.directory?("/vagrant/apps")
-        folders = Dir["/vagrant/apps/*"]
-    else
-        folders = Dir["/opt/landregistry/applications/*/source"]
+    puts "execute"
+
+    #if File.directory?("/vagrant/apps")
+    #    folders = Dir["/vagrant/apps/*"]
+    #else
+    #    folders = Dir["/opt/landregistry/applications/*/source"]
+    #end
+
+    folder = File.expand_path("../..", File.dirname(__FILE__))
+    if clear
+        out = `ruby "#{folder}/data/lc-clear.rb"`
+        puts "  #{out}" unless(quiet)
+        out = `ruby "#{folder}/data/cw-clear.rb"`
+        puts "  #{out}" unless(quiet)
     end
 
-    folders.each do |folder|
-        puts "Processing #{folder}" unless(quiet)
-
-        if clear
-            puts("  clear") unless(quiet)
-            if File.exists?("#{folder}/data/delete.py")
-                out = `python3 #{folder}/data/delete.py`
-                puts out unless(quiet)
-            end
-
-            if File.exists?("#{folder}/data/clear.rb")
-                out = `ruby "#{folder}/data/clear.rb" #{folder}`
-                puts out unless(quiet)
-            end
-        end
+    if setup
+        out = `ruby "#{folder}/data/lc-setup.rb"`
+        puts "  #{out}" unless(quiet)
+        out = `ruby "#{folder}/data/cw-setup.rb"`
+        puts "  #{out}" unless(quiet)
     end
+
+
+    #puts folders
+
+    #folders.each do |folder|
+    #    puts "Processing #{folder}" unless(quiet)
+#
+#        if clear
+#            puts("  clear") unless(quiet)
+#            if File.exists?("#{folder}/data/delete.py")
+#                out = `python3 #{folder}/data/delete.py`
+#                puts out unless(quiet)
+#            end#
+#
+#            if File.exists?("#{folder}/data/clear.rb")
+#                out = `ruby "#{folder}/data/clear.rb" #{folder}`
+#                puts out unless(quiet)
+#            end
+#        end
+#    end
     
-    folders.each do |folder|
-        if setup
-            puts("  setup") unless(quiet)
+#    folders.each do |folder|
+#        if setup
+#            puts("  setup") unless(quiet)#
+#
+#            if File.exists?("#{folder}/data/load.py")
+#                out = `python3 #{folder}/data/load.py`
+#                puts out unless(quiet)
+#            end
+#
+#
+ #           if File.exists?("#{folder}/data/setup.rb")
+ #               out = `ruby "#{folder}/data/setup.rb" #{folder}`
+ #               puts out unless(quiet)
+ #           end
+ #       end
 
-            if File.exists?("#{folder}/data/load.py")
-                out = `python3 #{folder}/data/load.py`
-                puts out unless(quiet)
-            end
-
-
-            if File.exists?("#{folder}/data/setup.rb")
-                out = `ruby "#{folder}/data/setup.rb" #{folder}`
-                puts out unless(quiet)
-            end
-        end
-
-    end
+  #  end
 end
 
 def clear_data
@@ -81,6 +101,9 @@ end
 def reset_data
     execute(true, true, false, true)
 end
+
+puts __FILE__
+puts $0
 
 if __FILE__ == $0
     clear = false
