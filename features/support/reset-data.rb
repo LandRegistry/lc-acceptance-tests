@@ -28,11 +28,15 @@ def save()
 end
 
 def execute(clear, setup, save = false, quiet = false)
+    puts "execute"
+
     if File.directory?("/vagrant/apps")
         folders = Dir["/vagrant/apps/*"]
     else
         folders = Dir["/opt/landregistry/applications/*/source"]
     end
+
+    puts folders
 
     folders.each do |folder|
         puts "Processing #{folder}" unless(quiet)
@@ -81,6 +85,9 @@ end
 def reset_data
     execute(true, true, false, true)
 end
+
+puts __FILE__
+puts $0
 
 if __FILE__ == $0
     clear = false
