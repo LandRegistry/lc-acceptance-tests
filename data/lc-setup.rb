@@ -188,6 +188,9 @@ regn_dates = [
     '2016-02-28'
 ]
 
+cw_uri = URI(ENV['CASEWORK_API_URL'] || 'http://localhost:5006')
+cw_http = Net::HTTP.new(cw_uri.host, cw_uri.port)
+
 standard_data.length.times do |i|
     item = standard_data[i]
     date = regn_dates[i]
@@ -196,7 +199,27 @@ standard_data.length.times do |i|
     request.body = item
     request["Content-Type"] = "application/json"
     response = http.request(request)
+
+    data = JSON.parse(response.body)
+    puts data
+
     if response.code != "200"
         puts "banks-reg/registrations: #{response.code}"
+    end
+
+    if data.has_key?('new_registrations')
+        regs = data['new_registrations']
+    else
+        regs = data['priority_notices']
+    end
+
+    regs.each do |reg|
+        cw_req = Net::HTTP::Put.new("/registered_forms/#{reg['date']}/#{reg['number']}")
+        cw_req.body = '{"id": 1}'
+        cw_req["Content-Type"] = "application/json"
+        response = cw_http.request(cw_req)
+        if response.code != "200"
+            puts "cw-api/registered_forms: #{response.code}"
+        end
     end
 end
