@@ -195,10 +195,10 @@ end
 
 
 standard_data = [
-    { "type" => "WO(B) Amend", "images" => ["img53_1.tiff"] },
-    { "type" => "WO(B) Amend", "images" => ["img53_1.tiff"] },
-    { "type" => "WO(B) Amend", "images" => ["img53_1.tiff"] },
-    { "type" => "WO(B) Amend", "images" => ["img53_1.tiff"] },
+    { "type" => "WO(B)", "images" => ["img53_1.tiff"] },
+    { "type" => "WO(B)", "images" => ["img53_1.tiff"] },
+    { "type" => "WO(B)", "images" => ["img53_1.tiff"] },
+    { "type" => "WO(B)", "images" => ["img53_1.tiff"] },
     { "type" => "PA(B)", "images" => ["img53_1.tiff"] },
     { "type" => "PA(B)", "images" => ["img7_1.tiff"] },
     { "type" => "PA(B)", "images" => ["img8_1.tiff"] },
