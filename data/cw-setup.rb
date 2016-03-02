@@ -57,6 +57,7 @@ stock_data = '[' +
     '{"delivery_method": "Postal", "date": "2015-11-05 13:55:57", "work_type": "cancel_part", "application_type": "K11", "document_id": 65},' +
     '{"delivery_method": "Postal", "date": "2015-11-05 13:55:57", "work_type": "cancel_part", "application_type": "K11", "document_id": 65},' +
     '{"delivery_method": "Postal", "date": "2015-11-05 13:55:57", "work_type": "cancel_stored", "application_type": "K11", "document_id": 65},' +
+    '{"delivery_method": "Postal", "date": "2015-11-05 13:55:57", "work_type": "cancel", "application_type": "K13", "document_id": 66},' +
     '{"delivery_method": "Portal", "date": "2015-11-05 13:55:57", "work_type": "unknown", "application_type": "Unknown", "document_id": 65}' +
 ']'
 
@@ -264,6 +265,7 @@ standard_data = [
     { "type" => "K2", "images" => ["img_68_1.tiff"] },
     { "type" => "K3", "images" => ["img69_1.tiff"] },
     { "type" => "K4", "images" => ["img70_1.tiff"] },
+    { "type" => "K13", "images" => ["img71_1.tiff"] },
 ]
 
 folder = File.dirname(__FILE__)
