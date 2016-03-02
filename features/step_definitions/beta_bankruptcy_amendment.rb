@@ -62,18 +62,45 @@ Then(/^I am on the registration check screen$/) do
 end
 
 When(/^I am on the original bankruptcy details screen I can see the details are all completed$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  expect(page).to have_content('Original bankruptcy details')
+  #expect(page).to have_content('John Alan')
+  #expect(page).to have_content('Smithe')
+  fill_in('forenames_2', :with => 'John')
+  fill_in('surname_2', :with => 'Smythe') 
 end
 
 When(/^I click on the remove address the details are no longer visible$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  #expect(page).to have_content('2 new street')
+ # page.should have_content('2 new street')
+  
+  find(:id,'remove_address_0').click
+  
+  #page.should have_no_content('2 new street')
+  #expect(page).not_to have_content('2 new street')
+
 end
 
-
-When(/^I overtype a new with blanks and click continue an error message is displayed$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+When(/^I click the change details button on the check details screen$/) do
+  find(:id, 'change_debtor').click
 end
 
 When(/^I amend an AKA name the new details are visible$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  fill_in('forenames_3', :with => 'Barrington Boy')
+  fill_in('surname_3', :with => 'Scottie-Dottie')
+end
+
+When(/^I click add AKA  on amendments a new fields are displayed$/) do
+  find(:id, 'addname').click
+end
+
+
+When(/^I am returned to the confirm details screen I can then click continue$/) do
+  expect(page).to have_content('Particulars of court')
+  find(:id, 'continue').click
+end
+
+When(/^I click add AKA  on amendments a new fields are displayed and I can enter them$/) do
+   find(:id, 'addname').click
+  fill_in('forenames_3', :with => 'Barrington')
+  fill_in('surname_3', :with => 'Scottie-Dottie')
 end
