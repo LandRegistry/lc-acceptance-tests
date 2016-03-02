@@ -22,12 +22,12 @@ stock_data = '[' +
     '{"delivery_method": "Postal", "date": "2015-11-05 13:43:53", "work_type": "cancel", "application_type": "K11", "document_id": 37},' +
     '{"delivery_method": "Postal", "date": "2015-11-05 13:44:53", "work_type": "cancel", "application_type": "K11", "document_id": 39},' +
     '{"delivery_method": "Postal", "date": "2015-11-05 13:46:54", "work_type": "cancel", "application_type": "K11", "document_id": 41},' +
-    '{"delivery_method": "Fax", "date": "2015-11-05 13:41:54", "work_type": "bank_amend", "application_type": "WO(B)", "document_id": 44},' +
-    '{"delivery_method": "Postal", "date": "2015-11-05 13:43:54", "work_type": "bank_amend", "application_type": "WO(B)", "document_id": 47},' +
-    '{"delivery_method": "Postal", "date": "2015-11-05 13:42:55", "work_type": "bank_amend", "application_type": "WO(B)", "document_id": 50},' +
-    '{"delivery_method": "Postal", "date": "2015-11-05 13:47:55", "work_type": "bank_amend", "application_type": "WO(B)", "document_id": 53},' +
-    '{"delivery_method": "Postal", "date": "2015-11-05 13:45:56", "work_type": "bank_amend", "application_type": "WO(B)", "document_id": 56},' +
-    '{"delivery_method": "Postal", "date": "2015-11-05 13:48:56", "work_type": "bank_amend", "application_type": "WO(B)", "document_id": 59},' +
+    '{"delivery_method": "Fax", "date": "2015-11-05 13:41:54", "work_type": "bank_amend", "application_type": "WO(B) Amend", "document_id": 1},' +
+    '{"delivery_method": "Postal", "date": "2015-11-05 13:43:54", "work_type": "bank_amend", "application_type": "WO(B) Amend", "document_id": 1},' +
+    '{"delivery_method": "Postal", "date": "2015-11-05 13:42:55", "work_type": "bank_amend", "application_type": "WO(B) Amend", "document_id": 1},' +
+    '{"delivery_method": "Postal", "date": "2015-11-05 13:47:55", "work_type": "bank_amend", "application_type": "WO(B) Amend", "document_id": 1},' +
+    '{"delivery_method": "Postal", "date": "2015-11-05 13:45:56", "work_type": "bank_amend", "application_type": "WO(B) Amend", "document_id": 1},' +
+    '{"delivery_method": "Postal", "date": "2015-11-05 13:48:56", "work_type": "bank_amend", "application_type": "WO(B) Amend", "document_id": 1},' +
     '{"delivery_method": "Portal", "date": "2015-11-05 13:41:56", "work_type": "search_full", "application_type": "K15", "document_id": 60},' +
     '{"delivery_method": "Postal", "date": "2015-11-05 13:45:56", "work_type": "search_full", "application_type": "K15", "document_id": 61},' +
     '{"delivery_method": "Postal", "date": "2015-11-05 13:42:56", "work_type": "search_bank", "application_type": "K16", "document_id": 62},' +
@@ -195,11 +195,11 @@ end
 
 
 standard_data = [
-    { "type" => "PA(B)", "images" => ["img2_1.tiff"] },
-    { "type" => "PA(B)", "images" => ["img3_1.tiff"] },
-    { "type" => "PA(B)", "images" => ["img4_1.tiff"] },
-    { "type" => "PA(B)", "images" => ["img5_1.tiff"] },
-    { "type" => "PA(B)", "images" => ["img6_1.tiff"] },
+    { "type" => "WO(B) Amend", "images" => ["img53_1.tiff"] },
+    { "type" => "WO(B) Amend", "images" => ["img53_1.tiff"] },
+    { "type" => "WO(B) Amend", "images" => ["img53_1.tiff"] },
+    { "type" => "WO(B) Amend", "images" => ["img53_1.tiff"] },
+    { "type" => "PA(B)", "images" => ["img53_1.tiff"] },
     { "type" => "PA(B)", "images" => ["img7_1.tiff"] },
     { "type" => "PA(B)", "images" => ["img8_1.tiff"] },
     { "type" => "PA(B)", "images" => ["img9_1.tiff"] },
