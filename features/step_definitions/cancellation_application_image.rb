@@ -15,6 +15,10 @@ When(/^I select the first registration application$/) do
   find(:xpath,'//*[@id="row_1"]').click
 end
 
+When(/^I select a K13 registration application$/) do
+  find(:xpath, "//*[@id='row_7']/td[2]").click
+end
+
 When(/^I click on a thumbnail the image is expanded to large image$/) do 
   find(:id, 'thumbnail1').click
   find(:id, 'thumbnail2').click
