@@ -28,7 +28,6 @@ And I select an application type of PAB with a single image
 When I parse the new registration number as Original registration number
 Then I can retrieve the application details with valid data submitted
 
-
 Scenario: BUS-073 Cancel a new PAB Bankruptcy application
 Given I am on the bankruptcy registration screen
 And I select an application type of PAB with a single image
@@ -67,4 +66,9 @@ And I select an application type of PAB with a single image
 When I parse the new registration number as Original registration number
 Then I cannot retrieve the application details with Part Cancelation option selected
 And I will still be on the application retrieval page
+
+Scenario: BUS-073 API verification of cancelled registration 
+Given I am on the bankruptcy registration screen
+And I select an application type of PAB with a single image
+Then I can verify API output for a cancelled PAB application
 

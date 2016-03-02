@@ -1,3 +1,4 @@
+
 Given(/^I have selected to view a specific record on the cancellation application list the individual record is display$/) do
   @regnote = create_registration
   visit($FRONTEND_URI)
@@ -180,8 +181,8 @@ When(/^I attempt to resubmit a cancelled new application number$/) do
   visit( "#{$FRONTEND_URI}/get_list?appn=cancel" )
   find(:xpath,'//*[@id="row_1"]').click
   fill_in('reg_no', :with => results)
-  today = Date.today.strftime("%d/%m/%Y")
-  fill_in('reg_date', :with => today)
+  Today = Date.today.strftime("%d/%m/%Y")
+  fill_in('reg_date', :with => Today)
   find(:id, 'full_cans').click
   click_button('continue')
 end
@@ -191,9 +192,55 @@ expect(page).to have_content("Retrieve original")
 end
 
 Then(/^I can see successful cancellation registration number$/) do
-  results = page.find(:id, "conf_reg_numbers").text
    find(:xpath,'//*[@id="row_1"]').click
+   results = page.find(:id, "conf_reg_numbers").text
    fill_in('reg_no', :with => results)
 end
+
+Then(/^I can verify API output for a cancelled PAB application$/) do
+  fill_in('court', :with => 'Northants County Court')
+  fill_in('ref_no', :with => '911')
+  fill_in('ref_year', :with => '2013')
+  click_button('continue')
+  fill_in('forenames_1', :with => 'Johnny')
+  fill_in('surname_1', :with => 'Lee')
+  fill_in('occupation', :with => 'Dancer')
+  fill_in('add_1_line1', :with => '123 New Street')
+  fill_in('add_1_line2', :with => 'Middlebrook')
+  fill_in('add_1_line3', :with => 'Winchester')
+  fill_in('add_1_line4', :with => 'Hampshire')
+  fill_in('county_1', :with => 'Hants')
+  fill_in('postcode_1', :with => 'SO14 1AA')
+  click_button('continue')
+  fill_in('forename_1', :with => 'Johnny')
+  fill_in('surname_1', :with => 'Lee') 
+  fill_in('court_name', :with => 'Northants County Court')
+  click_button('continue')
+  fill_in('key_number', :with =>'1234567')
+  click_button('continue')
+  page.find(:id, "conf_reg_numbers").text
+  results = page.find(:id, "conf_reg_numbers").text
+  visit( "#{$FRONTEND_URI}/get_list?appn=cancel" )
+  find(:xpath,'//*[@id="row_1"]').click
+  fill_in('reg_no', :with => results)
+  Today = Date.today.strftime("%d/%m/%Y")
+  fill_in('reg_date', :with => Today)
+  find(:id, 'full_cans').click
+  click_button('continue')
+   thisday = Date.today.strftime("%Y-%m-%d")
+  @reg_api  = RestAPI.new($LAND_CHARGES_URI)
+  @pab_data = @reg_api.get("/registrations/#{thisday}/#{results}")
+  expect(@pab_data['revealed']).to eql true
+  expect(@pab_data['status']).to eql 'current'
+  expect(@pab_data['class_of_charge']).to eql 'PAB'
+end
+
+Then(/^I can match the cancellation data with the api API output$/) do
+  thisday = Date.today.strftime("%Y-%m-%d")
+  @reg_api  = RestAPI.new($LAND_CHARGES_URI)
+  @pab_data = @reg_api.get("/registrations/#{thisday}/#{results}")
+  expect(@pab_data['number']).to eql results
+end
+
 
 
