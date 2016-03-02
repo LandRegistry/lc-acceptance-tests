@@ -47,13 +47,6 @@ When(/^I enter debtors name the details are visible$/) do
     
 end
 
-When(/^I enter debtors name$/) do
-  expect(page).to have_content('Forename')
-  expect(page).to have_content('Surname')
-  fill_in('forenames_1', :with => 'John')
-  fill_in('surname_1', :with => 'Paddy') 
-end
-
 When(/^I enter occupation the details are visible$/) do
     fill_in('occupation', :with => 'singer')
 end
@@ -131,7 +124,7 @@ When(/^I am on the verification screen I can rekey court name$/) do
 end
 
 When(/^I can rekey court name on the verification screen$/) do
-  fill_in('court_name', :with => 'Northamptonshire County Court')
+  fill_in('court_name', :with => 'Derby County Court')
 end
 
 When(/^I am on the Court screen I can enter a valid key number$/) do
