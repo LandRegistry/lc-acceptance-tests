@@ -130,6 +130,13 @@ When(/^I can retrieve the application details with valid data submitted$/) do
   click_button('continue')
 end
 
+When(/^I cannot retrieve the application details with Part Cancelation option selected$/) do
+  today = Date.today.strftime("%d/%m/%Y")
+  fill_in('reg_date', :with => today)
+  find(:id, 'part_cans').click
+  click_button('continue')
+end
+
 Then(/^I can see Original registration details page$/) do
   expect(page).to have_content("Original registration details")
 end
