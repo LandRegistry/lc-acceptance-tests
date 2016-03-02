@@ -77,24 +77,6 @@ When I am on the Court screen I can enter a valid key number
 When I can click the complete bankruptcy button
 Then the susuccessfully completed Registration number is banner is displayed
 
-Scenario: #BUS-038 Database verification of bankruptcy search application
-Given I am on the bankruptcy registration screen
-When I select an application type of PAB with a single image
-When I can enter court name
-When I can enter court reference details
-When I can enter case year
-When I can click on Continue button to submit the form
-When I enter debtors name
-When I enter occupation the details are visible
-When I enter the address the details are visible
-When I can click on Continue button to submit the form
-When I can rekey debtor's name on the verification screen
-When I can rekey court name on the verification screen
-When I can click on Continue button to submit the form
-When I am on the Court screen I can enter a valid key number
-When I can click the complete bankruptcy button
-And the susuccessfully completed Registration number is banner is displayed
-
 Scenario: BUS-038 Confirm Bankruptcy registration number
 Given I am on the bankruptcy registration screen
 When I select an application type of PAB with a single image
