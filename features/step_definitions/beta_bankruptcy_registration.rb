@@ -12,7 +12,6 @@ When(/^I select an application type of PAB with a single image$/) do
   find(:id, "row_1").click
 end
 
-
 When(/^I select an application type of WOB with a single image$/) do
   within(:xpath, ".//*[@id='row_4']/td[2]") do
   page.should have_content('WOB')
