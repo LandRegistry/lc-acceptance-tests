@@ -31,3 +31,17 @@ When I am returned to the confirm details screen I can then click continue
 When I am on the Court screen I can enter a valid key number
 When I can click the complete bankruptcy button
 Then the susuccessfully completed Registration number is banner is displayed
+
+Scenario: Amendments API verification
+Given I am on the bankruptcy amendments screen
+When I select an application type of WOB with a single image to amend
+When I enter a PAB reference number for the amendment
+And I enter date for the PAB amendment
+When I can click on Continue button to submit the form
+And I amend the registration record
+And I can click on Continue button to submit the form
+And I can click on Continue button to submit the form
+#Need to discuss smart way to test next line due to a potential defect
+#Then I can submit amended form and verify the new api updates for the amendment
+
+
