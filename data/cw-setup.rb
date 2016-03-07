@@ -58,7 +58,13 @@ stock_data = '[' +
     '{"delivery_method": "Postal", "date": "2015-11-05 13:55:57", "work_type": "cancel_part", "application_type": "K11", "document_id": 65},' +
     '{"delivery_method": "Postal", "date": "2015-11-05 13:55:57", "work_type": "cancel_stored", "application_type": "K11", "document_id": 65},' +
     '{"delivery_method": "Postal", "date": "2015-11-05 13:55:57", "work_type": "cancel", "application_type": "K13", "document_id": 66},' +
-    '{"delivery_method": "Portal", "date": "2015-11-05 13:55:57", "work_type": "unknown", "application_type": "Unknown", "document_id": 65}' +
+    '{"delivery_method": "Postal", "date": "2016-03-07 06:34:49", "work_type": "unknown", "application_type": "Unknown", "document_id": 33},' +
+    '{"delivery_method": "Postal", "date": "2016-03-07 16:16:16", "work_type": "unknown", "application_type": "Unknown", "document_id": 62},' +
+    '{"delivery_method": "Postal", "date": "2016-03-07 15:15:15", "work_type": "unknown", "application_type": "Unknown", "document_id": 63},' +
+    '{"delivery_method": "Postal", "date": "2016-03-07 06:06:06", "work_type": "unknown", "application_type": "Unknown", "document_id": 64},' +
+    '{"delivery_method": "Postal", "date": "2016-03-07 09:09:09", "work_type": "unknown", "application_type": "Unknown", "document_id": 41},' +
+    '{"delivery_method": "Postal", "date": "2016-03-07 01:01:01", "work_type": "unknown", "application_type": "Unknown", "document_id": 66},' +
+    '{"delivery_method": "Portal", "date": "2015-11-05 22:22:22", "work_type": "unknown", "application_type": "Unknown", "document_id": 67}' +
 ']'
 
 request = Net::HTTP::Put.new('/applications')
