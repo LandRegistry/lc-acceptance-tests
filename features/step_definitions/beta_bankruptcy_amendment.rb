@@ -147,7 +147,7 @@ end
 Then(/^I can verify api output for a newly amended PAB registration$/) do
   fill_in('court', :with => 'Mango County Court')
   fill_in('ref_no', :with => '932')
-  fill_in('ref_year', :with => '2016')
+  #fill_in('ref_year', :with => '2016')
   click_button('continue')
   fill_in('forenames_1', :with => 'Johnny')
   fill_in('surname_1', :with => 'Depp')

@@ -29,7 +29,7 @@ When I click the change details button on the check details screen
 When I can click on Continue button to submit the form
 When I am returned to the confirm details screen I can then click continue
 When I am on the Court screen I can enter a valid key number
-When I can click the complete bankruptcy button
+When I can click button to continue
 Then the susuccessfully completed Registration number is banner is displayed
 
 Scenario: Amendments API verification

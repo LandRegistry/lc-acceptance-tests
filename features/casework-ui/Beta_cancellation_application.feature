@@ -72,3 +72,9 @@ Given I am on the bankruptcy registration screen
 And I select an application type of PAB with a single image
 Then I can verify API output for a cancelled PAB application
 
+
+Scenario: BUS-086  Do not proceed with part cancellation unless C4 or D2 option is selected 
+Given I launch Application Cancellation page
+When I select the first registration application
+And I select part cancellation option
+Then I can click button to continue

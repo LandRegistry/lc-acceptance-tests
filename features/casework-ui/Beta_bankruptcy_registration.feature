@@ -25,7 +25,6 @@ Given I am on the bankruptcy registration screen
 When I select an application type of PAB with a single image
 When I enter court name the details are visible
 When I enter court reference the details are visible
-When I enter case year the details are visible
 Then I can click on Continue button to submit the form
 
 Scenario: #BUS-132 #BUS-131 Input particulars of debtor
@@ -33,7 +32,6 @@ Given I am on the bankruptcy registration screen
 When I select an application type of PAB with a single image
 When I enter court name the details are visible
 When I enter court reference the details are visible
-When I enter case year the details are visible
 When I can click on Continue button to submit the form
 When I can confirm that I am on the debtors details screen 
 When I enter debtors name the details are visible
@@ -46,18 +44,18 @@ When I click to add additional address new fields are visible
 And can be completed
 Then I can click on Continue button to submit the form
 
+#EA: Step 4 of this test is no longer valid. Step commented out
 Scenario: Return registered names
 Given I am on the bankruptcy registration screen
 When I select an application type of PAB with a single image
 When I enter the specific court details
-Then the registered names are displayed on the screen
+#Then the registered names are displayed on the screen
 
 Scenario: #BUS-139 #BUS-130 #BUS-038 #BUS-053 Verify mandatory two stage name re-entry when completing a bankruptcy registration application 
 Given I am on the bankruptcy registration screen
 When I select an application type of PAB with a single image
 When I enter court name the details are visible
 When I enter court reference the details are visible
-When I enter case year the details are visible
 When I can click on Continue button to submit the form
 When I can confirm that I am on the debtors details screen 
 When I enter debtors name the details are visible
@@ -74,7 +72,7 @@ When I am on the verification screen I can rekey court name
 When I am on the verification screen I can view reference numbers
 When I can click on Continue button to submit the form
 When I am on the Court screen I can enter a valid key number
-When I can click the complete bankruptcy button
+When I can click button to continue
 Then the susuccessfully completed Registration number is banner is displayed
 
 Scenario: BUS-038 Confirm Bankruptcy registration number
