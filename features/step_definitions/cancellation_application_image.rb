@@ -158,7 +158,7 @@ end
 When(/^I attempt to resubmit a cancelled new application number$/) do
   fill_in('court', :with => 'Northants County Court')
   fill_in('ref_no', :with => '911')
-  fill_in('ref_year', :with => '2013')
+  #fill_in('ref_year', :with => '2013')
   click_button('continue')
   fill_in('forenames_1', :with => 'Johnny')
   fill_in('surname_1', :with => 'Lee')
@@ -200,7 +200,7 @@ end
 Then(/^I can verify API output for a cancelled PAB application$/) do
   fill_in('court', :with => 'Northants County Court')
   fill_in('ref_no', :with => '911')
-  fill_in('ref_year', :with => '2013')
+  #fill_in('ref_year', :with => '2013')
   click_button('continue')
   fill_in('forenames_1', :with => 'Johnny')
   fill_in('surname_1', :with => 'Lee')
@@ -242,5 +242,7 @@ Then(/^I can match the cancellation data with the api API output$/) do
   expect(@pab_data['number']).to eql results
 end
 
-
+When(/^I select part cancellation option$/) do
+  find(:id, 'part_cans').click
+end
 

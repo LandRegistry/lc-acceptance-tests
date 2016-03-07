@@ -110,7 +110,7 @@ end
 
 When(/^I am on the verification screen I can view reference numbers$/) do
   expect(page).to have_content('384')
-  expect(page).to have_content('2013')
+  #expect(page).to have_content('2013')
 end
 
 When(/^I am on the verification screen I can rekey debtor's AKA name$/) do
@@ -132,14 +132,14 @@ When(/^I am on the Court screen I can enter a valid key number$/) do
 end
 
 
-When(/^I can click the complete bankruptcy button$/) do
+When(/^I can click button to continue$/) do
   click_button('continue')
 end
 
 When(/^I enter the specific court details$/) do
    fill_in('court', :with => 'Plympton County Court')
    fill_in('ref_no', :with => '111')
-   fill_in('ref_year', :with => '2016')
+   #fill_in('ref_year', :with => '2016')
    click_button('continue')
 end
 
@@ -151,7 +151,7 @@ end
 When(/^I can confirm successful submission of details for a bankruptcy application$/) do
   fill_in('court', :with => 'Northants County Court')
   fill_in('ref_no', :with => '911')
-  fill_in('ref_year', :with => '2013')
+  #fill_in('ref_year', :with => '2013')
   click_button('continue')
   fill_in('forenames_1', :with => 'Johnny')
   fill_in('surname_1', :with => 'Lee')
@@ -175,7 +175,7 @@ end
 When(/^I parse the new registration number as Original registration number$/) do
   fill_in('court', :with => 'Northants County Court')
   fill_in('ref_no', :with => '911')
-  fill_in('ref_year', :with => '2013')
+  #fill_in('ref_year', :with => '2013')
   click_button('continue')
   fill_in('forenames_1', :with => 'Johnny')
   fill_in('surname_1', :with => 'Lee')
