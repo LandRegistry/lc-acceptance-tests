@@ -5,7 +5,7 @@ uri = URI(ENV['LAND_CHARGES_URL'] || 'http://localhost:5004')
 http = Net::HTTP.new(uri.host, uri.port)
 
 folder = File.dirname(__FILE__)
-puts `ruby #{folder}/lc-lookups.rb 2>&1`
+puts `ruby "#{folder}/lc-lookups.rb" 2>&1`
 
 
 standard_data = [
