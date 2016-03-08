@@ -123,6 +123,7 @@ request["Content-Type"] = "application/json"
 response = http.request(request)
 if response.code != "200"
     puts "banks-reg/counties: #{response.code}"
+    puts response.body
 end
 puts ">> Inserted Counties"
 
@@ -155,5 +156,6 @@ request["Content-Type"] = "application/json"
 response = http.request(request)
 if response.code != "200"
     puts "land-charges/area_variants: #{response.code}"
+    puts response.body
 end
 puts ">> Inserted Area Variants"

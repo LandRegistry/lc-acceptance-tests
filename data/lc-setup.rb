@@ -5,13 +5,8 @@ uri = URI(ENV['LAND_CHARGES_URL'] || 'http://localhost:5004')
 http = Net::HTTP.new(uri.host, uri.port)
 
 folder = File.dirname(__FILE__)
-puts `ruby #{folder}/lc-lookups.rb`
+puts `ruby #{folder}/lc-lookups.rb 2>&1`
 
-
-
-select = `psql landcharges -c "select * from county;" 2>&1`
-puts "SQL Result"
-puts select
 
 standard_data = [
     '{"applicant": {"address": "[INS PLACEHOLDER HERE! FIXME]", "name": "[INS PLACEHOLDER HERE! FIXME]", "reference": "APP01", "key_number": "1234567"}, "parties": [{"case_reference": "[WHAT GOES HERE] FIXME!", "trading_name": "", "residence_withheld": false, "date_of_birth": "1980-01-01", "names": [{"private": {"forenames": ["Bob", "Oscar", "Francis"], "surname": "Howard"}, "type": "Private Individual"}], "occupation": "Civil Servant", "addresses": [{"address_lines": ["1 The Street", "The Town"], "county": "The County", "postcode": "AA1 1AA", "type": "Residence"}], "type": "Debtor"}], "class_of_charge": "PAB"}',
@@ -68,6 +63,7 @@ standard_data.length.times do |i|
         puts "banks-reg/registrations: #{response.code}"
         puts "Data was:"
         puts item
+        puts response.body
     end
 
     regs.each do |reg|
@@ -77,6 +73,7 @@ standard_data.length.times do |i|
         response = cw_http.request(cw_req)
         if response.code != "200"
             puts "cw-api/registered_forms: #{response.code}"
+            puts response.body
         end
     end
 end
