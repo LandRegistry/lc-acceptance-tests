@@ -7,6 +7,12 @@ http = Net::HTTP.new(uri.host, uri.port)
 folder = File.dirname(__FILE__)
 puts `ruby #{folder}/lc-lookups.rb`
 
+
+
+select = `psql landcharges -c "select * from county;" 2>&1`
+puts "SQL Result"
+puts select
+
 standard_data = [
     '{"applicant": {"address": "[INS PLACEHOLDER HERE! FIXME]", "name": "[INS PLACEHOLDER HERE! FIXME]", "reference": "APP01", "key_number": "1234567"}, "parties": [{"case_reference": "[WHAT GOES HERE] FIXME!", "trading_name": "", "residence_withheld": false, "date_of_birth": "1980-01-01", "names": [{"private": {"forenames": ["Bob", "Oscar", "Francis"], "surname": "Howard"}, "type": "Private Individual"}], "occupation": "Civil Servant", "addresses": [{"address_lines": ["1 The Street", "The Town"], "county": "The County", "postcode": "AA1 1AA", "type": "Residence"}], "type": "Debtor"}], "class_of_charge": "PAB"}',
     '{"applicant": {"address": "[INS PLACEHOLDER HERE! FIXME]", "name": "[INS PLACEHOLDER HERE! FIXME]", "reference": "APP02", "key_number": "1234567"}, "parties": [{"case_reference": "[WHAT GOES HERE] FIXME!", "trading_name": "", "residence_withheld": false, "date_of_birth": "1980-01-01", "names": [{"private": {"forenames": ["Alphonso", "Alice"], "surname": "Schmidt"}, "type": "Private Individual"}, {"private": {"forenames": ["Bert"], "surname": "Smith"}, "type": "Private Individual"}], "occupation": "Civil Servant", "addresses": [{"address_lines": ["1 The Street", "The Locality", "The Town"], "county": "The County", "postcode": "AA1 1AA", "type": "Residence"}], "type": "Debtor"}], "class_of_charge": "PAB"}',
@@ -19,7 +25,7 @@ standard_data = [
     '{"priority_notice": {"expires": "2100-01-01"}, "particulars": {"description": "EXPIRE 2100s.2 1 The Street, Some Town", "counties": ["Dorset"], "district": "South Hams"}, "class_of_charge": "C1", "applicant": {"address": "Land Registry Information Systems, 2 William Prance Road, Plymouth", "key_number": "244095", "name": "P334 Team", "reference": "reference 11"}, "parties": [{"type": "Estate Owner", "names": [{"type": "Private Individual", "private": {"surname": "Expires", "forenames": ["Test", "Notice"]}}]}]}',
     '{"applicant": {"name": "Waste of space", "address": "2 New Street, My Town", "key_number": "1234567", "reference": " "}, "parties":[{"names": [{"type": "Private Individual", "private": {"forenames": ["John"], "surname": "Smith" }}, {"type": "Private Individual", "private": {"forenames": ["John", "Alan"], "surname": "Smithe"}}], "trading_name": " ", "addresses": [{"county": "Devon", "address_lines": ["2 new street", "Plymouth"], "postcode": "PL3 3PL", "type": "Residence", "address_string": "2 new street Plymouth Devon PL3 3PL"}, {"county": "Dorset", "address_lines": ["3 apple Street", "plymouth", "a third line", "a fourth line", "a five line"], "postcode": "postcode", "type": "Residence", "address_string": "3 apple Street plymouth a third line a fourth line a five line Cornwall postcode"}], "occupation": "", "type": "Debtor", "residence_withheld": false, "case_reference": "Plympton County Court 111 of 2016", "legal_body": "Plympton County Court", "legal_body_ref_no": "111 of 2016", "legal_body_ref_year": 2016, "counties": ["Devon", "Dorset"]}], "class_of_charge": "PAB"}',
     '{"particulars": {"description": "EXPIRE 2100s.2 1 The Street, Some Town", "counties": ["Dorset"], "district": "South Hams"}, "class_of_charge": "C1", "applicant": {"address": "Land Registry Information Systems, 2 William Prance Road, Plymouth", "key_number": "244095", "name": "P334 Team", "reference": "reference 11"}, "parties": [{"type": "Estate Owner", "names": [{"type": "Other", "other": "Bob Smith And Bros Associated"}]}]}',
-     '{"applicant": {"name": "Waste of space", "address": "2 New Street, My Town", "key_number": "1234567", "reference": " "}, "parties":[{"names": [{"type": "Private Individual", "private": {"forenames": ["John"], "surname": "Smith" }}, {"type": "Private Individual", "private": {"forenames": ["John", "Alan"], "surname": "Smithe"}}], "trading_name": " ", "addresses": [{"county": "Devon", "address_lines": ["2 new street", "Plymouth"], "postcode": "PL3 3PL", "type": "Residence", "address_string": "2 new street Plymouth Devon PL3 3PL"}, {"county": "Dorset", "address_lines": ["3 apple Street", "plymouth", "a third line", "a fourth line", "a five line"], "postcode": "postcode", "type": "Residence", "address_string": "3 apple Street plymouth a third line a fourth line a five line Cornwall postcode"}], "occupation": "", "type": "Debtor", "residence_withheld": false, "case_reference": "Plympton County Court 111 of 2016", "legal_body": "Plympton County Court", "legal_body_ref_no": "111 of 2016", "legal_body_ref_year": 2016, "counties": ["Devon", "Dorset"]}], "class_of_charge": "WOB"}'
+    '{"applicant": {"name": "Waste of space", "address": "2 New Street, My Town", "key_number": "1234567", "reference": " "}, "parties":[{"names": [{"type": "Private Individual", "private": {"forenames": ["John"], "surname": "Smith" }}, {"type": "Private Individual", "private": {"forenames": ["John", "Alan"], "surname": "Smithe"}}], "trading_name": " ", "addresses": [{"county": "Devon", "address_lines": ["2 new street", "Plymouth"], "postcode": "PL3 3PL", "type": "Residence", "address_string": "2 new street Plymouth Devon PL3 3PL"}, {"county": "Dorset", "address_lines": ["3 apple Street", "plymouth", "a third line", "a fourth line", "a five line"], "postcode": "postcode", "type": "Residence", "address_string": "3 apple Street plymouth a third line a fourth line a five line Cornwall postcode"}], "occupation": "", "type": "Debtor", "residence_withheld": false, "case_reference": "Plympton County Court 111 of 2016", "legal_body": "Plympton County Court", "legal_body_ref_no": "111 of 2016", "legal_body_ref_year": 2016, "counties": ["Devon", "Dorset"]}], "class_of_charge": "WOB"}'
 ]
 
 regn_dates = [
@@ -52,14 +58,16 @@ standard_data.length.times do |i|
     data = JSON.parse(response.body)
     puts data
 
-    if response.code != "200"
-        puts "banks-reg/registrations: #{response.code}"
-    end
-
     if data.has_key?('new_registrations')
         regs = data['new_registrations']
     else
         regs = data['priority_notices']
+    end
+
+    if response.code != "200"
+        puts "banks-reg/registrations: #{response.code}"
+        puts "Data was:"
+        puts item
     end
 
     regs.each do |reg|

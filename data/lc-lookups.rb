@@ -124,6 +124,7 @@ response = http.request(request)
 if response.code != "200"
     puts "banks-reg/counties: #{response.code}"
 end
+puts ">> Inserted Counties"
 
 folder = File.dirname(__FILE__)
 county_data = File.readlines("#{folder}/counties.csv")
@@ -146,6 +147,8 @@ county_data.each do |line|
     data.push(item)
 end
 
+
+
 request = Net::HTTP::Put.new('/area_variants')
 request.body = JSON.dump(data)
 request["Content-Type"] = "application/json"
@@ -153,3 +156,4 @@ response = http.request(request)
 if response.code != "200"
     puts "land-charges/area_variants: #{response.code}"
 end
+puts ">> Inserted Area Variants"
