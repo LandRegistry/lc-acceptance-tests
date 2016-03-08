@@ -3,7 +3,6 @@ Given(/^I am on the bankruptcy correction screen$/) do
   maximise_browser
 end
 
-
 When(/^I submit data to retrieve the registration details$/) do
   fill_in('court', :with => 'Northants County Court')
   fill_in('ref_no', :with => '911')
@@ -35,12 +34,10 @@ When(/^I submit data to retrieve the registration details$/) do
   click_button('continue')
 end
 
-When(/^the correction data$/) do
-  pending # Write code here that turns the phrase above into concrete actions
-end
 
 Then(/^I can validate data returned on Orginal bankruptcy details page$/) do
   expect(page).to have_content('Bankruptcy details')
+  expect(page).to have_content('Please view application in Image Retrieval if required')
   expect(page).to have_field('forenames_1', :with => 'Johnny')
   expect(page).to have_field('surname_1', :with => 'Lee')
   expect(page).to have_field('add_1_line1', :with => '123 New Street')
@@ -49,23 +46,6 @@ Then(/^I can validate data returned on Orginal bankruptcy details page$/) do
   thisyear = Date.today.year 
   expect(page).to have_field('ref_year', :with => '')
 end
-
-When(/^I can add address details on Original bankruptcy details page$/) do
-  fill_in('forenames_1', :with => 'Johnny')
-  fill_in('surname_1', :with => 'Lee')
-  fill_in('occupation', :with => 'Dancer')
-  fill_in('add_1_line1', :with => '123 New Street')
-  fill_in('add_1_line2', :with => 'Middlebrook')
-  fill_in('add_1_line3', :with => 'Winchester')
-  fill_in('add_1_line4', :with => 'Hampshire')
-  fill_in('add_1_line5', :with => 'Hampshire')
-  fill_in('county_1', :with => 'Hants')
-  fill_in('postcode_1', :with => 'SO14 1AA')
-  fill_in('court', :with => '')
-  fill_in('ref_no', :with => '')
-  fill_in('ref_year', :with => '')
-end
-
 
 When(/^I can amend relevant details on Original bankruptcy details page$/) do
   fill_in('forenames_1', :with => 'Peter')
@@ -81,7 +61,7 @@ When(/^I can amend relevant details on Original bankruptcy details page$/) do
   fill_in('ref_year', :with => thisyear)
 end
 
-Then(/^I can verify K22 option is selected by default$/) do
+Then(/^I can verify K22 option is selected by default on Check details page/) do
   expect(find_field("generate_K22_no")).to be_checked
 end
 
