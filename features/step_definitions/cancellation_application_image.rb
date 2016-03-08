@@ -147,11 +147,13 @@ Then(/^I can see Original registration details page$/) do
 end
 
 Then(/^I can submit conveyancer details$/) do
-  #fill_in('key_number', :with =>'1234567')
-  #fill_in('customer_ref', :with => '911')
-  #choose('pre_paid')
+  fill_in('key_number', :with =>'1234567')
+  find(:id, 'full_cans').click
+  fill_in('customer_ref', :with => '911')
+  find(:id, 'direct_debit').click
   click_button('continue')
-#results = page.find(:id, "conf_reg_numbers").text
+  #results = page.find(:id, "conf_reg_numbers").text
+  #puts(results)
    #fill_in('reg_no', :with => results)
 end
 
@@ -220,6 +222,12 @@ Then(/^I can verify API output for a cancelled PAB application$/) do
   click_button('continue')
   page.find(:id, "conf_reg_numbers").text
   results = page.find(:id, "conf_reg_numbers").text
+  thisday = Date.today.strftime("%Y-%m-%d")
+  @reg_api  = RestAPI.new($LAND_CHARGES_URI)
+  @pab_data = @reg_api.get("/registrations/#{thisday}/#{results}")
+  expect(@pab_data['revealed']).to eql true
+  expect(@pab_data['status']).to eql 'current'
+  expect(@pab_data['class_of_charge']).to eql 'PAB'
   visit( "#{$FRONTEND_URI}/get_list?appn=cancel" )
   find(:xpath,'//*[@id="row_1"]').click
   fill_in('reg_no', :with => results)
@@ -227,12 +235,22 @@ Then(/^I can verify API output for a cancelled PAB application$/) do
   fill_in('reg_date', :with => Today)
   find(:id, 'full_cans').click
   click_button('continue')
-   thisday = Date.today.strftime("%Y-%m-%d")
+  opage = "Original registration details"
+  if ('//*[@id="form_panel"]/h2' == opage)
+    click_button('continue')
+    fill_in('key_number', :with =>'1234567')
+    find(:id, 'full_cans').click
+    find(:id, 'direct_debit').click
+    fill_in('customer_ref', :with => '911')
+  click_button('continue')
+  page.find(:id, "conf_reg_numbers").text
+  newresults = page.find(:id, "conf_reg_numbers").text
   @reg_api  = RestAPI.new($LAND_CHARGES_URI)
-  @pab_data = @reg_api.get("/registrations/#{thisday}/#{results}")
+  @pab_data = @reg_api.get("/registrations/#{thisday}/#{newresults}")
   expect(@pab_data['revealed']).to eql true
-  expect(@pab_data['status']).to eql 'current'
+  expect(@pab_data['status']).to eql 'superseded'
   expect(@pab_data['class_of_charge']).to eql 'PAB'
+  end
 end
 
 Then(/^I can match the cancellation data with the api API output$/) do
@@ -246,3 +264,18 @@ When(/^I select part cancellation option$/) do
   find(:id, 'part_cans').click
 end
 
+When(/^I choose the C4 cancellation option$/) do 
+  pending #ensure D2 is deselected
+end
+
+When(/^I choose the D2 cancellation option$/) do 
+  pending 
+end
+
+Then(/^I can enter additional information$/) do
+  pending 
+end
+
+Then(/^I can attach a file$/) do
+  pending 
+end

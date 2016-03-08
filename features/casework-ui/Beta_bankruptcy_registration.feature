@@ -20,7 +20,7 @@ When I select an application type of WOB with a single image
 #When I am on a Large image I can zoom in
 #Then I am on a Large image I can zoom out
 
-Scenario: #BUS-046 #BUS-043 #BUS-042 #BUS-132 #BUS-131 Input bankruptcy registration deatils
+Scenario: #BUS-046 #BUS-043 #BUS-042 #BUS-132 #BUS-131 Input bankruptcy registration details
 Given I am on the bankruptcy registration screen
 When I select an application type of PAB with a single image
 When I enter court name the details are visible

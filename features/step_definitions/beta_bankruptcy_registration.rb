@@ -140,7 +140,7 @@ When(/^I enter the specific court details$/) do
    fill_in('court', :with => 'Plympton County Court')
    fill_in('ref_no', :with => '111')
    #fill_in('ref_year', :with => '2016')
-   click_button('continue')
+   click_button('continue') 
 end
 
 Then(/^the registered names are displayed on the screen$/) do
