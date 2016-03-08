@@ -61,6 +61,15 @@ When(/^I can amend relevant details on Original bankruptcy details page$/) do
   fill_in('ref_year', :with => thisyear)
 end
 
+When(/^I validate details submitted on Check details page$/) do
+   within '#court' do
+    page.should have_content 'Orange County Court'
+  end
+  within '#court_no' do
+    page.should have_content '999'
+  end
+end
+
 Then(/^I can verify K22 option is selected by default on Check details page/) do
   expect(find_field("generate_K22_no")).to be_checked
 end
