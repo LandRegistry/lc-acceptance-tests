@@ -1,6 +1,6 @@
 @lcc
 
-feature: internal functions corrections
+Feature: internal functions corrections
 
 As a land charges caseworker 
 I want to be able to make corrections
