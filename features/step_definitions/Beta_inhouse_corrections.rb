@@ -95,5 +95,5 @@ Then(/^I can click on Complete button$/) do
 end
 
 Then(/^I can confirm the correction was successful$/) do
-  pending #expect(page).to have_content('Your application has been successfully corrected!')
+  expect(page).to have_content('Your application has been successfully corrected!')
 end

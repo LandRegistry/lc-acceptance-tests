@@ -15,6 +15,7 @@ And I can amend relevant details on Original bankruptcy details page
 And I can click button to continue
 And I can verify K22 option is selected by default
 Then I can click on Complete button
+#EA: Next line is expected to fail unless the actual is corrected display: Your application has been successfully corrected!
 And I can confirm the correction was successful
 
 Scenario: Submit a bankruptcy registration record with K22 suppressed
@@ -26,6 +27,7 @@ And I can amend relevant details on Original bankruptcy details page
 And I can click button to continue
 And I can choose option to suppress K22
 Then I can click on Complete button
+#EA: Next line is expected to fail unless the actual is corrected display: Your application has been successfully corrected!
 And I can confirm the correction was successful
 
 Scenario: Submit a bankruptcy registration record without any correction 
@@ -37,6 +39,7 @@ And I can click button to continue
 And I enter case year the details are visible
 And I can click button to continue
 Then I can click on Complete button
+#EA: Next line is expected to fail unless the actual is corrected display: Your application has been successfully corrected!
 And I can confirm the correction was successful
 
 
