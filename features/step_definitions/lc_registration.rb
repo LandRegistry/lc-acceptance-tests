@@ -157,7 +157,8 @@ When(/^I submit a type (\d+) rectifcation to the charge$/) do |t|
   date = @registration['new_registrations'][0]['date']
   regno = @registration['new_registrations'][0]['number']
   uri = "/registrations/#{date}/#{regno}"
-  @rectified = JSON.parse(@registration_api.put(uri, data))
+  resp = @registration_api.put(uri, data)
+  @rectified = resp
 end
 
 Then(/^the response contains the new registration numbers as well as the old$/) do
@@ -168,6 +169,7 @@ Then(/^the response contains the new registration numbers as well as the old$/) 
 end
 
 Then(/^the old registration is no longer revealed$/) do
+    puts @rectified
   date = @rectified['amended_registrations'][0]['date']
   regno = @rectified['amended_registrations'][0]['number']
   uri = "/registrations/#{date}/#{regno}"
