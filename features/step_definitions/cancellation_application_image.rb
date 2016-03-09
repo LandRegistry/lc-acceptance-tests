@@ -148,13 +148,10 @@ end
 
 Then(/^I can submit conveyancer details$/) do
   fill_in('key_number', :with =>'1234567')
-  find(:id, 'full_cans').click
   fill_in('customer_ref', :with => '911')
+  find(:id, 'full_cans').click
   find(:id, 'direct_debit').click
   click_button('continue')
-  #results = page.find(:id, "conf_reg_numbers").text
-  #puts(results)
-   #fill_in('reg_no', :with => results)
 end
 
 When(/^I attempt to resubmit a cancelled new application number$/) do

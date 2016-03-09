@@ -1,4 +1,4 @@
-@lcrn
+@Beta @lcrn
 
 Feature: Land charge renewals
 
