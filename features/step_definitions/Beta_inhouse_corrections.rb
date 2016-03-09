@@ -86,3 +86,7 @@ end
 Then(/^I can confirm the correction was successful$/) do
   expect(page).to have_content('Your application has been successfully corrected!')
 end
+
+Then(/^I can confirm the correction was successful$/) do
+  expect(page).to have_content('Your application has been successfully corrected!')
+end

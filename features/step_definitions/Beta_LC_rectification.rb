@@ -1,4 +1,5 @@
 
+
 Given(/^I am on the rectification screen$/) do
   maximise_browser
   visit( "#{$FRONTEND_URI}/get_list?appn=lc_rect" )
@@ -10,10 +11,62 @@ Given(/^I am on the rectification screen$/) do
   find(:id, "row_1").click
 end
 
+Given(/^I count number of forms available on Land Charge rectification screen$/) do
+  maximise_browser
+  visit( "#{$FRONTEND_URI}/get_list?appn=lc_rect" )
+end
+
+When(/^I can reclassify the form to a PAB Registration type$/) do
+  within(:xpath, ".//*[@id='row_1']/td[2]") do
+  page.should have_content('K9')
+  end
+  rwcount = all('#work-list').count
+  find(:id, "row_1").click
+  within('#wrong_form') do
+  click_link 'Choose the correct form type'
+  end
+  choose('pab_regn')
+  find_button('continue').click
+  visit( "#{$FRONTEND_URI}/get_list?appn=lc_rect" )
+  page.all('#work-list').count.should < rwcount
+end
+
+Then(/^I can restore the reclassified PAB form back to a K9 Rectification form$/) do
+  visit( "#{$FRONTEND_URI}/get_list?appn=lc_regn" )
+  rwcount = all('#work-list').count
+  find(:id, "row_1").click
+  within('#wrong_form') do
+  click_link 'Choose the correct form type'
+  end
+  choose('k9')
+  find_button('continue').click
+  visit( "#{$FRONTEND_URI}/get_list?appn=lc_rect" )
+  page.all('#work-list').count.should eq rwcount
+end
+
+When(/^I return to LR Rectification screen$/) do
+  fill_in('reg_no',:with =>'1003')
+end
+
 When(/^I supply the registration number$/) do
   fill_in('reg_no',:with =>'1003')
 end
 
+When(/^I select the Wrong form link$/) do
+  within('#wrong_form') do
+  click_link 'Choose the correct form type'
+  end
+end
+
+When(/^I choose PAB registration form type$/) do
+ choose('pab_regn')
+end
+
+When(/^I move the form$/) do
+ choose('pab_regn')
+end
+  
+  
 When(/^the date of registration$/) do
   fill_in('reg_date', :with =>'01/08/2014')
   find_field('reg_date').value.should eq '01/08/2014'
