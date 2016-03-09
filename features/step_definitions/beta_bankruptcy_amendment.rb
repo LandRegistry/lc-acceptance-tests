@@ -27,7 +27,7 @@ When(/^I enter the WOB reference number the details are visible$/) do
 end
 
 When(/^I enter a PAB reference number for the amendment$/) do
-  fill_in('pab_ref', :with => '1002')
+  fill_in('pab_ref', :with => '1003')
 end
 
 When(/^the wob date is visible$/) do
@@ -35,7 +35,7 @@ When(/^the wob date is visible$/) do
 end
 
 
-When(/^I retrieve a PAB reference number the details are visible$/) do
+When(/^I enter the PAB reference number the details are visible$/) do
   fill_in('pab_ref', :with => '1001')
 end
 

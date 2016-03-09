@@ -11,7 +11,7 @@ Given(/^I am on the rectification screen$/) do
 end
 
 When(/^I supply the registration number$/) do
-  fill_in('reg_no',:with =>'1000')
+  fill_in('reg_no',:with =>'1003')
 end
 
 When(/^the date of registration$/) do
