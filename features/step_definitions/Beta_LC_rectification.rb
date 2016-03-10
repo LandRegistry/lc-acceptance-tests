@@ -11,12 +11,12 @@ Given(/^I am on the rectification screen$/) do
   find(:id, "row_1").click
 end
 
-Given(/^I count number of forms available on Land Charge rectification screen$/) do
+Given(/^I am on Land Charge rectification screen$/) do
   maximise_browser
   visit( "#{$FRONTEND_URI}/get_list?appn=lc_rect" )
 end
 
-When(/^I can reclassify the form to a PAB Registration type$/) do
+When(/^I can classify the form to a PAB Registration type$/) do
   within(:xpath, ".//*[@id='row_1']/td[2]") do
   page.should have_content('K9')
   end
@@ -31,7 +31,35 @@ When(/^I can reclassify the form to a PAB Registration type$/) do
   page.all('#work-list').count.should < rwcount
 end
 
+When(/^I can classify the form to a K4 form type$/) do
+  within(:xpath, ".//*[@id='row_1']/td[2]") do
+  page.should have_content('K9')
+  end
+  rwcount = all('#work-list').count
+  find(:id, "row_1").click
+  within('#wrong_form') do
+  click_link 'Choose the correct form type'
+  end
+  choose('k4')
+  find_button('continue').click
+  visit( "#{$FRONTEND_URI}/get_list?appn=lc_rect" )
+  page.all('#work-list').count.should < rwcount
+end
+
 Then(/^I can restore the reclassified PAB form back to a K9 Rectification form$/) do
+  visit( "#{$FRONTEND_URI}/get_list?appn=lc_regn" )
+  rwcount = all('#work-list').count
+  find(:id, "row_1").click
+  within('#wrong_form') do
+  click_link 'Choose the correct form type'
+  end
+  choose('k9')
+  find_button('continue').click
+  visit( "#{$FRONTEND_URI}/get_list?appn=lc_rect" )
+  page.all('#work-list').count.should eq rwcount
+end
+
+Then(/^I can restore the reclassified K4 form back to a K9 Rectification form$/) do
   visit( "#{$FRONTEND_URI}/get_list?appn=lc_regn" )
   rwcount = all('#work-list').count
   find(:id, "row_1").click
