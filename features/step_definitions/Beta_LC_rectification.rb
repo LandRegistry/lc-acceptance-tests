@@ -27,11 +27,12 @@ When(/^I can classify the form to a PAB Registration type$/) do
   end
   choose('pab_regn')
   find_button('continue').click
+  expect(page).to have_content('Your application has been moved to Bankruptcy Registrations')
   visit( "#{$FRONTEND_URI}/get_list?appn=lc_rect" )
   page.all('#work-list').count.should < rwcount
 end
 
-When(/^I can classify the form to a K4 form type$/) do
+When(/^I can classify the K9 form to a K4 form type$/) do
   within(:xpath, ".//*[@id='row_1']/td[2]") do
   page.should have_content('K9')
   end
@@ -42,6 +43,7 @@ When(/^I can classify the form to a K4 form type$/) do
   end
   choose('k4')
   find_button('continue').click
+  expect(page).to have_content('Your application has been moved to Land Charge Registrations')
   visit( "#{$FRONTEND_URI}/get_list?appn=lc_rect" )
   page.all('#work-list').count.should < rwcount
 end
@@ -55,6 +57,7 @@ Then(/^I can restore the reclassified PAB form back to a K9 Rectification form$/
   end
   choose('k9')
   find_button('continue').click
+  expect(page).to have_content('Your application has been moved to Land Charge Rectifications')
   visit( "#{$FRONTEND_URI}/get_list?appn=lc_rect" )
   page.all('#work-list').count.should eq rwcount
 end
@@ -68,6 +71,7 @@ Then(/^I can restore the reclassified K4 form back to a K9 Rectification form$/)
   end
   choose('k9')
   find_button('continue').click
+  expect(page).to have_content('Your application has been moved to Land Charge Rectifications')
   visit( "#{$FRONTEND_URI}/get_list?appn=lc_rect" )
   page.all('#work-list').count.should eq rwcount
 end

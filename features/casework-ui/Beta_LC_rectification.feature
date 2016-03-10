@@ -22,13 +22,13 @@ And I change it to choose direct debit
 When I click on the Submit button
 #Then the susuccessfully completed Registration number is banner is displayed  code commented out on9/3 defect raised
 
-Scenario: BUS-095 Classify a form from K9 to a PAB and vice versa
+Scenario: BUS-095 Reclassify a form from K9 to a PAB and vice versa
 Given I am on Land Charge rectification screen
 When I can classify the form to a PAB Registration type
 Then I can restore the reclassified PAB form back to a K9 Rectification form 
 
-Scenario: BUS-095 Classify a form from K9 to a K4 and vice versa
+Scenario: BUS-095 Reclassify a form from K9 to a K4 and vice versa
 Given I am on Land Charge rectification screen
-When I can classify the form to a K4 form type
+When I can classify the K9 form to a K4 form type
 Then I can restore the reclassified K4 form back to a K9 Rectification form 
 

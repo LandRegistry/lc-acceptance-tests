@@ -28,3 +28,8 @@ And I change it to choose direct debit
 When I can click the complete search button
 Then the susuccessfully completed Registration number is banner is displayed
 
+Scenario: BUS-095 Reclassify a LC Registration form to a WOB and vice versa
+Given I am on Land Charge Registration applications screen
+When I can classify the form to a WOB Registration type
+Then I can restore the reclassified WOB Registration form to a K1 LC Registration form
+
