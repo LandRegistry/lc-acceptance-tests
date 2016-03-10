@@ -11,6 +11,38 @@ When(/^I select an application type of WOB with a single image to amend$/) do
   find(:id, "row_1").click
 end
 
+
+Given(/^I register and submit a PAB reference number for amendment$/) do
+  fill_in('court', :with => 'Northants County Court')
+  fill_in('ref_no', :with => '911')
+  #fill_in('ref_year', :with => '2013')
+  click_button('continue')
+  fill_in('forenames_1', :with => 'Johnny')
+  fill_in('surname_1', :with => 'Lee')
+  fill_in('occupation', :with => 'Dancer')
+  fill_in('add_1_line1', :with => '123 New Street')
+  fill_in('add_1_line2', :with => 'Middlebrook')
+  fill_in('add_1_line3', :with => 'Winchester')
+  fill_in('add_1_line4', :with => 'Hampshire')
+  fill_in('county_1', :with => 'Hants')
+  fill_in('postcode_1', :with => 'SO14 1AA')
+  click_button('continue')
+  fill_in('forename_1', :with => 'Johnny')
+  fill_in('surname_1', :with => 'Lee') 
+  fill_in('court_name', :with => 'Northants County Court')
+  click_button('continue')
+  fill_in('key_number', :with =>'1234567')
+  click_button('continue')
+  page.find(:id, "conf_reg_numbers").text
+  results = page.find(:id, "conf_reg_numbers").text
+  today = Date.today.strftime("%d/%m/%Y")
+  visit( "#{$FRONTEND_URI}/get_list?appn=bank_amend" )
+   find(:xpath,'//*[@id="row_1"]').click
+   fill_in('pab_ref', :with => results)
+   fill_in('pab_date', :with => today)
+end
+
+
 Given(/^I am on Bankruptcy Amendment screen$/) do
   maximise_browser
   visit( "#{$FRONTEND_URI}/get_list?appn=bank_amend" )
@@ -80,8 +112,8 @@ When(/^I enter date for the PAB amendment$/) do
 end
 
 When(/^I amend the registration record$/) do
-   fill_in('forenames_2', :with => '')
-   fill_in('surname_2', :with => '')
+   fill_in('court', :with => 'Mango County Court')
+   fill_in('ref_no', :with => '210 of 2016')
 end
  
 When(/^I enter the wrong WOB reference number the details are visible$/) do
@@ -109,16 +141,16 @@ When(/^I click on the PAB change button I can rekey the wob details$/) do
  find(:id,'change_pab').click
 end
 
-Then(/^I am on the registration check screen$/) do
-  expect(page).to have_content('Please check the registrations affected by this amendment')
+Then(/^I am on the the original bankruptcy details screen$/) do
+  expect(page).to have_content('Please amend information by over-keying as necessary')
+  expect(page).to have_content('Original bankruptcy details')
 end
 
-When(/^I am on the original bankruptcy details screen I can see the details are all completed$/) do
-  expect(page).to have_content('Original bankruptcy details')
-  #expect(page).to have_content('John Alan')
-  #expect(page).to have_content('Smithe')
-  fill_in('forenames_2', :with => 'John')
-  fill_in('surname_2', :with => 'Smythe') 
+When(/^I can amend data on the Original Bankruptcy details page$/) do
+  fill_in('ref_no', :with => '')
+  fill_in('surname_1', :with => '') 
+  fill_in('ref_no', :with => '777')
+  fill_in('surname_1', :with => 'Smythe') 
 end
 
 When(/^I click on the remove address the details are no longer visible$/) do
@@ -153,8 +185,8 @@ end
 
 When(/^I click add AKA  on amendments a new fields are displayed and I can enter them$/) do
    find(:id, 'addname').click
-  fill_in('forenames_3', :with => 'Barrington')
-  fill_in('surname_3', :with => 'Scottie-Dottie')
+  fill_in('forenames_2', :with => 'Barrington')
+  fill_in('surname_2', :with => 'Scottie-Dottie')
 end
 
 When(/^I amend Court name and number$/) do
