@@ -64,7 +64,9 @@ stock_data = '[' +
     '{"delivery_method": "Postal", "date": "2016-03-07 06:06:06", "work_type": "unknown", "application_type": "Unknown", "document_id": 64},' +
     '{"delivery_method": "Postal", "date": "2016-03-07 09:09:09", "work_type": "unknown", "application_type": "Unknown", "document_id": 41},' +
     '{"delivery_method": "Postal", "date": "2016-03-07 01:01:01", "work_type": "unknown", "application_type": "Unknown", "document_id": 66},' +
-    '{"delivery_method": "Portal", "date": "2015-11-05 22:22:22", "work_type": "unknown", "application_type": "Unknown", "document_id": 67}' +
+    '{"delivery_method": "Portal", "date": "2015-11-05 22:22:22", "work_type": "unknown", "application_type": "Unknown", "document_id": 67},' +
+    '{"delivery_method": "Portal", "date": "2016-03-09 09:01:22", "work_type": "bank_amend", "application_type": "LRRABO", "document_id": 43},' +
+    '{"delivery_method": "Portal", "date": "2016-03-10 12:01:27", "work_type": "bank_amend", "application_type": "LRRABO", "document_id": 43}' +
 ']'
 
 request = Net::HTTP::Put.new('/applications')
