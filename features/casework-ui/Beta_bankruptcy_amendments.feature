@@ -44,4 +44,10 @@ And I can click on Continue button to submit the form
 #Need to discuss smart way to test next line due to a potential defect
 #Then I can submit amended form and verify the new api updates for the amendment
 
+Scenario: BUS-095 Reclassify a LRRABO form to a K11 Cancellation application and vice versa
+Given I am on Bankruptcy Amendment screen
+When I can reclassify a LRRABO form to a Cancellation application form type
+Then I can move the reclassified K7 form back to a LRRABO form
+
+
 

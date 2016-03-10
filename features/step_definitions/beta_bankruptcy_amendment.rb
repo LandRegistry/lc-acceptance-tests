@@ -11,6 +11,38 @@ When(/^I select an application type of WOB with a single image to amend$/) do
   find(:id, "row_1").click
 end
 
+Given(/^I am on Bankruptcy Amendment screen$/) do
+  maximise_browser
+  visit( "#{$FRONTEND_URI}/get_list?appn=bank_amend" )
+end
+
+When(/^I can reclassify a LRRABO form to a Cancellation application form type$/) do
+  rwcount = all('#work-list>tbody').count
+  find(:xpath, "//*[@id='row_7']/td[1]").click
+  within('#wrong_form') do
+  click_link 'Choose the correct form type'
+  end
+  choose('k11')
+  find_button('continue').click
+  expect(page).to have_content('Your application has been moved to Cancellations')
+  visit( "#{$FRONTEND_URI}/get_list?appn=bank_amend" )
+  page.all('#work-list>tbody').count.should == rwcount -1
+end
+
+Then(/^I can move the reclassified K7 form back to a LRRABO form$/) do
+  visit( "#{$FRONTEND_URI}/get_list?appn=cancel" )
+  rwcount = all('#work-list>tbody').count
+  find(:id, "row_1").click
+  within('#wrong_form') do
+  click_link 'Choose the correct form type'
+  end
+  choose('lrrabo')
+  find_button('continue').click
+  expect(page).to have_content('Your application has been moved to Bankruptcy Amendments')
+  visit( "#{$FRONTEND_URI}/get_list?appn=cancel" )
+  page.all('#work-list>tbody').count.should == rwcount -1
+end
+
 
 When(/^I retrieve a newly created WOB select an application type of WOB with a single image to amend$/) do
   within(:xpath, ".//*[@id='row_1']/td[2]") do

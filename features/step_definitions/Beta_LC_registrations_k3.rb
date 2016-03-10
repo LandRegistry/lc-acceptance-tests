@@ -22,7 +22,6 @@ When(/^I can classify the form to a WOB Registration type$/) do
   page.should have_content('K3')
   end
   rwcount = all('#work-list>tbody').count
-  puts(rwcount)
   find(:id, "row_1").click
   within('#wrong_form') do
   click_link 'Choose the correct form type'

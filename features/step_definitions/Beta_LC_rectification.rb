@@ -20,7 +20,7 @@ When(/^I can classify the form to a PAB Registration type$/) do
   within(:xpath, ".//*[@id='row_1']/td[2]") do
   page.should have_content('K9')
   end
-  rwcount = all('#work-list').count
+  rwcount = all('#work-list>tbody').count
   find(:id, "row_1").click
   within('#wrong_form') do
   click_link 'Choose the correct form type'
@@ -29,14 +29,14 @@ When(/^I can classify the form to a PAB Registration type$/) do
   find_button('continue').click
   expect(page).to have_content('Your application has been moved to Bankruptcy Registrations')
   visit( "#{$FRONTEND_URI}/get_list?appn=lc_rect" )
-  page.all('#work-list').count.should < rwcount
+  page.all('#work-list>tbody').count.should == rwcount -1
 end
 
 When(/^I can classify the K9 form to a K4 form type$/) do
   within(:xpath, ".//*[@id='row_1']/td[2]") do
   page.should have_content('K9')
   end
-  rwcount = all('#work-list').count
+  rwcount = all('#work-list>tbody').count
   find(:id, "row_1").click
   within('#wrong_form') do
   click_link 'Choose the correct form type'
@@ -45,12 +45,12 @@ When(/^I can classify the K9 form to a K4 form type$/) do
   find_button('continue').click
   expect(page).to have_content('Your application has been moved to Land Charge Registrations')
   visit( "#{$FRONTEND_URI}/get_list?appn=lc_rect" )
-  page.all('#work-list').count.should < rwcount
+  page.all('#work-list>tbody').count.should == rwcount -1
 end
 
 Then(/^I can restore the reclassified PAB form back to a K9 Rectification form$/) do
   visit( "#{$FRONTEND_URI}/get_list?appn=lc_regn" )
-  rwcount = all('#work-list').count
+  rwcount = all('#work-list>tbody').count
   find(:id, "row_1").click
   within('#wrong_form') do
   click_link 'Choose the correct form type'
@@ -58,13 +58,13 @@ Then(/^I can restore the reclassified PAB form back to a K9 Rectification form$/
   choose('k9')
   find_button('continue').click
   expect(page).to have_content('Your application has been moved to Land Charge Rectifications')
-  visit( "#{$FRONTEND_URI}/get_list?appn=lc_rect" )
-  page.all('#work-list').count.should eq rwcount
+  visit( "#{$FRONTEND_URI}/get_list?appn=lc_regn" )
+  page.all('#work-list>tbody').count.should == rwcount -1
 end
 
 Then(/^I can restore the reclassified K4 form back to a K9 Rectification form$/) do
   visit( "#{$FRONTEND_URI}/get_list?appn=lc_regn" )
-  rwcount = all('#work-list').count
+  rwcount = all('#work-list>tbody').count
   find(:id, "row_1").click
   within('#wrong_form') do
   click_link 'Choose the correct form type'
@@ -72,8 +72,8 @@ Then(/^I can restore the reclassified K4 form back to a K9 Rectification form$/)
   choose('k9')
   find_button('continue').click
   expect(page).to have_content('Your application has been moved to Land Charge Rectifications')
-  visit( "#{$FRONTEND_URI}/get_list?appn=lc_rect" )
-  page.all('#work-list').count.should eq rwcount
+  visit( "#{$FRONTEND_URI}/get_list?appn=lc_regn" )
+  page.all('#work-list>tbody').count.should == rwcount -1
 end
 
 When(/^I return to LR Rectification screen$/) do
