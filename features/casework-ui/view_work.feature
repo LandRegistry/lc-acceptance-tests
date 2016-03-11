@@ -4,7 +4,7 @@ Feature: View work by application type
 
 Scenario: View pab list
 # Given I have selected to view the main worklist
-# When I have selected to view specific the application list "bank_regn"
+# When I have selected to view specific Bankruptcy application
 # Then I see the bankruptcy application list page
 
 # Scenario: View land charge registrations

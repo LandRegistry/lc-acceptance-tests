@@ -10,7 +10,7 @@ So that I can see a list of complex and simple names that are associated to the 
 
 #sh-us008 Full and bankruptcy searches
 #Given I am on the view application screen
-#When I have selected to view specific the application list
+#When I have selected to view specific Bankruptcy application
 #When I click on the enter a complex name link a new screen is displayed
 #When the complex name field is completed I can then click the search name button
 #When the list on complex names is displayed I can select one

@@ -43,8 +43,6 @@ Then(/^I can validate data returned on Orginal bankruptcy details page$/) do
   expect(page).to have_field('add_1_line1', :with => '123 New Street')
   expect(page).to have_field('court', :with => 'Northants County Court')
   expect(page).to have_field('ref_no', :with => '911')
-  thisyear = Date.today.year 
-  expect(page).to have_field('ref_year', :with => '')
 end
 
 When(/^I can amend relevant details on Original bankruptcy details page$/) do
@@ -57,8 +55,6 @@ When(/^I can amend relevant details on Original bankruptcy details page$/) do
   #find(:id, 'remove_address_1').click  
   fill_in('court', :with => 'Orange County Court')
   fill_in('ref_no', :with => '999')
-  thisyear = Date.today.year
-  fill_in('ref_year', :with => thisyear)
 end
 
 When(/^I validate details submitted on Check details page$/) do

@@ -8,7 +8,7 @@ So that I can identify where the correction is needs to be made and make said co
 
 Scenario:BUS-128/129/155 Correct and submit a bankruptcy registration record 
 Given I am on the view application screen
-And I have selected to view specific the application list
+And I have selected to view specific Bankruptcy application
 When I submit data to retrieve the registration details
 And I can validate data returned on Orginal bankruptcy details page
 And I can amend relevant details on Original bankruptcy details page
@@ -21,7 +21,7 @@ Then I can click on Complete button
 
 Scenario:BUS-128/129 Submit a bankruptcy registration record with K22 suppressed
 Given I am on the view application screen
-And I have selected to view specific the application list
+And I have selected to view specific Bankruptcy application
 When I submit data to retrieve the registration details
 And I can validate data returned on Orginal bankruptcy details page
 And I can amend relevant details on Original bankruptcy details page
@@ -33,12 +33,12 @@ Then I can click on Complete button
 
 Scenario: BUS-128/129 Submit a bankruptcy registration record without any correction 
 Given I am on the view application screen
-And I have selected to view specific the application list
+And I have selected to view specific Bankruptcy application
 When I submit data to retrieve the registration details
 And I can click button to continue
 #EA: THE TEST WILL BE AMENDED WHEN CASE YEAR FIELD IS REMOVED FROM THE PAGE
-And I enter case year the details are visible
-And I can click button to continue
+#And I enter case year the details are visible
+#And I can click button to continue
 Then I can click on Complete button
 #EA: Next line commented out. defect No:33 logged
 #And I can confirm the correction was successful

@@ -3,7 +3,7 @@ Given(/^I am on the view application screen$/) do
   maximise_browser
 end
 
-When(/^I have selected to view specific the application list$/) do
+When(/^I have selected to view specific Bankruptcy application$/) do
   visit( "#{$FRONTEND_URI}/get_list?appn=bank_regn" )
   find(:id, 'row_1').click
 end

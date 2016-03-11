@@ -8,7 +8,7 @@ So that I can ensure that valid details are captured onto the land charges regis
 
 #Scenario: Submit bankruptcy debtor details registration form
 #Given I am on the view application screen
-#When I have selected to view specific the application list
+#When I have selected to view specific Bankruptcy application
 #When the image of the application is displayed I can click on all available pages
 #When I complete the Forename and Surname details remain visible 
 
