@@ -80,6 +80,15 @@ Given I am on the bankruptcy registration screen
 When I select an application type of PAB with a single image
 Then I can confirm successful submission of details for a bankruptcy application
 
+Scenario: BUS-164.0 Confirm that a registration number is already in use 
+Given I am on the bankruptcy registration screen
+And I select an application type of PAB with a single image
+And I register a PAB application without court name
+When I attempt to re-register with the previously used registration number
+#EA: Next line waiting for code deployment
+Then I can confirm that court details have already been used
+
+
 
 
 

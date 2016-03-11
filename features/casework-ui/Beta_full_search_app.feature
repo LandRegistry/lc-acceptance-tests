@@ -126,8 +126,6 @@ When I can click the complete search button
 #Commenting. Needs retesting via api rather than db
 #Then I can confirm that the search expiry date stored in database should be in the future
 
-
-
 Scenario: BUS-141 Capture details of customer who lodged a bankruptcy search request by surname only
 Given I am on the LR searches screen
 When I select an application type of Full Search the application is displayed

@@ -151,7 +151,6 @@ end
 When(/^I can confirm successful submission of details for a bankruptcy application$/) do
   fill_in('court', :with => 'Northants County Court')
   fill_in('ref_no', :with => '911')
-  #fill_in('ref_year', :with => '2013')
   click_button('continue')
   fill_in('forenames_1', :with => 'Johnny')
   fill_in('surname_1', :with => 'Lee')
@@ -199,4 +198,62 @@ When(/^I parse the new registration number as Original registration number$/) do
    find(:xpath,'//*[@id="row_1"]').click
    fill_in('reg_no', :with => results)
 end
+
+When(/^I register a PAB application$/) do
+  fill_in('court', :with => 'Banana County Court')
+  fill_in('ref_no', :with => '888')
+  click_button('continue')
+  fill_in('forenames_1', :with => 'Pablo')
+  fill_in('surname_1', :with => 'Perigas')
+  fill_in('occupation', :with => 'Dancer')
+  fill_in('add_1_line1', :with => '55 New Street')
+  fill_in('add_1_line2', :with => 'Middlebrook')
+  fill_in('add_1_line3', :with => 'Winchester')
+  fill_in('add_1_line4', :with => 'Hampshire')
+  fill_in('county_1', :with => 'Hants')
+  fill_in('postcode_1', :with => 'HG2 1AA')
+  click_button('continue')
+  fill_in('forename_1', :with => 'Pablo')
+  fill_in('surname_1', :with => 'Perigas') 
+  fill_in('court_name', :with => 'Banana County Court')
+  click_button('continue')
+  fill_in('key_number', :with =>'1234567')
+end
+
+When(/^I register a PAB application without court name$/) do
+  fill_in('ref_no', :with => '888')
+  click_button('continue')
+  fill_in('forenames_1', :with => 'Pablo')
+  fill_in('surname_1', :with => 'Perigas')
+  fill_in('occupation', :with => 'Dancer')
+  fill_in('add_1_line1', :with => '55 New Street')
+  fill_in('add_1_line2', :with => 'Middlebrook')
+  fill_in('add_1_line3', :with => 'Winchester')
+  fill_in('add_1_line4', :with => 'Hampshire')
+  fill_in('county_1', :with => 'Hants')
+  fill_in('postcode_1', :with => 'HG2 1AA')
+  click_button('continue')
+  fill_in('forename_1', :with => 'Pablo')
+  fill_in('surname_1', :with => 'Perigas') 
+  click_button('continue')
+  fill_in('key_number', :with =>'1234567')
+end
+
+When(/^I attempt to re-register with the previously used registration number$/) do
+  click_button('continue')
+  regn = page.find(:id, "conf_reg_numbers").text
+  puts(regn)
+  visit( "#{$FRONTEND_URI}/get_list?appn=bank_regn" )
+  maximise_browser
+  find(:id, "row_1").click
+  fill_in('ref_no', :with => regn)
+  click_button('continue')
+   #page should display message indicating the particulars of court have already been registered
+end
+
+Then(/^I can confirm that court details have already been used$/) do
+ pending
+end
+
+
 
