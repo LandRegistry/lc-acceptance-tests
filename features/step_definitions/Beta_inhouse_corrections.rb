@@ -22,7 +22,7 @@ When(/^I submit data to retrieve the registration details$/) do
   fill_in('surname_1', :with => 'Lee') 
   fill_in('court_name', :with => 'Northants County Court')
   click_button('continue')
-  fill_in('key_number', :with =>'1234567')
+  fill_in('key_number', :with =>'2244095')
   click_button('continue')
   page.find(:id, "conf_reg_numbers").text
   results = page.find(:id, "conf_reg_numbers").text

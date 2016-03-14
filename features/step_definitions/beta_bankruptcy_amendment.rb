@@ -31,7 +31,7 @@ Given(/^I register and submit a PAB reference number for amendment$/) do
   fill_in('surname_1', :with => 'Lee') 
   fill_in('court_name', :with => 'Northants County Court')
   click_button('continue')
-  fill_in('key_number', :with =>'1234567')
+  fill_in('key_number', :with =>'2244095')
   click_button('continue')
   page.find(:id, "conf_reg_numbers").text
   results = page.find(:id, "conf_reg_numbers").text
@@ -196,7 +196,7 @@ When(/^I amend Court name and number$/) do
 end
 
 Then(/^I can submit amended form and verify the new api updates for the amendment$/) do
-  fill_in('key_number', :with =>'1234567')
+  fill_in('key_number', :with =>'2244095')
    click_button('continue')
   page.find(:id, "conf_reg_numbers").text
   newregs = page.find(:id, "conf_reg_numbers").text
@@ -227,7 +227,7 @@ Then(/^I can verify api output for a newly amended PAB registration$/) do
   fill_in('surname_1', :with => 'Depp') 
   fill_in('court_name', :with => 'Mango County Court')
   click_button('continue')
-  fill_in('key_number', :with =>'1234567')
+  fill_in('key_number', :with =>'2244095')
   click_button('continue')
   page.find(:id, "conf_reg_numbers").text
   newregs = page.find(:id, "conf_reg_numbers").text

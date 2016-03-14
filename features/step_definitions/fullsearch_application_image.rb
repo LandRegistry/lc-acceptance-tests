@@ -25,7 +25,7 @@ Then(/^I can see Application Successful text on Search list page$/) do
 end
 
 Then(/^I can capture customer details on the full search screen$/) do
-  fill_in('key_number', :with => '1234567')
+  fill_in('key_number', :with =>'2244095')
   fill_in('customer_name', :with => 'Ashton Thomas')
   fill_in('customer_address',:with => '4749 DUBUQUE Terrace'"\n"'JAYSONFURT'"\n"'SOUTH VINCENZA'"\n"'NORTHAMPTONSHIRE'"\n"'FC13 4WX')
   fill_in('customer_ref', :with => '100/102')

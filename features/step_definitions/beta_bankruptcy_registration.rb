@@ -128,7 +128,7 @@ When(/^I can rekey court name on the verification screen$/) do
 end
 
 When(/^I am on the Court screen I can enter a valid key number$/) do
-  fill_in('key_number', :with =>'1234567')
+  fill_in('key_number', :with =>'2244095')
 end
 
 
@@ -166,7 +166,7 @@ When(/^I can confirm successful submission of details for a bankruptcy applicati
   fill_in('surname_1', :with => 'Lee') 
   fill_in('court_name', :with => 'Northants County Court')
   click_button('continue')
-  fill_in('key_number', :with =>'1234567')
+  fill_in('key_number', :with =>'2244095')
   click_button('continue')
   page.find(:id, "conf_reg_numbers").text
 end
@@ -190,7 +190,7 @@ When(/^I parse the new registration number as Original registration number$/) do
   fill_in('surname_1', :with => 'Lee') 
   fill_in('court_name', :with => 'Northants County Court')
   click_button('continue')
-  fill_in('key_number', :with =>'1234567')
+  fill_in('key_number', :with =>'2244095')
   click_button('continue')
   page.find(:id, "conf_reg_numbers").text
   results = page.find(:id, "conf_reg_numbers").text
@@ -217,7 +217,7 @@ When(/^I register a PAB application$/) do
   fill_in('surname_1', :with => 'Perigas') 
   fill_in('court_name', :with => 'Banana County Court')
   click_button('continue')
-  fill_in('key_number', :with =>'1234567')
+  fill_in('key_number', :with =>'2244095')
 end
 
 When(/^I register a PAB application without court name$/) do
@@ -236,7 +236,7 @@ When(/^I register a PAB application without court name$/) do
   fill_in('forename_1', :with => 'Pablo')
   fill_in('surname_1', :with => 'Perigas') 
   click_button('continue')
-  fill_in('key_number', :with =>'1234567')
+  fill_in('key_number', :with =>'2244095')
 end
 
 When(/^I attempt to re-register with the previously used registration number$/) do

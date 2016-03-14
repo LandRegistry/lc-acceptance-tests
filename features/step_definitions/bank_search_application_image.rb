@@ -103,12 +103,12 @@ When(/^I click continue the applicant details screen is displayed$/) do
   expect(page).to have_content('Applicant address')
   expect(page).to have_content('Applicant reference')
   expect(page).to have_button('Complete')
-  fill_in('key_number', :with => '1234567')
+  fill_in('key_number', :with => '2244095')
   fill_in('customer_ref', :with => '100/102')
 end
 
 When(/^I enter valid values in Key number field$/) do
-  fill_in('key_number', :with => '1234567')
+  fill_in('key_number', :with => '2244095')
 end
 
 Then(/^I can override it with new address details$/) do
@@ -120,11 +120,11 @@ When(/^I enter invalid values in Key number field$/) do
 end
 
 Then(/^I can see the expected values prepopulated in Applicant name field$/) do
-  expect(page).to have_field('customer_name', with: 'S & H Legal Group') 
+  expect(page).to have_field('customer_name', with: 'Louis, Ley & Maycock') 
 end
 
 Then(/^I can see the expected values prepopulated in Address field$/) do
-  expect(page).to have_field('customer_address', with: '49 Camille Circles Port Eulah PP39 6BY') 
+  expect(page).to have_field('customer_address', with: 'Seaton Court 2 William Prance Road Plymouth') 
 end
 
 When(/^I enter an invalid value in Key number field$/) do

@@ -218,5 +218,5 @@ end
 
 
 When(/^I am on the Conveyancer and fees screen I can enter a valid key number$/) do
-  fill_in('key_number', :with =>'1234567')
+  fill_in('key_number', :with =>'2244095')
 end

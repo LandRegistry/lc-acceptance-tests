@@ -147,7 +147,7 @@ Then(/^I can see Original registration details page$/) do
 end
 
 Then(/^I can submit conveyancer details$/) do
-  fill_in('key_number', :with =>'1234567')
+  fill_in('key_number', :with =>'2244095')
   fill_in('customer_ref', :with => '911')
   find(:id, 'full_cans').click
   find(:id, 'direct_debit').click
@@ -173,7 +173,7 @@ When(/^I attempt to resubmit a cancelled new application number$/) do
   fill_in('surname_1', :with => 'Lee') 
   fill_in('court_name', :with => 'Northants County Court')
   click_button('continue')
-  fill_in('key_number', :with =>'1234567')
+  fill_in('key_number', :with =>'2244095')
   click_button('continue')
   page.find(:id, "conf_reg_numbers").text
   results = page.find(:id, "conf_reg_numbers").text
@@ -215,7 +215,7 @@ Then(/^I can verify API output for a cancelled PAB application$/) do
   fill_in('surname_1', :with => 'Lee') 
   fill_in('court_name', :with => 'Northants County Court')
   click_button('continue')
-  fill_in('key_number', :with =>'1234567')
+  fill_in('key_number', :with =>'2244095')
   click_button('continue')
   page.find(:id, "conf_reg_numbers").text
   results = page.find(:id, "conf_reg_numbers").text
@@ -235,7 +235,7 @@ Then(/^I can verify API output for a cancelled PAB application$/) do
   opage = "Original registration details"
   if ('//*[@id="form_panel"]/h2' == opage)
     click_button('continue')
-    fill_in('key_number', :with =>'1234567')
+    fill_in('key_number', :with =>'2244095')
     find(:id, 'full_cans').click
     find(:id, 'direct_debit').click
     fill_in('customer_ref', :with => '911')
