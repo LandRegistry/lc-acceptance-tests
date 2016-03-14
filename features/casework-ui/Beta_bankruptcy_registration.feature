@@ -20,7 +20,7 @@ When I select an application type of WOB with a single image
 #When I am on a Large image I can zoom in
 #Then I am on a Large image I can zoom out
 
-Scenario: #BUS-046 #BUS-043 #BUS-042 #BUS-132 #BUS-131 Input bankruptcy registration deatils
+Scenario: #BUS-046 #BUS-043 #BUS-042 #BUS-132 #BUS-131 Input bankruptcy registration details
 Given I am on the bankruptcy registration screen
 When I select an application type of PAB with a single image
 When I enter court name the details are visible
@@ -79,6 +79,15 @@ Scenario: BUS-038 Confirm Bankruptcy registration number
 Given I am on the bankruptcy registration screen
 When I select an application type of PAB with a single image
 Then I can confirm successful submission of details for a bankruptcy application
+
+Scenario: BUS-164.0 Confirm that a registration number is already in use 
+Given I am on the bankruptcy registration screen
+And I select an application type of PAB with a single image
+And I register a PAB application without court name
+When I attempt to re-register with the previously used registration number
+#EA: Next line waiting for code deployment
+Then I can confirm that court details have already been used
+
 
 
 

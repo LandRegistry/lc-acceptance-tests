@@ -69,6 +69,7 @@ When(/^I click on the second look up complex name link$/) do
 end
 
 Then(/^I can see the Complex name results table$/) do
+  sleep(1)
   expect(page).to have_content('Complex name result') 
   expect(page).to have_content('Please select a complex name from the list')
 end

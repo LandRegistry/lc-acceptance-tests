@@ -22,7 +22,7 @@ Then I am on a Large image I can zoom out
 
 Scenario: #BUS-009 View a single image on a Bankruptcy Search application screen
 Given I am on the view application screen
-When I have selected to view specific the application list
+When I have selected to view specific Bankruptcy application
 When the image of the application is displayed I can click on all available pages
 And I should not see the thumbnail on the image
 When I am on a Large image I can zoom in

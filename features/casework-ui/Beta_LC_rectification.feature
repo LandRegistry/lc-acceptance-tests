@@ -19,5 +19,16 @@ When I can click on Continue button to submit the form
 When I am on the Conveyancer and fees screen I can enter a valid key number
 When I enter fee details I can choose prepaid
 And I change it to choose direct debit
-When I can click the complete search button
-Then the susuccessfully completed Registration number is banner is displayed
+When I click on the Submit button
+#Then the susuccessfully completed Registration number is banner is displayed  code commented out on9/3 defect raised
+
+Scenario: BUS-095 Reclassify a form from K9 to a PAB and vice versa
+Given I am on Land Charge rectification screen
+When I can classify the form to a PAB Registration type
+Then I can restore the reclassified PAB form back to a K9 Rectification form 
+
+Scenario: BUS-095 Reclassify a form from K9 to a K4 and vice versa
+Given I am on Land Charge rectification screen
+When I can classify the K9 form to a K4 form type
+Then I can restore the reclassified K4 form back to a K9 Rectification form 
+

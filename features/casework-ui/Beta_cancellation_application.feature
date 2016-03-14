@@ -33,7 +33,7 @@ Given I am on the bankruptcy registration screen
 And I select an application type of PAB with a single image
 When I parse the new registration number as Original registration number
 When I can retrieve the application details with valid data submitted
-Then I can submit conveyancer details
+Then I can click button to continue
 
 Scenario: BUS-071/73.1 Confirm that a PAB Bankruptcy application cannot be cancelled twice
 Given I am on the bankruptcy registration screen
@@ -52,7 +52,7 @@ Given I am on the bankruptcy registration screen
 And I select an application type of WOB with a single image
 When I parse the new registration number as Original registration number
 And I can retrieve the application details with valid data submitted
-Then I can submit conveyancer details
+Then I can click button to continue
 
 Scenario: BUS-071/73.1 Confirm that a Bankruptcy application cannot be cancelled twice
 Given I am on the bankruptcy registration screen
@@ -72,9 +72,47 @@ Given I am on the bankruptcy registration screen
 And I select an application type of PAB with a single image
 Then I can verify API output for a cancelled PAB application
 
-
-Scenario: BUS-086  Do not proceed with part cancellation unless C4 or D2 option is selected 
+Scenario: BUS-171  Select part cancellation option 
 Given I launch Application Cancellation page
 When I select the first registration application
 And I select part cancellation option
 Then I can click button to continue
+
+Scenario: BUS-086 Cancel a C4 entry without a D2 cancellation
+Given I launch Application Cancellation page
+And I select the first registration application
+And I select part cancellation option
+And I can click button to continue
+When I choose the C4 cancellation option
+And I can click button to continue
+And I can click button to continue
+Then I can submit conveyancer details
+
+#BA confirmed this is not a requirement but check impact on system
+Scenario: Cancel a D2 entry 
+Given I launch Application Cancellation page
+And I select the first registration application
+And I select part cancellation option
+And I can click button to continue
+When I choose the D2 cancellation option
+And I can click button to continue
+And I can click button to continue
+Then I can submit conveyancer details
+
+Scenario: Submit a C4 cancellation with additional information
+Given I launch Application Cancellation page
+And I select the first registration application
+And I select part cancellation option
+And I can click button to continue
+And I choose the C4 cancellation option
+When I can click button to continue
+Then I can enter additional information
+And I can attach a file
+And I can click button to continue
+And I can submit conveyancer details
+
+
+
+
+
+

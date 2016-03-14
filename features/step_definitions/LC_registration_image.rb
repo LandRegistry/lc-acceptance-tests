@@ -153,7 +153,6 @@ end
 
 
 Then(/^I can click on Continue button to submit the form$/) do
-  puts @formtype
   find(:id,'continue').click
   #click_button('continue')
 end

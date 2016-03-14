@@ -16,7 +16,7 @@ When I click the add additional county a new county edit box is displayed where 
 When I click continue the applicant details screen is displayed
 And I can capture customer details on the full search screen
 Then I can click the complete search button
-And I can see Application Successful text on Search list page 
+#And I can see Application Successful text on Search list page 
 
 Scenario: BUS-011 Capture details of customer who lodged a bankruptcy search request
 Given I am on the LR searches screen
@@ -36,7 +36,8 @@ When I click the add additional county a new county edit box is displayed where 
 When I click continue the applicant details screen is displayed
 And I can capture customer details on the full search screen
 Then I can click the complete search button
-And I am on the Application complete screen a new record is stored on the register database in the correct format
+#Commenting. Needs retesting via api rather than db
+#And I am on the Application complete screen a new record is stored on the register database in the correct format
 
 Scenario: BUS-014 Return expected values associated with a key number for a Full search request
 Given I am on the LR searches screen
@@ -110,7 +111,8 @@ When I enter a county the details are displayed county edit box
 And I click continue the applicant details screen is displayed
 And I can capture customer details on the full search screen
 When I can click the complete search button
-Then I can confirm that certificate date stored in database SHOULD NOT be today's
+#Commenting. Needs retesting via api rather than db
+#Then I can confirm that certificate date stored in database SHOULD NOT be today's
 
 Scenario: BUS-020.1 Search expiry date stored for a full search in database should should be after the request date
 Given I am on the LR searches screen
@@ -121,9 +123,8 @@ When I enter a county the details are displayed county edit box
 And I click continue the applicant details screen is displayed
 And I can capture customer details on the full search screen
 When I can click the complete search button
-Then I can confirm that the search expiry date stored in database should be in the future
-
-
+#Commenting. Needs retesting via api rather than db
+#Then I can confirm that the search expiry date stored in database should be in the future
 
 Scenario: BUS-141 Capture details of customer who lodged a bankruptcy search request by surname only
 Given I am on the LR searches screen
@@ -135,7 +136,7 @@ When I click the add additional county a new county edit box is displayed where 
 When I click continue the applicant details screen is displayed
 And I can capture customer details on the full search screen
 Then I can click the complete search button
-And I can see Application Successful text on Search list page 
+#And I can see Application Successful text on Search list page 
 
 
 

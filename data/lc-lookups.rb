@@ -5,20 +5,28 @@ uri = URI(ENV['LAND_CHARGES_URL'] || 'http://localhost:5004')
 http = Net::HTTP.new(uri.host, uri.port)
 
 counties = counties = '[' +
-    '{ "eng": "Bath and NE Somerset" },' +
+    '{ "eng": "Avon" },' +
+    '{ "eng": "Bath and North East Somerset" },' +
     '{ "eng": "Bedford" },' +
+    '{ "eng": "Bedfordshire" },' +
+    '{ "eng": "Berkshire" },' +
     '{ "eng": "Blackburn with Darwen" },' +
     '{ "eng": "Blackpool" },' +
     '{ "eng": "Bournemouth" },' +
     '{ "eng": "Bracknell Forest" },' +
-    '{ "eng": "Brighton & Hove" },' +
+    '{ "eng": "Brecknockshire" },' +
+    '{ "eng": "Brighton and Hove" },' +
     '{ "eng": "Bristol (city of)" },' +
     '{ "eng": "Buckinghamshire" },' +
     '{ "eng": "Cambridgeshire" },' +
+    '{ "eng": "Cardiganshire" },' +
+    '{ "eng": "Carnarvonshire" },' +
     '{ "eng": "Central Bedfordshire" },' +
+    '{ "eng": "Cheshire" },' +
     '{ "eng": "Cheshire East" },' +
-    '{ "eng": "Cheshire West & Chester" },' +
-    '{ "eng": "Cornwall (including Isles of Scilly)" },' +
+    '{ "eng": "Cheshire West and Chester" },' +
+    '{ "eng": "Cleveland" },' +
+    '{ "eng": "Cornwall" },' +
     '{ "eng": "County Durham" },' +
     '{ "eng": "Cumbria" },' +
     '{ "eng": "Darlington" },' +
@@ -29,14 +37,20 @@ counties = counties = '[' +
     '{ "eng": "East Riding of Yorkshire" },' +
     '{ "eng": "East Sussex" },' +
     '{ "eng": "Essex" },' +
+    '{ "eng": "Glamorganshire" },' +
     '{ "eng": "Gloucestershire" },' +
     '{ "eng": "Greater London" },' +
     '{ "eng": "Greater Manchester" },' +
+    '{ "eng": "Gwent" },' +
     '{ "eng": "Halton" },' +
     '{ "eng": "Hampshire" },' +
     '{ "eng": "Hartlepool" },' +
     '{ "eng": "Herefordshire" },' +
+    '{ "eng": "Hereford and Worcester" },' +
     '{ "eng": "Hertfordshire" },' +
+    '{ "eng": "Humberside" },' +
+    '{ "eng": "Huntingdonshire and Peterborough" },' +
+    '{ "eng": "Isle of Anglesey" },' +
     '{ "eng": "Isle of Wight" },' +
     '{ "eng": "Kent" },' +
     '{ "eng": "Kingston upon Hull (city of)" },' +
@@ -45,10 +59,14 @@ counties = counties = '[' +
     '{ "eng": "Leicestershire" },' +
     '{ "eng": "Lincolnshire" },' +
     '{ "eng": "Luton" },' +
-    '{ "eng": "Medway" },' +
+    '{ "eng": "Medway Towns" },' +
+    '{ "eng": "Merionethshire" },' +
     '{ "eng": "Merseyside" },' +
+    '{ "eng": "Mid Glamorgan" },' +
     '{ "eng": "Middlesbrough" },' +
+    '{ "eng": "Middlesex" },' +
     '{ "eng": "Milton Keynes" },' +
+    '{ "eng": "Montgomeryshire" },' +
     '{ "eng": "Norfolk" },' +
     '{ "eng": "North Lincolnshire" },' +
     '{ "eng": "North East Lincolnshire" },' +
@@ -63,12 +81,14 @@ counties = counties = '[' +
     '{ "eng": "Plymouth (city of)" },' +
     '{ "eng": "Poole" },' +
     '{ "eng": "Portsmouth" },' +
+    '{ "eng": "Radnorshire" },' +
     '{ "eng": "Reading" },' +
     '{ "eng": "Redcar and Cleveland" },' +
     '{ "eng": "Rutland" },' +
-    '{ "eng": "Salop (Shropshire)" },' +
+    '{ "eng": "Shropshire" },' +
     '{ "eng": "Slough" },' +
     '{ "eng": "Somerset" },' +
+    '{ "eng": "South Glamorgan" },' +
     '{ "eng": "South Gloucestershire" },' +
     '{ "eng": "South Yorkshire" },' +
     '{ "eng": "Southampton" },' +
@@ -79,17 +99,20 @@ counties = counties = '[' +
     '{ "eng": "Suffolk" },' +
     '{ "eng": "Surrey" },' +
     '{ "eng": "Swindon" },' +
+    '{ "eng": "Thamesdown" },' +
     '{ "eng": "Thurrock" },' +
     '{ "eng": "Torbay" },' +
     '{ "eng": "Tyne and Wear" },' +
     '{ "eng": "Warrington" },' +
     '{ "eng": "Warwickshire" },' +
     '{ "eng": "West Berkshire" },' +
+    '{ "eng": "West Glamorgan" },' +
     '{ "eng": "West Midlands" },' +
     '{ "eng": "West Sussex" },' +
     '{ "eng": "West Yorkshire" },' +
+    '{ "eng": "Westmoreland" },' +
     '{ "eng": "Wiltshire" },' +
-    '{ "eng": "Windsor & Maidenhead" },' +
+    '{ "eng": "Windsor and Maidenhead" },' +
     '{ "eng": "Wokingham" },' +
     '{ "eng": "Worcestershire" },' +
     '{ "eng": "Wrekin" },' +
@@ -101,6 +124,9 @@ counties = counties = '[' +
     '{ "eng": "Carmarthenshire", "cym": "Sir Gaerfyrddin" },' +
     '{ "eng": "Ceredigion", "cym": "Sir Ceredigion" },' +
     '{ "eng": "Conwy", "cym": "Conwy" },' +
+    '{ "eng": "Clwyd" },' +
+    '{ "eng": "Dyfed" },' +
+    '{ "eng": "Gwynedd" },' +
     '{ "eng": "Denbighshire", "cym": "Sir Ddinbych" },' +
     '{ "eng": "Flintshire", "cym": "Sir y Fflint" },' +
     '{ "eng": "Gwynedd", "cym": "Gwynedd" },' +
@@ -115,7 +141,7 @@ counties = counties = '[' +
     '{ "eng": "Swansea", "cym": "Sir Abertawe" },' +
     '{ "eng": "The Vale of Glamorgan", "cym": "Bro Morgannwg" },' +
     '{ "eng": "Torfaen", "cym": "Tor-Faen" },' +
-    '{ "eng": "Wrexham", "cym": "Wrecsam" }' +
+    '{ "eng": "Wrexham", "cym": "Wrecsam" }' +  
 ']'
 
 request = Net::HTTP::Post.new('/counties')

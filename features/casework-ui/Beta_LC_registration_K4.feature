@@ -27,3 +27,5 @@ When I enter fee details I can choose prepaid
 And I change it to choose direct debit
 When I can click the complete search button
 Then the susuccessfully completed Registration number is banner is displayed
+
+
