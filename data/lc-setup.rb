@@ -22,7 +22,8 @@ standard_data = [
     '{"particulars": {"description": "EXPIRE 2100s.2 1 The Street, Some Town", "counties": ["Dorset"], "district": "South Hams"}, "class_of_charge": "C1", "applicant": {"address": "Land Registry Information Systems, 2 William Prance Road, Plymouth", "key_number": "244095", "name": "P334 Team", "reference": "reference 11"}, "parties": [{"type": "Estate Owner", "names": [{"type": "Other", "other": "Bob Smith And Bros Associated"}]}]}',
     '{"applicant": {"name": "Waste of space", "address": "2 New Street, My Town", "key_number": "1234567", "reference": " "}, "parties":[{"names": [{"type": "Private Individual", "private": {"forenames": ["John"], "surname": "Smith" }}, {"type": "Private Individual", "private": {"forenames": ["John", "Alan"], "surname": "Smithe"}}], "trading_name": " ", "addresses": [{"county": "Devon", "address_lines": ["2 new street", "Plymouth"], "postcode": "PL3 3PL", "type": "Residence", "address_string": "2 new street Plymouth Devon PL3 3PL"}, {"county": "Dorset", "address_lines": ["3 apple Street", "plymouth", "a third line", "a fourth line", "a five line"], "postcode": "postcode", "type": "Residence", "address_string": "3 apple Street plymouth a third line a fourth line a five line Cornwall postcode"}], "occupation": "", "type": "Debtor", "residence_withheld": false, "case_reference": "Plympton County Court 111 of 2016", "legal_body": "Plympton County Court", "legal_body_ref_no": "111 of 2016", "legal_body_ref_year": 2016, "counties": ["Devon", "Dorset"]}], "class_of_charge": "WOB"}',
     '{"particulars": {"description": "17 Fancy Walk, Some Village", "counties": ["Devon"], "district": "South Hams"}, "class_of_charge": "C4", "applicant": {"address": "Land Registry Information Systems, 2 William Prance Road, Plymouth", "key_number": "244095", "name": "P334 Team", "reference": "reference 11"}, "parties": [{"type": "Estate Owner", "names": [{"type": "Private Individual", "private": {"surname": "Johnson", "forenames": ["Jo", "John"]}}]}]}',
-    '{"particulars": {"description": "1 Fancy Gardens, Hammington", "counties": ["Devon"], "district": "Plymouth"}, "class_of_charge": "D2", "applicant": {"address": "Land Registry Information Systems, 2 William Prance Road, Plymouth", "key_number": "2244095", "name": "Big Law PLC", "reference": "ref 82131"}, "parties": [{"type": "Estate Owner", "names": [{"type": "Private Individual", "private": {"surname": "O''Kane", "forenames": ["Jiminy", "Jordan"]}}]}]}'
+    '{"particulars": {"description": "1 Fancy Gardens, Hammington", "counties": ["Devon"], "district": "Plymouth"}, "class_of_charge": "D2", "applicant": {"address": "Land Registry Information Systems, 2 William Prance Road, Plymouth", "key_number": "2244095", "name": "Big Law PLC", "reference": "ref 82131"}, "parties": [{"type": "Estate Owner", "names": [{"type": "Private Individual", "private": {"surname": "O''Kane", "forenames": ["Jiminy", "Jordan"]}}]}]}',
+    '{"applicant": {"name": "Waste of space", "address": "2 New Street, My Town", "key_number": "1234567", "reference": " "}, "parties":[{"names": [{"type": "Private Individual", "private": {"forenames": ["Mister"], "surname": "Bankrupt" }}], "trading_name": " ", "addresses": [{"county": "Devon", "address_lines": ["2 new street", "Plymouth"], "postcode": "PL3 3PL", "type": "Residence", "address_string": "2 new street Plymouth Devon PL3 3PL"}], "occupation": "", "type": "Debtor", "residence_withheld": false, "case_reference": "Devon County Court 123 of 2016", "legal_body": "Plymouth County Court", "legal_body_ref_no": "123 of 2016", "legal_body_ref_year": 2016, "counties": ["Devon", "Dorset"]}], "class_of_charge": "PAB"}',
 ]
 
 regn_dates = [
@@ -39,7 +40,8 @@ regn_dates = [
     '2016-02-03',
     '2016-02-28',
     '2016-02-02',
-    '2016-02-02'
+    '2016-02-02',
+    '2016-01-01'
 ]
 
 cw_uri = URI(ENV['CASEWORK_API_URL'] || 'http://localhost:5006')

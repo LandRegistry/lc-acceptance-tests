@@ -68,6 +68,7 @@ counties = counties = '[' +
     '{ "eng": "Milton Keynes" },' +
     '{ "eng": "Montgomeryshire" },' +
     '{ "eng": "Norfolk" },' +
+    '{ "eng": "North Lincolnshire" },' +
     '{ "eng": "North East Lincolnshire" },' +
     '{ "eng": "North Somerset" },' +
     '{ "eng": "North Yorkshire" },' +
