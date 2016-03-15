@@ -245,21 +245,84 @@ When(/^I register a PAB application without court name$/) do
   fill_in('key_number', :with =>'2244095')
 end
 
-When(/^I attempt to re-register with the previously used registration number$/) do
+When(/^I register a PAB application with AKA$/) do
+  fill_in('court', :with => 'Banana County Court')
+  fill_in('ref_no', :with => '888')
   click_button('continue')
-  regn = page.find(:id, "conf_reg_numbers").text
-  puts(regn)
+  fill_in('forenames_1', :with => 'Pablo')
+  fill_in('surname_1', :with => 'Perigas')
+  find(:id, 'addname').click
+  fill_in('forenames_2', :with => 'Benny')
+  fill_in('surname_2', :with => 'Hinn')
+  fill_in('occupation', :with => 'Clergy')
+  fill_in('add_1_line1', :with => '55 New Street')
+  fill_in('add_1_line2', :with => 'Middlebrook')
+  fill_in('add_1_line3', :with => 'Winchester')
+  fill_in('add_1_line4', :with => 'Hampshire')
+  fill_in('county_1', :with => 'Hants')
+  fill_in('postcode_1', :with => 'B34 1AA')
+  click_button('continue')
+  fill_in('forename_1', :with => 'Pablo')
+  fill_in('surname_1', :with => 'Perigas') 
+  fill_in('court_name', :with => 'Banana County Court')
+  click_button('continue')
+  fill_in('key_number', :with =>'2244095')
+end
+
+When(/^I re-register with the previous registration details$/) do
+  click_button('continue')
   visit( "#{$FRONTEND_URI}/get_list?appn=bank_regn" )
-  maximise_browser
   find(:id, "row_1").click
-  fill_in('ref_no', :with => regn)
+  fill_in('court', :with => 'Banana County Court')
+  fill_in('ref_no', :with => '888')
   click_button('continue')
-   #page should display message indicating the particulars of court have already been registered
 end
 
 Then(/^I can confirm that court details have already been used$/) do
- pending
+ expect(page).to have_content('The particulars of court have already been used to register:')
+ expect(page).to have_button('yes')
+ expect(page).to have_button('no')
 end
 
+When(/^I click Yes to continue with the bankruptcy registration$/) do
+  find(:id, "yes").click
+end
+
+When(/^I click No to discontinue with the bankruptcy registration$/) do
+  find(:id, "no").click
+end
+
+When(/^I can choose a name$/) do
+  choose("radio_2")
+end
+
+When(/^I can assign immage to the application$/) do
+  click_button('continue')
+end
+
+When(/^I can submit a new bankruptcy registration$/) do
+  fill_in('forenames_1', :with => 'George')
+  fill_in('surname_1', :with => 'Bush')
+  find(:id, 'addname').click
+  fill_in('forenames_2', :with => 'Randy')
+  fill_in('surname_2', :with => 'Moore')
+  fill_in('occupation', :with => 'Clergy')
+  fill_in('add_1_line1', :with => '55 New Street')
+  fill_in('add_1_line2', :with => 'Middlebrook')
+  fill_in('add_1_line3', :with => 'Winchester')
+  fill_in('add_1_line4', :with => 'Hampshire')
+  fill_in('county_1', :with => 'Hants')
+  fill_in('postcode_1', :with => 'B34 1AA')
+  click_button('continue')
+  fill_in('forename_1', :with => 'George')
+  fill_in('surname_1', :with => 'Bush') 
+  fill_in('court_name', :with => 'Banana County Court')
+  click_button('continue')
+  fill_in('key_number', :with =>'2244095')
+  click_button('continue')
+  page.find(:id, "conf_reg_numbers").text
+  results = page.find(:id, "conf_reg_numbers").text
+  puts(results)
+end
 
 

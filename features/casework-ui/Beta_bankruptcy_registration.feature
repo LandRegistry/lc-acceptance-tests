@@ -80,15 +80,30 @@ Given I am on the bankruptcy registration screen
 When I select an application type of PAB with a single image
 Then I can confirm successful submission of details for a bankruptcy application
 
-Scenario: BUS-164.0 Confirm that a registration number is already in use 
+Scenario: BUS-167 Verify two stage mandatory re-key 
 Given I am on the bankruptcy registration screen
 And I select an application type of PAB with a single image
-And I register a PAB application without court name
-When I attempt to re-register with the previously used registration number
-#EA: Next line waiting for code deployment
+And I register a PAB application with AKA
+When I re-register with the previous registration details
 Then I can confirm that court details have already been used
 
+Scenario: BUS-167.0 Proceed to register bankruptcy even if two keyed details already exists
+Given I am on the bankruptcy registration screen
+And I select an application type of PAB with a single image
+And I register a PAB application with AKA
+And I re-register with the previous registration details
+When I can confirm that court details have already been used
+And I click Yes to continue with the bankruptcy registration
+Then I can submit a new bankruptcy registration 
 
-
+Scenario: BUS-165 Associate image of duplicate bankruptcy application
+Given I am on the bankruptcy registration screen
+And I select an application type of PAB with a single image
+And I register a PAB application with AKA
+And I re-register with the previous registration details
+When I can confirm that court details have already been used
+And I click No to discontinue with the bankruptcy registration
+Then I can choose a name
+And I can assign immage to the application
 
 
