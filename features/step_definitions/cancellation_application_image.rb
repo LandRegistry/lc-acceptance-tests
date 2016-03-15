@@ -8,8 +8,14 @@ Given(/^I have selected to view a specific record on the cancellation applicatio
 end 
 
 Given(/^I launch Application Cancellation page$/) do
+  maximise_browser
+  visit( "#{$FRONTEND_URI}/login" )
+  fill_in('username', :with => $LOGIN_USERID)
+  fill_in('password', :with => $LOGIN_PASSWORD)
+  click_button('login-button')
+  
   visit( "#{$FRONTEND_URI}/get_list?appn=cancel" )
-   maximise_browser
+  
 end 
 
 When(/^I select the first registration application$/) do

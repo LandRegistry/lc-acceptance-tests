@@ -1,6 +1,12 @@
 Given(/^I am on the bankruptcy amendments screen$/) do
-  visit( "#{$FRONTEND_URI}/get_list?appn=bank_amend" )
   maximise_browser
+  visit( "#{$FRONTEND_URI}/login" )
+  fill_in('username', :with => $LOGIN_USERID)
+  fill_in('password', :with => $LOGIN_PASSWORD)
+  click_button('login-button')
+  
+  visit( "#{$FRONTEND_URI}/get_list?appn=bank_amend" )
+  
 end
 
 
@@ -36,6 +42,7 @@ Given(/^I register and submit a PAB reference number for amendment$/) do
   page.find(:id, "conf_reg_numbers").text
   results = page.find(:id, "conf_reg_numbers").text
   today = Date.today.strftime("%d/%m/%Y")
+  
   visit( "#{$FRONTEND_URI}/get_list?appn=bank_amend" )
    find(:xpath,'//*[@id="row_1"]').click
    fill_in('pab_ref', :with => results)
@@ -45,6 +52,12 @@ end
 
 Given(/^I am on Bankruptcy Amendment screen$/) do
   maximise_browser
+  
+  visit( "#{$FRONTEND_URI}/login" )
+  fill_in('username', :with => $LOGIN_USERID)
+  fill_in('password', :with => $LOGIN_PASSWORD)
+  click_button('login-button')
+  
   visit( "#{$FRONTEND_URI}/get_list?appn=bank_amend" )
 end
 
@@ -62,6 +75,12 @@ When(/^I can reclassify a LRRABO form to a Cancellation application form type$/)
 end
 
 Then(/^I can move the reclassified K7 form back to a LRRABO form$/) do
+  maximise_browser
+  visit( "#{$FRONTEND_URI}/login" )
+  fill_in('username', :with => $LOGIN_USERID)
+  fill_in('password', :with => $LOGIN_PASSWORD)
+  click_button('login-button')
+  
   visit( "#{$FRONTEND_URI}/get_list?appn=cancel" )
   rwcount = all('#work-list>tbody').count
   find(:id, "row_1").click

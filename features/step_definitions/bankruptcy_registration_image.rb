@@ -4,6 +4,12 @@ Given(/^I am on the view application screen$/) do
 end
 
 When(/^I have selected to view specific Bankruptcy application$/) do
+  maximise_browser
+  visit( "#{$FRONTEND_URI}/login" )
+  fill_in('username', :with => $LOGIN_USERID)
+  fill_in('password', :with => $LOGIN_PASSWORD)
+  click_button('login-button')
+  
   visit( "#{$FRONTEND_URI}/get_list?appn=bank_regn" )
   find(:id, 'row_1').click
 end

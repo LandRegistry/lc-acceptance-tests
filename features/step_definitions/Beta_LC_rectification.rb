@@ -2,6 +2,11 @@
 
 Given(/^I am on the rectification screen$/) do
   maximise_browser
+  visit( "#{$FRONTEND_URI}/login" )
+  fill_in('username', :with => $LOGIN_USERID)
+  fill_in('password', :with => $LOGIN_PASSWORD)
+  click_button('login-button')
+  
   visit( "#{$FRONTEND_URI}/get_list?appn=lc_rect" )
   within(:xpath, ".//*[@id='row_1']/td[2]") do
   page.should have_content('K9')
@@ -13,6 +18,11 @@ end
 
 Given(/^I am on Land Charge rectification screen$/) do
   maximise_browser
+  visit( "#{$FRONTEND_URI}/login" )
+  fill_in('username', :with => $LOGIN_USERID)
+  fill_in('password', :with => $LOGIN_PASSWORD)
+  click_button('login-button')
+  
   visit( "#{$FRONTEND_URI}/get_list?appn=lc_rect" )
 end
 

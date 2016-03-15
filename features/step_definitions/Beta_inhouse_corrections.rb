@@ -1,6 +1,13 @@
 Given(/^I am on the bankruptcy correction screen$/) do
-  visit( "#{$FRONTEND_URI}/correction" )
+  
   maximise_browser
+  visit( "#{$FRONTEND_URI}/login" )
+  fill_in('username', :with => $LOGIN_USERID)
+  fill_in('password', :with => $LOGIN_PASSWORD)
+  click_button('login-button')
+  
+  visit( "#{$FRONTEND_URI}/correction" )
+ 
 end
 
 When(/^I submit data to retrieve the registration details$/) do

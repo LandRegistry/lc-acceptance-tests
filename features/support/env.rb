@@ -13,6 +13,9 @@ $POSTGRES_USER = ENV['POSTGRES_USER'] || 'vagrant'
 $POSTGRES_PASSWORD = ENV['POSTGRES_PASSWORD'] || 'vagrant'
 
 
+$LOGIN_USERID = ENV['LOGIN_USERID'] || 'AcceptanceTest';
+$LOGIN_PASSWORD = ENV['LOGIN_PASSWORD'] || '123';
+
 puts '======================='
 puts "ENVIRONMENT SET"
 puts $B2B_PROCESSOR_URI

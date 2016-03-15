@@ -1,6 +1,13 @@
 Given(/^I am on the Land Charges worklist$/) do
-  visit( "#{$FRONTEND_URI}/get_list?appn=lc_regn" )
+  
   maximise_browser
+  visit( "#{$FRONTEND_URI}/login" )
+  fill_in('username', :with => $LOGIN_USERID)
+  fill_in('password', :with => $LOGIN_PASSWORD)
+  click_button('login-button')
+  
+  visit( "#{$FRONTEND_URI}/get_list?appn=lc_regn" )
+ 
 end
 
 When(/^there are applications available$/) do
