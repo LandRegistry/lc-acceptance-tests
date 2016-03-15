@@ -22,7 +22,7 @@ end
 
 When(/^I can confirm the exact variation of names for my first search name$/) do
   within_table('name_results_1') do
-    should have_xpath("//tr", :count => 6)
+    should have_xpath("//tr", :count => 12)
   end
   expect(page).to have_content('KING STARK OF THE NORTH') 
   expect(page).to have_content('HRH KING STARK') 

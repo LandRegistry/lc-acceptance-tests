@@ -1,12 +1,23 @@
 Given(/^I am on the bankruptcy searches screen$/) do
   #@regnote = create_registration
   #puts @regnote
+  maximise_browser
+  visit( "#{$FRONTEND_URI}/login" )
+  fill_in('username', :with => $LOGIN_USERID)
+  fill_in('password', :with => $LOGIN_PASSWORD)
+  click_button('login-button')
+  
   visit($FRONTEND_URI)
   maximise_browser
   visit("#{$FRONTEND_URI}/get_list?appn=search" )
 end
 
 Given(/^I am on the LR searches screen$/) do
+  maximise_browser
+  visit( "#{$FRONTEND_URI}/login" )
+  fill_in('username', :with => $LOGIN_USERID)
+  fill_in('password', :with => $LOGIN_PASSWORD)
+  click_button('login-button')
   visit($FRONTEND_URI)
   maximise_browser
   visit("#{$FRONTEND_URI}/get_list?appn=search" )
