@@ -1,5 +1,5 @@
 Given(/^I am on the Land Charges renewal applications screen$/) do
-  maximise_browser
+  #maximise_browser
   visit( "#{$FRONTEND_URI}/login" )
   fill_in('username', :with => $LOGIN_USERID)
   fill_in('password', :with => $LOGIN_PASSWORD)
