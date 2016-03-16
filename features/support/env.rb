@@ -1,5 +1,5 @@
 
-$B2B_API_URI$B2B_API_URI = ENV['PUBLIC_API_URL'] || 'http://localhost:5001'
+$B2B_API_URI = ENV['PUBLIC_API_URL'] || 'http://localhost:5001'
 $B2B_PROCESSOR_URI = ENV['AUTOMATIC_PROCESS_URL'] || 'http://localhost:5002'
 $BANKRUPTCY_REGISTRATION_URI = ENV['LAND_CHARGES_URL'] || 'http://localhost:5004'
 $LAND_CHARGES_URI = ENV['LAND_CHARGES_URL'] || 'http://localhost:5004'
