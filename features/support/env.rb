@@ -18,6 +18,15 @@ $LOGIN_PASSWORD = ENV['LOGIN_PASSWORD'] || '123';
 
 puts '======================='
 puts "ENVIRONMENT SET"
-puts $B2B_PROCESSOR_URI
-puts ENV['AUTOMATIC_PROCESS_URL']
+
+puts "B2B API: " + $B2B_API_URI
+puts "Autoprocess: " + $B2B_PROCESSOR_URI
+puts "LandChargesAlt: " + $BANKRUPTCY_REGISTRATION_URI
+puts "LandCharges: " + $LAND_CHARGES_URI
+puts "Casework API: " + $CASEWORK_API_URI
+puts "Legacy Adapter: " + $LEGACY_DB_URI
+puts "Frontend: " + $FRONTEND_URI
+puts "Postgres: " + $POSTGRES_HOST
+puts "Username: " + $LOGIN_USERID
+
 puts '======================='

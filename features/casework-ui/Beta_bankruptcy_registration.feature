@@ -94,7 +94,8 @@ And I register a PAB application with AKA
 And I re-register with the previous registration details
 When I can confirm that court details have already been used
 And I click Yes to continue with the bankruptcy registration
-Then I can submit a new bankruptcy registration 
+Then I can confirm that I am on the debtors details screen 
+And I can submit a new bankruptcy registration 
 
 Scenario: BUS-165 Associate image of duplicate bankruptcy application
 Given I am on the bankruptcy registration screen
@@ -105,5 +106,47 @@ When I can confirm that court details have already been used
 And I click No to discontinue with the bankruptcy registration
 Then I can choose a name
 And I can assign immage to the application
+
+Scenario: BUS-082 Store application on Particulars of Debtor page of bank registration
+Given I am on the bankruptcy registration screen
+When I select an application type of PAB with a single image
+And I enter court name the details are visible
+And I enter court reference the details are visible
+And I can click on Continue button to submit the form
+And I can enter name details
+When I select option to return to the application later
+Then I am on Store application page
+And I can enter a reason
+And I can click to store the reason
+
+Scenario: BUS-082.1 Store application on details verification screen of bank registration
+Given I am on the bankruptcy registration screen
+When I select an application type of PAB with a single image
+And I enter court name the details are visible
+And I enter court reference the details are visible
+And I can click button to continue
+And I can submit debtor details
+And I can re-key debtor details
+#EA: Next line needs to be included when IH deploys code for it
+#When I select option to return to the application later
+#Then I am on Store application page
+#And I can enter a reason
+#And I can click to store the reason
+
+Scenario: BUS-082.2 Store application on Key Number page of bank registration
+Given I am on the bankruptcy registration screen
+When I select an application type of PAB with a single image
+And I enter court name the details are visible
+And I enter court reference the details are visible
+And I can click button to continue
+And I can submit debtor details
+And I can re-key debtor details
+And I can click button to continue
+#EA: Next line needs to be included when IH deploys code for it
+#And I am on the Court screen I can enter a valid key number
+#When I select option to return to the application later
+#Then I am on Store application page
+#And I can enter a reason
+#And I can click to store the reason
 
 

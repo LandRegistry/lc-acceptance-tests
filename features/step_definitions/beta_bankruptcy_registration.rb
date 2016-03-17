@@ -300,6 +300,29 @@ When(/^I can assign immage to the application$/) do
   click_button('continue')
 end
 
+When(/^I can submit debtor details$/) do
+  fill_in('forenames_1', :with => 'George')
+  fill_in('surname_1', :with => 'Bush')
+  find(:id, 'addname').click
+  fill_in('forenames_2', :with => 'Randy')
+  fill_in('surname_2', :with => 'Moore')
+  fill_in('occupation', :with => 'Clergy')
+  fill_in('add_1_line1', :with => '55 New Street')
+  fill_in('add_1_line2', :with => 'Middlebrook')
+  fill_in('add_1_line3', :with => 'Winchester')
+  fill_in('add_1_line4', :with => 'Hampshire')
+  fill_in('county_1', :with => 'Hants')
+  fill_in('postcode_1', :with => 'B34 1AA')
+  click_button('continue')
+end
+
+When(/^I can re-key debtor details$/) do
+  fill_in('forename_1', :with => 'George')
+  fill_in('surname_1', :with => 'Bush') 
+  fill_in('court_name', :with => 'Banana County Court')
+  sleep(20)
+end
+
 When(/^I can submit a new bankruptcy registration$/) do
   fill_in('forenames_1', :with => 'George')
   fill_in('surname_1', :with => 'Bush')
@@ -325,4 +348,24 @@ When(/^I can submit a new bankruptcy registration$/) do
   puts(results)
 end
 
+When(/^I can enter name details$/) do
+  fill_in('forenames_1', :with => 'George')
+  fill_in('surname_1', :with => 'Bush')
+end
 
+When(/^I select option to return to the application later$/) do
+  #click_link('store')
+  find(:xpath, "//*[@id='store']").click
+end
+
+When(/^I can click to store the reason$/) do
+  click_button('store')
+end
+
+When(/^I can enter a reason$/) do
+  fill_in('store_reason', :with => 'These testers are amazing!')
+end
+
+Then(/^I am on Store application page$/) do
+  expect(page).to have_content('Store application')
+end
