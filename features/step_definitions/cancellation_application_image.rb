@@ -82,7 +82,7 @@ When(/^I must have a registration number value before the continue button can be
  
 end
 
-When(/^I can click the Register cancellation button to go to the next screen$/) do
+When(/^I submit the data$/) do
   click_button('submit')
 end
 
@@ -158,6 +158,12 @@ Then(/^I can submit conveyancer details$/) do
   find(:id, 'full_cans').click
   find(:id, 'direct_debit').click
   click_button('continue')
+end
+
+Then(/^I can submit conveyancer details for the part cancellation$/) do
+  fill_in('key_number', :with =>'2244095')
+  fill_in('customer_ref', :with => '911')
+  find(:id, 'direct_debit').click
 end
 
 When(/^I attempt to resubmit a cancelled new application number$/) do
@@ -268,17 +274,25 @@ When(/^I select part cancellation option$/) do
 end
 
 When(/^I choose the C4 cancellation option$/) do 
-  pending #ensure D2 is deselected
+  verifpge = 'Original registration details'
+  entryopt = 'Which entry do youwish to cancel?'
+ if ("//*[@id='form_panel']/h2" == verifpge)
+   click_button('continue')
+  elsif  ("//*[@id='multi_reg_title']" == entryopt)
+   choose 'multi_reg_1'
+  else
+    nil
+  end  
 end
 
 When(/^I choose the D2 cancellation option$/) do 
   pending 
 end
 
-Then(/^I can enter additional information$/) do
-  pending 
+When(/^I can opt to confirm plan attached$/) do 
+   find(:id, "plan_attached").click
 end
 
-Then(/^I can attach a file$/) do
-  pending 
+When(/^I can enter additional information$/) do 
+   fill_in "part_cans_text", :with => "smile smile smile!"
 end

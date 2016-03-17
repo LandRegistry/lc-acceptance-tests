@@ -226,3 +226,35 @@ end
 When(/^I am on the Conveyancer and fees screen I can enter a valid key number$/) do
   fill_in('key_number', :with =>'2244095')
 end
+
+When(/^I parse a new land charge registration for cancellation$/) do
+  fill_in('forename', :with => 'Joyce')
+  fill_in('Surname', :with => 'Mayer')
+  select 'C1', from:  "class"
+  click_button "continue"
+  fill_in('key_number', :with =>'2244095')
+  fill_in('customer_ref', :with =>'2244095')
+  choose "direct_debit"
+  click_button "submit"
+  results = page.find(:id, "conf_reg_numbers").text
+  visit( "#{$FRONTEND_URI}/get_list?appn=cancel" )
+   find(:xpath,'//*[@id="row_1"]').click
+   fill_in('reg_no', :with => results)
+   today = Date.today.strftime("%d/%m/%Y")
+  fill_in('reg_date', :with => today)
+end
+
+When(/^I submit input details for land charge registration$/) do
+  select 'C1', from:  "class"
+  fill_in('pri_notice',:with =>'127')
+  fill_in('county_0', :with => 'Poole')
+  fill_in('District',:with => 'Devon')
+  fill_in('short_desc', :with =>'free format2werslkfxdlkf')
+  fill_in('forename', :with => 'Joyce')
+  fill_in('Surname', :with => 'Mayer')
+  fill_in('occupation',:with => 'preacher')
+  click_button "continue"
+end
+
+ 
+  

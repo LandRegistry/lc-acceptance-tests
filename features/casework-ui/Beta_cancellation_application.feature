@@ -78,39 +78,41 @@ When I select the first registration application
 And I select part cancellation option
 Then I can click button to continue
 
-Scenario: BUS-086 Cancel a C4 entry without a D2 cancellation
-Given I launch Application Cancellation page
-And I select the first registration application
+Scenario: BUS-160/171.0 Part cancellation with plan attached
+Given I have selected to view a specific Land Charges application from the application list
+And I submit input details for land charge registration
+And I parse a new land charge registration for cancellation
 And I select part cancellation option
 And I can click button to continue
-When I choose the C4 cancellation option
+And I can opt to confirm plan attached
+And I can enter additional information
 And I can click button to continue
-And I can click button to continue
-Then I can submit conveyancer details
+Then I can submit conveyancer details for the part cancellation
+And I submit the data
 
-#BA confirmed this is not a requirement but check impact on system
-Scenario: Cancel a D2 entry 
-Given I launch Application Cancellation page
-And I select the first registration application
+Scenario: BUS-160/171.0 Part cancellation without plan attached selecting a C4 or D2
+Given I have selected to view a specific Land Charges application from the application list
+And I submit input details for land charge registration
+And I parse a new land charge registration for cancellation
 And I select part cancellation option
 And I can click button to continue
-When I choose the D2 cancellation option
+And I can enter additional information
 And I can click button to continue
-And I can click button to continue
-Then I can submit conveyancer details
+Then I can submit conveyancer details for the part cancellation
+And I submit the data
 
-Scenario: Submit a C4 cancellation with additional information
-Given I launch Application Cancellation page
-And I select the first registration application
-And I select part cancellation option
-And I can click button to continue
-And I choose the C4 cancellation option
-When I can click button to continue
-Then I can enter additional information
-And I can attach a file
-And I can click button to continue
-And I can submit conveyancer details
-
+#EA:Data dependant test. To be reviewed with IH. Same reg number needed for this test
+#Scenario: Part cancellation with a C4 option 
+#Given I launch Application Cancellation page
+#And I select the first registration application
+#And I select part cancellation option
+#And I can click button to continue
+#And I choose the C4 cancellation option
+#When I can click button to continue
+#Then I can enter additional information
+#And I can attach a file
+#And I can click button to continue
+#And I can submit conveyancer details
 
 Scenario: BUS-082 Store application record on original details page of an amendment
 Given I am on the bankruptcy registration screen
