@@ -184,3 +184,8 @@ Then(/^the old registration is still revealed$/) do
   oldreg = @registration_api.get(uri)
   expect(oldreg['revealed']).to be true
 end
+
+Then(/^I can reject the application$/) do
+  click_link('reject')
+end
+

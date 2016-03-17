@@ -33,3 +33,12 @@ Given I am on Land Charge Registration applications screen
 When I can classify the form to a WOB Registration type
 Then I can restore the reclassified WOB Registration form to a K1 LC Registration form
 
+Scenario: BUS-120 Reject Land charge registration application
+Given I am on the view application screen
+When I have selected to view a specific Land Charges application from the application list
+When I can select the appropiate class of charge
+When I can reject the application
+Then I click Ok on the pop up
+And I can see Confirmation message indicating the application has been rejected
+#And I can confirm the number of applications remaining on worklist is one less
+
