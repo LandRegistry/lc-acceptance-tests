@@ -101,11 +101,11 @@ Given(/^an existing PAB and WOB registration with court details of "([^"]*)" ref
     
     pab = {"applicant" => {"name" => "Waste of space", "address" => "2 New Street, My Town", "key_number" => "1234567", "reference" => " "},
     "parties" =>[{"names" => [{"type" => "Private Individual", "private" => {"forenames" => ["Mister"], "surname" => "Bankrupt" }}], "trading_name" => " ", "addresses" => [{"county" => "Devon", "address_lines" => ["2 new street", "Plymouth"], "postcode" => "PL3 3PL", "type" => "Residence", "address_string" => "2 new street Plymouth Devon PL3 3PL"}], "occupation" => "", "type" => "Debtor", "residence_withheld" => false,
-        "case_reference" => "#{court} no #{ref}", "legal_body" => court, "legal_body_ref_no" => ref}],
+        "case_reference" => "#{court} #{ref}"}],
     "class_of_charge" => "PAB"}
 
-    wob = {"parties" => [{"type" => "Debtor", "legal_body_ref_no" => ref, "trading_name" => " ", "occupation" => "Unemployed", "names" => [{"type" => "Private Individual", "private" => {"surname" => "Bankrupt", "forenames" => ["Mister"]}}],
-    "legal_body" => court, "case_reference" => "#{court} no #{ref}",
+    wob = {"parties" => [{"type" => "Debtor", "trading_name" => " ", "occupation" => "Unemployed", "names" => [{"type" => "Private Individual", "private" => {"surname" => "Bankrupt", "forenames" => ["Mister"]}}],
+    "case_reference" => "#{court} #{ref}",
     "addresses" => [{"county" => "Devon", "type" => "Residence", "postcode" => "OT1 1AA", "address_lines" => ["1 Other Road", "Otherton"], "address_string" => "1 Other Road Otherton Devon OT1 1AA"}], "residence_withheld" => false}], "class_of_charge" => "WOB",
     "applicant" => {"key_number" => "1234567", "address" => "49 Camille Circles Port Eulah PP39 6BY", "reference" => " ", "name" => "S & H Legal Group"}}
 
@@ -122,8 +122,8 @@ Given(/^an existing PAB and WOB registration with court details of "([^"]*)" ref
 end
 
 When(/^I amend the WOB's address$/) do
-    amendment = {"parties" => [{"type" => "Debtor", "legal_body_ref_no" => @wob_ref, "trading_name" => " ", "occupation" => "Unemployed", "names" => [{"type" => "Private Individual", "private" => {"surname" => "Bankrupt", "forenames" => ["Mister"]}}],
-    "legal_body" => @wob_court, "case_reference" => "#{@wob_court} no #{@wob_ref}",
+    amendment = {"parties" => [{"type" => "Debtor", "trading_name" => " ", "occupation" => "Unemployed", "names" => [{"type" => "Private Individual", "private" => {"surname" => "Bankrupt", "forenames" => ["Mister"]}}],
+    "case_reference" => "#{@wob_court} #{@wob_ref}",
     "addresses" => [{"county" => "Devon", "type" => "Residence", "postcode" => "OT1 1AA", "address_lines" => ["1 This Road", "Thiston"], "address_string" => "1 This Road Thiston Devon OT1 1AA"}], "residence_withheld" => false}], "class_of_charge" => "WOB",
     "applicant" => {"key_number" => "1234567", "address" => "49 Camille Circles Port Eulah PP39 6BY", "reference" => " ", "name" => "S & H Legal Group"}, 'update_registration' => {'type'=>'Amendment'}}
     
@@ -170,8 +170,8 @@ When(/^I amend the WOB's debtor name to "([^"]*)"$/) do |name|
     forename = name_list[0..-2]
     surname = name_list[-1]
     
-    amendment = {"parties" => [{"type" => "Debtor", "legal_body_ref_no" => @wob_ref, "trading_name" => " ", "occupation" => "Unemployed", "names" => [{"type" => "Private Individual", "private" => {"surname" => surname, "forenames" => forename}}],
-    "legal_body" => @wob_court, "case_reference" => "#{@wob_court} no #{@wob_ref}",
+    amendment = {"parties" => [{"type" => "Debtor", "trading_name" => " ", "occupation" => "Unemployed", "names" => [{"type" => "Private Individual", "private" => {"surname" => surname, "forenames" => forename}}],
+    "case_reference" => "#{@wob_court} #{@wob_ref}",
     "addresses" => [{"county" => "Devon", "type" => "Residence", "postcode" => "OT1 1AA", "address_lines" => ["1 Other Road", "Otherton"], "address_string" => "1 Other Road Otherton Devon OT1 1AA"}], "residence_withheld" => false}], "class_of_charge" => "WOB",
     "applicant" => {"key_number" => "1234567", "address" => "49 Camille Circles Port Eulah PP39 6BY", "reference" => " ", "name" => "S & H Legal Group"}, 'update_registration' => {'type'=>'Amendment'}}
 
