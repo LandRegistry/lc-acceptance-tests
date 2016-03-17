@@ -58,7 +58,7 @@ When(/^I enter fee details I can choose prepaid$/) do
 end
 
 When(/^I change it to choose direct debit$/) do
-  choose('direct_debit')
+  #choose('direct_debit')  commented out for defect 42
 end
 
 When(/^I enter a county the details are displayed county edit box$/) do
