@@ -66,46 +66,44 @@ When I enter the address the details are visible
 When I can click on Continue button to submit the form
 When I am on the verification screen I can rekey debtor's name
 When I am on the verification screen I can change debtor's AKA name
-When I am on the verification screen I can rekey debtor's AKA name
-When I am on the verification screen I can rekey debtor's name
 When I am on the verification screen I can rekey court name
-When I am on the verification screen I can view reference numbers
 When I can click on Continue button to submit the form
-When I am on the Court screen I can enter a valid key number
-When I can click button to continue
-Then the susuccessfully completed Registration number is banner is displayed
+#Then the susuccessfully completed Registration number is banner is displayed
 
 Scenario: BUS-038 Confirm Bankruptcy registration number
 Given I am on the bankruptcy registration screen
 When I select an application type of PAB with a single image
 Then I can confirm successful submission of details for a bankruptcy application
 
-Scenario: BUS-167 Verify two stage mandatory re-key 
-Given I am on the bankruptcy registration screen
-And I select an application type of PAB with a single image
-And I register a PAB application with AKA
-When I re-register with the previous registration details
-Then I can confirm that court details have already been used
+#Defect No:41
+#Scenario: BUS-167 Verify two stage mandatory re-key 
+#Given I am on the bankruptcy registration screen
+#And I select an application type of PAB with a single image
+#And I register a PAB application with AKA
+#When I re-register with the previous registration details
+#Then I can confirm that court details have already been used
 
-Scenario: BUS-167.0 Proceed to register bankruptcy even if two keyed details already exists
-Given I am on the bankruptcy registration screen
-And I select an application type of PAB with a single image
-And I register a PAB application with AKA
-And I re-register with the previous registration details
-When I can confirm that court details have already been used
-And I click Yes to continue with the bankruptcy registration
-Then I can confirm that I am on the debtors details screen 
-And I can submit a new bankruptcy registration 
+#Defect No:41
+#Scenario: BUS-167.0 Proceed to register bankruptcy even if two keyed details already exists
+#Given I am on the bankruptcy registration screen
+#And I select an application type of PAB with a single image
+#And I register a PAB application with AKA
+#And I re-register with the previous registration details
+#When I can confirm that court details have already been used
+#And I click Yes to continue with the bankruptcy registration
+#Then I can confirm that I am on the debtors details screen 
+#And I can submit a new bankruptcy registration 
 
-Scenario: BUS-165 Associate image of duplicate bankruptcy application
-Given I am on the bankruptcy registration screen
-And I select an application type of PAB with a single image
-And I register a PAB application with AKA
-And I re-register with the previous registration details
-When I can confirm that court details have already been used
-And I click No to discontinue with the bankruptcy registration
-Then I can choose a name
-And I can assign immage to the application
+#Defect No:41
+#Scenario: BUS-165 Associate image of duplicate bankruptcy application
+#Given I am on the bankruptcy registration screen
+#And I select an application type of PAB with a single image
+#And I register a PAB application with AKA
+#And I re-register with the previous registration details
+#When I can confirm that court details have already been used
+#And I click No to discontinue with the bankruptcy registration
+#Then I can choose a name
+#And I can assign immage to the application
 
 Scenario: BUS-082 Store application on Particulars of Debtor page of bank registration
 Given I am on the bankruptcy registration screen
@@ -148,5 +146,16 @@ And I can click button to continue
 #Then I am on Store application page
 #And I can enter a reason
 #And I can click to store the reason
+
+Scenario: BUS-120 Reject Bankruptcy registration application
+Given I am on the bankruptcy registration screen
+And I select an application type of PAB with a single image
+And I enter court name the details are visible
+When I click on the link to reject application
+Then I click Ok on the pop up
+And I can see Confirmation message indicating the application has been rejected
+#And I can confirm the number of applications remaining on worklist is one less
+
+
 
 

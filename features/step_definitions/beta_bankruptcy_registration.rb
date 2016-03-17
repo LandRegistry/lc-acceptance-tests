@@ -109,20 +109,21 @@ When(/^I can rekey debtor's name on the verification screen$/) do
 end
 
 When(/^I am on the verification screen I can change debtor's AKA name$/) do
-  find(:id, 'change_debtor').click
-  fill_in('forenames_2', :with => 'Javine')
-  fill_in('surname_2', :with => 'Ryan')
+  #find(:id, 'change_debtor').click
+  fill_in('forename_2', :with => 'Barry')
+  fill_in('surname_2', :with => 'Scottie')
 end
 
 When(/^I am on the verification screen I can view reference numbers$/) do
+  sleep(10)
   expect(page).to have_content('384')
   #expect(page).to have_content('2013')
 end
 
 When(/^I am on the verification screen I can rekey debtor's AKA name$/) do
-  fill_in('forenames_2', :with => 'Javine')
-  fill_in('surname_2', :with => 'Ryan')
-  click_button('continue')
+  fill_in('forename_2', :with => 'Barry')
+  fill_in('surname_2', :with => 'Scottie')
+  #click_button('continue')
 end
 
 When(/^I am on the verification screen I can rekey court name$/) do
@@ -264,6 +265,8 @@ When(/^I register a PAB application with AKA$/) do
   click_button('continue')
   fill_in('forename_1', :with => 'Pablo')
   fill_in('surname_1', :with => 'Perigas') 
+   fill_in('forename_2', :with => 'Benny')
+  fill_in('surname_2', :with => 'Hinn')
   fill_in('court_name', :with => 'Banana County Court')
   click_button('continue')
   fill_in('key_number', :with =>'2244095')
@@ -320,7 +323,6 @@ When(/^I can re-key debtor details$/) do
   fill_in('forename_1', :with => 'George')
   fill_in('surname_1', :with => 'Bush') 
   fill_in('court_name', :with => 'Banana County Court')
-  sleep(20)
 end
 
 When(/^I can submit a new bankruptcy registration$/) do
@@ -368,4 +370,25 @@ end
 
 Then(/^I am on Store application page$/) do
   expect(page).to have_content('Store application')
+end
+
+When(/^I click on the link to reject application$/) do
+  click_link('reject_2')
+end
+
+When(/^I click Ok on the pop up$/) do
+  page.driver.browser.switch_to.alert.accept
+end
+
+Then(/^I can verify that worklist reduces by one when application is rejected$/) do
+ rwcount = all('#work-list>tbody').count
+ find(:id, "row_1").click
+ fill_in('court', :with => 'County Court of Portsmouth')
+ click_link('reject_2')
+ page.driver.browser.switch_to.alert.accept
+ page.all('#work-list>tbody').count.should == rwcount -1
+end
+
+Then(/^I can see Confirmation message indicating the application has been rejected$/) do
+  expect(page).to have_content('Your application has been rejected.')
 end
