@@ -12,7 +12,7 @@ Given(/^I launch Application Cancellation page$/) do
   visit( "#{$FRONTEND_URI}/login" )
   fill_in('username', :with => $LOGIN_USERID)
   fill_in('password', :with => $LOGIN_PASSWORD)
-  click_button('login-button')
+  click_button('login_button')
   
   visit( "#{$FRONTEND_URI}/get_list?appn=cancel" )
   
@@ -271,18 +271,6 @@ end
 
 When(/^I select part cancellation option$/) do
   find(:id, 'part_cans').click
-end
-
-When(/^I choose the C4 cancellation option$/) do 
-  verifpge = 'Original registration details'
-  entryopt = 'Which entry do youwish to cancel?'
- if ("//*[@id='form_panel']/h2" == verifpge)
-   click_button('continue')
-  elsif  ("//*[@id='multi_reg_title']" == entryopt)
-   choose 'multi_reg_1'
-  else
-    nil
-  end  
 end
 
 When(/^I choose the D2 cancellation option$/) do 

@@ -156,6 +156,24 @@ Then I click Ok on the pop up
 And I can see Confirmation message indicating the application has been rejected
 #And I can confirm the number of applications remaining on worklist is one less
 
+Scenario: Register WOB issued by adjudicator
+Given I am on the bankruptcy registration screen
+When I select an application type of WOB with a single image
+And I enter court reference the details are visible
+And I can click button to continue
+Then I register the application
+And I can click button to continue
+And I can see the application successful message 
+
+Scenario: Register PAB issued by adjudicator
+Given I am on the bankruptcy registration screen
+When I select an application type of PAB with a single image
+And I enter court reference the details are visible
+And I can click button to continue
+Then I register the application
+And I can click button to continue
+And I can see the application successful message 
+
 
 
 

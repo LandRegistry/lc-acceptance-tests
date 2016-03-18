@@ -90,7 +90,7 @@ And I can click button to continue
 Then I can submit conveyancer details for the part cancellation
 And I submit the data
 
-Scenario: BUS-160/171.0 Part cancellation without plan attached selecting a C4 or D2
+Scenario: BUS-160/171.0 Part cancellation without plan attached 
 Given I have selected to view a specific Land Charges application from the application list
 And I submit input details for land charge registration
 And I parse a new land charge registration for cancellation
