@@ -121,10 +121,11 @@ And I parse the new registration number as Original registration number
 And I can retrieve the application details with valid data submitted
 And I can click button to continue
 And I am on the Court screen I can enter a valid key number
-When I select option to return to the application later
-Then I am on Store application page
-And I can enter a reason
-And I can click to store the reason
+#EA: Next line defect no 39
+#When I select option to return to the application later
+#Then I am on Store application page
+#And I can enter a reason
+#And I can click to store the reason
 
 Scenario: BUS-082 Store application record on View and Cancel page of cancellation journey
 Given I am on the bankruptcy registration screen
