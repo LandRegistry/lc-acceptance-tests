@@ -3,7 +3,7 @@ Given(/^I am on the bankruptcy amendments screen$/) do
   visit( "#{$FRONTEND_URI}/login" )
   fill_in('username', :with => $LOGIN_USERID)
   fill_in('password', :with => $LOGIN_PASSWORD)
-  click_button('login-button')
+  click_button('login_button')
   
   visit( "#{$FRONTEND_URI}/get_list?appn=bank_amend" )
   
@@ -56,7 +56,7 @@ Given(/^I am on Bankruptcy Amendment screen$/) do
   visit( "#{$FRONTEND_URI}/login" )
   fill_in('username', :with => $LOGIN_USERID)
   fill_in('password', :with => $LOGIN_PASSWORD)
-  click_button('login-button')
+  click_button('login_button')
   
   visit( "#{$FRONTEND_URI}/get_list?appn=bank_amend" )
 end
@@ -79,7 +79,7 @@ Then(/^I can move the reclassified K7 form back to a LRRABO form$/) do
   visit( "#{$FRONTEND_URI}/login" )
   fill_in('username', :with => $LOGIN_USERID)
   fill_in('password', :with => $LOGIN_PASSWORD)
-  click_button('login-button')
+  click_button('login_button')
   
   visit( "#{$FRONTEND_URI}/get_list?appn=cancel" )
   rwcount = all('#work-list>tbody').count

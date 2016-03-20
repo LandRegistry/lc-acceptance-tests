@@ -3,7 +3,7 @@ When(/^I have selected to view a specific Land Charges application from the appl
   visit( "#{$FRONTEND_URI}/login" )
   fill_in('username', :with => $LOGIN_USERID)
   fill_in('password', :with => $LOGIN_PASSWORD)
-  click_button('login-button')
+  find(:xpath, "//*[@id='login_button']").click
   
   visit( "#{$FRONTEND_URI}/get_list?appn=lc_regn" )
   within(:xpath, ".//*[@id='row_1']/td[2]") do
@@ -226,3 +226,65 @@ end
 When(/^I am on the Conveyancer and fees screen I can enter a valid key number$/) do
   fill_in('key_number', :with =>'2244095')
 end
+
+When(/^I parse a new land charge registration for cancellation$/) do
+  fill_in('forename', :with => 'Joyce')
+  fill_in('Surname', :with => 'Mayer')
+  select 'C1', from:  "class"
+  click_button "continue"
+  fill_in('key_number', :with =>'2244095')
+  fill_in('customer_ref', :with =>'2244095')
+  choose "direct_debit"
+  click_button "submit"
+  results = page.find(:id, "conf_reg_numbers").text
+  visit( "#{$FRONTEND_URI}/get_list?appn=cancel" )
+   find(:xpath,'//*[@id="row_1"]').click
+   fill_in('reg_no', :with => results)
+   today = Date.today.strftime("%d/%m/%Y")
+  fill_in('reg_date', :with => today)
+end
+
+When(/^I submit input details for land charge registration$/) do
+  select 'C1', from:  "class"
+  fill_in('pri_notice',:with =>'127')
+  fill_in('county_0', :with => 'Poole')
+  fill_in('District',:with => 'Devon')
+  fill_in('short_desc', :with =>'free format2werslkfxdlkf')
+  fill_in('forename', :with => 'Joyce')
+  fill_in('Surname', :with => 'Mayer')
+  fill_in('occupation',:with => 'preacher')
+  click_button "continue"
+end
+
+When(/^I can classify the form to a WOB Registration type$/) do
+  within(:xpath, "//*[@id='work-list']") do
+  page.should have_content('K3')
+  end
+  rwcount = all('#work-list>tbody').count
+  find(:id, "row_1").click
+  within('#wrong_form') do
+  click_link 'Choose the correct form type'
+  end
+  choose('wob_regn')
+  find_button('continue').click
+  expect(page).to have_content('Your application has been moved to Bankruptcy Registrations')
+  visit( "#{$FRONTEND_URI}/get_list?appn=lc_regn" )
+  page.all('#work-list>tbody').count.should == rwcount -1
+end
+
+Then(/^I can restore the reclassified WOB Registration form to a K1 LC Registration form$/) do
+  visit( "#{$FRONTEND_URI}/get_list?appn=bank_regn" )
+  rwcount = all('#work-list>tbody').count
+  find(:id, "row_1").click
+  within('#wrong_form') do
+  click_link 'Choose the correct form type'
+  end
+  choose('k1')
+  find_button('continue').click
+  expect(page).to have_content('Your application has been moved to Land Charge Registrations')
+  visit( "#{$FRONTEND_URI}/get_list?appn=bank_regn" )
+  page.all('#work-list>tbody').count.should == rwcount -1
+end
+
+ 
+  

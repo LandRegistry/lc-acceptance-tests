@@ -12,7 +12,7 @@ Given(/^I launch Application Cancellation page$/) do
   visit( "#{$FRONTEND_URI}/login" )
   fill_in('username', :with => $LOGIN_USERID)
   fill_in('password', :with => $LOGIN_PASSWORD)
-  click_button('login-button')
+  click_button('login_button')
   
   visit( "#{$FRONTEND_URI}/get_list?appn=cancel" )
   
@@ -82,7 +82,7 @@ When(/^I must have a registration number value before the continue button can be
  
 end
 
-When(/^I can click the Register cancellation button to go to the next screen$/) do
+When(/^I submit the data$/) do
   click_button('submit')
 end
 
@@ -158,6 +158,12 @@ Then(/^I can submit conveyancer details$/) do
   find(:id, 'full_cans').click
   find(:id, 'direct_debit').click
   click_button('continue')
+end
+
+Then(/^I can submit conveyancer details for the part cancellation$/) do
+  fill_in('key_number', :with =>'2244095')
+  fill_in('customer_ref', :with => '911')
+  find(:id, 'direct_debit').click
 end
 
 When(/^I attempt to resubmit a cancelled new application number$/) do
@@ -267,18 +273,14 @@ When(/^I select part cancellation option$/) do
   find(:id, 'part_cans').click
 end
 
-When(/^I choose the C4 cancellation option$/) do 
-  pending #ensure D2 is deselected
-end
-
 When(/^I choose the D2 cancellation option$/) do 
   pending 
 end
 
-Then(/^I can enter additional information$/) do
-  pending 
+When(/^I can opt to confirm plan attached$/) do 
+   find(:id, "plan_attached").click
 end
 
-Then(/^I can attach a file$/) do
-  pending 
+When(/^I can enter additional information$/) do 
+   fill_in "part_cans_text", :with => "smile smile smile!"
 end

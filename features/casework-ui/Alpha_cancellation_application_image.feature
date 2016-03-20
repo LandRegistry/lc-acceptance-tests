@@ -20,7 +20,7 @@ So that I can ensure that details are captured correctly onto the land charges r
 #Given I am on the Application details screen
 #When I click the check box to confirm verification
 #When the application details become visible they must be the correct ones for the registration number detailed on the previous screen 
-#When I can click the Register cancellation button to go to the next screen
+#When I submit the data
 #Then I am on the Application complete screen
 
 ##CR-US004 Unique Identifier

@@ -3,7 +3,7 @@ Given(/^I am on the bankruptcy registration screen$/) do
   visit( "#{$FRONTEND_URI}/login" )
   fill_in('username', :with => $LOGIN_USERID)
   fill_in('password', :with => $LOGIN_PASSWORD)
-  click_button('login-button')
+  click_button('login_button')
 
   visit( "#{$FRONTEND_URI}/get_list?appn=bank_regn" )
   maximise_browser
@@ -206,10 +206,7 @@ When(/^I parse the new registration number as Original registration number$/) do
     fill_in('reg_no', :with => results)
 end
 
-When(/^I register a PAB application$/) do
-  fill_in('court', :with => 'Banana County Court')
-  fill_in('ref_no', :with => '888')
-  click_button('continue')
+When(/^I register the application$/) do
   fill_in('forenames_1', :with => 'Pablo')
   fill_in('surname_1', :with => 'Perigas')
   fill_in('occupation', :with => 'Dancer')
@@ -222,7 +219,6 @@ When(/^I register a PAB application$/) do
   click_button('continue')
   fill_in('forename_1', :with => 'Pablo')
   fill_in('surname_1', :with => 'Perigas') 
-  fill_in('court_name', :with => 'Banana County Court')
   click_button('continue')
   fill_in('key_number', :with =>'2244095')
 end
