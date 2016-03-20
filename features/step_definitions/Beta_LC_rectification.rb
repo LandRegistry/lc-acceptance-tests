@@ -118,7 +118,10 @@ end
 When(/^I am on the view amend screen I can see infilled details$/) do
    #page.should have_content('Devon')
   #page.should have_content('South Hams')
-  page.should have_content('1 The Lane, Some Village')
+    page.save_screenshot
+    #short_desc
+    expect(find(:id, 'short_desc').text).to eq '1 The Lane, Some Village'
+  #page.should have_content('1 The Lane, Some Village')
   #page.should have_content('Johnson')
 end
 
