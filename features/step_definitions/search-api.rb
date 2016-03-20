@@ -2,98 +2,98 @@ date = Date.today.prev_day
 yesterday = date.strftime("%Y-%m-%d")
 today = Date.today.strftime("%Y-%m-%d")
 
-pi_registration = '{"parties": [{"names": [{"private": {"forenames": ["Joyce", "Lyn"], "surname": "West"}, "type": "Private Individual"}], "type": "Estate Owner"}], "particulars": {"counties": ["Devon"], "description": "45 New street", "district": "Plymouth"}, "class_of_charge": "C1", "applicant": {"address": "2 New Street", "name": "Mr Conveyancer", "key_number": "244095", "reference": "reference 11"}}'
+pi_registration = '{"parties": [{"names": [{"private": {"forenames": ["Joyce", "Lyn"], "surname": "West"}, "type": "Private Individual"}], "type": "Estate Owner"}], "particulars": {"counties": ["Devon"], "description": "45 New street", "district": "Plymouth"}, "class_of_charge": "C1", "applicant": {"address": "2 New Street", "name": "Mr Conveyancer", "key_number": "244095", "reference": "reference 11", "address_type": "RM"}}'
 
 #pi_search = '{"document_id": 60, "expiry_date": "2016-02-18", "parameters": {"search_items": [{"name": {"forenames": "Joyce Lyn", "surname": "West"}, "name_type": "Private Individual", "year_to": 2016, "year_from": 1925}], "search_type": "full", "counties": ["ALL"]}, "customer": {"name": "S & H Legal Group", "reference": "ref", "address": "49 Camille Circles\r\nPort Eulah\r\nPP39 6BY", "key_number": "1234567"}, "search_date": "' + today + '"}'
-pi_search = '{"document_id": 60, "expiry_date": "2016-02-18", "parameters": {"search_items": [{"name": {"forenames": "Joyce Lyn", "surname": "West"}, "name_type": "Private Individual", "year_to": 2016, "year_from": 1925}], "search_type": "full", "counties": ["ALL"]}, "customer": {"name": "Louis, Ley & Maycock", "reference": "ref", "address": "Seaton Court 2 William Prance Road\r\nPlymouth\r\nPL6 5WS", "key_number": "2244095"}, "search_date": "' + today + '"}'
+pi_search = '{"cert_no": "14532", "document_id": 60, "expiry_date": "2016-02-18", "parameters": {"search_items": [{"name": {"forenames": "Joyce Lyn", "surname": "West"}, "name_type": "Private Individual", "year_to": 2016, "year_from": 1925}], "search_type": "full", "counties": ["ALL"]}, "customer": {"name": "Louis, Ley & Maycock", "reference": "ref", "address": "Seaton Court 2 William Prance Road\r\nPlymouth\r\nPL6 5WS", "key_number": "2244095", "address_type": "RM"}, "search_date": "' + today + '"}'
 
 search_res_pi = 'Joyce%20Lyn%20West'
 
-co_registration = '{"parties": [{"names": [{"company": "ABC Builders and Sons PLC", "type": "Limited Company"}], "type": "Estate Owner"}], "particulars": {"counties": ["Devon"], "description": "sdfskajh", "district": "Plymouth"}, "class_of_charge": "C1", "applicant": {"address": "2 New Street", "name": "Mr Conveyancer", "key_number": "244095", "reference": "reference 11"}}'
+co_registration = '{"parties": [{"names": [{"company": "ABC Builders and Sons PLC", "type": "Limited Company"}], "type": "Estate Owner"}], "particulars": {"counties": ["Devon"], "description": "sdfskajh", "district": "Plymouth"}, "class_of_charge": "C1", "applicant": {"address": "2 New Street", "name": "Mr Conveyancer", "key_number": "244095", "reference": "reference 11", "address_type": "RM"}}'
 
 #co_search = '{"document_id": 60, "expiry_date": "2016-02-18", "parameters": {"search_items": [{"name": {"company_name": "ABC Builders And Sons P L C"}, "name_type": "Company", "year_to": 2016, "year_from": 1925}], "search_type": "full", "counties": ["ALL"]}, "customer": {"name": "S & H Legal Group", "reference": "ref", "address": "49 Camille Circles\r\nPort Eulah\r\nPP39 6BY", "key_number": "1234567"}, "search_date": "' + today + '"}'
-co_search = '{"document_id": 60, "expiry_date": "2016-02-18", "parameters": {"search_items": [{"name": {"company_name": "ABC Builders And Sons P L C"}, "name_type": "Company", "year_to": 2016, "year_from": 1925}], "search_type": "full", "counties": ["ALL"]}, "customer": {"name": "Louis, Ley & Maycock", "reference": "ref", "address": "Seaton Court 2 William Prance Road\r\nPlymouth\r\nPL6 5WS", "key_number": "2244095"}, "search_date": "' + today + '"}'
+co_search = '{"cert_no": "14532","document_id": 60, "expiry_date": "2016-02-18", "parameters": {"search_items": [{"name": {"company_name": "ABC Builders And Sons P L C"}, "name_type": "Limited Company", "year_to": 2016, "year_from": 1925}], "search_type": "full", "counties": ["ALL"]}, "customer": {"name": "Louis, Ley & Maycock", "reference": "ref", "address": "Seaton Court 2 William Prance Road\r\nPlymouth\r\nPL6 5WS", "key_number": "2244095", "address_type": "RM"}, "search_date": "' + today + '"}'
 
 search_res_co = 'ABC%20Builders%20And%20Sons%20P%20L%20C'
 
-council_reg = '{"parties": [{"names": [{"local": {"name": "Plymouth City Council", "area": "Plymouth"}, "type": "County Council"}], "type": "Estate Owner"}], "particulars": {"counties": ["Devon"], "description": "33", "district": "Plymouth"}, "class_of_charge": "C1", "applicant": {"address": "2 New Street", "name": "Mr Conveyancer", "key_number": "244095", "reference": "reference 11"}}'
+council_reg = '{"parties": [{"names": [{"local": {"name": "Plymouth City Council", "area": "Plymouth"}, "type": "County Council"}], "type": "Estate Owner"}], "particulars": {"counties": ["Devon"], "description": "33", "district": "Plymouth"}, "class_of_charge": "C1", "applicant": {"address": "2 New Street", "name": "Mr Conveyancer", "key_number": "244095", "reference": "reference 11", "address_type": "RM"}}'
 
 #council_search = '{"customer": {"key_number": "1234567", "reference": "Ref", "address": "49 Camille Circles\r\nPort Eulah\r\nPP39 6BY", "name": "S & H Legal Group"}, "parameters": {"search_items": [{"year_from": 1925, "year_to": 2016, "name": {"local_authority_area": "Plymouth", "local_authority_name": "Plymouth City Council"}, "name_type": "Local Authority"}], "search_type": "full", "counties": ["ALL"]}, "document_id": 60, "expiry_date": "2016-02-21", "search_date": "' + today + '"}'
-council_search = '{"customer": {"key_number": "2244095", "reference": "Ref", "address": "Seaton Court 2 William Prance Road\r\nPlymouth\r\nPL6 5WS", "name": "Louis, Ley & Maycock"}, "parameters": {"search_items": [{"year_from": 1925, "year_to": 2016, "name": {"local_authority_area": "Plymouth", "local_authority_name": "Plymouth City Council"}, "name_type": "Local Authority"}], "search_type": "full", "counties": ["ALL"]}, "document_id": 60, "expiry_date": "2016-02-21", "search_date": "' + today + '"}'
+council_search = '{"cert_no": "14532","customer": {"key_number": "2244095", "reference": "Ref", "address": "Seaton Court 2 William Prance Road\r\nPlymouth\r\nPL6 5WS", "name": "Louis, Ley & Maycock", "address_type": "RM"}, "parameters": {"search_items": [{"year_from": 1925, "year_to": 2016, "name": {"local_authority_area": "Plymouth", "local_authority_name": "Plymouth City Council"}, "name_type": "County Council"}], "search_type": "full", "counties": ["ALL"]}, "document_id": 60, "expiry_date": "2016-02-21", "search_date": "' + today + '"}'
 
 search_council = 'Plymouth%20City%20Council'
 
-complex_name_reg = '{"parties": [{"names": [{"complex": {"name": "HRH KING STARK", "number": 1000167}, "type": "Complex Name"}], "type": "Estate Owner"}], "particulars": {"counties": ["Devon"], "description": "House", "district": "PLymouth"}, "class_of_charge": "C1", "applicant": {"address": "2 New Street", "name": "Mr Conveyancer", "key_number": "244095", "reference": "reference 11"}}'
+complex_name_reg = '{"parties": [{"names": [{"complex": {"name": "HRH KING STARK", "number": 1000167}, "type": "Complex Name"}], "type": "Estate Owner"}], "particulars": {"counties": ["Devon"], "description": "House", "district": "PLymouth"}, "class_of_charge": "C1", "applicant": {"address": "2 New Street", "name": "Mr Conveyancer", "key_number": "244095", "reference": "reference 11", "address_type": "RM"}}'
 
 #complex_name_search = '{"document_id": 60, "search_date": "' + today + '", "parameters": {"search_items": [{"year_from": 1925, "name_type": "Complex", "year_to": 2016, "name": {"complex_variations": [{"name": "KING STARK OF THE NORTH", "number": 1000167}, {"name": "HRH KING STARK", "number": 1000167}, {"name": "THE KING IN THE NORTH", "number": 1000167}, {"name": "His Royal Highness Robert Stark of Winterfell and King in the North", "number": 1000167}], "complex_name": "HRH KING STARK", "complex_number": 1000167}}], "counties": ["ALL"], "search_type": "full"}, "expiry_date": "2016-02-29", "customer": {"name": "S & H Legal Group", "reference": "sdfdf", "address": "49 Camille Circles\r\nPort Eulah\r\nPP39 6BY", "key_number": "1234567"}}'
-complex_name_search = '{"document_id": 60, "search_date": "' + today + '", "parameters": {"search_items": [{"year_from": 1925, "name_type": "Complex", "year_to": 2016, "name": {"complex_variations": [{"name": "KING STARK OF THE NORTH", "number": 1000167}, {"name": "HRH KING STARK", "number": 1000167}, {"name": "THE KING IN THE NORTH", "number": 1000167}, {"name": "His Royal Highness Robert Stark of Winterfell and King in the North", "number": 1000167}], "complex_name": "HRH KING STARK", "complex_number": 1000167}}], "counties": ["ALL"], "search_type": "full"}, "expiry_date": "2016-02-29", "customer": {"name": "Louis, Ley & Maycock", "reference": "sdfdf", "address": "Seaton Court 2 William Prance Road\r\nPlymouth\r\nPL6 5WS", "key_number": "2244095"}}'
+complex_name_search = '{"cert_no": "14532","document_id": 60, "search_date": "' + today + '", "parameters": {"search_items": [{"year_from": 1925, "name_type": "Complex", "year_to": 2016, "name": {"complex_variations": [{"name": "KING STARK OF THE NORTH", "number": 1000167}, {"name": "HRH KING STARK", "number": 1000167}, {"name": "THE KING IN THE NORTH", "number": 1000167}, {"name": "His Royal Highness Robert Stark of Winterfell and King in the North", "number": 1000167}], "complex_name": "HRH KING STARK", "complex_number": 1000167}}], "counties": ["ALL"], "search_type": "full"}, "expiry_date": "2016-02-29", "customer": {"name": "Louis, Ley & Maycock", "reference": "sdfdf", "address": "Seaton Court 2 William Prance Road\r\nPlymouth\r\nPL6 5WS", "key_number": "2244095", "address_type": "RM"}}'
 
 search_res_complex = 'HRH%20KING%20STARK'
 
-other_reg = '{"parties": [{"names": [{"other": "Jessop Society and Associations for Brothers and Companies Limited", "type": "Other"}], "type": "Estate Owner"}], "particulars": {"counties": ["Devon"], "description": "dsakj", "district": "Plymouth"}, "class_of_charge": "C1", "applicant": {"address": "2 New Street", "name": "Mr Conveyancer", "key_number": "244095", "reference": "reference 11"}}'
+other_reg = '{"parties": [{"names": [{"other": "Jessop Society and Associations for Brothers and Companies Limited", "type": "Other"}], "type": "Estate Owner"}], "particulars": {"counties": ["Devon"], "description": "dsakj", "district": "Plymouth"}, "class_of_charge": "C1", "applicant": {"address": "2 New Street", "name": "Mr Conveyancer", "key_number": "244095", "reference": "reference 11", "address_type": "RM"}}'
 
 #other_search = '{"customer": {"name": "S & H Legal Group", "key_number": "1234567", "reference": "sdf", "address": "49 Camille Circles\r\nPort Eulah\r\nPP39 6BY"}, "search_date": "' + today + '", "document_id": 60, "parameters": {"search_items": [{"name_type": "Other", "name": {"other_name": "Jessop Societies and Associates for Bros and Comp Ltd"}, "year_to": 2016, "year_from": 1925}], "search_type": "full", "counties": ["ALL"]}, "expiry_date": "2016-02-21"}'
-other_search = '{"customer": {"name": "Louis, Ley & Maycock", "key_number": "2244095", "reference": "sdf", "address": "Seaton Court 2 William Prance Road\r\nPlymouth\r\nPL6 5WS"}, "search_date": "' + today + '", "document_id": 60, "parameters": {"search_items": [{"name_type": "Other", "name": {"other_name": "Jessop Societies and Associates for Bros and Comp Ltd"}, "year_to": 2016, "year_from": 1925}], "search_type": "full", "counties": ["ALL"]}, "expiry_date": "2016-02-21"}'
+other_search = '{"cert_no": "14532","customer": {"name": "Louis, Ley & Maycock", "key_number": "2244095", "reference": "sdf", "address": "Seaton Court 2 William Prance Road\r\nPlymouth\r\nPL6 5WS", "address_type": "RM"}, "search_date": "' + today + '", "document_id": 60, "parameters": {"search_items": [{"name_type": "Other", "name": {"other_name": "Jessop Societies and Associates for Bros and Comp Ltd"}, "year_to": 2016, "year_from": 1925}], "search_type": "full", "counties": ["ALL"]}, "expiry_date": "2016-02-21"}'
 
 search_res_other = 'Jessop%20Societies%20and%20Associates%20for%20Bros%20and%20Comp%20Ltd'
 
-pa_reg = '{"parties": [{"names": [{"private": {"forenames": ["Joe"], "surname": "Bloggs"}, "type": "Private Individual"}], "type": "Estate Owner"}], "particulars": {"counties": ["Devon"], "description": "A well", "district": "Plymouth"}, "class_of_charge": "PA", "applicant": {"address": "2 New Street", "name": "Mr Conveyancer", "key_number": "244095", "reference": "reference 11"}}'
+pa_reg = '{"parties": [{"names": [{"private": {"forenames": ["Joe"], "surname": "Bloggs"}, "type": "Private Individual"}], "type": "Estate Owner"}], "particulars": {"counties": ["Devon"], "description": "A well", "district": "Plymouth"}, "class_of_charge": "PA", "applicant": {"address": "2 New Street", "name": "Mr Conveyancer", "key_number": "244095", "reference": "reference 11", "address_type": "RM"}}'
 
 #pa_search = '{"search_date": "' + today + '", "expiry_date": "2016-02-21", "customer": {"address": "49 Camille Circles\r\nPort Eulah\r\nPP39 6BY", "key_number": "1234567", "reference": "ref", "name": "S & H Legal Group"}, "parameters": {"search_type": "full", "search_items": [{"name_type": "Private Individual", "year_from": 1925, "year_to": 2016, "name": {"forenames": "Joe", "surname": "Bloggs"}}, {"name_type": "Private Individual", "year_from": 1925, "year_to": 2016, "name": {"forenames": "Joyce Lyn ", "surname": "Peterson"}}], "counties": ["Dorset"]}, "document_id": 60}'
-pa_search = '{"search_date": "' + today + '", "expiry_date": "2016-02-21", "customer": {"address": "Seaton Court 2 William Prance Road\r\nPlymouth\r\nPL6 5WS", "key_number": "2244095", "reference": "ref", "name": "Louis, Ley & Maycock"}, "parameters": {"search_type": "full", "search_items": [{"name_type": "Private Individual", "year_from": 1925, "year_to": 2016, "name": {"forenames": "Joe", "surname": "Bloggs"}}, {"name_type": "Private Individual", "year_from": 1925, "year_to": 2016, "name": {"forenames": "Joyce Lyn ", "surname": "Peterson"}}], "counties": ["Dorset"]}, "document_id": 60}'
+pa_search = '{"cert_no": "14532", "search_date": "' + today + '", "expiry_date": "2016-02-21", "customer": {"address": "Seaton Court 2 William Prance Road\r\nPlymouth\r\nPL6 5WS", "key_number": "2244095", "reference": "ref", "name": "Louis, Ley & Maycock", "address_type": "RM"}, "parameters": {"search_type": "full", "search_items": [{"name_type": "Private Individual", "year_from": 1925, "year_to": 2016, "name": {"forenames": "Joe", "surname": "Bloggs"}}, {"name_type": "Private Individual", "year_from": 1925, "year_to": 2016, "name": {"forenames": "Joyce Lyn ", "surname": "Peterson"}}], "counties": ["Dorset"]}, "document_id": 60}'
 
 search_res_pa = 'Joe%20Bloggs'
 
-wo_reg = '{"parties": [{"names": [{"private": {"forenames": ["Jock"], "surname": "Bloggs"}, "type": "Private Individual"}], "type": "Estate Owner"}], "particulars": {"counties": ["Devon"], "description": "A well", "district": "Plymouth"}, "class_of_charge": "WO", "applicant": {"address": "2 New Street", "name": "Mr Conveyancer", "key_number": "244095", "reference": "reference 11"}}'
+wo_reg = '{"parties": [{"names": [{"private": {"forenames": ["Jock"], "surname": "Bloggs"}, "type": "Private Individual"}], "type": "Estate Owner"}], "particulars": {"counties": ["Devon"], "description": "A well", "district": "Plymouth"}, "class_of_charge": "WO", "applicant": {"address": "2 New Street", "name": "Mr Conveyancer", "key_number": "244095", "reference": "reference 11", "address_type": "RM"}}'
 
 #wo_search = '{"search_date": "' + today + '", "expiry_date": "2016-02-21", "customer": {"address": "49 Camille Circles\r\nPort Eulah\r\nPP39 6BY", "key_number": "1234567", "reference": "ref", "name": "S & H Legal Group"}, "parameters": {"search_type": "full", "search_items": [{"name_type": "Private Individual", "year_from": 1925, "year_to": 2016, "name": {"forenames": "Jock", "surname": "Bloggs"}}, {"name_type": "Private Individual", "year_from": 1925, "year_to": 2016, "name": {"forenames": "Joyce Lyn ", "surname": "Peterson"}}], "counties": ["Dorset"]}, "document_id": 60}'
-wo_search = '{"search_date": "' + today + '", "expiry_date": "2016-02-21", "customer": {"address": "Seaton Court 2 William Prance Road\r\nPlymouth\r\nPL6 5WS", "key_number": "2244095", "reference": "ref", "name": "Louis, Ley & Maycock"}, "parameters": {"search_type": "full", "search_items": [{"name_type": "Private Individual", "year_from": 1925, "year_to": 2016, "name": {"forenames": "Jock", "surname": "Bloggs"}}, {"name_type": "Private Individual", "year_from": 1925, "year_to": 2016, "name": {"forenames": "Joyce Lyn ", "surname": "Peterson"}}], "counties": ["Dorset"]}, "document_id": 60}'
+wo_search = '{"cert_no": "14532","search_date": "' + today + '", "expiry_date": "2016-02-21", "customer": {"address": "Seaton Court 2 William Prance Road\r\nPlymouth\r\nPL6 5WS", "key_number": "2244095", "reference": "ref", "name": "Louis, Ley & Maycock", "address_type": "RM"}, "parameters": {"search_type": "full", "search_items": [{"name_type": "Private Individual", "year_from": 1925, "year_to": 2016, "name": {"forenames": "Jock", "surname": "Bloggs"}}, {"name_type": "Private Individual", "year_from": 1925, "year_to": 2016, "name": {"forenames": "Joyce Lyn ", "surname": "Peterson"}}], "counties": ["Dorset"]}, "document_id": 60}'
 
 search_res_wo = 'Jock%20Bloggs'
 
-c1_registration = '{"parties": [{"names": [{"private": {"forenames": ["Joycelyn"], "surname": "Peterson"}, "type": "Private Individual"}], "type": "Estate Owner"}], "particulars": {"counties": ["Devon"], "description": "My house", "district": "Plymouth"}, "class_of_charge": "C1", "applicant": {"address": "2 New Street", "name": "Mr Conveyancer", "key_number": "244095", "reference": "reference 11"}}'
+c1_registration = '{"parties": [{"names": [{"private": {"forenames": ["Joycelyn"], "surname": "Peterson"}, "type": "Private Individual"}], "type": "Estate Owner"}], "particulars": {"counties": ["Devon"], "description": "My house", "district": "Plymouth"}, "class_of_charge": "C1", "applicant": {"address": "2 New Street", "name": "Mr Conveyancer", "key_number": "244095", "reference": "reference 11", "address_type": "RM"}}'
 
 search_res_c1 = 'Joyce%20Lyn%20Peterson'
 
-pa_date_reg = '{"parties": [{"names": [{"private": {"forenames": ["Jack"], "surname": "Jones"}, "type": "Private Individual"}], "type": "Estate Owner"}], "particulars": {"counties": ["Devon"], "description": "A well", "district": "Plymouth"}, "class_of_charge": "PA", "applicant": {"address": "2 New Street", "name": "Mr Conveyancer", "key_number": "244095", "reference": "reference 11"}}'
+pa_date_reg = '{"parties": [{"names": [{"private": {"forenames": ["Jack"], "surname": "Jones"}, "type": "Private Individual"}], "type": "Estate Owner"}], "particulars": {"counties": ["Devon"], "description": "A well", "district": "Plymouth"}, "class_of_charge": "PA", "applicant": {"address": "2 New Street", "name": "Mr Conveyancer", "key_number": "244095", "reference": "reference 11", "address_type": "RM"}}'
 
 #pa_date_search = '{"search_date": "' + today + '", "expiry_date": "2016-02-21", "customer": {"address": "49 Camille Circles\r\nPort Eulah\r\nPP39 6BY", "key_number": "1234567", "reference": "ref", "name": "S & H Legal Group"}, "parameters": {"search_type": "full", "search_items": [{"name_type": "Private Individual", "year_from": 1925, "year_to": 1966, "name": {"forenames": "Jack", "surname": "Jones"}}, {"name_type": "Private Individual", "year_from": 1925, "year_to": 1966, "name": {"forenames": "Paul ", "surname": "Harris-Jones"}}], "counties": ["Cornwall (including Isles of Scilly)"]}, "document_id": 60}'
-pa_date_search = '{"search_date": "' + today + '", "expiry_date": "2016-02-21", "customer": {"address": "Seaton Court 2 William Prance Road\r\nPlymouth\r\nPL6 5WS", "key_number": "2244095", "reference": "ref", "name": "Louis, Ley & Maycock"}, "parameters": {"search_type": "full", "search_items": [{"name_type": "Private Individual", "year_from": 1925, "year_to": 1966, "name": {"forenames": "Jack", "surname": "Jones"}}, {"name_type": "Private Individual", "year_from": 1925, "year_to": 1966, "name": {"forenames": "Paul ", "surname": "Harris-Jones"}}], "counties": ["Cornwall (including Isles of Scilly)"]}, "document_id": 60}'
+pa_date_search = '{"cert_no": "14532","search_date": "' + today + '", "expiry_date": "2016-02-21", "customer": {"address": "Seaton Court 2 William Prance Road\r\nPlymouth\r\nPL6 5WS", "key_number": "2244095", "reference": "ref", "name": "Louis, Ley & Maycock", "address_type": "RM"}, "parameters": {"search_type": "full", "search_items": [{"name_type": "Private Individual", "year_from": 1925, "year_to": 1966, "name": {"forenames": "Jack", "surname": "Jones"}}, {"name_type": "Private Individual", "year_from": 1925, "year_to": 1966, "name": {"forenames": "Paul ", "surname": "Harris-Jones"}}], "counties": ["Cornwall (including Isles of Scilly)"]}, "document_id": 60}'
 
 search_res_pa_date = 'Jack%20Jones'
 
-wo_date_reg = '{"parties": [{"names": [{"private": {"forenames": ["Jason"], "surname": "Smith"}, "type": "Private Individual"}], "type": "Estate Owner"}], "particulars": {"counties": ["Devon"], "description": "A well", "district": "Plymouth"}, "class_of_charge": "WO", "applicant": {"address": "2 New Street", "name": "Mr Conveyancer", "key_number": "244095", "reference": "reference 11"}}'
+wo_date_reg = '{"parties": [{"names": [{"private": {"forenames": ["Jason"], "surname": "Smith"}, "type": "Private Individual"}], "type": "Estate Owner"}], "particulars": {"counties": ["Devon"], "description": "A well", "district": "Plymouth"}, "class_of_charge": "WO", "applicant": {"address": "2 New Street", "name": "Mr Conveyancer", "key_number": "244095", "reference": "reference 11", "address_type": "RM"}}'
 
 #wo_date_search = '{"search_date": "' + today + '", "expiry_date": "2016-02-21", "customer": {"address": "49 Camille Circles\r\nPort Eulah\r\nPP39 6BY", "key_number": "1234567", "reference": "ref", "name": "S & H Legal Group"}, "parameters": {"search_type": "full", "search_items": [{"name_type": "Private Individual", "year_from": 1925, "year_to": 1966, "name": {"forenames": "Jason", "surname": "Smith"}}, {"name_type": "Private Individual", "year_from": 1925, "year_to": 1966, "name": {"forenames": "Paul ", "surname": "Harris-Jones"}}], "counties": ["Cornwall (including Isles of Scilly)"]}, "document_id": 60}'
-wo_date_search = '{"search_date": "' + today + '", "expiry_date": "2016-02-21", "customer": {"address": "Seaton Court 2 William Prance Road\r\nPlymouth\r\nPL6 5WS", "key_number": "2244095", "reference": "ref", "name": "Louis, Ley & Maycock"}, "parameters": {"search_type": "full", "search_items": [{"name_type": "Private Individual", "year_from": 1925, "year_to": 1966, "name": {"forenames": "Jason", "surname": "Smith"}}, {"name_type": "Private Individual", "year_from": 1925, "year_to": 1966, "name": {"forenames": "Paul ", "surname": "Harris-Jones"}}], "counties": ["Cornwall (including Isles of Scilly)"]}, "document_id": 60}'
+wo_date_search = '{"cert_no": "14532","search_date": "' + today + '", "expiry_date": "2016-02-21", "customer": {"address": "Seaton Court 2 William Prance Road\r\nPlymouth\r\nPL6 5WS", "key_number": "2244095", "reference": "ref", "name": "Louis, Ley & Maycock", "address_type": "RM"}, "parameters": {"search_type": "full", "search_items": [{"name_type": "Private Individual", "year_from": 1925, "year_to": 1966, "name": {"forenames": "Jason", "surname": "Smith"}}, {"name_type": "Private Individual", "year_from": 1925, "year_to": 1966, "name": {"forenames": "Paul ", "surname": "Harris-Jones"}}], "counties": ["Cornwall (including Isles of Scilly)"]}, "document_id": 60}'
 
 search_res_wo_date = 'Jason%20Smith'
 
-c2_registration = '{"parties": [{"names": [{"private": {"forenames": ["Paul"], "surname": "Harris-Jones"}, "type": "Private Individual"}], "type": "Estate Owner"}], "particulars": {"counties": ["Devon"], "description": "My house", "district": "Plymouth"}, "class_of_charge": "C1", "applicant": {"address": "2 New Street", "name": "Mr Conveyancer", "key_number": "244095", "reference": "reference 11"}}'
+c2_registration = '{"parties": [{"names": [{"private": {"forenames": ["Paul"], "surname": "Harris-Jones"}, "type": "Private Individual"}], "type": "Estate Owner"}], "particulars": {"counties": ["Devon"], "description": "My house", "district": "Plymouth"}, "class_of_charge": "C1", "applicant": {"address": "2 New Street", "name": "Mr Conveyancer", "key_number": "244095", "reference": "reference 11", "address_type": "RM"}}'
 
 search_res_c2 = 'Paul%20Harris%20Jones'
 
-reg_template = '{"particulars": {"counties": ["Devon"], "description": "dsfkj", "district": "Plymouth"}, "class_of_charge": "C1", "applicant": {"address": "2 New Street", "name": "Mr Conveyancer", "key_number": "244095", "reference": "reference 11"}, "parties": [{"type": "Estate Owner", "names": [{"type": "Limited Company", "company": "A company '
+reg_template = '{"particulars": {"counties": ["Devon"], "description": "dsfkj", "district": "Plymouth"}, "class_of_charge": "C1", "applicant": {"address": "2 New Street", "name": "Mr Conveyancer", "key_number": "244095", "reference": "reference 11", "address_type": "RM"}, "parties": [{"type": "Estate Owner", "names": [{"type": "Limited Company", "company": "A company '
 
 #search_template = '{"document_id": 60, "expiry_date": "2016-02-18", "customer": {"name": "S & H Legal Group", "reference": "ref", "address": "49 Camille Circles\r\nPort Eulah\r\nPP39 6BY", "key_number": "1234567"}, "search_date": "' + today + '", "parameters": {"search_type": "full", "counties": ["ALL"], "search_items": [{"name_type": "Company", "year_to": 2016, "year_from": 1925, "name": {"company_name": "A Company '
-search_template = '{"document_id": 60, "expiry_date": "2016-02-18", "customer": {"name": "Louis, Ley & Maycock", "reference": "ref", "address": "Seaton Court 2 William Prance Road\r\nPlymouth\r\nPL6 5WS", "key_number": "2244095"}, "search_date": "' + today + '", "parameters": {"search_type": "full", "counties": ["ALL"], "search_items": [{"name_type": "Company", "year_to": 2016, "year_from": 1925, "name": {"company_name": "A Company '
+search_template = '{"cert_no": "14532", "document_id": 60, "expiry_date": "2016-02-18", "customer": {"name": "Louis, Ley & Maycock", "reference": "ref", "address": "Seaton Court 2 William Prance Road\r\nPlymouth\r\nPL6 5WS", "key_number": "2244095", "address_type": "RM"}, "search_date": "' + today + '", "parameters": {"search_type": "full", "counties": ["ALL"], "search_items": [{"name_type": "Limited Company", "year_to": 2016, "year_from": 1925, "name": {"company_name": "A Company '
 
 search_res_template = 'A%20Company%20'
 
 name_array = ['BROKER', 'BUILDER', 'COLLEGE', 'COMMISSIONER', 'CONSTRUCTION', 'CONTRACTOR', 'DECORATOR','DEVELOPER', 'DEVELOPMENT', 'ENTERPRISE', 'ESTATE', 'GARAGE', 'HOLDING', 'HOTEL', 'INVESTMENT', 'MOTOR', 'PRODUCTION', 'SCHOOL', 'SON', 'STORE', 'TRUST', 'WARDEN', 'CHARITY', 'PROPERTY', 'INDUSTRY']
 search_array = ['BROKERS', 'BUILDERS', 'COLLEGES', 'COMMISSIONERS', 'CONSTRUCTIONS', 'CONTRACTORS', 'DECORATORS', 'DEVELOPERS', 'DEVELOPMENTS', 'ENTERPRISES', 'ESTATES', 'GARAGES', 'HOLDINGS', 'HOTELS', 'INVESTMENTS', 'MOTORS', 'PRODUCTIONS', 'SCHOOLS', 'SONS', 'STORES', 'TRUSTS', 'WARDENS', 'CHARITIES', 'PROPERTIES', 'INDUSTRIES']
 
-initials_reg = '{"parties": [{"names": [{"private": {"forenames": ["J", "L"], "surname": "West"}, "type": "Private Individual"}], "type": "Estate Owner"}], "particulars": {"counties": ["Devon"], "description": "45 New street", "district": "Plymouth"}, "class_of_charge": "C1", "applicant": {"address": "2 New Street", "name": "Mr Conveyancer", "key_number": "244095", "reference": "reference 11"}}'
+initials_reg = '{"parties": [{"names": [{"private": {"forenames": ["J", "L"], "surname": "West"}, "type": "Private Individual"}], "type": "Estate Owner"}], "particulars": {"counties": ["Devon"], "description": "45 New street", "district": "Plymouth"}, "class_of_charge": "C1", "applicant": {"address": "2 New Street", "name": "Mr Conveyancer", "key_number": "244095", "reference": "reference 11", "address_type": "RM"}}'
 
 #initials_search = '{"document_id": 60, "expiry_date": "2016-02-18", "parameters": {"search_items": [{"name": {"forenames": "J L", "surname": "West"}, "name_type": "Private Individual", "year_to": 2016, "year_from": 1925}], "search_type": "full", "counties": ["ALL"]}, "customer": {"name": "S & H Legal Group", "reference": "ref", "address": "49 Camille Circles\r\nPort Eulah\r\nPP39 6BY", "key_number": "1234567"}, "search_date": "' + today + '"}'
-initials_search = '{"document_id": 60, "expiry_date": "2016-02-18", "parameters": {"search_items": [{"name": {"forenames": "J L", "surname": "West"}, "name_type": "Private Individual", "year_to": 2016, "year_from": 1925}], "search_type": "full", "counties": ["ALL"]}, "customer": {"name": "Louis, Ley & Maycock", "reference": "ref", "address": "Seaton Court 2 William Prance Road\r\nPlymouth\r\nPL6 5WS", "key_number": "2244095"}, "search_date": "' + today + '"}'
+initials_search = '{"cert_no": "14532", "document_id": 60, "expiry_date": "2016-02-18", "parameters": {"search_items": [{"name": {"forenames": "J L", "surname": "West"}, "name_type": "Private Individual", "year_to": 2016, "year_from": 1925}], "search_type": "full", "counties": ["ALL"]}, "customer": {"name": "Louis, Ley & Maycock", "reference": "ref", "address": "Seaton Court 2 William Prance Road\r\nPlymouth\r\nPL6 5WS", "key_number": "2244095", "address_type": "RM"}, "search_date": "' + today + '"}'
 
 initials_result = 'J%20L%20West'
 
-surname_reg = '{"parties": [{"names": [{"private": {"forenames": [" "], "surname": "West"}, "type": "Private Individual"}], "type": "Estate Owner"}], "particulars": {"counties": ["Devon"], "description": "45 New street", "district": "Plymouth"}, "class_of_charge": "C1", "applicant": {"address": "2 New Street", "name": "Mr Conveyancer", "key_number": "244095", "reference": "reference 11"}}'
+surname_reg = '{"parties": [{"names": [{"private": {"forenames": [" "], "surname": "West"}, "type": "Private Individual"}], "type": "Estate Owner"}], "particulars": {"counties": ["Devon"], "description": "45 New street", "district": "Plymouth"}, "class_of_charge": "C1", "applicant": {"address": "2 New Street", "name": "Mr Conveyancer", "key_number": "244095", "reference": "reference 11", "address_type": "RM"}}'
 
 #surname_search = '{"document_id": 60, "expiry_date": "2016-02-18", "parameters": {"search_items": [{"name": {"forenames": " ", "surname": "West"}, "name_type": "Private Individual", "year_to": 2016, "year_from": 1925}], "search_type": "full", "counties": ["ALL"]}, "customer": {"name": "S & H Legal Group", "reference": "ref", "address": "49 Camille Circles\r\nPort Eulah\r\nPP39 6BY", "key_number": "1234567"}, "search_date": "' + today + '"}'
-surname_search = '{"document_id": 60, "expiry_date": "2016-02-18", "parameters": {"search_items": [{"name": {"forenames": " ", "surname": "West"}, "name_type": "Private Individual", "year_to": 2016, "year_from": 1925}], "search_type": "full", "counties": ["ALL"]}, "customer": {"name": "Louis, Ley & Maycock", "reference": "ref", "address": "Seaton Court 2 William Prance Road\r\nPlymouth\r\nPL6 5WS", "key_number": "2244095"}, "search_date": "' + today + '"}'
+surname_search = '{"cert_no": "14532", "document_id": 60, "expiry_date": "2016-02-18", "parameters": {"search_items": [{"name": {"forenames": " ", "surname": "West"}, "name_type": "Private Individual", "year_to": 2016, "year_from": 1925}], "search_type": "full", "counties": ["ALL"]}, "customer": {"name": "Louis, Ley & Maycock", "reference": "ref", "address": "Seaton Court 2 William Prance Road\r\nPlymouth\r\nPL6 5WS", "key_number": "2244095", "address_type": "RM"}, "search_date": "' + today + '"}'
 
 surname_result = '%20%20West'
 
@@ -136,10 +136,11 @@ When(/^I query the search result using the plural company name$/) do
 end
 
 Then(/^the response contains the registration details for the singular company registered$/) do
-  search_array.length.times do |cntr|
-    expect(@searched_name[cntr][0].has_key?('reg_no')).to be true
-    expect(@searched_name[cntr][0]['reg_no'] == reg_name[cntr]).to be true
-  end
+    puts @searched_name
+    search_array.length.times do |cntr|      
+        expect(@searched_name[cntr][0].has_key?('reg_no')).to be true
+        expect(@searched_name[cntr][0]['reg_no'] == reg_name[cntr]).to be true
+    end
 end
 
 Given(/^I have submitted a new registration for a (.+)$/) do |name_type|
@@ -289,8 +290,9 @@ When(/^I query the C2 and (.+) search result$/) do |charge|
 end
 
 Then(/^the response contains the registration details$/) do
-  expect(@return_data[0].has_key?('reg_no')).to be true
-  expect(@return_data[0]['reg_no'] == @reg_no).to be true
+    puts @return_data
+    expect(@return_data[0].has_key?('reg_no')).to be true
+    expect(@return_data[0]['reg_no'] == @reg_no).to be true
 end
 
 Then(/^the response contains the complex name registration details$/) do
@@ -383,7 +385,7 @@ Given(/^a land charges register containing the following records:$/) do |table|
     end
 
     registration = {
-      "applicant" => {"name" => "X","address" => "X","key_number" => "1111111","reference" => "X"},
+      "applicant" => {"name" => "X","address" => "X","key_number" => "1111111","reference" => "X", "address_type" => "RM"},
       "parties" => [{"type" => party_type, "names"=>[]}],
       "particulars" => {"counties" => row['counties'].split(','), "district" => "x", "description" => "x" },
       "class_of_charge" => row['class']
@@ -461,9 +463,10 @@ When(/^I full search for the Private Individual (.+) in (.*)$/) do |name, counti
   name_list = name.split(' ')
 
   search = {
-    "customer" => {"name" => "X","address" => "X","key_number" => "1111111","reference" => "X"},
+    "customer" => {"name" => "X","address" => "X","key_number" => "1111111","reference" => "X", "address_type" => "RM"},
     "expiry_date" => "2100-01-01",
     "search_date" => "2016-02-11",
+    "cert_no" => "14532",
     "parameters" => {
       "search_type" => "full",
       "counties" => c_search,
@@ -481,7 +484,7 @@ When(/^I full search for the Private Individual (.+) in (.*)$/) do |name, counti
   
   @search_api = RestAPI.new($LAND_CHARGES_URI)
   @return_data = @search_api.post("/searches", JSON.dump(search))
-  puts @return_data
+  #puts @return_data
   @request_id = @return_data[0]
 end
 
@@ -493,9 +496,10 @@ When(/^I full search for the Other (.+) in (.*)$/) do |name, counties|
   end
   
   search = {
-    "customer" => {"name" => "X","address" => "X","key_number" => "1111111","reference" => "X"},
+    "customer" => {"name" => "X","address" => "X","key_number" => "1111111","reference" => "X", "address_type" => "RM"},
     "expiry_date" => "2100-01-01",
     "search_date" => "2016-02-11",
+    "cert_no" => "14532",
     "parameters" => {
       "search_type" => "full",
       "counties" => c_search,
@@ -512,7 +516,7 @@ When(/^I full search for the Other (.+) in (.*)$/) do |name, counties|
   
   @search_api = RestAPI.new($LAND_CHARGES_URI)
   @return_data = @search_api.post("/searches", JSON.dump(search))
-  puts @return_data
+  #puts @return_data
   @request_id = @return_data[0]
 end
 
@@ -524,9 +528,10 @@ When(/^I full search for the Limited Company (.+) in (.*)$/) do |name, counties|
   end
   
   search = {
-    "customer" => {"name" => "X","address" => "X","key_number" => "1111111","reference" => "X"},
+    "customer" => {"name" => "X","address" => "X","key_number" => "1111111","reference" => "X", "address_type" => "RM"},
     "expiry_date" => "2100-01-01",
     "search_date" => "2016-02-11",
+    "cert_no" => "14532",
     "parameters" => {
       "search_type" => "full",
       "counties" => c_search,
@@ -555,9 +560,10 @@ When(/^I full search for the County Council (.*) \((.*)\) in (.*)$/) do |name, a
   end
   
   search = {
-    "customer" => {"name" => "X","address" => "X","key_number" => "1111111","reference" => "X"},
+    "customer" => {"name" => "X","address" => "X","key_number" => "1111111","reference" => "X", "address_type" => "RM"},
     "expiry_date" => "2100-01-01",
     "search_date" => "2016-02-11",
+    "cert_no" => "14532",
     "parameters" => {
       "search_type" => "full",
       "counties" => c_search,
@@ -580,58 +586,60 @@ When(/^I full search for the County Council (.*) \((.*)\) in (.*)$/) do |name, a
 end
 
 When(/^I full search for the Rural Council (.*) \((.*)\) in (.*)$/) do |name, area, counties|
-  if counties == 'all counties'
-    c_search = ['ALL']
-  else
-    c_search = [counties]
-  end
-  
-  search = {
-    "customer" => {"name" => "X","address" => "X","key_number" => "1111111","reference" => "X"},
-    "expiry_date" => "2100-01-01",
-    "search_date" => "2016-02-11",
-    "parameters" => {
-      "search_type" => "full",
-      "counties" => c_search,
-      "search_items" => [ {
-        "name_type" => "Rural Council",
-        "year_from" => 1925,
-        "year_to" => 2017,
-        "name" => {
-          "local_authority_name" => name,
-          "local_authority_area" => area
-        }
-      }]      
-    } 
-  }
-  
-  @search_api = RestAPI.new($LAND_CHARGES_URI)
-  @return_data = @search_api.post("/searches", JSON.dump(search))
-  # puts @return_data
-  @request_id = @return_data[0]
+    if counties == 'all counties'
+        c_search = ['ALL']
+    else
+        c_search = [counties]
+    end
+
+    search = {
+        "customer" => {"name" => "X","address" => "X","key_number" => "1111111","reference" => "X", "address_type" => "RM"},
+        "expiry_date" => "2100-01-01",
+        "search_date" => "2016-02-11",
+        "cert_no" => "14532",
+        "parameters" => {
+            "search_type" => "full",
+            "counties" => c_search,
+            "search_items" => [ {
+                "name_type" => "Rural Council",
+                "year_from" => 1925,
+                "year_to" => 2017,
+                "name" => {
+                    "local_authority_name" => name,
+                    "local_authority_area" => area
+                }
+            }]      
+        } 
+    }
+
+    @search_api = RestAPI.new($LAND_CHARGES_URI)
+    @return_data = @search_api.post("/searches", JSON.dump(search))
+    # puts @return_data
+    @request_id = @return_data[0]
 end
 
 When(/^I banks search for the Private Individual (.+)$/) do |name|
-  name_list = name.split(' ')
-  search = {
-    "customer" => {"name" => "X","address" => "X","key_number" => "1111111","reference" => "X"},
-    "expiry_date" => "2100-01-01",
-    "search_date" => "2016-02-11",
-    "parameters" => {
-      "search_type" => "banks",
-      "search_items" => [ {
-        "name_type" => "Private Individual",
-        "name" => {
-          "forenames" => name_list[0..-2].join(' '),
-          "surname" => name_list[-1]
-        }
-      }]      
-    } 
-  }
-  
-  @search_api = RestAPI.new($LAND_CHARGES_URI)
-  @return_data = @search_api.post("/searches", JSON.dump(search))
-  @request_id = @return_data[0]
+    name_list = name.split(' ')
+    search = {
+        "customer" => {"name" => "X","address" => "X","key_number" => "1111111","reference" => "X", "address_type" => "RM"},
+        "cert_no" => "14532",
+        "expiry_date" => "2100-01-01",
+        "search_date" => "2016-02-11",
+        "parameters" => {
+            "search_type" => "banks",
+            "search_items" => [ {
+                "name_type" => "Private Individual",
+                "name" => {
+                    "forenames" => name_list[0..-2].join(' '),
+                    "surname" => name_list[-1]
+                }
+            }]      
+        } 
+    }
+
+    @search_api = RestAPI.new($LAND_CHARGES_URI)
+    @return_data = @search_api.post("/searches", JSON.dump(search))
+    @request_id = @return_data[0]
 end
 
 Then(/^the result will contain no entries$/) do
