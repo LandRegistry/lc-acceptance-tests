@@ -4,7 +4,7 @@ Given(/^a '([^']+)' registration in progress for private individual '([^']+)'$/)
     fill_in('password', :with => $LOGIN_PASSWORD)
     find(:xpath, "//*[@id='login_button']").click
     
-    visit('http://localhost:5010/get_list?appn=lc_regn')
+    visit("#{$FRONTEND_URI}/get_list?appn=lc_regn")
     find(:id, "row_1").click
 
     case coc
