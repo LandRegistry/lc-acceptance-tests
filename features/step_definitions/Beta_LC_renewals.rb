@@ -34,7 +34,9 @@ When(/^I parse a Land Charge application details for renewal$/) do
   fill_in('key_number', :with =>'2244095')
   fill_in('customer_ref', :with =>'2244095')
   choose "direct_debit"
+    choose "dx_address"
   click_button "submit"
+    
   results = page.find(:id, "conf_reg_numbers").text
   visit("#{$FRONTEND_URI}/get_list?appn=lc_renewal")
   within(:xpath, ".//*[@id='row_1']/td[2]") do
@@ -55,6 +57,7 @@ Then(/^I can submit conveyancer details for the renewal$/) do
   fill_in('key_number', :with =>'2244095')
   fill_in('customer_ref', :with => '911')
   find(:id, 'direct_debit').click
+    choose "dx_address"
 end
 
 Then(/^I can see the application successful message$/) do
