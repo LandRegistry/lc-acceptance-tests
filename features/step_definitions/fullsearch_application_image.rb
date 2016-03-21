@@ -157,3 +157,8 @@ When(/^I click on the name details tab I can enter the surname only$/) do
   fill_in('year_to_1', :with => '2013')
 end
 
+When(/^I set the address type to Postal Address$/) do
+choose('rm_address')   
+end  
+
+

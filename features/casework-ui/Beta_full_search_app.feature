@@ -49,6 +49,7 @@ And I have verified the default value in Search Period To field
 And I enter a county the details are displayed county edit box
 And I click on continue button
 When I enter valid values in Key number field
+And I set the address type to Postal Address
 Then I can see the expected values prepopulated in Applicant name field
 #And I can see the expected values prepopulated in Address field
 
@@ -62,6 +63,7 @@ And I have verified the default value in Search Period To field
 And I enter a county the details are displayed county edit box
 And I click on continue button
 When I enter an invalid value in Key number field
+And I set the address type to Postal Address
 Then I can see NO values prepopulated in Applicant name field
 
 Scenario: BUS-015 Override despatch address associated with a key number displayed for a Full search
@@ -75,6 +77,7 @@ And I enter a county the details are displayed county edit box
 And I click on continue button
 When I enter valid values in Key number field
 Then I can override it with new address details
+And I set the address type to Postal Address
 Then I can click the complete search button
 
 Scenario: BUS-030 Verify that Counties free format field is ignored when All counties is selected in a Full search 
@@ -100,6 +103,7 @@ When I click on the name details tab I can enter six names
 When I enter a Welsh county name 
 And I click on continue button
 When I enter valid values in Key number field
+And I set the address type to Postal Address
 Then I can click the complete search button
 
 Scenario: BUS-022 Certificate date for a full search stored in database should be a day before the request date
