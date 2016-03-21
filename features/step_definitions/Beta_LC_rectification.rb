@@ -130,8 +130,5 @@ When(/^I am on the check details screen I can choose to amend the district$/) do
   find(:id, 'change_name').click  
   fill_in('forename', :with  =>'Joe John')
   find(:id, 'continue').click
-  find(:id, 'change_addl_info').click  
-  fill_in('addl_info', :with  =>'new additional information')
-  find(:id, 'continue').click
 end
 

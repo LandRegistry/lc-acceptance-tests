@@ -159,11 +159,8 @@ end
 
 
 Then(/^I can click on Continue button to submit the form$/) do
-  find(:id,'continue').click
-  #click_button('continue')
+    find(:id,'continue').click
 end
-
-
 
 
 When(/^a row is added to the Land charges database$/) do
