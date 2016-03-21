@@ -48,8 +48,7 @@ Then(/^I can validate data returned on Orginal bankruptcy details page$/) do
   expect(page).to have_field('forenames_1', :with => 'Johnny')
   expect(page).to have_field('surname_1', :with => 'Lee')
   expect(page).to have_field('add_1_line1', :with => '123 New Street')
-  expect(page).to have_field('court', :with => 'Northants County Court')
-  expect(page).to have_field('ref_no', :with => '911')
+  expect(page).to have_field('ref_no', :with => 'Northants County Court 911')
 end
 
 When(/^I can amend relevant details on Original bankruptcy details page$/) do
@@ -58,19 +57,13 @@ When(/^I can amend relevant details on Original bankruptcy details page$/) do
   find(:id, 'addname').click
   fill_in('forenames_2', :with => 'John')
   fill_in('surname_2', :with => 'Taylor')
-  #find(:id, 'add_address').click
-  #find(:id, 'remove_address_1').click  
-  fill_in('court', :with => 'Orange County Court')
-  fill_in('ref_no', :with => '999')
+  fill_in('ref_no', :with => 'Orange County Court 999')
 end
 
 When(/^I validate details submitted on Check details page$/) do
-   within '#court' do
-    page.should have_content 'Orange County Court'
-  end
-  within '#court_no' do
-    page.should have_content '999'
-  end
+    within '#ref_no' do
+        page.should have_content 'Orange County Court 999'
+    end
 end
 
 Then(/^I can verify K22 option is selected by default on Check details page/) do
