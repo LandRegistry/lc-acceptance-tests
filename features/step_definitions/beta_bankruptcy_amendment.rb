@@ -24,6 +24,7 @@ Given(/^I register and submit a PAB reference number for amendment$/) do
   #fill_in('ref_year', :with => '2013')
   click_button('continue')
   fill_in('forenames_1', :with => 'Johnny')
+  page.save_screenshot
   fill_in('surname_1', :with => 'Lee')
   fill_in('occupation', :with => 'Dancer')
   fill_in('add_1_line1', :with => '123 New Street')
