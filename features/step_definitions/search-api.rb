@@ -26,7 +26,7 @@ search_council = 'Plymouth%20City%20Council'
 complex_name_reg = '{"parties": [{"names": [{"complex": {"name": "HRH KING STARK", "number": 1000167}, "type": "Complex Name"}], "type": "Estate Owner"}], "particulars": {"counties": ["Devon"], "description": "House", "district": "PLymouth"}, "class_of_charge": "C1", "applicant": {"address": "2 New Street", "name": "Mr Conveyancer", "key_number": "244095", "reference": "reference 11", "address_type": "RM"}}'
 
 #complex_name_search = '{"document_id": 60, "search_date": "' + today + '", "parameters": {"search_items": [{"year_from": 1925, "name_type": "Complex", "year_to": 2016, "name": {"complex_variations": [{"name": "KING STARK OF THE NORTH", "number": 1000167}, {"name": "HRH KING STARK", "number": 1000167}, {"name": "THE KING IN THE NORTH", "number": 1000167}, {"name": "His Royal Highness Robert Stark of Winterfell and King in the North", "number": 1000167}], "complex_name": "HRH KING STARK", "complex_number": 1000167}}], "counties": ["ALL"], "search_type": "full"}, "expiry_date": "2016-02-29", "customer": {"name": "S & H Legal Group", "reference": "sdfdf", "address": "49 Camille Circles\r\nPort Eulah\r\nPP39 6BY", "key_number": "1234567"}}'
-complex_name_search = '{"cert_no": "14532","document_id": 60, "search_date": "' + today + '", "parameters": {"search_items": [{"year_from": 1925, "name_type": "Complex", "year_to": 2016, "name": {"complex_variations": [{"name": "KING STARK OF THE NORTH", "number": 1000167}, {"name": "HRH KING STARK", "number": 1000167}, {"name": "THE KING IN THE NORTH", "number": 1000167}, {"name": "His Royal Highness Robert Stark of Winterfell and King in the North", "number": 1000167}], "complex_name": "HRH KING STARK", "complex_number": 1000167}}], "counties": ["ALL"], "search_type": "full"}, "expiry_date": "2016-02-29", "customer": {"name": "LOUIS LEY & MAYCOCK NON CREDIT", "reference": "sdfdf", "address": "Seaton Court 2 William Prance Road\r\nPlymouth\r\nPL6 5WS", "key_number": "2244095", "address_type": "RM"}}'
+complex_name_search = '{"cert_no": "14532","document_id": 60, "search_date": "' + today + '", "parameters": {"search_items": [{"year_from": 1925, "name_type": "Complex Name", "year_to": 2016, "name": {"complex_variations": [{"name": "KING STARK OF THE NORTH", "number": 1000167}, {"name": "HRH KING STARK", "number": 1000167}, {"name": "THE KING IN THE NORTH", "number": 1000167}, {"name": "His Royal Highness Robert Stark of Winterfell and King in the North", "number": 1000167}], "complex_name": "HRH KING STARK", "complex_number": 1000167}}], "counties": ["ALL"], "search_type": "full"}, "expiry_date": "2016-02-29", "customer": {"name": "LOUIS LEY & MAYCOCK NON CREDIT", "reference": "sdfdf", "address": "Seaton Court 2 William Prance Road\r\nPlymouth\r\nPL6 5WS", "key_number": "2244095", "address_type": "RM"}}'
 
 search_res_complex = 'HRH%20KING%20STARK'
 
@@ -97,22 +97,19 @@ surname_search = '{"cert_no": "14532", "document_id": 60, "expiry_date": "2016-0
 
 surname_result = '%20%20West'
 
-
-
-array_len = name_array.length
-cntr = 0
-reg_name = []
-reg_date = '2016-01-01'
+$cntr = 0
+$reg_name = []
+$reg_date = '2016-01-01'
 
 Given(/^I have submitted a singular company name$/) do
-  while cntr < name_array.length
-    @current_data = reg_template + name_array[cntr] + '"}]}]}'
+  while $cntr < name_array.length
+    @current_data = reg_template + name_array[$cntr] + '"}]}]}'
     @registration_api = RestAPI.new($LAND_CHARGES_URI)
-    @return_data = @registration_api.post("/registrations?dev_date=#{reg_date}", @current_data)
-    reg_name[cntr] = @return_data['new_registrations'][0]['number']
-    cntr += 1
+    @return_data = @registration_api.post("/registrations?dev_date=#{$reg_date}", @current_data)
+    $reg_name[$cntr] = @return_data['new_registrations'][0]['number']
+    $cntr += 1
   end
-  cntr = 0
+  $cntr = 0
 end
 
 When(/^I submit a full search for th plural of the company$/) do
@@ -139,7 +136,7 @@ Then(/^the response contains the registration details for the singular company r
     puts @searched_name
     search_array.length.times do |cntr|      
         expect(@searched_name[cntr][0].has_key?('reg_no')).to be true
-        expect(@searched_name[cntr][0]['reg_no'] == reg_name[cntr]).to be true
+        expect(@searched_name[cntr][0]['reg_no'] == $reg_name[cntr]).to be true
     end
 end
 
@@ -159,6 +156,8 @@ Given(/^I have submitted a new registration for a (.+)$/) do |name_type|
   @return_data = @registration_api.post("/registrations", @current_data)
   expect(@return_data.has_key?('new_registrations')).to be true
   @reg_no = @return_data['new_registrations'][0]['number']
+    puts @return_data
+    puts @reg_no
 end
 
 Given(/^I have submitted a registration for a C1 and PA$/) do
@@ -218,6 +217,8 @@ When(/^I submit a full search for a (.+)$/) do |name_type|
   end
   @search_api = RestAPI.new($LAND_CHARGES_URI)
   @return_data = @search_api.post("/searches", @current_data)
+    puts @current_data
+    puts @return_data
 end
 
 When(/^I query the search result using a (.+)$/) do |name_type|
@@ -296,6 +297,7 @@ Then(/^the response contains the registration details$/) do
 end
 
 Then(/^the response contains the complex name registration details$/) do
+    puts @return_data
   expect(@return_data[0].has_key?('reg_no')).to be true
   expect(@return_data).to have_content(@reg_no)
 end
