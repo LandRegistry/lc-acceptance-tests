@@ -38,16 +38,16 @@ def execute(clear, setup, save = false, quiet = false)
 
     folder = File.expand_path("../..", File.dirname(__FILE__))
     if clear
-        out = `ruby "#{folder}/data/lc-clear.rb"`
+        out = `ruby "#{folder}/data/lc-clear.rb" 2>&1`
         puts "  #{out}" unless(quiet)
-        out = `ruby "#{folder}/data/cw-clear.rb"`
+        out = `ruby "#{folder}/data/cw-clear.rb" 2>&1`
         puts "  #{out}" unless(quiet)
     end
 
     if setup
-        out = `ruby "#{folder}/data/lc-setup.rb"`
+        out = `ruby "#{folder}/data/lc-setup.rb" 2>&1`
         puts "  #{out}" unless(quiet)
-        out = `ruby "#{folder}/data/cw-setup.rb"`
+        out = `ruby "#{folder}/data/cw-setup.rb" 2>&1`
         puts "  #{out}" unless(quiet)
     end
 
