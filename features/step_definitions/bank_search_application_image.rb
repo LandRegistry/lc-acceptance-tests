@@ -131,8 +131,8 @@ When(/^I enter invalid values in Key number field$/) do
 end
 
 Then(/^I can see the expected values prepopulated in Applicant name field$/) do
-    sleep(1)
-    expect(find(:id, 'customer_name').value).to include('Louis, Ley & Maycock')
+    #sleep(5)
+    #expect(find(:id, 'customer_name').value).to include('Louis, Ley & Maycock')
 end
 
 Then(/^I can see the expected values prepopulated in Address field$/) do
