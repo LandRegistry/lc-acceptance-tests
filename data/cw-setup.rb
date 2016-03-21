@@ -75,6 +75,7 @@ request["Content-Type"] = "application/json"
 response = http.request(request)
 if response.code != "200"
     puts "casework-api/workitem/bulk: #{response.code}"
+    puts response.body
 end
 
 
@@ -200,6 +201,7 @@ request["Content-Type"] = "application/json"
 response = http.request(request)
 if response.code != "200"
     puts "banks-reg/counties: #{response.code}"
+    puts response.body
 end
 
 
@@ -290,6 +292,7 @@ standard_data.each do |item|
     response = http.request(request)
     if response.code != "201"
         puts "casework-api/forms/A4: #{response.code}"
+        puts response.body
     end
     if item["images"].length > 1
         result = JSON.parse(response.body)
@@ -303,6 +306,7 @@ standard_data.each do |item|
         response = http.request(request)
         if response.code != "201"
             puts "casework-api/forms/id/A4: #{response.code}"
+            puts response.body
         end
     end
 end
