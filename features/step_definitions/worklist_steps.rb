@@ -34,7 +34,10 @@ class RestAPI
 end
 
 Given(/^I have selected to view the main worklist$/) do
-  visit($FRONTEND_URI)
+    visit( "#{$FRONTEND_URI}/login" )
+    fill_in('username', :with => $LOGIN_USERID)
+    fill_in('password', :with => $LOGIN_PASSWORD)
+    find(:xpath, "//*[@id='login_button']").click
 end
 
 When(/^I have selected to view specific the application list "(.*)"$/) do |type|
