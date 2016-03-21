@@ -34,6 +34,7 @@ When(/^I access the application screen the known as text box is visible$/) do
 end
 
 Then(/^the susuccessfully completed Registration number is banner is displayed$/) do
-  expect(page).to have_content('successfully completed')
-  expect(page).to have_content(' Registration number')
+    page.save_screenshot
+    expect(page).to have_content('successfully completed')
+    expect(page).to have_content(' Registration number')
 end

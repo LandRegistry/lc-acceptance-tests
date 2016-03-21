@@ -61,6 +61,10 @@ When(/^I change it to choose direct debit$/) do
   #choose('direct_debit')  commented out for defect 42
 end
 
+When(/^I set the address type to DX$/) do
+    choose('dx_address') 
+end
+
 When(/^I enter a county the details are displayed county edit box$/) do
   fill_in('county_0', :with => 'Devon')
 end

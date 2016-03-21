@@ -28,12 +28,12 @@ end
 
 When(/^I can classify the form to a PAB Registration type$/) do
   within(:xpath, ".//*[@id='row_1']/td[2]") do
-  page.should have_content('K9')
+    page.should have_content('K9')
   end
   rwcount = all('#work-list>tbody').count
   find(:id, "row_1").click
   within('#wrong_form') do
-  click_link 'Choose the correct form type'
+    click_link 'Choose the correct form type'
   end
   choose('pab_regn')
   find_button('continue').click
@@ -116,13 +116,7 @@ When(/^the date of registration$/) do
 end
 
 When(/^I am on the view amend screen I can see infilled details$/) do
-   #page.should have_content('Devon')
-  #page.should have_content('South Hams')
-    page.save_screenshot
-    #short_desc
     expect(find(:id, 'short_desc').text).to eq '1 The Lane, Some Village'
-  #page.should have_content('1 The Lane, Some Village')
-  #page.should have_content('Johnson')
 end
 
 
