@@ -59,8 +59,18 @@ standard_data.length.times do |i|
     request.body = item
     request["Content-Type"] = "application/json"
     response = http.request(request)
+    
+    puts "banks-reg/registrations: #{response.code}"
+    if response.code != "200"        
+        puts "Data was:"
+        puts item
+        puts response.body
+    end
 
+    puts "Response:"
+    puts response.body
     data = JSON.parse(response.body)
+    puts "Registrations:" 
     puts data
 
     if data.has_key?('new_registrations')
@@ -69,20 +79,13 @@ standard_data.length.times do |i|
         regs = data['priority_notices']
     end
 
-    if response.code != "200"
-        puts "banks-reg/registrations: #{response.code}"
-        puts "Data was:"
-        puts item
-        puts response.body
-    end
-
     regs.each do |reg|
         cw_req = Net::HTTP::Put.new("/registered_forms/#{reg['date']}/#{reg['number']}")
         cw_req.body = '{"id": 1}'
         cw_req["Content-Type"] = "application/json"
         response = cw_http.request(cw_req)
-        if response.code != "200"
-            puts "cw-api/registered_forms: #{response.code}"
+        puts "cw-api/registered_forms: #{response.code}"
+        if response.code != "200"            
             puts response.body
         end
     end

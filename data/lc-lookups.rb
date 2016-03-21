@@ -148,8 +148,8 @@ request = Net::HTTP::Post.new('/counties')
 request.body = counties
 request["Content-Type"] = "application/json"
 response = http.request(request)
-if response.code != "200"
-    puts "banks-reg/counties: #{response.code}"
+puts "banks-reg/counties: #{response.code}"
+if response.code != "200"    
     puts response.body
 end
 puts ">> Inserted Counties"
@@ -181,8 +181,8 @@ request = Net::HTTP::Put.new('/area_variants')
 request.body = JSON.dump(data)
 request["Content-Type"] = "application/json"
 response = http.request(request)
-if response.code != "200"
-    puts "land-charges/area_variants: #{response.code}"
+puts "land-charges/area_variants: #{response.code}"
+if response.code != "200"    
     puts response.body
 end
 puts ">> Inserted Area Variants"
