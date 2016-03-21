@@ -1,24 +1,28 @@
 Given(/^a '([^']+)' registration in progress for private individual '([^']+)'$/) do |coc, name|
-  puts "I'm here!"
-  visit('http://localhost:5010/get_list?appn=lc_regn')
-  find(:id, "row_1").click
-  
-  case coc
-  when 'C1'
-    select 'C1', from: "class"
-  end 
-  fill_in('county_0', :with => "Portsmouth")
-  fill_in('district', :with => "Nine")
-  fill_in('short_desc', :with => "Short Description")
-  
-  select 'Private individual', from: 'estateOwnerTypes'
-  names = name.split(' ')
-  surname = names[-1]
-  forename = names[0..-2].join(' ')
-  
-  fill_in('forename', :with => forename)
-  fill_in('surname', :with => surname)
-  find(:id,'continue').click
+    visit( "#{$FRONTEND_URI}/login" )
+    fill_in('username', :with => $LOGIN_USERID)
+    fill_in('password', :with => $LOGIN_PASSWORD)
+    find(:xpath, "//*[@id='login_button']").click
+    
+    visit('http://localhost:5010/get_list?appn=lc_regn')
+    find(:id, "row_1").click
+
+    case coc
+        when 'C1'
+            select 'C1', from: "class"
+    end 
+    fill_in('county_0', :with => "Portsmouth")
+    fill_in('district', :with => "Nine")
+    fill_in('short_desc', :with => "Short Description")
+
+    select 'Private individual', from: 'estateOwnerTypes'
+    names = name.split(' ')
+    surname = names[-1]
+    forename = names[0..-2].join(' ')
+
+    fill_in('forename', :with => forename)
+    fill_in('surname', :with => surname)
+    find(:id,'continue').click
 end
 
 When(/^I get to the verification screen$/) do

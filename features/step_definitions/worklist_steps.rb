@@ -34,7 +34,10 @@ class RestAPI
 end
 
 Given(/^I have selected to view the main worklist$/) do
-  visit($FRONTEND_URI)
+    visit( "#{$FRONTEND_URI}/login" )
+    fill_in('username', :with => $LOGIN_USERID)
+    fill_in('password', :with => $LOGIN_PASSWORD)
+    find(:xpath, "//*[@id='login_button']").click
 end
 
 When(/^I have selected to view specific the application list "(.*)"$/) do |type|
@@ -87,7 +90,7 @@ Then(/^I see the application list page with no waiting apps$/) do
 end
 
 Then(/^I see the application totals$/) do
-    page.should have_css("#lc_reg", :text => '12')
+    page.should have_css("#lc_regn", :text => '12')
     page.should have_css("#lc_prio_not", :text => '2')
     page.should have_css("#lc_rect", :text => '1')
 end
