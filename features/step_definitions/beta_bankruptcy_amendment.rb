@@ -131,8 +131,7 @@ When(/^I enter date for the PAB amendment$/) do
 end
 
 When(/^I amend the registration record$/) do
-   fill_in('court', :with => 'Mango County Court')
-   fill_in('ref_no', :with => '210 of 2016')
+   fill_in('ref_no', :with => 'Mango County Court 210 of 2016')
 end
  
 When(/^I enter the wrong WOB reference number the details are visible$/) do
