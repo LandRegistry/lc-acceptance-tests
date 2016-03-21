@@ -90,7 +90,7 @@ Then(/^I see the application list page with no waiting apps$/) do
 end
 
 Then(/^I see the application totals$/) do
-    page.should have_css("#lc_reg", :text => '12')
+    page.should have_css("#lc_regn", :text => '12')
     page.should have_css("#lc_prio_not", :text => '2')
     page.should have_css("#lc_rect", :text => '1')
 end
