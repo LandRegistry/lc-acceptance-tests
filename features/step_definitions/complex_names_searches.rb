@@ -26,10 +26,7 @@ When(/^I can confirm the exact variation of names for my first search name$/) do
   end
   expect(page).to have_content('KING STARK OF THE NORTH') 
   expect(page).to have_content('HRH KING STARK') 
-  expect(page).to have_content('THE KING IN THE NORTH') 
-  expect(page).to have_content('HRH KING STARK') 
   expect(page).to have_content('HRH KING STARKE') 
-  expect(page).to have_content('His Royal Highness Robert Stark of Winterfell and King in the North') 
 end
 
 When(/^I can confirm the exact variation of names for my second search name$/) do
@@ -38,10 +35,7 @@ When(/^I can confirm the exact variation of names for my second search name$/) d
   end
   expect(page).to have_content('KING STARK OF THE NORTH') 
   expect(page).to have_content('HRH KING STARK') 
-  expect(page).to have_content('THE KING IN THE NORTH') 
-  expect(page).to have_content('HRH KING STARK') 
   expect(page).to have_content('HRH KING STARKE') 
-  expect(page).to have_content('His Royal Highness Robert Stark of Winterfell and King in the North') 
 end
 
 When(/^I can confirm there is no match for the second name search$/) do
