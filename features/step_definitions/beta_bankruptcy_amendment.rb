@@ -23,7 +23,7 @@ Given(/^I register and submit a PAB reference number for amendment$/) do
   fill_in('ref_no', :with => '911')
   #fill_in('ref_year', :with => '2013')
   click_button('continue')
-  page.save_screenshot
+  #page.save_screenshot
     
   fill_in('forenames_1', :with => 'Johnny')
   fill_in('surname_1', :with => 'Lee')
