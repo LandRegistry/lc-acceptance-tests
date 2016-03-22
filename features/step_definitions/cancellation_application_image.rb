@@ -166,7 +166,7 @@ Then(/^I can submit conveyancer details for the part cancellation$/) do
   find(:id, 'direct_debit').click
 end
 
-When(/^I attempt to resubmit a cancelled new application number$/) do
+When(/^I attempt to resubmit a cancelled new application$/) do
   fill_in('court', :with => 'Northants County Court')
   fill_in('ref_no', :with => '911')
   #fill_in('ref_year', :with => '2013')
@@ -196,10 +196,31 @@ When(/^I attempt to resubmit a cancelled new application number$/) do
   fill_in('reg_date', :with => Today)
   find(:id, 'full_cans').click
   click_button('continue')
+  click_button('continue')
+  fill_in('key_number', :with =>'2244095')
+  fill_in('customer_ref', :with => '911')
+  find(:id, 'direct_debit').click
+end
+
+Then(/^I attempt to cancel the application a second time$/) do
+  click_button('submit')
+  page.find(:id, "conf_reg_numbers").text
+  results = page.find(:id, "conf_reg_numbers").text
+  visit( "#{$FRONTEND_URI}/get_list?appn=cancel" )
+  find(:xpath,'//*[@id="row_1"]').click
+  fill_in('reg_no', :with => results)
+  Today = Date.today.strftime("%d/%m/%Y")
+  fill_in('reg_date', :with => Today)
+  find(:id, 'full_cans').click
+  click_button('continue')
 end
 
 Then(/^I will still be on the application retrieval page$/) do
 expect(page).to have_content("Retrieve original")
+end
+
+Then(/^I can see text to confirm the cancellation$/) do
+expect(find(:id, 'regn_error').text).to eq "Registration has been cancelled - please re-enter"
 end
 
 Then(/^I can see successful cancellation registration number$/) do
