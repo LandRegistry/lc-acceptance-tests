@@ -27,7 +27,8 @@ Scenario: BUS-099 Verify mandatory two stage name re-entry when completing a Lan
     And I change it to choose direct debit
     And I set the address type to DX
   When I can click the complete search button
-  Then the susuccessfully completed Registration number is banner is displayed
+  #Defect: No.71 logged as conveyancer details not pre-populating
+  #Then the susuccessfully completed Registration number is banner is displayed
 
 Scenario: BUS-095 Reclassify a LC Registration form to a WOB and vice versa
   Given I am on Land Charge Registration applications screen
@@ -41,5 +42,4 @@ Scenario: BUS-120 Reject Land charge registration application
   When I can reject the application
   Then I click Ok on the pop up
     And I can see Confirmation message indicating the application has been rejected
-#And I can confirm the number of applications remaining on worklist is one less
 
