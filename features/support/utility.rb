@@ -11,9 +11,9 @@ end
 def prepare_data
     puts "Prepare data"
     if is_gui?
-        #puts "vagrant"
-        #puts `vagrant ssh -c reset-data`# 2> /dev/null`
-        puts `ruby C:\\dev\\devenv-diti\\apps\\acceptance-tests\\features\\support\\reset-data.rb`
+        puts "vagrant"
+        puts `vagrant ssh -c reset-data`# 2> /dev/null`
+        #puts `ruby C:\\dev\\devenv-diti\\apps\\acceptance-tests\\features\\support\\reset-data.rb`
     else
         reset_data
     end
