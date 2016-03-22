@@ -27,8 +27,7 @@ Scenario: BUS-099 Verify mandatory two stage name re-entry when completing a Lan
     And I change it to choose direct debit
     And I set the address type to DX
   When I can click the complete search button
-  #Defect: No.71 logged as conveyancer details not pre-populating
-  #Then the susuccessfully completed Registration number is banner is displayed
+  Then the susuccessfully completed Registration number is banner is displayed
 
 Scenario: BUS-095 Reclassify a LC Registration form to a WOB and vice versa
   Given I am on Land Charge Registration applications screen
