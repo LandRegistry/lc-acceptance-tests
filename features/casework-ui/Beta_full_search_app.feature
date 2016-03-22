@@ -16,7 +16,7 @@ When I click the add additional county a new county edit box is displayed where 
 When I click continue the applicant details screen is displayed
 And I can capture customer details on the full search screen
 Then I can click the complete search button
-#And I can see Application Successful text on Search list page 
+And I can see search successful text 
 
 Scenario: BUS-011 Capture details of customer who lodged a bankruptcy search request
 Given I am on the LR searches screen
@@ -88,12 +88,11 @@ And I enter Names in all fields on Input details page
 And I click on continue button
 And I can see Specify County error message flagged up
 When I click box to search all counties 
-#EA: The next test will fail until the change by SM is deployed. Review before end of sprint 4
 Then I can confirm that the county edit box is disabled
 And I click on continue button
 And I can see Applicant data input fields for the Bankruptcy search request
 
-#EA:WIP
+
 Scenario: BUS-021 Reveal English equivalence of Welsh county names selected
 Given I am on the LR searches screen
 And I select an application type of Full Search the application is displayed
@@ -140,7 +139,7 @@ When I click the add additional county a new county edit box is displayed where 
 When I click continue the applicant details screen is displayed
 And I can capture customer details on the full search screen
 Then I can click the complete search button
-#And I can see Application Successful text on Search list page 
+And I can see Application Successful text on Search list page 
 
 
 

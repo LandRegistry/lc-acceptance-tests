@@ -14,7 +14,7 @@ And I enter Names in all fields on Input details page
 And I click on continue button
 And I can capture customer details on the full search screen
 Then I can click the complete search button
-#And I can see Application Successful text on Search list page 
+And I can see Application Successful text on Search list page 
 
 Scenario: BUS-013 Return expected values associated with a key number for a Bankruptcy search request
 Given I am on the LR searches screen

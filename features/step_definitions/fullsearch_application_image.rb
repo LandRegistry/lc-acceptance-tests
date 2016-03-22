@@ -29,7 +29,13 @@ Then(/^I can capture customer details on the full search screen$/) do
   fill_in('customer_name', :with => 'Ashton Thomas')
   fill_in('customer_address',:with => '4749 DUBUQUE Terrace'"\n"'JAYSONFURT'"\n"'SOUTH VINCENZA'"\n"'NORTHAMPTONSHIRE'"\n"'FC13 4WX')
   fill_in('customer_ref', :with => '100/102')
+  choose('dx_address')
   choose('pre_paid')
+end
+
+When(/^I can see search successful text$/) do
+  bannertxt = find(:id, 'conf_banner').text
+  expect(find(:id, 'conf_banner').text).to eq 'Your application has been successfully completed.'
 end
 
 When(/^I click on entered details in the address box I can make an amendment$/) do
