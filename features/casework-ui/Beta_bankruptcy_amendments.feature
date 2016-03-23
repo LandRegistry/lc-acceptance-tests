@@ -19,7 +19,7 @@ When I amend an AKA name the new details are visible
 When I can click on Continue button to submit the form
 When I am on the Court screen I can enter a valid key number
 When I can click button to continue
-Then the susuccessfully completed Registration number is banner is displayed
+Then the successfully completed Registration banner and number is displayed
 
 Scenario: Amendments API verification
 Given I am on the bankruptcy registration screen

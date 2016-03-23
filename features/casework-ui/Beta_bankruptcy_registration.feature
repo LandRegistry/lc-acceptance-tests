@@ -68,7 +68,9 @@ When I am on the verification screen I can rekey debtor's name
 When I am on the verification screen I can change debtor's AKA name
 When I am on the verification screen I can rekey court name
 When I can click on Continue button to submit the form
-#Then the susuccessfully completed Registration number is banner is displayed
+And I am on the Court screen I can enter a valid key number
+And I can click on Continue button to submit the form
+Then the successfully completed Registration banner and number is displayed
 
 Scenario: BUS-038 Confirm Bankruptcy registration number
 Given I am on the bankruptcy registration screen
