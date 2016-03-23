@@ -176,5 +176,11 @@ When I click on the login button
 Then I can log out
 And I can see username and password fields
 
+Scenario: BUS-173B Login and out of the portal without any data
+Given I launch the login page
+And I leave login fields empty
+When I click on the login button
+Then I will see invalid data error message
+
 
 
