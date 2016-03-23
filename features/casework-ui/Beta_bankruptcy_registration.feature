@@ -44,13 +44,6 @@ When I click to add additional address new fields are visible
 And can be completed
 Then I can click on Continue button to submit the form
 
-#EA: Step 4 of this test is no longer valid. Step commented out
-Scenario: Return registered names
-Given I am on the bankruptcy registration screen
-When I select an application type of PAB with a single image
-When I enter the specific court details
-#Then the registered names are displayed on the screen
-
 Scenario: #BUS-139 #BUS-130 #BUS-038 #BUS-053 Verify mandatory two stage name re-entry when completing a bankruptcy registration application 
 Given I am on the bankruptcy registration screen
 When I select an application type of PAB with a single image
