@@ -14,9 +14,8 @@ When I can click on Continue button to submit the form
 When I can amend data on the Original Bankruptcy details page
 When I click add AKA  on amendments a new fields are displayed and I can enter them
 When I can click button to continue
-#Next line commented out.See defect no:37
-#When I click the change details button on the check details screen
-#When I amend an AKA name the new details are visible
+When I click the change details button on the check details screen
+When I amend an AKA name the new details are visible
 When I can click on Continue button to submit the form
 When I am on the Court screen I can enter a valid key number
 When I can click button to continue
