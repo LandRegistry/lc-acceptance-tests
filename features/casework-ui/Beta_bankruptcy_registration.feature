@@ -174,6 +174,12 @@ Then I register the application
 And I can click button to continue
 And I can see the application successful message 
 
+Scenario: BUS-173A Login and out of the portal
+Given I launch the login page
+And I enter valid login details
+When I click on the login button
+Then I can log out
+And I can see username and password fields
 
 
 
