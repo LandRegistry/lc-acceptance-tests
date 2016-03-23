@@ -24,7 +24,7 @@ And I enter Names in all fields on Input details page
 And I click on continue button
 When I enter valid values in Key number field
 Then I can see the expected values prepopulated in Applicant name field
-#And I can see the expected values prepopulated in Address field
+And I can see the expected values prepopulated in Address field
 
 Scenario: BUS-013 Do not Return any values when invalid key number is entered for a Bankruptcy search request
 Given I am on the LR searches screen

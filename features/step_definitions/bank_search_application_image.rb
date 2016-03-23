@@ -135,8 +135,8 @@ Then(/^I can see the expected values prepopulated in Applicant name field$/) do
     expect(find(:id, 'customer_name').value).to include('LOUIS LEY & MAYCOCK NON CREDIT')
 end
 
-Then(/^I can see the expected values prepopulated in Address field$/) do
-  expect(page).to have_field('customer_address', with: 'Seaton Court 2 William Prance Road Plymouth') 
+Then(/^I can see the expected values prepopulated in Address field$/) do 
+  expect(find(:id, 'customer_address').value).to eq '1234' "\n" 'Plymouth 4'
 end
 
 When(/^I enter an invalid value in Key number field$/) do
