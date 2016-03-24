@@ -403,6 +403,11 @@ Given(/^I launch the login page$/) do
   expect(page).to have_field('username', with: '')
 end
 
+When(/^I enter valid login details$/) do 
+   fill_in('username', :with => 'Tester')
+  fill_in('password', :with => 'Enter')
+end
+
 When(/^I click on the login button$/) do 
    click_button('login_button')
 end

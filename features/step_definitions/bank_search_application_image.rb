@@ -55,6 +55,12 @@ When(/^I enter Names in all fields on Input details page$/) do
   fill_in('surname_2', :with => 'Great')
 end
 
+When(/^I enter Name in one of the fields on Input details page$/) do
+    expect(page).to have_content('First name to be searched')
+  fill_in('forename_1', :with => 'Ella')
+  fill_in('surname_1', :with => 'Piggy')
+end
+
 When(/^I enter an Applicant reference number$/) do
   fill_in('customer_ref', :with => 'B123/239')
 end
