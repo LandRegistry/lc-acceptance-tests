@@ -189,8 +189,8 @@ When(/^I click the change details button on the check details screen$/) do
 end
 
 When(/^I amend an AKA name the new details are visible$/) do
-  fill_in('forenames_3', :with => 'Barrington Boy')
-  fill_in('surname_3', :with => 'Scottie-Dottie')
+  fill_in('forenames_2', :with => 'Barrington Boy')
+  fill_in('surname_2', :with => 'Scottie-Dottie')
 end
 
 When(/^I click add AKA  on amendments a new fields are displayed$/) do

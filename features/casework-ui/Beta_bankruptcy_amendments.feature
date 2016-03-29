@@ -6,7 +6,7 @@ As a land charges caserworker
 I want to be able to view the amendment form a bankruptcy registration
 So that I can make any changes to the registration
 
-Scenario: #BUS-049 Retrieve and View and amend original data of application
+Scenario: BUS-049 Retrieve and View and amend original data of application
 Given I am on the bankruptcy registration screen
 When I select an application type of PAB with a single image
 When I register and submit a PAB reference number for amendment
