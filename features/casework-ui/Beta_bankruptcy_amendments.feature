@@ -17,6 +17,7 @@ When I can click button to continue
 When I click the change details button on the check details screen
 When I amend an AKA name the new details are visible
 When I can click on Continue button to submit the form
+And I can click on Continue button to submit the form
 When I am on the Court screen I can enter a valid key number
 When I can click button to continue
 Then the successfully completed Registration banner and number is displayed
