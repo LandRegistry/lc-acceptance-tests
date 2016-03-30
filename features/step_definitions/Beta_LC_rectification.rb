@@ -132,3 +132,25 @@ When(/^I am on the check details screen I can choose to amend the district$/) do
   find(:id, 'continue').click
 end
 
+When(/^I parse a Land Charge application details for rectification$/) do
+  fill_in('forename', :with => 'Joyce')
+  fill_in('Surname', :with => 'Mayer')
+  select 'C1', from:  "class"
+  click_button "continue"
+  fill_in('key_number', :with =>'2244095')
+  fill_in('customer_ref', :with =>'2244095')
+  choose "direct_debit"
+    choose "dx_address"
+  click_button "submit"
+    
+  results = page.find(:id, "conf_reg_numbers").text
+  visit("#{$FRONTEND_URI}/get_list?appn=lc_rect")
+  within(:xpath, ".//*[@id='row_1']/td[2]") do
+  page.should have_content('K9')
+  end
+  find(:id, "row_1").click
+  today = Date.today.strftime("%d/%m/%Y")
+  fill_in('reg_date', :with => today)
+  fill_in('reg_no', :with => results)
+  click_button('continue')
+end
