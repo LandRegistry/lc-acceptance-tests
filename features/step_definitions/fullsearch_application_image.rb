@@ -26,8 +26,6 @@ end
 
 Then(/^I can capture customer details on the full search screen$/) do
   fill_in('key_number', :with =>'2244095')
-  fill_in('customer_name', :with => 'Ashton Thomas')
-  fill_in('customer_address',:with => '4749 DUBUQUE Terrace'"\n"'JAYSONFURT'"\n"'SOUTH VINCENZA'"\n"'NORTHAMPTONSHIRE'"\n"'FC13 4WX')
   fill_in('customer_ref', :with => '100/102')
   choose('dx_address')
   choose('pre_paid')
@@ -177,7 +175,7 @@ Then(/^I can validate customer details via the search api$/) do
   srch_nam = @srch_details['search_details']
   srch_add = @srch_details['applicant']
   expect(srch_nam).to have_content('Piggy')
-  expect(srch_add).to have_content('4749 DUBUQUE Terrace')
+  expect(srch_add).to have_content('LOUIS LEY & MAYCOCK NON CREDIT')
 end
 
 Then(/^I can confirm via api that the expiry date stored is in the future$/) do
