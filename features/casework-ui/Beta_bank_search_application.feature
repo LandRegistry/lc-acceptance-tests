@@ -14,7 +14,7 @@ And I enter Names in all fields on Input details page
 And I click on continue button
 And I can capture customer details on the full search screen
 Then I can click the complete search button
-#And I can see Application Successful text on Search list page 
+And I can see Application Successful text on Search list page 
 
 Scenario: BUS-013 Return expected values associated with a key number for a Bankruptcy search request
 Given I am on the LR searches screen
@@ -24,7 +24,7 @@ And I enter Names in all fields on Input details page
 And I click on continue button
 When I enter valid values in Key number field
 Then I can see the expected values prepopulated in Applicant name field
-#And I can see the expected values prepopulated in Address field
+And I can see the expected values prepopulated in Address field
 
 Scenario: BUS-013 Do not Return any values when invalid key number is entered for a Bankruptcy search request
 Given I am on the LR searches screen
@@ -45,7 +45,7 @@ When I enter valid values in Key number field
 Then I can override it with new address details
 Then I can click the complete search button
 
-Scenario: BUS-020 Certificate date stored for a bankruptcy search in database should not be same as date of the request date
+Scenario: BUS-020 Certificate date stored for a bankruptcy search is not the same as date of the request date
 Given I am on the LR searches screen
 And I click to launch Bankruptcy search and select a record
 And I am on the bankruptcy search details screen
@@ -54,20 +54,8 @@ And I click on continue button
 And I enter valid values in Key number field
 And I enter fee details I can choose prepaid
 When I can click the complete search button
-#Team's been advised not to test/make db calls in testing. Change test to call api instead
-#Then I can confirm that certificate date stored in database SHOULD NOT be today's
+Then I can confirm via api that certificate stored date is yesterday's date
 
-Scenario: BUS-020.1 Search expiry date stored for a bankruptcy search in database should should be after the request date
-Given I am on the LR searches screen
-And I click to launch Bankruptcy search and select a record
-And I am on the bankruptcy search details screen
-And I enter Names in all fields on Input details page
-And I click on continue button
-And I enter valid values in Key number field
-And I enter fee details I can choose prepaid
-When I can click the complete search button
-#Team's been advised not to test/make db calls in testing. Change test to call api instead
-#Then I can confirm that the search expiry date stored in database should be in the future
 
 
 

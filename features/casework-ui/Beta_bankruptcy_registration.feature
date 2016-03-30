@@ -44,13 +44,6 @@ When I click to add additional address new fields are visible
 And can be completed
 Then I can click on Continue button to submit the form
 
-#EA: Step 4 of this test is no longer valid. Step commented out
-Scenario: Return registered names
-Given I am on the bankruptcy registration screen
-When I select an application type of PAB with a single image
-When I enter the specific court details
-#Then the registered names are displayed on the screen
-
 Scenario: #BUS-139 #BUS-130 #BUS-038 #BUS-053 Verify mandatory two stage name re-entry when completing a bankruptcy registration application 
 Given I am on the bankruptcy registration screen
 When I select an application type of PAB with a single image
@@ -68,7 +61,9 @@ When I am on the verification screen I can rekey debtor's name
 When I am on the verification screen I can change debtor's AKA name
 When I am on the verification screen I can rekey court name
 When I can click on Continue button to submit the form
-#Then the susuccessfully completed Registration number is banner is displayed
+And I am on the Court screen I can enter a valid key number
+And I can click on Continue button to submit the form
+Then the successfully completed Registration banner and number is displayed
 
 Scenario: BUS-038 Confirm Bankruptcy registration number
 Given I am on the bankruptcy registration screen
@@ -174,6 +169,18 @@ Then I register the application
 And I can click button to continue
 And I can see the application successful message 
 
+Scenario: BUS-173A Login and out of the portal
+Given I launch the login page
+And I enter valid login details
+When I click on the login button
+Then I can log out
+And I can see username and password fields
+
+Scenario: BUS-173B Login and out of the portal without any data
+Given I launch the login page
+And I leave login fields empty
+When I click on the login button
+Then I will see invalid data error message
 
 
 

@@ -1,4 +1,4 @@
-@lc_registration
+@lc_registration @Beta
 
 Feature: Submit a Land Charge Registration
 

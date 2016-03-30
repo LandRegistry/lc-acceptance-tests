@@ -16,7 +16,7 @@ When I click the add additional county a new county edit box is displayed where 
 When I click continue the applicant details screen is displayed
 And I can capture customer details on the full search screen
 Then I can click the complete search button
-#And I can see Application Successful text on Search list page 
+And I can see search successful text 
 
 Scenario: BUS-011 Capture details of customer who lodged a bankruptcy search request
 Given I am on the LR searches screen
@@ -26,18 +26,17 @@ When I click on the name details tab I can enter six names for a bankruptcy sear
 Then I click continue the applicant details screen is displayed
 And I can see Applicant data input fields for the Bankruptcy search request
 
-Scenario: BUS-012 Capture details of customer who lodged a full search request
+Scenario: BUS-012 Capture details of full search request customer
 Given I am on the LR searches screen
 When I select an application type of Full Search the application is displayed
 And I am on the full search details screen
-When I click on the name details tab I can enter six names
+When I enter Name in one of the fields on Input details page
 When I enter a county the details are displayed county edit box 
 When I click the add additional county a new county edit box is displayed where I enter the next county
 When I click continue the applicant details screen is displayed
 And I can capture customer details on the full search screen
 Then I can click the complete search button
-#Commenting. Needs retesting via api rather than db
-#And I am on the Application complete screen a new record is stored on the register database in the correct format
+And I can validate customer details via the search api
 
 Scenario: BUS-014 Return expected values associated with a key number for a Full search request
 Given I am on the LR searches screen
@@ -51,7 +50,7 @@ And I click on continue button
 When I enter valid values in Key number field
 And I set the address type to Postal Address
 Then I can see the expected values prepopulated in Applicant name field
-#And I can see the expected values prepopulated in Address field
+And I can see the expected values prepopulated in Address field
 
 Scenario: BUS-014 Do not return any values when invalid key number is entered for a Full search request
 Given I am on the LR searches screen
@@ -88,12 +87,11 @@ And I enter Names in all fields on Input details page
 And I click on continue button
 And I can see Specify County error message flagged up
 When I click box to search all counties 
-#EA: The next test will fail until the change by SM is deployed. Review before end of sprint 4
 Then I can confirm that the county edit box is disabled
 And I click on continue button
 And I can see Applicant data input fields for the Bankruptcy search request
 
-#EA:WIP
+
 Scenario: BUS-021 Reveal English equivalence of Welsh county names selected
 Given I am on the LR searches screen
 And I select an application type of Full Search the application is displayed
@@ -115,10 +113,9 @@ When I enter a county the details are displayed county edit box
 And I click continue the applicant details screen is displayed
 And I can capture customer details on the full search screen
 When I can click the complete search button
-#Commenting. Needs retesting via api rather than db
-#Then I can confirm that certificate date stored in database SHOULD NOT be today's
+Then I can confirm via api that certificate stored date is yesterday's date
 
-Scenario: BUS-020.1 Search expiry date stored for a full search in database should should be after the request date
+Scenario: BUS-020.1 Search expiry date stored for a full search is in the future
 Given I am on the LR searches screen
 When I select an application type of Full Search the application is displayed
 And I am on the full search details screen
@@ -127,8 +124,7 @@ When I enter a county the details are displayed county edit box
 And I click continue the applicant details screen is displayed
 And I can capture customer details on the full search screen
 When I can click the complete search button
-#Commenting. Needs retesting via api rather than db
-#Then I can confirm that the search expiry date stored in database should be in the future
+#Then I can confirm via api that the expiry date stored is in the future
 
 Scenario: BUS-141 Capture details of customer who lodged a bankruptcy search request by surname only
 Given I am on the LR searches screen
@@ -140,7 +136,7 @@ When I click the add additional county a new county edit box is displayed where 
 When I click continue the applicant details screen is displayed
 And I can capture customer details on the full search screen
 Then I can click the complete search button
-#And I can see Application Successful text on Search list page 
+And I can see Application Successful text on Search list page 
 
 
 

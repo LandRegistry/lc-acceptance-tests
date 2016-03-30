@@ -388,3 +388,35 @@ end
 Then(/^I can see Confirmation message indicating the application has been rejected$/) do
   expect(page).to have_content('Your application has been rejected.')
 end
+
+Then(/^I can log out$/) do
+  click_link('logout_link')
+end
+
+When(/^I leave login fields empty$/) do 
+   fill_in('username', :with => '')
+  fill_in('password', :with => '')
+end
+
+Given(/^I launch the login page$/) do
+  visit( "#{$FRONTEND_URI}/login" )
+  expect(page).to have_field('username', with: '')
+end
+
+When(/^I enter valid login details$/) do 
+   fill_in('username', :with => $LOGIN_USERID)
+  fill_in('password', :with => $LOGIN_PASSWORD)
+end
+
+When(/^I click on the login button$/) do 
+   click_button('login_button')
+end
+
+Then(/^I can see username and password fields$/) do
+  expect(page).to have_field('username', with: '')
+  expect(page).to have_field('password', with: '')
+end
+
+Then(/^I will see invalid data error message$/) do
+  expect(page).to have_content('User name or password invalid.')
+end

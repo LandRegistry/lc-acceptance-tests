@@ -23,7 +23,7 @@ Given(/^I register and submit a PAB reference number for amendment$/) do
   fill_in('ref_no', :with => '911')
   #fill_in('ref_year', :with => '2013')
   click_button('continue')
-  page.save_screenshot
+  #page.save_screenshot
     
   fill_in('forenames_1', :with => 'Johnny')
   fill_in('surname_1', :with => 'Lee')
@@ -189,8 +189,8 @@ When(/^I click the change details button on the check details screen$/) do
 end
 
 When(/^I amend an AKA name the new details are visible$/) do
-  fill_in('forenames_3', :with => 'Barrington Boy')
-  fill_in('surname_3', :with => 'Scottie-Dottie')
+  fill_in('forenames_2', :with => 'Barrington Boy')
+  fill_in('surname_2', :with => 'Scottie-Dottie')
 end
 
 When(/^I click add AKA  on amendments a new fields are displayed$/) do

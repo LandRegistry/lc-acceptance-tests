@@ -37,44 +37,11 @@ end
 
 
 When(/^I am on a Large image I can zoom in$/) do 
-  #ALL CODE COMMENTED OUT AS div:nth-child(?) CHANGES DEPENDING ON WHICH PC/MAC THE CUCUMBER SCRIPT IS BEING RUN ON
- 
-  #sleep(1)
-  #if is_gui?
-   # find(:xpath, '//*[@id="container0"]/img[2]').click
-  #else
-   # find(:xpath, '//*[@id="container0"]/img[2]').trigger('click')
- # end
-  
-
-  #thing = find(:csspath, '#container0 > div:nth-child(5)')
-  #expect(thing.text).to eq "2x Magnify"
-  
-  #expect(page).to have_content("Zoom In")
-
   find(:id, 'zoom_button').click
-  
 end 
 
 When(/^I am on a Large image I can zoom out$/) do 
-  
-  #ALL CODE COMMENTED OUT AS div:nth-child(?) CHANGES DEPENDING ON WHICH PC/MAC THE CUCUMBER SCRIPT IS BEING RUN ON
-  # if is_gui?
-     #  find(:xpath, '//*[@id="container0"]/img[3]').click
- #  else
-   #    find(:xpath, '//*[@id="container0"]/img[3]').trigger('click')
-  # end
-   #thing = find(:csspath, '#container0 > div:nth-child(5)')
- # expect(thing.text).to eq "1x Magnify"
- 
-  #OLD CODE THAT MIGHT HAVE WORKED BUT DOESN'T IN THIS PLACE
-  #container0>div
-  #all('.zoomcontrols')[0].click
-  #container0 > div:nth-child(2)
-  
-  #expect(page).to have_content('Zoom Out')
   find(:id, 'zoom_button').click 
-
 end 
 
 When(/^I must have a registration number value before the continue button can be clicked$/) do 
@@ -166,10 +133,9 @@ Then(/^I can submit conveyancer details for the part cancellation$/) do
   find(:id, 'direct_debit').click
 end
 
-When(/^I attempt to resubmit a cancelled new application number$/) do
+When(/^I attempt to resubmit a cancelled new application$/) do
   fill_in('court', :with => 'Northants County Court')
   fill_in('ref_no', :with => '911')
-  #fill_in('ref_year', :with => '2013')
   click_button('continue')
   fill_in('forenames_1', :with => 'Johnny')
   fill_in('surname_1', :with => 'Lee')
@@ -196,10 +162,31 @@ When(/^I attempt to resubmit a cancelled new application number$/) do
   fill_in('reg_date', :with => Today)
   find(:id, 'full_cans').click
   click_button('continue')
+  click_button('continue')
+  fill_in('key_number', :with =>'2244095')
+  fill_in('customer_ref', :with => '911')
+  find(:id, 'direct_debit').click
+end
+
+Then(/^I attempt to cancel the application a second time$/) do
+  click_button('submit')
+  page.find(:id, "conf_reg_numbers").text
+  results = page.find(:id, "conf_reg_numbers").text
+  visit( "#{$FRONTEND_URI}/get_list?appn=cancel" )
+  find(:xpath,'//*[@id="row_1"]').click
+  fill_in('reg_no', :with => results)
+  Today = Date.today.strftime("%d/%m/%Y")
+  fill_in('reg_date', :with => Today)
+  find(:id, 'full_cans').click
+  click_button('continue')
 end
 
 Then(/^I will still be on the application retrieval page$/) do
 expect(page).to have_content("Retrieve original")
+end
+
+Then(/^I can see text to confirm the cancellation$/) do
+expect(find(:id, 'regn_error').text).to eq "Registration has been cancelled - please re-enter"
 end
 
 Then(/^I can see successful cancellation registration number$/) do
@@ -211,7 +198,6 @@ end
 Then(/^I can verify API output for a cancelled PAB application$/) do
   fill_in('court', :with => 'Northants County Court')
   fill_in('ref_no', :with => '911')
-  #fill_in('ref_year', :with => '2013')
   click_button('continue')
   fill_in('forenames_1', :with => 'Johnny')
   fill_in('surname_1', :with => 'Lee')
@@ -264,6 +250,7 @@ end
 
 Then(/^I can match the cancellation data with the api API output$/) do
   thisday = Date.today.strftime("%Y-%m-%d")
+  results = page.find(:id, "conf_reg_numbers").text
   @reg_api  = RestAPI.new($LAND_CHARGES_URI)
   @pab_data = @reg_api.get("/registrations/#{thisday}/#{results}")
   expect(@pab_data['number']).to eql results

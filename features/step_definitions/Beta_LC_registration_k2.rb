@@ -33,7 +33,7 @@ When(/^I access the application screen the known as text box is visible$/) do
   expect(page).to have_content('Known as')
 end
 
-Then(/^the susuccessfully completed Registration number is banner is displayed$/) do
+Then(/^the successfully completed Registration banner and number is displayed$/) do
     expect(page).to have_content('successfully completed')
     expect(page).to have_content(' Registration number')
 end

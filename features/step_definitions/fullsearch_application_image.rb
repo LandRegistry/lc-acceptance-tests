@@ -29,7 +29,13 @@ Then(/^I can capture customer details on the full search screen$/) do
   fill_in('customer_name', :with => 'Ashton Thomas')
   fill_in('customer_address',:with => '4749 DUBUQUE Terrace'"\n"'JAYSONFURT'"\n"'SOUTH VINCENZA'"\n"'NORTHAMPTONSHIRE'"\n"'FC13 4WX')
   fill_in('customer_ref', :with => '100/102')
+  choose('dx_address')
   choose('pre_paid')
+end
+
+When(/^I can see search successful text$/) do
+  bannertxt = find(:id, 'conf_banner').text
+  expect(find(:id, 'conf_banner').text).to eq 'Your application has been successfully completed.'
 end
 
 When(/^I click on entered details in the address box I can make an amendment$/) do
@@ -161,4 +167,27 @@ When(/^I set the address type to Postal Address$/) do
 choose('rm_address')   
 end  
 
+Then(/^I can validate customer details via the search api$/) do
+  date = Date.today.prev_day
+  yesterday = date.strftime("%Y-%m-%d")
+  @reg_api  = RestAPI.new($LAND_CHARGES_URI)
+  @search_result = @reg_api.get("/last_search")
+  srch_id = @search_result['request_id']
+  @srch_details = @reg_api.get("/request_details/#{srch_id}")
+  srch_nam = @srch_details['search_details']
+  srch_add = @srch_details['applicant']
+  expect(srch_nam).to have_content('Piggy')
+  expect(srch_add).to have_content('4749 DUBUQUE Terrace')
+end
 
+Then(/^I can confirm via api that the expiry date stored is in the future$/) do
+  date = Date.today.future?
+  fut_date = date.strftime("%Y-%m-%d")
+  @reg_api  = RestAPI.new($LAND_CHARGES_URI)
+  @search_result = @reg_api.get("/last_search")
+  srch_id = @search_result['request_id']
+  @srch_details = @reg_api.get("/request_details/#{srch_id}")
+  expry_dat = @srch_details['expiry_date']
+  puts(srch_id)
+  expect(expry_dat).to eq fut_date
+end

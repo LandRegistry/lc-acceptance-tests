@@ -80,9 +80,5 @@ Then(/^I can click on Complete button$/) do
 end
 
 Then(/^I can confirm the correction was successful$/) do
-  expect(page).to have_content('Your application has been successfully corrected!')
-end
-
-Then(/^I can confirm the correction was successful$/) do
-  expect(page).to have_content('Your application has been successfully corrected!')
+  expect(page).to have_content('Your application has successfully corrected.')
 end

@@ -27,5 +27,5 @@ Scenario: BUS-099 BUS-130 Verify mandatory two stage name re-entry when completi
     And I change it to choose direct debit
     And I set the address type to DX
   When I can click the complete search button
-  Then the susuccessfully completed Registration number is banner is displayed
+  Then the successfully completed Registration banner and number is displayed
 

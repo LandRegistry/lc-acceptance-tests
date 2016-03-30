@@ -55,6 +55,12 @@ When(/^I enter Names in all fields on Input details page$/) do
   fill_in('surname_2', :with => 'Great')
 end
 
+When(/^I enter Name in one of the fields on Input details page$/) do
+    expect(page).to have_content('First name to be searched')
+  fill_in('forename_1', :with => 'Ella')
+  fill_in('surname_1', :with => 'Piggy')
+end
+
 When(/^I enter an Applicant reference number$/) do
   fill_in('customer_ref', :with => 'B123/239')
 end
@@ -135,8 +141,8 @@ Then(/^I can see the expected values prepopulated in Applicant name field$/) do
     expect(find(:id, 'customer_name').value).to include('LOUIS LEY & MAYCOCK NON CREDIT')
 end
 
-Then(/^I can see the expected values prepopulated in Address field$/) do
-  expect(page).to have_field('customer_address', with: 'Seaton Court 2 William Prance Road Plymouth') 
+Then(/^I can see the expected values prepopulated in Address field$/) do 
+  expect(find(:id, 'customer_address').value).to eq '8249' "\n" 'PLYMOUTH 3'
 end
 
 When(/^I enter an invalid value in Key number field$/) do
@@ -155,6 +161,16 @@ end
 
 Then(/^I can click the complete search button$/) do
   click_button('submit')
+end
+
+Then(/^I can confirm via api that certificate stored date is yesterday's date$/) do
+  date = Date.today.prev_day
+  yesterday = date.strftime("%Y-%m-%d")
+  @reg_api  = RestAPI.new($LAND_CHARGES_URI)
+  @search_result = @reg_api.get("/last_search")
+  srch_id = @search_result['request_id']
+  @srch_details = @reg_api.get("/request_details/#{srch_id}")
+  expect(@srch_details['certificate_date']).to eql yesterday
 end
 
 When(/^I select an application type of Search the application is displayed$/) do

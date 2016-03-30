@@ -20,7 +20,7 @@ When I am on the Conveyancer and fees screen I can enter a valid key number
 When I enter fee details I can choose prepaid
 And I change it to choose direct debit
 When I click on the Submit button
-#Then the susuccessfully completed Registration number is banner is displayed  code commented out on9/3 defect raised
+Then the successfully completed Registration banner and number is displayed  
 
 Scenario: BUS-095 Reclassify a form from K9 to a PAB and vice versa
 Given I am on Land Charge rectification screen
