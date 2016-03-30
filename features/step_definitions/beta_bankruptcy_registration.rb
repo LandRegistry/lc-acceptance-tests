@@ -404,8 +404,8 @@ Given(/^I launch the login page$/) do
 end
 
 When(/^I enter valid login details$/) do 
-   fill_in('username', :with => 'Tester')
-  fill_in('password', :with => 'Enter')
+   fill_in('username', :with => $LOGIN_USERID)
+  fill_in('password', :with => $LOGIN_PASSWORD)
 end
 
 When(/^I click on the login button$/) do 

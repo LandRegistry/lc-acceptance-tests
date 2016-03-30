@@ -26,7 +26,7 @@ When I click on the name details tab I can enter six names for a bankruptcy sear
 Then I click continue the applicant details screen is displayed
 And I can see Applicant data input fields for the Bankruptcy search request
 
-Scenario: BUS-012 Capture details of customer who lodged a full search request
+Scenario: BUS-012 Capture details of full search request customer
 Given I am on the LR searches screen
 When I select an application type of Full Search the application is displayed
 And I am on the full search details screen

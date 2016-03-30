@@ -142,7 +142,7 @@ Then(/^I can see the expected values prepopulated in Applicant name field$/) do
 end
 
 Then(/^I can see the expected values prepopulated in Address field$/) do 
-  expect(find(:id, 'customer_address').value).to eq '1234' "\n" 'Plymouth 4'
+  expect(find(:id, 'customer_address').value).to eq '8249' "\n" 'PLYMOUTH 3'
 end
 
 When(/^I enter an invalid value in Key number field$/) do
