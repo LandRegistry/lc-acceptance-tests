@@ -16,7 +16,6 @@ When I am on the check details screen I can choose to amend the district
 When I can click on Continue button to submit the form
 When I am on the Conveyancer and fees screen I can enter a valid key number
 When I enter fee details I can choose prepaid
-And I change it to choose direct debit
 When I click on the Submit button
 Then the successfully completed Registration banner and number is displayed 
 

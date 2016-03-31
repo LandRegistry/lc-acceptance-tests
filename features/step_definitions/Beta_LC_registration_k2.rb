@@ -35,5 +35,5 @@ end
 
 Then(/^the successfully completed Registration banner and number is displayed$/) do
     expect(page).to have_content('successfully completed')
-    expect(page).to have_content(' Registration number')
+    expect(page).to have_content('Registration number')
 end

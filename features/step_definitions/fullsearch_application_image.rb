@@ -175,7 +175,7 @@ Then(/^I can validate customer details via the search api$/) do
   srch_nam = @srch_details['search_details']
   srch_add = @srch_details['applicant']
   expect(srch_nam).to have_content('Piggy')
-  expect(srch_add).to have_content('LOUIS LEY & MAYCOCK NON CREDIT')
+  expect(srch_add).to have_content(' LOUIS LEY & MAYCOCK NON CREDIT')
 end
 
 Then(/^I can confirm via api that the expiry date stored is in the future$/) do
