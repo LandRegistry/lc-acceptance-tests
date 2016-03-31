@@ -133,7 +133,7 @@ Then(/^I can submit conveyancer details for the part cancellation$/) do
   find(:id, 'direct_debit').click
 end
 
-When(/^I attempt to resubmit a cancelled new application$/) do
+When(/^I attempt to cancelled new application$/) do
   fill_in('court', :with => 'Northants County Court')
   fill_in('ref_no', :with => '911')
   click_button('continue')

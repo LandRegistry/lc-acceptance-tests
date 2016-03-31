@@ -153,7 +153,7 @@ And I can see Confirmation message indicating the application has been rejected
 
 Scenario: Register WOB issued by adjudicator
 Given I am on the bankruptcy registration screen
-When I select an application type of WOB with a single image
+When I choose the first available WOB form
 And I enter court reference the details are visible
 And I can click button to continue
 Then I register the application
@@ -181,6 +181,5 @@ Given I launch the login page
 And I leave login fields empty
 When I click on the login button
 Then I will see invalid data error message
-
 
 

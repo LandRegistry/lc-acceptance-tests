@@ -38,7 +38,7 @@ Then I can click button to continue
 Scenario: BUS-071/73.1 Confirm that a PAB Bankruptcy application cannot be cancelled twice
 Given I am on the bankruptcy registration screen
 And I select an application type of PAB with a single image
-When I attempt to resubmit a cancelled new application 
+When I attempt to cancelled new application 
 And I attempt to cancel the application a second time
 Then I will still be on the application retrieval page
 And I can see text to confirm the cancellation

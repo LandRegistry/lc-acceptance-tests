@@ -27,6 +27,10 @@ When(/^I select an application type of WOB with a single image$/) do
   find(:id, "row_4").click
 end
 
+When(/^I choose the first available WOB form$/) do
+  page.first(:xpath, '//*[@id="work-list"]/tbody["2"]/tr//td[contains(.,"WOB")]').click
+end
+
 
 When(/^I enter court name the details are visible$/) do
   fill_in('court', :with => 'County Court of Portsmouth')
