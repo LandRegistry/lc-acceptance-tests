@@ -186,7 +186,7 @@ expect(page).to have_content("Retrieve original")
 end
 
 Then(/^I can see text to confirm the cancellation$/) do
-expect(find(:id, 'regn_error').text).to eq "Registration has been cancelled - please re-enter"
+expect(find(:id, 'regn_error').text).to have_content("Registration has been cancelled - please re-enter")
 end
 
 Then(/^I can see successful cancellation registration number$/) do
