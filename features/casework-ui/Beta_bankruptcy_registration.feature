@@ -6,6 +6,7 @@ As a land charges caserworker
 I want to be able to process a bankruptcy application form
 So that I can ensure that details are captured correctly onto the land charges register database
 
+#EA:No need to run this test if we're commenting out image selection steps
 Scenario: BUS-045 View images of bankruptcy registration forms 
 Given I am on the bankruptcy registration screen
 When I select an application type of PAB with a single image
@@ -13,9 +14,10 @@ When I select an application type of PAB with a single image
 #When I am on a Large image I can zoom in
 #Then I am on a Large image I can zoom out
 
+#EA:No need to run this test if we're commenting out image selection steps
 Scenario: #BUS-045 View single image on a bankruptcy registration screen
 Given I am on the bankruptcy registration screen
-When I select an application type of WOB with a single image
+When I choose the first available WOB form
 #And I should not see the thumbnail on the image
 #When I am on a Large image I can zoom in
 #Then I am on a Large image I can zoom out

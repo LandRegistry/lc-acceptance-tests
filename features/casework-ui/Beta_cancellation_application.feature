@@ -38,28 +38,28 @@ Then I can click button to continue
 Scenario: BUS-071/73.1 Confirm that a PAB Bankruptcy application cannot be cancelled twice
 Given I am on the bankruptcy registration screen
 And I select an application type of PAB with a single image
-When I attempt to cancelled new application 
+When I attempt to cancel the new application 
 And I attempt to cancel the application a second time
 Then I will still be on the application retrieval page
 And I can see text to confirm the cancellation
 
 Scenario: BUS-068 Retrieve and validate a newly submitted WOB application
 Given I am on the bankruptcy registration screen
-And I select an application type of WOB with a single image
+And I choose the first available WOB form
 When I parse the new registration number as Original registration number
 Then I can retrieve the application details with valid data submitted
 
 Scenario: BUS-073 Cancel a new WOB Bankruptcy application
 Given I am on the bankruptcy registration screen
-And I select an application type of WOB with a single image
+And I choose the first available WOB form
 When I parse the new registration number as Original registration number
 And I can retrieve the application details with valid data submitted
 Then I can click button to continue
 
 Scenario: BUS-071/73.1 Confirm that a Bankruptcy application cannot be cancelled twice
 Given I am on the bankruptcy registration screen
-And I select an application type of WOB with a single image
-When I attempt to resubmit a cancelled new application
+And I choose the first available WOB form
+When I attempt to cancel the new application
 Then I will still be on the application retrieval page
 
 Scenario: BUS-073/147 A part bankruptcy application cannot be cancelled 
