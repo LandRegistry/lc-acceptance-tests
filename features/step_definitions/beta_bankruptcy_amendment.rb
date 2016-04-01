@@ -224,7 +224,14 @@ Then(/^I can submit amended form and verify the new api updates for the amendmen
   @reg_api  = RestAPI.new($LAND_CHARGES_URI)
   @pab_data = @reg_api.get("/registrations/#{todaysdate}/#{newregs}")
   expect(@pab_data['class_of_charge']).to eql 'PAB'
-  expect(@pab_data['revealed']).to eql true
+  #expect(@pab_data['revealed']).to eql true
+    if @pab_data['expired_date'].nil?
+        expect(true).to be_truthy
+    else
+        exdate = Date.strptime(@pab_data['expired_date'], '%Y-%m-%d')
+        expect(exdate).to be > Date.today
+    end
+    
   expect(@pab_data['status']).to eql 'current'
 end
 
@@ -265,7 +272,15 @@ Then(/^I can verify api output for a newly amended PAB registration$/) do
   @reg_api  = RestAPI.new($LAND_CHARGES_URI)
   @pab_data = @reg_api.get("/registrations/#{todaysdate}/#{newregs}")
   expect(@pab_data['class_of_charge']).to eql 'PAB'
-  expect(@pab_data['revealed']).to eql true
+  #expect(@pab_data['revealed']).to eql true
+    
+    if @pab_data['expired_date'].nil?
+        expect(true).to be_truthy
+    else
+        exdate = Date.strptime(@pab_data['expired_date'], '%Y-%m-%d')
+        expect(exdate).to be > Date.today
+    end
+    
   expect(@pab_data['status']).to eql 'current'
 end
 
@@ -287,6 +302,13 @@ Then(/^I can verify api output for a newly amended PAB registration$/) do
   @reg_api  = RestAPI.new($LAND_CHARGES_URI)
   @pab_data = @reg_api.get("/registrations/#{todaysdate}/#{newregs}")
   expect(@pab_data['class_of_charge']).to eql 'PAB'
-  expect(@pab_data['revealed']).to eql true
+  #expect(@pab_data['revealed']).to eql true
+    
+    if @pab_data['expired_date'].nil?
+        expect(true).to be_truthy
+    else
+        exdate = Date.strptime(@pab_data['expired_date'], '%Y-%m-%d')
+        expect(exdate).to be > Date.today
+    end
   expect(@pab_data['status']).to eql 'current'
 end

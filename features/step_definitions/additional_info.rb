@@ -79,20 +79,20 @@ When(/^I part cancel the registration with "([^"]*)" set to "([^"]*)"$/) do |wha
 end
 
 Then(/^the original registration's additional information will read "([^"]*)"$/) do |arg1|
-#    puts @original_regn
-#    puts @new_regn
-
     ai = replace_placeholders(arg1, @original_regn, @new_regn)
 
-#    puts ai
-#    puts @original_regn['additional_information']
-    expect(@original_regn['revealed']).to be true
+    if @original_regn['expired_date'].nil?
+        expect(true).to be_truthy
+    else
+        exdate = Date.strptime(@original_regn['expired_date'], '%Y-%m-%d')
+        expect(exdate).to be > Date.today
+    end
     expect(@original_regn['additional_information']).to eql ai
 end
 
 Then(/^the new registration is not revealed$/) do
-
-    expect(@new_regn['revealed']).to be false
+    exdate = Date.strptime(@new_regn['expired_date'], '%Y-%m-%d')
+    expect(exdate).to be <= Date.today
 end
 
 Given(/^an existing PAB and WOB registration with court details of "([^"]*)" ref "([^"]*)"$/) do |court, ref|
@@ -149,20 +149,20 @@ Then(/^a new registration is created$/) do
 end
 
 Then(/^the new registration's additional information will read "([^"]*)"$/) do |arg1|
-#    puts @original_regn
-#    puts @new_regn
-
     ai = replace_placeholders(arg1, @original_regn, @new_regn, @pab_regn)
-
-#    puts ai
-#    puts @new_regn['additional_information']
-
-    expect(@new_regn['revealed']).to be true
     expect(@new_regn['additional_information']).to eql ai
+    
+    if @new_regn['expired_date'].nil?
+        expect(true).to be_truthy
+    else
+        exdate = Date.strptime(@new_regn['expired_date'], '%Y-%m-%d')
+        expect(exdate).to be > Date.today
+    end
 end
 
 Then(/^the original registration is not revealed$/) do
-    expect(@original_regn['revealed']).to be false
+    exdate = Date.strptime(@original_regn['expired_date'], '%Y-%m-%d')
+    expect(exdate).to be <= Date.today
 end
 
 When(/^I amend the WOB's debtor name to "([^"]*)"$/) do |name|
@@ -360,7 +360,7 @@ Then(/^the original registration's addtional information will read "([^"]*)"$/) 
 #    puts @new_regn
 
     ai = replace_placeholders(arg1, @original_regn, @new_regn, @pab_regn)
-    expect(@original_regn['revealed']).to be true
+    expect(@original_regn['expired_date']).to be_nil
     expect(@original_regn['additional_information']).to eql ai
 end
 

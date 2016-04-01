@@ -66,9 +66,7 @@ Scenario: Additional Information
 
   Given an existing PAB and WOB registration with court details of "Plymouth County Court" ref "100 of 2016"
   When I amend the WOB's address
-  Then a new registration is created
-    And the new registration's additional information will read "PLYMOUTH COUNTY COURT NO 100 OF 2016  THIS REGISTRATION AMENDS [ORIG_WOB_REGNO] DATED [ORIG_WOB_DATE] & [ORIG_PAB_REGNO] DATED [ORIG_PAB_DATE]."
-    And the original registration is not revealed
+  Then the new registration's additional information will read "PLYMOUTH COUNTY COURT NO 100 OF 2016  THIS REGISTRATION AMENDS [ORIG_WOB_REGNO] DATED [ORIG_WOB_DATE] & [ORIG_PAB_REGNO] DATED [ORIG_PAB_DATE]."
 
   Given an existing PAB and WOB registration with court details of "Plymouth County Court" ref "100 of 2016"
   When I amend the WOB's debtor name to "William Smith"

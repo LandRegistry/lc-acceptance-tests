@@ -170,11 +170,13 @@ end
 
 Then(/^the old registration is no longer revealed$/) do
     puts @rectified
-  date = @rectified['amended_registrations'][0]['date']
-  regno = @rectified['amended_registrations'][0]['number']
-  uri = "/registrations/#{date}/#{regno}"
-  oldreg = @registration_api.get(uri)
-  expect(oldreg['revealed']).to be false
+    date = @rectified['amended_registrations'][0]['date']
+    regno = @rectified['amended_registrations'][0]['number']
+    uri = "/registrations/#{date}/#{regno}"
+    oldreg = @registration_api.get(uri)
+    
+    exdate = Date.strptime(oldreg['expired_date'], '%Y-%m-%d')
+    expect(exdate).to be <= Date.today
 end
 
 Then(/^the old registration is still revealed$/) do
@@ -182,7 +184,14 @@ Then(/^the old registration is still revealed$/) do
   regno = @rectified['amended_registrations'][0]['number']
   uri = "/registrations/#{date}/#{regno}"
   oldreg = @registration_api.get(uri)
-  expect(oldreg['revealed']).to be true
+    
+  #expect(oldreg['revealed']).to be true
+    if oldreg['expired_date'].nil?
+        expect(true).to be_truthy
+    else
+        exdate = Date.strptime(oldreg['expired_date'], '%Y-%m-%d')
+        expect(exdate).to be > Date.today
+    end
 end
 
 Then(/^I can reject the application$/) do
