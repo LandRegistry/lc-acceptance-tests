@@ -220,7 +220,15 @@ Then(/^I can verify API output for a cancelled PAB application$/) do
   thisday = Date.today.strftime("%Y-%m-%d")
   @reg_api  = RestAPI.new($LAND_CHARGES_URI)
   @pab_data = @reg_api.get("/registrations/#{thisday}/#{results}")
-  expect(@pab_data['revealed']).to eql true
+  #expect(@pab_data['revealed']).to eql true
+    if @pab_data['expired_date'].nil?
+        expect(true).to be_truthy
+    else
+        exdate = Date.strptime(@pab_data['expired_date'], '%Y-%m-%d')
+        expect(exdate).to be > Date.today
+    end
+    
+    
   expect(@pab_data['status']).to eql 'current'
   expect(@pab_data['class_of_charge']).to eql 'PAB'
   visit( "#{$FRONTEND_URI}/get_list?appn=cancel" )
