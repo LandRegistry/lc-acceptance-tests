@@ -8,7 +8,8 @@ Scenario: Request an amendment of a bankruptcy registration
     And I have submitted a WOB
   When I submit an amendment application with the same names
     And I request details of the amended PAB and WOB
-  Then both applications are set to cancelled and not revealed on a search
+#  Then both applications are set to cancelled and not revealed on a search
+# No longer the case
 
   Given I have submitted a PAB
     And I have submitted a WOB with a different name

@@ -50,9 +50,15 @@ When(/^I request details of the amended PAB and WOB$/) do
 end
 
 Then(/^both applications are set to cancelled and not revealed on a search$/) do
-    expect(@pab_data['revealed']).to eql false
+    #expect(@pab_data['revealed']).to eql false
+    exdate = Date.strptime(@pab_data['expired_date'], '%Y-%m-%d')
+    expect(exdate).to be <= Date.today
+    
     expect(@pab_data['cancellation']['reference']). to be > 0
-    expect(@wob_data['revealed']).to eql false
+    #expect(@wob_data['revealed']).to eql false
+    exdate = Date.strptime(@wob_data['expired_date'], '%Y-%m-%d')
+    expect(exdate).to be <= Date.today
+    
     expect(@wob_data['status']). to eql 'superseded'
 end
 
@@ -76,11 +82,22 @@ When(/^I submit an amendment application with an additional name$/) do
 end
 
 Then(/^both applications are set to cancelled but the PAB is set to reveal on a search$/) do
-    expect(@pab_data['revealed']).to eql true
+    #expect(@pab_data['revealed']).to eql true
+    if @pab_data['expired_date'].nil?
+        expect(true).to be_truthy
+    else
+        exdate = Date.strptime(@pab_data['expired_date'], '%Y-%m-%d')
+        expect(exdate).to be > Date.today
+    end
+    
     expect(@pab_data['cancellation']['reference']). to be > 0
 
-    expect(@wob_data['revealed']).to eql false
-    expect(@wob_data['status']). to eql 'superseded'
+    # WOB will have original number, but sequence will be 2
+    #expect(@wob_data['revealed']).to eql false
+    #exdate = Date.strptime(@wob_data['expired_date'], '%Y-%m-%d')
+    #expect(exdate).to be <= Date.today    
+    #expect(@wob_data['status']). to eql 'superseded'
+    expect(@wob_data['registration']['sequence']).to be 2
 end
 
 Given(/^I have submitted a PAB with a different name$/) do
@@ -92,16 +109,39 @@ Given(/^I have submitted a PAB with a different name$/) do
 end
 
 Then(/^both applications are set to cancelled but the WOB is set to reveal on a search$/) do
-    expect(@pab_data['revealed']).to eql false
+    #expect(@pab_data['revealed']).to eql false
+    exdate = Date.strptime(@pab_data['expired_date'], '%Y-%m-%d')
+    expect(exdate).to be <= Date.today    
+    
     expect(@pab_data['cancellation']['reference']). to be > 0
-    expect(@wob_data['revealed']).to eql true
+    #expect(@wob_data['revealed']).to eql true
+    if @wob_data['expired_date'].nil?
+        expect(true).to be_truthy
+    else
+        exdate = Date.strptime(@wob_data['expired_date'], '%Y-%m-%d')
+        expect(exdate).to be > Date.today
+    end
+    
     expect(@wob_data['status']). to eql 'superseded'
 end
 
 Then(/^both applications are set to cancelled and both revealed on a search$/) do
-    expect(@pab_data['revealed']).to eql true
+    #expect(@pab_data['revealed']).to eql true
+    if @pab_data['expired_date'].nil?
+        expect(true).to be_truthy
+    else
+        exdate = Date.strptime(@pab_data['expired_date'], '%Y-%m-%d')
+        expect(exdate).to be > Date.today
+    end
+    
     expect(@pab_data['cancellation']['reference']). to be > 0
-    expect(@wob_data['revealed']).to eql true
+    #expect(@wob_data['revealed']).to eql true
+    if @wob_data['expired_date'].nil?
+        expect(true).to be_truthy
+    else
+        exdate = Date.strptime(@wob_data['expired_date'], '%Y-%m-%d')
+        expect(exdate).to be > Date.today
+    end
     expect(@wob_data['status']). to eql 'superseded'
 end
 
@@ -122,7 +162,14 @@ When(/^I request details of the amended PAB$/) do
 end
 
 Then(/^the PAB is cancelled but is set to revealed on a search$/) do
-  expect(@pab_data['revealed']).to eql true
+  #expect(@pab_data['revealed']).to eql true
+    if @pab_data['expired_date'].nil?
+        expect(true).to be_truthy
+    else
+        exdate = Date.strptime(@pab_data['expired_date'], '%Y-%m-%d')
+        expect(exdate).to be > Date.today
+    end
+    
   expect(@pab_data['status']). to eql 'superseded'
 end
 
