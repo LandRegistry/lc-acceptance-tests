@@ -325,7 +325,7 @@ When(/^I can re-key debtor details$/) do
   fill_in('court_name', :with => 'Banana County Court')
 end
 
-When(/^I can submit a new bankruptcy registration$/) do
+When(/^I can submit a new particulars of details$/) do
   fill_in('forenames_1', :with => 'George')
   fill_in('surname_1', :with => 'Bush')
   find(:id, 'addname').click
@@ -339,8 +339,13 @@ When(/^I can submit a new bankruptcy registration$/) do
   fill_in('county_1', :with => 'Hants')
   fill_in('postcode_1', :with => 'B34 1AA')
   click_button('continue')
+end
+
+When(/^I can re-key and submit debtor details$/) do
   fill_in('forename_1', :with => 'George')
   fill_in('surname_1', :with => 'Bush') 
+  fill_in('forename_2', :with => 'Randy')
+  fill_in('surname_2', :with => 'Moore') 
   fill_in('court_name', :with => 'Banana County Court')
   click_button('continue')
   fill_in('key_number', :with =>'2244095')
@@ -349,6 +354,8 @@ When(/^I can submit a new bankruptcy registration$/) do
   results = page.find(:id, "conf_reg_numbers").text
   puts(results)
 end
+
+
 
 When(/^I can enter name details$/) do
   fill_in('forenames_1', :with => 'George')
