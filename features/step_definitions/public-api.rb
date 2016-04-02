@@ -118,7 +118,7 @@ Then(/^the error indicates that the name is not an object$/) do
 end
 
 Then(/^the error indicates that the keynumber is malformed$/) do
-  expect(errors_to_array(@return_data)).to include "'1234EFGH' does not match '^\\\\d+$'"
+  expect(errors_to_array(@return_data)).to include "'1234EFGH' does not match '^\\\\d{7}$'"
 end
 
 Then(/^the error indicates that the keynumber is missing$/) do
@@ -183,4 +183,24 @@ Then(/^the details match$/) do
 #   if @submitted.has_key?('business_address') && @submitted['business_address'].length > 0
 #     expect(@reg_result["business_address"][0]["address_lines"][1]).to eql @submitted['business_address'][0]['address_lines'][1]
 #   end
+end
+
+Given(/^sample submission (\d+)$/) do |arg1|
+
+    case arg1
+        when "1"
+        @current_data = '{"application_ref":"BKT6000001","residence_withheld":true,"application_type":"PA(B)","occupation":"Artist","key_number":"8763271","debtor_names":[{"surname":"Smith","forenames":["Bob"]}],"business_address":[],"gender":"Female","residence":[],"date_of_birth":"1955-09-12","application_date":"2015-12-01"}'
+        when "2"
+        @current_data = '{"application_ref":"BKT6000002","residence_withheld":false,"application_type":"PA(B)","occupation":"Employed","key_number":"8763271","debtor_names":[{"surname":"Smidt","forenames":["Sam"]}],"business_address":[],"gender":"Male","residence":[{"address_lines":["111 The Test Street","Birmingham","United Kingdom"],"postcode": "AA1 1AA","county":"West Midlands"}],"date_of_birth":"1978-11-17","application_date":"2015-12-01"}'
+        when "3"
+        @current_data = '{"residence":[{"address_lines":["111 The Test Street","Millennium Apartments","95 Newhall Street","Birmingham","United Kingdom"],"postcode": "AA1 1AA","county":"West Midlands"}],"occupation":"Self-employed","investment_property":[{"address_lines":["111 The Test Street","Sheffield","United Kingdom"],"postcode": "AA1 1AA","county":"South Yorkshire"}],"residence_withheld":false,"business_address":[],"gender":"Female","date_of_birth":"1982-12-28","application_ref":"BKT6000005","debtor_names":[{"surname":"Ellington","forenames":["Jane"]}],"application_type":"PA(B)","key_number":"8763271","application_date":"2015-12-05"}'
+        when "4"
+        @current_data = '{"application_ref":"BKT6000003","residence_withheld":false,"application_type":"PA(B)","occupation":"Employed","trading_name":"","key_number":"8763271","debtor_names":[{"surname":"Smythe","forenames":["Jenny"]},{"surname":"Smith","forenames":["Jen"]}],"gender":"Female","residence":[{"address_lines":["111 The Test Street","Ambassador Building","5 New Union Square","London","United Kingdom"],"postcode": "AA1 1AA","county":"London"}],"date_of_birth":"1968-09-29","application_date":"2015-12-03"}'
+        when "6"
+        @current_data = '{"residence":[{"address_lines":["111 The Test Street","Millennium Apartments","95 Newhall Street","Birmingham","United Kingdom"],"postcode": "AA1 1AA","county":"West Midlands"}],"occupation":"Self-employed","investment_property":[{"address_lines":["111 The Test Street","Ambassador Building","5 New Union Square","London","United Kingdom"],"postcode": "AA1 1AA","county":""}],"residence_withheld":false,"business_address":[],"gender":"Male","date_of_birth":"1980-02-29","application_ref":"BKT6000004","debtor_names":[{"surname":"Harrington","forenames":["Jim"]}],"application_type":"PA(B)","key_number":"8763271","application_date":"2015-12-04"}'
+        when "7"
+        @current_data = '{"residence":[{"address_lines":["111 The Test Street","Stevenage","United Kingdom"],"postcode": "AA1 1AA","county":"Hertfordshire"}],"occupation":"Self-employed","investment_property":[{"address_lines":["111 The Test Street","Old Lane","Knebworth","United Kingdom"],"postcode": "AA1 1AA","county":"Hertfordshire"}],"residence_withheld":false,"business_address":[{"address_lines":["111 The Test Street","Stevenage","United Kingdom"],"postcode": "AA1 1AA","county":"Hertfordshire"}],"gender":"Male","date_of_birth":"1962-11-27","application_ref":"BKT6000006","debtor_names":[{"surname":"Billson","forenames":["Billy"]},{"surname":"Billson","forenames":["Bill"]}],"application_type":"PA(B)","trading_name":"M & M Builders","key_number":"8763271","application_date":"2015-12-05"}'
+        when "8"
+        @current_data = '{"residence":[{"address_lines":["111 The Test Street","The Green","Slingsby","York","United Kingdom"],"postcode": "AA1 1AA","county":"North Yorkshire"},{"address_lines":["111 The Test Street","Slingsby","York","United Kingdom"],"postcode": "AA1 1AA","county":"North Yorkshire"}],"occupation":"Self-employed","investment_property":[{"address_lines":["111 The Test Street","Leeds","United Kingdom"],"postcode": "AA1 1AA","county":"West Yorkshire"},{"address_lines":["111 The Test Street","Leeds","United Kingdom"],"postcode": "AA1 1AA","county":"West Yorkshire"},{"address_lines":["111 The Test Street","Coventry","United Kingdom"],"postcode": "AA1 1AA","county":"West Midlands"}],"residence_withheld":false,"business_address":[{"address_lines":["111 The Test Street","Roecliffe","York","United Kingdom"],"postcode": "AA1 1AA","county":"North Yorkshire"},{"address_lines":["111 The Test Street","Oakdale Road","York","United Kingdom"],"postcode": "AA1 1AA","county":"North Yorkshire"},{"address_lines":["111 The Test Street","Easingwold","York","United Kingdom"],"postcode": "AA1 1AA","county":"North Yorkshire"}],"gender":"Female","date_of_birth":"1994-02-15","application_ref":"BKT6000007","debtor_names":[{"surname":"Smith","forenames":["Jenny"]},{"surname":"Smiff","forenames":["Jennifer"]}],"application_type":"PA(B)","trading_name":"Fresh Coffees","key_number":"8763271","application_date":"2015-12-05"}'
+    end
 end
