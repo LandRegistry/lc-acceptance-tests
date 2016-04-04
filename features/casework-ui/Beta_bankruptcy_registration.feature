@@ -72,7 +72,6 @@ Given I am on the bankruptcy registration screen
 When I select an application type of PAB with a single image
 Then I can confirm successful submission of details for a bankruptcy application
 
-#Defect No:41
 Scenario: BUS-167 Verify two stage mandatory re-key 
 Given I am on the bankruptcy registration screen
 And I select an application type of PAB with a single image
@@ -150,7 +149,6 @@ And I enter court name the details are visible
 When I click on the link to reject application
 Then I click Ok on the pop up
 And I can see Confirmation message indicating the application has been rejected
-#And I can confirm the number of applications remaining on worklist is one less
 
 Scenario: Register WOB issued by adjudicator
 Given I am on the bankruptcy registration screen
@@ -183,4 +181,8 @@ And I leave login fields empty
 When I click on the login button
 Then I will see invalid data error message
 
+Scenario: Confirm remaining bank registration 
+Given I am on the bankruptcy registration screen
+When I select an application type of PAB with a single image
+Then I can verify remaining forms on worklist after submitting two out of three applications
 
