@@ -194,6 +194,9 @@ Given(/^sample submission (\d+)$/) do |arg1|
         @current_data = '{"application_ref":"BKT6000002","residence_withheld":false,"application_type":"PA(B)","occupation":"Employed","key_number":"8763271","debtor_names":[{"surname":"Smidt","forenames":["Sam"]}],"business_address":[],"gender":"Male","residence":[{"address_lines":["111 The Test Street","Birmingham","United Kingdom"],"postcode": "AA1 1AA","county":"West Midlands"}],"date_of_birth":"1978-11-17","application_date":"2015-12-01"}'
         when "3"
         @current_data = '{"residence":[{"address_lines":["111 The Test Street","Millennium Apartments","95 Newhall Street","Birmingham","United Kingdom"],"postcode": "AA1 1AA","county":"West Midlands"}],"occupation":"Self-employed","investment_property":[{"address_lines":["111 The Test Street","Sheffield","United Kingdom"],"postcode": "AA1 1AA","county":"South Yorkshire"}],"residence_withheld":false,"business_address":[],"gender":"Female","date_of_birth":"1982-12-28","application_ref":"BKT6000005","debtor_names":[{"surname":"Ellington","forenames":["Jane"]}],"application_type":"PA(B)","key_number":"8763271","application_date":"2015-12-05"}'
+        when "5"
+        @current_data = '{"key_number":"1234567","application_type":"PA(B)","application_ref":"BKT7475757","application_date":"2016-01-01","debtor_names":[{"forenames":["A"],"surname":"B"}],"residence_withheld":true}'       
+        
         when "4"
         @current_data = '{"application_ref":"BKT6000003","residence_withheld":false,"application_type":"PA(B)","occupation":"Employed","trading_name":"","key_number":"8763271","debtor_names":[{"surname":"Smythe","forenames":["Jenny"]},{"surname":"Smith","forenames":["Jen"]}],"gender":"Female","residence":[{"address_lines":["111 The Test Street","Ambassador Building","5 New Union Square","London","United Kingdom"],"postcode": "AA1 1AA","county":"London"}],"date_of_birth":"1968-09-29","application_date":"2015-12-03"}'
         when "6"

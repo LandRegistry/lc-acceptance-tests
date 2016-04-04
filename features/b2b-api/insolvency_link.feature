@@ -86,6 +86,11 @@ Scenario: Receive and register an INS bankruptcy
   When I submit the data to the public API
   Then it returns a 201 CREATED response
     And the response contains 2 registrations
+    
+  Given sample submission 5
+  When I submit the data to the public API
+  Then it returns a 201 CREATED response
+    And the response contains 1 registration
 
   Given sample submission 6
   When I submit the data to the public API
