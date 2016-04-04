@@ -163,14 +163,14 @@ Then(/^I can click the complete search button$/) do
   click_button('submit')
 end
 
-Then(/^I can confirm via api that certificate stored date is yesterday's date$/) do
-  date = Date.today.prev_day
-  yesterday = date.strftime("%Y-%m-%d")
+Then(/^I can confirm via api that certificate stored date is in the past$/) do
+  date = Date.today
+  tday = date.strftime("%Y-%m-%d")
   @reg_api  = RestAPI.new($LAND_CHARGES_URI)
   @search_result = @reg_api.get("/last_search")
   srch_id = @search_result['request_id']
   @srch_details = @reg_api.get("/request_details/#{srch_id}")
-  expect(@srch_details['certificate_date']).to eql yesterday
+  expect(@srch_details['certificate_date']).to be < tday
 end
 
 When(/^I select an application type of Search the application is displayed$/) do

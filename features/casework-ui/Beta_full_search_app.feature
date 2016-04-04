@@ -104,7 +104,7 @@ When I enter valid values in Key number field
 And I set the address type to Postal Address
 Then I can click the complete search button
 
-Scenario: BUS-022 Certificate date for a full search stored in database should be a day before the request date
+Scenario: BUS-022 Certificate date for a full search stored in database should be in the past
 Given I am on the LR searches screen
 When I select an application type of Full Search the application is displayed
 And I am on the full search details screen
@@ -113,7 +113,7 @@ When I enter a county the details are displayed county edit box
 And I click continue the applicant details screen is displayed
 And I can capture customer details on the full search screen
 When I can click the complete search button
-Then I can confirm via api that certificate stored date is yesterday's date
+Then I can confirm via api that certificate stored date is in the past
 
 Scenario: BUS-020.1 Search expiry date stored for a full search is in the future
 Given I am on the LR searches screen
