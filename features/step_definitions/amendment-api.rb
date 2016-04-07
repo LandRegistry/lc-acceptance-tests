@@ -97,7 +97,8 @@ Then(/^both applications are set to cancelled but the PAB is set to reveal on a 
     #exdate = Date.strptime(@wob_data['expired_date'], '%Y-%m-%d')
     #expect(exdate).to be <= Date.today    
     #expect(@wob_data['status']). to eql 'superseded'
-    expect(@wob_data['registration']['sequence']).to be 2
+    #EA: Commented part of code out based on discussion with Rob
+    #expect(@wob_data['registration']['sequence']).to be 2
 end
 
 Given(/^I have submitted a PAB with a different name$/) do

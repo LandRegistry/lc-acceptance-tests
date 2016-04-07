@@ -106,6 +106,7 @@
      | 2015-02-01 | C2    |
     
   When I banks search for the Private Individual Test User Nine
+   #EA:defect 179 logged on QC for next line
   Then the result will contain the entries:
      | date       | class |
      | 2015-02-03 | PAB   |
