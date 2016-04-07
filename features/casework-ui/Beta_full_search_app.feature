@@ -125,7 +125,7 @@ When I enter a county the details are displayed county edit box
 And I click continue the applicant details screen is displayed
 And I can capture customer details on the full search screen
 When I can click the complete search button
-#Then I can confirm via api that the expiry date stored is in the future
+Then I can confirm via api that the expiry date stored is in the future
 
 Scenario: BUS-141 Capture details of customer who lodged a bankruptcy search request by surname only
 Given I am on the LR searches screen

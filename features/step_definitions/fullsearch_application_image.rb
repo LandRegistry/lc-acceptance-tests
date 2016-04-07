@@ -179,13 +179,12 @@ Then(/^I can validate customer details via the search api$/) do
 end
 
 Then(/^I can confirm via api that the expiry date stored is in the future$/) do
-  date = Date.today.future?
-  fut_date = date.strftime("%Y-%m-%d")
+  date = Date.today
+  tday_date = date.strftime("%Y-%m-%d")
   @reg_api  = RestAPI.new($LAND_CHARGES_URI)
   @search_result = @reg_api.get("/last_search")
   srch_id = @search_result['request_id']
   @srch_details = @reg_api.get("/request_details/#{srch_id}")
   expry_dat = @srch_details['expiry_date']
-  puts(srch_id)
-  expect(expry_dat).to eq fut_date
+  expect(expry_dat).to be > tday_date
 end
