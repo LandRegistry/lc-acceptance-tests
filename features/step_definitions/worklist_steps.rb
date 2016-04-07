@@ -95,6 +95,11 @@ Then(/^I see the application totals$/) do
     page.should have_css("#lc_rect", :text => '1')
 end
 
+Then(/^I can validate Land Charge views totals$/) do
+  find(:id,'lc_regn').click
+  rws = all('#work-list>tbody').count
+end
+
 When(/^I select a pab application$/) do
     #visit("#{$FRONTEND_URI}/get_application/bank_regn/37/PA(B)" )
     find(:id,'app_type1').click
