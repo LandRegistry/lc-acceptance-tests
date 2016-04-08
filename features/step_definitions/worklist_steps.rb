@@ -96,8 +96,11 @@ Then(/^I see the application totals$/) do
 end
 
 Then(/^I can validate Land Charge views totals$/) do
+  page.should have_css("#lc_regn", :text => '12')
+  lcregno = find(:xpath, "//*[@id='lc_regn']").text
   find(:id,'lc_regn').click
   rws = all('#work-list>tbody').count
+  expect(rws).to eq lcregno.to_i 
 end
 
 When(/^I select a pab application$/) do
