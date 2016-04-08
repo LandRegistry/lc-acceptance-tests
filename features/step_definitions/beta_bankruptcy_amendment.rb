@@ -174,14 +174,7 @@ When(/^I can amend data on the Original Bankruptcy details page$/) do
 end
 
 When(/^I click on the remove address the details are no longer visible$/) do
-  #expect(page).to have_content('2 new street')
- # page.should have_content('2 new street')
-  
   find(:id,'remove_address_0').click
-  
-  #page.should have_no_content('2 new street')
-  #expect(page).not_to have_content('2 new street')
-
 end
 
 When(/^I click the change details button on the check details screen$/) do
@@ -232,83 +225,5 @@ Then(/^I can submit amended form and verify the new api updates for the amendmen
         expect(exdate).to be > Date.today
     end
     
-  expect(@pab_data['status']).to eql 'current'
-end
-
-Then(/^I can verify api output for a newly amended PAB registration$/) do
-  fill_in('court', :with => 'Mango County Court')
-  fill_in('ref_no', :with => '932')
-  #fill_in('ref_year', :with => '2016')
-  click_button('continue')
-  fill_in('forenames_1', :with => 'Johnny')
-  fill_in('surname_1', :with => 'Depp')
-  fill_in('occupation', :with => 'Dancer')
-  fill_in('add_1_line1', :with => '123 New Street')
-  fill_in('add_1_line2', :with => 'Middlebrook')
-  fill_in('add_1_line3', :with => 'Winchester')
-  fill_in('add_1_line4', :with => 'Hampshire')
-  fill_in('county_1', :with => 'Hants')
-  fill_in('postcode_1', :with => 'SO14 1AA')
-  click_button('continue')
-  fill_in('forename_1', :with => 'Johnny')
-  fill_in('surname_1', :with => 'Depp') 
-  fill_in('court_name', :with => 'Mango County Court')
-  click_button('continue')
-  fill_in('key_number', :with =>'2244095')
-  click_button('continue')
-  page.find(:id, "conf_reg_numbers").text
-  newregs = page.find(:id, "conf_reg_numbers").text
-  todaysdate = Date.today.strftime("%Y-%m-%d")
-  find(:id, 'bank_amend').click
-  find(:id, "row_1").click
-  fill_in('pab_ref', :with => newregs)
-  fill_in('pab_date', :with => todaysdate)
-  click_button('continue')
-  #expect(page).to have_content('Original bankruptcy details')
-  #fill_in('court', :with => 'Orange County Court')
-  #fill_in('ref_no', :with => '777')
-  #fill_in('key_number', :with =>'1234567')
-  #click_button('continue')
-  @reg_api  = RestAPI.new($LAND_CHARGES_URI)
-  @pab_data = @reg_api.get("/registrations/#{todaysdate}/#{newregs}")
-  expect(@pab_data['class_of_charge']).to eql 'PAB'
-  #expect(@pab_data['revealed']).to eql true
-    
-    if @pab_data['expired_date'].nil?
-        expect(true).to be_truthy
-    else
-        exdate = Date.strptime(@pab_data['expired_date'], '%Y-%m-%d')
-        expect(exdate).to be > Date.today
-    end
-    
-  expect(@pab_data['status']).to eql 'current'
-end
-
-Then(/^I can verify api output for a newly amended PAB registration$/) do
-  
-  page.find(:id, "conf_reg_numbers").text
-  newregs = page.find(:id, "conf_reg_numbers").text
-  todaysdate = Date.today.strftime("%Y-%m-%d")
-  find(:id, 'bank_amend').click
-  find(:id, "row_1").click
-  fill_in('pab_ref', :with => newregs)
-  fill_in('pab_date', :with => todaysdate)
-  click_button('continue')
-  #expect(page).to have_content('Original bankruptcy details')
-  #fill_in('court', :with => 'Orange County Court')
-  #fill_in('ref_no', :with => '777')
-  #fill_in('key_number', :with =>'1234567')
-  #click_button('continue')
-  @reg_api  = RestAPI.new($LAND_CHARGES_URI)
-  @pab_data = @reg_api.get("/registrations/#{todaysdate}/#{newregs}")
-  expect(@pab_data['class_of_charge']).to eql 'PAB'
-  #expect(@pab_data['revealed']).to eql true
-    
-    if @pab_data['expired_date'].nil?
-        expect(true).to be_truthy
-    else
-        exdate = Date.strptime(@pab_data['expired_date'], '%Y-%m-%d')
-        expect(exdate).to be > Date.today
-    end
   expect(@pab_data['status']).to eql 'current'
 end
