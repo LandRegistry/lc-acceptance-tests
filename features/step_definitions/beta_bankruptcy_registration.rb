@@ -144,6 +144,7 @@ end
 
 
 When(/^I can click button to continue$/) do
+  sleep(10)
   click_button('continue')
 end
 

@@ -11,16 +11,16 @@ Scenario: BUS-045 View images of bankruptcy registration forms
 Given I am on the bankruptcy registration screen
 When I select an application type of PAB with a single image
 #When I click on a thumbnail the image is expanded to large image
-#When I am on a Large image I can zoom in
-#Then I am on a Large image I can zoom out
+When I am on a Large image I can zoom in
+Then I am on a Large image I can zoom out
 
 #EA:No need to run this test if we're commenting out image selection steps
 Scenario: #BUS-045 View single image on a bankruptcy registration screen
 Given I am on the bankruptcy registration screen
 When I choose the first available WOB form
 #And I should not see the thumbnail on the image
-#When I am on a Large image I can zoom in
-#Then I am on a Large image I can zoom out
+When I am on a Large image I can zoom in
+Then I am on a Large image I can zoom out
 
 Scenario: #BUS-046 #BUS-043 #BUS-042 #BUS-132 #BUS-131 Input bankruptcy registration details
 Given I am on the bankruptcy registration screen
