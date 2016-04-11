@@ -6,7 +6,6 @@ As a land charges caserworker
 I want to be able to process a bankruptcy application form
 So that I can ensure that details are captured correctly onto the land charges register database
 
-#EA:No need to run this test if we're commenting out image selection steps
 Scenario: BUS-045 View images of bankruptcy registration forms 
 Given I am on the bankruptcy registration screen
 When I select an application type of PAB with a single image
@@ -14,7 +13,6 @@ When I select an application type of PAB with a single image
 When I am on a Large image I can zoom in
 Then I am on a Large image I can zoom out
 
-#EA:No need to run this test if we're commenting out image selection steps
 Scenario: #BUS-045 View single image on a bankruptcy registration screen
 Given I am on the bankruptcy registration screen
 When I choose the first available WOB form
@@ -120,11 +118,10 @@ And I enter court reference the details are visible
 And I can click button to continue
 And I can submit debtor details
 And I can re-key debtor details
-#EA: Next line needs to be included when IH deploys code for it
-#When I select option to return to the application later
-#Then I am on Store application page
-#And I can enter a reason
-#And I can click to store the reason
+When I select option to return to the application later
+Then I am on Store application page
+And I can enter a reason
+And I can click to store the reason
 
 Scenario: BUS-082.2 Store application on Key Number page of bank registration
 Given I am on the bankruptcy registration screen
@@ -135,12 +132,11 @@ And I can click button to continue
 And I can submit debtor details
 And I can re-key debtor details
 And I can click button to continue
-#EA: Next line needs to be included when IH deploys code for it
-#And I am on the Court screen I can enter a valid key number
-#When I select option to return to the application later
-#Then I am on Store application page
-#And I can enter a reason
-#And I can click to store the reason
+And I am on the Court screen I can enter a valid key number
+When I select option to return to the application later
+Then I am on Store application page
+And I can enter a reason
+And I can click to store the reason
 
 Scenario: BUS-120 Reject Bankruptcy registration application
 Given I am on the bankruptcy registration screen

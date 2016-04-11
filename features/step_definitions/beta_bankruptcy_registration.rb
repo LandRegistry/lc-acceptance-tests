@@ -139,6 +139,7 @@ When(/^I can rekey court name on the verification screen$/) do
 end
 
 When(/^I am on the Court screen I can enter a valid key number$/) do
+  sleep(20)
   fill_in('key_number', :with =>'2244095')
 end
 
@@ -323,7 +324,9 @@ end
 When(/^I can re-key debtor details$/) do
   fill_in('forename_1', :with => 'George')
   fill_in('surname_1', :with => 'Bush') 
-  fill_in('court_name', :with => 'Banana County Court')
+  fill_in('forename_2', :with => 'Randy')
+  fill_in('surname_2', :with => 'Moore')
+  fill_in('court_name', :with => 'County Court of Portsmouth')
 end
 
 When(/^I can submit a new particulars of details$/) do
@@ -356,15 +359,12 @@ When(/^I can re-key and submit debtor details$/) do
   puts(results)
 end
 
-
-
 When(/^I can enter name details$/) do
   fill_in('forenames_1', :with => 'George')
   fill_in('surname_1', :with => 'Bush')
 end
 
 When(/^I select option to return to the application later$/) do
-  #click_link('store')
   find(:xpath, "//*[@id='store']").click
 end
 
