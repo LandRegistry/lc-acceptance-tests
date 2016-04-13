@@ -373,8 +373,8 @@ end
     fill_in 'loc_auth_area', :with => 'Sheffield'
     fill_in 'occupation', :with => 'Dentist'
     click_button 'continue'
-    fill_in 'fullname', :with => 'Northamptonshire District Council'
-     fill_in 'area', :with => 'Northampton'
+    fill_in 'fullname', :with => 'Sheffield City Council'
+     fill_in 'area', :with => 'Sheffield'
   elsif name_type == 'parish council'
     select 'Parish, Town or Community Council', from: 'estateOwnerTypes'
     fill_in 'loc_auth', :with => 'Caddington Parish Council'
@@ -390,5 +390,6 @@ end
     click_button 'continue'
     fill_in 'corpname', :with => 'Fremington Parish Council'
   end
+  sleep(15)
 end
   
