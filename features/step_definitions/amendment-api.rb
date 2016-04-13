@@ -113,7 +113,6 @@ Then(/^both applications are set to cancelled but the WOB is set to reveal on a 
     #expect(@pab_data['revealed']).to eql false
     exdate = Date.strptime(@pab_data['expired_date'], '%Y-%m-%d')
     expect(exdate).to be <= Date.today    
-    
     expect(@pab_data['cancellation']['reference']). to be > 0
     #expect(@wob_data['revealed']).to eql true
     if @wob_data['expired_date'].nil?

@@ -227,8 +227,6 @@ Then(/^I can verify API output for a cancelled PAB application$/) do
         exdate = Date.strptime(@pab_data['expired_date'], '%Y-%m-%d')
         expect(exdate).to be > Date.today
     end
-    
-    
   expect(@pab_data['status']).to eql 'current'
   expect(@pab_data['class_of_charge']).to eql 'PAB'
   visit( "#{$FRONTEND_URI}/get_list?appn=cancel" )

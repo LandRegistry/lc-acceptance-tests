@@ -45,7 +45,7 @@ When I enter valid values in Key number field
 Then I can override it with new address details
 Then I can click the complete search button
 
-#EA: Works and passes on wifi but fails on jenkins. Run automated tests on Diti 
+#EA: Test passes but fails on jenkins.  
 #Scenario: BUS-020 Certificate date stored for a bankruptcy search is in the past 
 #Given I am on the LR searches screen
 #And I click to launch Bankruptcy search and select a record

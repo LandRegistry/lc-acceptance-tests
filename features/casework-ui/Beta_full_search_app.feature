@@ -92,7 +92,6 @@ Then I can confirm that the county edit box is disabled
 And I click on continue button
 And I can see Applicant data input fields for the Bankruptcy search request
 
-
 Scenario: BUS-021 Reveal English equivalence of Welsh county names selected
 Given I am on the LR searches screen
 And I select an application type of Full Search the application is displayed

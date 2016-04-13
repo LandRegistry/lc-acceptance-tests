@@ -203,7 +203,7 @@ When(/^I can then click the close button$/) do
   #expect(page).to have_content('KING STARK OF THE NORTH (1000167)')
 end
 
-When(/^I am on the verification screen I can rekey the class of charge$/) do
+When(/^I can select the class of charge$/) do
   if @formtype == 'K1'
     select 'LC', from:  "class"
   elsif  @formtype == 'K2'
@@ -218,7 +218,6 @@ When(/^I am on the verification screen I can rekey the class of charge$/) do
     nil
   end  
 end
-
 
 When(/^I am on the Conveyancer and fees screen I can enter a valid key number$/) do
   fill_in('key_number', :with =>'2244095')
@@ -284,5 +283,112 @@ Then(/^I can restore the reclassified WOB Registration form to a K1 LC Registrat
   page.all('#work-list>tbody').count.should == rwcount -1
 end
 
- 
+When(/^I input standard data for LC registration$/) do
+if @formtype == 'K1'
+    select 'LC', from:  "class"
+    fill_in('county_0', :with => "Portsmouth")
+  elsif  @formtype == 'K2'
+    select 'F', from:  "class"
+    fill_in('county_0', :with => "Portsmouth")
+  elsif  @formtype == 'K3'
+    select 'PA', from:  "class"
+    fill_in('county_0', :with => "Portsmouth")
+  elsif  @formtype == 'K4'
+    select 'WO', from:  "class"  
+    fill_in('county_0', :with => "Portsmouth")
+  elsif  @formtype == 'K6'
+    select 'LC', from:  "class"   
+    fill_in('county_0', :with => "Portsmouth") 
+  else
+    nil
+  end 
+  fill_in('pri_notice',:with =>'LCR/234')
+  fill_in('District',:with => 'Devon')
+  fill_in('short_desc', :with =>'free format2werslkfxdlkf')
+end
+
+Then(/^I can proceed and process fees$/) do
+  if @formtype == 'K1'
+    select 'LC', from:  "class"
+  elsif  @formtype == 'K2'
+    select 'F', from:  "class"
+  elsif  @formtype == 'K3'
+    select 'PA', from:  "class"
+  elsif  @formtype == 'K4'
+    select 'WO', from:  "class"  
+  elsif  @formtype == 'K6'
+    select 'LC', from:  "class"
+  else
+    nil
+  end 
+  click_button 'continue'
+  fill_in 'key_number', :with =>'2244095'
+  fill_in 'customer_ref', :with => '100/102'
+  choose 'dx_address'
+  choose 'pre_paid'
+  click_button 'submit'
+end
+
+ When(/^I can choose (.+) estate owner type and verify the details$/) do |name_type|
+  if name_type == 'private individual'
+    fill_in('forename', :with => 'Jonelle')
+    fill_in 'surname', :with => 'Goodwin'
+    fill_in 'occupation', :with => 'Dentist'
+    click_button 'continue'
+    fill_in 'forename', :with => 'Jonelle'
+     fill_in 'surname', :with => 'Goodwin'
+  elsif name_type == 'complex names'
+    select 'Complex Name', from: 'estateOwnerTypes'
+    fill_in 'complex_name_field', :with => 'king stark'
+    click_link 'name_lookup_link'
+    choose 'comp_name_3'
+    click_button 'close'
+    fill_in 'occupation', :with => 'Dentist'
+    click_button 'continue'
+  elsif name_type == 'rural district council'
+    select 'Rural District Council', from: 'estateOwnerTypes'
+    fill_in 'loc_auth', :with => 'South Hams Rural District Council'
+    fill_in 'loc_auth_area', :with => 'South Hams'
+    fill_in 'occupation', :with => 'Dentist'
+    click_button 'continue'
+    fill_in 'fullname', :with => 'South Hams Rural District Council'
+    fill_in 'area', :with => 'South Hams'
+  elsif name_type == 'county council'
+    select 'County Council or Greater London or Manchester Council', from: 'estateOwnerTypes'
+    fill_in 'loc_auth', :with => 'Leicester County Council'
+    fill_in 'loc_auth_area', :with => 'Leicestershire'
+    fill_in 'occupation', :with => 'Dentist'
+    click_button 'continue'
+    fill_in 'fullname', :with => 'Leicester County Council'
+    fill_in 'area', :with => 'Leicestershire'
+  elsif name_type == 'development corporation'
+    select 'Development Corporation', from: 'estateOwnerTypes'
+    fill_in 'other_name', :with => 'London Thames Gateway Development Corporation'
+    fill_in 'occupation', :with => 'Dentist'
+    click_button 'continue'
+    fill_in 'corpname', :with => 'London Thames Gateway Development Corporation'
+  elsif name_type == 'other council'
+    select 'Other Council', from: 'estateOwnerTypes'
+    fill_in 'loc_auth', :with => 'Northamptonshire District Council'
+    fill_in 'loc_auth_area', :with => 'Northampton'
+    fill_in 'occupation', :with => 'Dentist'
+    click_button 'continue'
+    fill_in 'fullname', :with => 'Northamptonshire District Council'
+     fill_in 'area', :with => 'Northampton'
+  elsif name_type == 'parish council'
+    select 'Parish, Town or Community Council', from: 'estateOwnerTypes'
+    fill_in 'loc_auth', :with => 'Caddington Parish Council'
+    fill_in 'loc_auth_area', :with => 'Bedfordshire'
+    fill_in 'occupation', :with => 'Dentist'
+    click_button 'continue'
+    fill_in 'fullname', :with => 'Caddington Parish Council'
+     fill_in 'area', :with => 'Bedfordshire'
+  elsif name_type == 'other'
+    select 'Other', from: 'estateOwnerTypes'
+    fill_in 'other_name', :with => 'Fremington Parish Council'
+    fill_in 'occupation', :with => 'Dentist'
+    click_button 'continue'
+    fill_in 'corpname', :with => 'Fremington Parish Council'
+  end
+end
   

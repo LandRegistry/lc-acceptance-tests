@@ -20,7 +20,7 @@ Scenario: BUS-099 BUS-130 Verify mandatory two stage name re-entry when completi
     And I have additional information I can enter it in the free format text box
   When I can click on Continue button to submit the form
   When I am on the verification screen I can rekey estate owner's full name
-  When I am on the verification screen I can rekey the class of charge
+  When I can select the class of charge
   When I can click on Continue button to submit the form
   When I am on the Conveyancer and fees screen I can enter a valid key number
   When I enter fee details I can choose prepaid

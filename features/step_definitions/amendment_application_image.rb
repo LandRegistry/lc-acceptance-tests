@@ -100,7 +100,6 @@ end
 When(/^the court details screen is displayed I can overtype the details$/) do 
   fill_in('court', :with => 'Devon County Court')
   fill_in('ref', :with =>'123 2015')
-  
 end 
 
 When(/^I click the check box to confirm verification$/) do

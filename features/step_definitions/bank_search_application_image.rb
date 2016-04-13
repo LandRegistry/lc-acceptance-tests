@@ -168,8 +168,9 @@ Then(/^I can confirm via api that certificate stored date is in the past$/) do
   tday = date.strftime("%Y-%m-%d")
   @reg_api  = RestAPI.new($LAND_CHARGES_URI)
   @search_result = @reg_api.get("/last_search")
-  srch_id = @search_result['request_id']
-  @srch_details = @reg_api.get("/request_details/#{srch_id}")
+  rqst_id = @search_result['request_id']
+  @srch_details = @reg_api.get("/request_details/#{rqst_id}")
+  expect(@srch_details['request_id']).to eq rqst_id
   expect(@srch_details['certificate_date']).to be < tday
 end
 
