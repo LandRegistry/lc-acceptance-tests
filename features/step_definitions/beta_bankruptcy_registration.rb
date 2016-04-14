@@ -139,13 +139,12 @@ When(/^I can rekey court name on the verification screen$/) do
 end
 
 When(/^I am on the Court screen I can enter a valid key number$/) do
-  sleep(20)
   fill_in('key_number', :with =>'2244095')
 end
 
 
 When(/^I can click button to continue$/) do
-  sleep(10)
+  sleep(2)
   click_button('continue')
 end
 

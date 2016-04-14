@@ -210,6 +210,7 @@ end
 
 Then(/^I can submit amended form and verify the new api updates for the amendment$/) do
   fill_in('key_number', :with =>'2244095')
+  sleep(1)
    click_button('continue')
   page.find(:id, "conf_reg_numbers").text
   newregs = page.find(:id, "conf_reg_numbers").text
@@ -224,6 +225,5 @@ Then(/^I can submit amended form and verify the new api updates for the amendmen
         exdate = Date.strptime(@pab_data['expired_date'], '%Y-%m-%d')
         expect(exdate).to be > Date.today
     end
-    
   expect(@pab_data['status']).to eql 'current'
 end
