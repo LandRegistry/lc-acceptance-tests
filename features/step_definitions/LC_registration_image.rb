@@ -390,6 +390,5 @@ end
     click_button 'continue'
     fill_in 'corpname', :with => 'Fremington Parish Council'
   end
-  sleep(15)
 end
   

@@ -106,6 +106,7 @@ When(/^I can retrieve the application details with valid data submitted$/) do
   fill_in('reg_date', :with => today)
   find(:id, 'full_cans').click
   click_button('continue')
+  sleep(2)
 end
 
 When(/^I cannot retrieve the application details with Part Cancelation option selected$/) do
@@ -229,13 +230,15 @@ Then(/^I can verify API output for a cancelled PAB application$/) do
     end
   expect(@pab_data['status']).to eql 'current'
   expect(@pab_data['class_of_charge']).to eql 'PAB'
-  visit( "#{$FRONTEND_URI}/get_list?appn=cancel" )
+  find(:xpath, "//*[@id='side-nav']/li[5]/a").click
+  find(:id, 'canc').click
   find(:xpath,'//*[@id="row_1"]').click
   fill_in('reg_no', :with => results)
   Today = Date.today.strftime("%d/%m/%Y")
   fill_in('reg_date', :with => Today)
   find(:id, 'full_cans').click
   click_button('continue')
+  sleep(2)
   opage = "Original registration details"
   if ('//*[@id="form_panel"]/h2' == opage)
     click_button('continue')
