@@ -369,12 +369,12 @@ end
     fill_in 'corpname', :with => 'London Thames Gateway Development Corporation'
   elsif name_type == 'other council'
     select 'Other Council', from: 'estateOwnerTypes'
-    fill_in 'loc_auth', :with => 'Sheffield City Council'
-    fill_in 'loc_auth_area', :with => 'Sheffield'
+    fill_in 'loc_auth', :with => 'South Hams District Council'
+    fill_in 'loc_auth_area', :with => 'South Hams'
     fill_in 'occupation', :with => 'Dentist'
     click_button 'continue'
-    fill_in 'fullname', :with => 'Sheffield City Council'
-     fill_in 'area', :with => 'Sheffield'
+    fill_in 'fullname', :with => 'South Hams District Council'
+     fill_in 'area', :with => 'South Hams'
   elsif name_type == 'parish council'
     select 'Parish, Town or Community Council', from: 'estateOwnerTypes'
     fill_in 'loc_auth', :with => 'Caddington Parish Council'
@@ -392,3 +392,65 @@ end
   end
 end
   
+When(/^I select Other council from estate owner list$/) do 
+  select 'Other Council', from: "estateOwnerTypes"
+end
+ 
+Then(/^I can submit entries for a (.*)$/) do |form_type|
+  if form_type == 'borough council'
+    la = 'Northampton Borough Council'
+    laa = 'Northamptonshire'
+    fill_in('loc_auth', :with  => la )
+    fill_in('loc_auth_area', :with  => laa )
+    fill_in 'occupation', :with => 'Painter'
+    click_button 'continue'
+    fill_in 'fullname', :with => la
+    fill_in 'area', :with => laa
+  elsif form_type == 'unitary authority'
+     la = 'Bristol City'
+    laa = 'Bristol'
+    fill_in('loc_auth', :with  => la )
+    fill_in('loc_auth_area', :with  => laa )
+    fill_in 'occupation', :with => 'Farmer'
+    click_button 'continue'
+    fill_in 'fullname', :with => la
+    fill_in 'area', :with => laa
+  elsif form_type == 'borough council'
+    la = 'Wellingborough Borough Council'
+    laa = 'Northamptonshire'
+    fill_in('loc_auth', :with  => la )
+    fill_in('loc_auth_area', :with  => laa )
+    fill_in 'occupation', :with => 'Farmer'
+    click_button 'continue'
+    fill_in 'fullname', :with => la
+    fill_in 'area', :with => laa
+  elsif form_type == 'borough councils'
+    la = 'Borough Council of Wellingborough'
+    laa = 'Northamptonshire'
+    fill_in('loc_auth', :with  => la )
+    fill_in('loc_auth_area', :with  => laa )
+    fill_in 'occupation', :with => 'Farmer'
+    click_button 'continue'
+    fill_in 'fullname', :with => la
+    fill_in 'area', :with => laa
+  elsif form_type == 'metropolitan borough council'
+    la = 'Stockport Metropolitan Borough Council'
+    laa = 'Greater Manchester'
+    fill_in('loc_auth', :with  => la )
+    fill_in('loc_auth_area', :with  => laa )
+    fill_in 'occupation', :with => 'Farmer'
+    click_button 'continue'
+    fill_in 'fullname', :with => la
+    fill_in 'area', :with => laa
+  elsif form_type == 'metropolitan borough council v2'
+    la = 'Metropolitan Borough Council of Stockport'
+    laa = 'Greater Manchester'
+    fill_in('loc_auth', :with  => la )
+    fill_in('loc_auth_area', :with  => laa )
+    fill_in 'occupation', :with => 'Farmer'
+    click_button 'continue'
+    fill_in 'fullname', :with => la
+    fill_in 'area', :with => laa
+  end
+ 
+end
