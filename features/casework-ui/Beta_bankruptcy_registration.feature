@@ -138,6 +138,11 @@ Then I am on Store application page
 And I can enter a reason
 And I can click to store the reason
 
+Scenario: BUS-082.3 Verify display of a stored application on 
+Given I am on the bankruptcy registration screen
+When I navigate to bankruptcy application storage page
+Then I can validate number displayed before and after an application is stored
+
 Scenario: BUS-120 Reject Bankruptcy registration application
 Given I am on the bankruptcy registration screen
 And I select an application type of PAB with a single image

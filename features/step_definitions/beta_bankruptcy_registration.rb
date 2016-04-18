@@ -9,6 +9,10 @@ Given(/^I am on the bankruptcy registration screen$/) do
   maximise_browser
 end
 
+When(/^I navigate to bankruptcy application storage page$/) do
+    find(:id,'bank_stored').click
+end
+
 When(/^I select an application type of PAB with a single image$/) do
   within(:xpath, ".//*[@id='row_1']/td[2]") do
       page.should have_content('PAB')
@@ -385,6 +389,43 @@ end
 
 When(/^I click Ok on the pop up$/) do
     click_button('accept-reject')
+end
+
+Then(/^I can validate number displayed before and after an application is stored$/) do
+   find(:id, "bank_stored").click
+   bnkstre = all('#work-list').count
+   find(:id, "bank_regn").click
+   #puts(bnkstre)
+   page.first(:xpath, '//*[@id="work-list"]/tbody["2"]/tr//td[contains(.,"PAB")]').click
+   fill_in('court', :with => 'Banana County Court')
+  fill_in('ref_no', :with => '888')
+  click_button('continue')
+  fill_in('forenames_1', :with => 'Pablo')
+  fill_in('surname_1', :with => 'Perigas')
+  find(:id, 'addname').click
+  fill_in('forenames_2', :with => 'Benny')
+  fill_in('surname_2', :with => 'Hinn')
+  fill_in('occupation', :with => 'Clergy')
+  fill_in('add_1_line1', :with => '55 New Street')
+  fill_in('add_1_line2', :with => 'Middlebrook')
+  fill_in('add_1_line3', :with => 'Winchester')
+  fill_in('add_1_line4', :with => 'Hampshire')
+  fill_in('county_1', :with => 'Hants')
+  fill_in('postcode_1', :with => 'B34 1AA')
+  click_button('continue')
+  fill_in('forename_1', :with => 'Pablo')
+  fill_in('surname_1', :with => 'Perigas') 
+   fill_in('forename_2', :with => 'Benny')
+  fill_in('surname_2', :with => 'Hinn')
+  fill_in('court_name', :with => 'Banana County Court')
+  find(:xpath, "//*[@id='store']").click
+  expect(page).to have_content('Store application')
+  fill_in('store_reason', :with => 'Amazing QA!')
+  click_button('store')
+  find(:id, "bank_stored").click
+  sleep(10)
+  bnkstre2 = all('#work-list').count
+  expect(bnkstre2).to eq bnkstre + 1
 end
 
 Then(/^I can verify that worklist reduces by one when application is rejected$/) do
