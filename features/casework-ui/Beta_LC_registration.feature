@@ -14,18 +14,18 @@ Scenario: BUS-099 Verify mandatory two stage name re-entry when completing a Lan
   When I access the application screen the county Unitary Authority dropdown box is visible
   When I access the application screen the district box is visible as a free format
   When I access the application screen the short description text box is visible
-    And I can enter the free format details
+  And I can enter the free format details
   When Private Individual is selected I can complete the names details
-    And I have a trade title profession I can complete the details
-    And I have additional information I can enter it in the free format text box
+  And I have a trade title profession I can complete the details
+  And I have additional information I can enter it in the free format text box
   When I can click on Continue button to submit the form
   When I am on the verification screen I can rekey estate owner's full name
   When I can select the class of charge
   When I can click on Continue button to submit the form
   When I am on the Conveyancer and fees screen I can enter a valid key number
   When I enter fee details I can choose prepaid
-    And I change it to choose direct debit
-    And I set the address type to DX
+  And I change it to choose direct debit
+  And I set the address type to DX
   When I can click the complete search button
   Then the successfully completed Registration banner and number is displayed
 
@@ -156,7 +156,7 @@ And the successfully completed Registration banner and number is displayed
 #Scenario: Submit LC Registration with Other Councils: Town Councils
 
 Scenario: BUS-082.4 Verify display of a stored Land Charges application 
-Given I am on Land Charge Registration applications screen
+Given I am on Land Charge Registration applicationas screen
 When I navigate to Land Charge application store page
 Then I can validate number displayed before and after a Land Charge application is stored
 

@@ -202,3 +202,25 @@ Then(/^I am returned to the LR searches screen$/) do
   expect(page).to have_content('Full')
   expect(page).to have_content('Bankruptcy')
 end
+
+When(/^I navigate to Bankruptcy search store page$/) do
+  find(:id,'search_stored').click
+end
+
+Then(/^I can verify number of application stored before and after a Bankruptcy search$/) do
+ bnkstre = all('#work-list').count
+  find(:id, "search_bank").click
+  page.first(:xpath, '//*[@id="work-list"]/tbody["2"]').click
+  fill_in('forename_1', :with => 'Ella')
+  fill_in('surname_1', :with => 'Piggy')
+  fill_in('forename_2', :with => 'Gonzo')
+  fill_in('surname_2', :with => 'Great')
+  click_button "continue"
+  fill_in('key_number', :with => '2244095')
+  find(:xpath, "//*[@id='store']").click
+  fill_in('store_reason', :with => 'We stored it!!!')
+  click_button('store')
+  find(:id, "search_stored").click
+  bnkstre2 = all('#work-list').count
+  expect(bnkstre2).to eq bnkstre + 1
+end

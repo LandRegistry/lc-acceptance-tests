@@ -57,6 +57,11 @@ Then I can click the complete search button
 #When I can click the complete search button
 #Then I can confirm via api that certificate stored date is in the past
 
+Scenario: BUS-082.5 Verify display of a stored Bankruptcy searches 
+Given I am on the LR searches screen																				
+When I navigate to Bankruptcy search store page
+Then I can verify number of application stored before and after a Bankruptcy search
+
 
 
 

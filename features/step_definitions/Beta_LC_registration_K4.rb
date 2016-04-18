@@ -4,7 +4,6 @@ When(/^I have selected to view a K four Land Charges application from the applic
   fill_in('username', :with => $LOGIN_USERID)
   fill_in('password', :with => $LOGIN_PASSWORD)
   click_button('login_button')
-  
   visit( "#{$FRONTEND_URI}/get_list?appn=lc_regn" )
   within(:xpath, ".//*[@id='row_7']/td[2]") do
   page.should have_content('K4')
