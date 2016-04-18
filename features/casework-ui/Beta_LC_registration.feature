@@ -155,5 +155,9 @@ And the successfully completed Registration banner and number is displayed
 #Scenario: Submit LC Registration with Other Councils: Community Councils 
 #Scenario: Submit LC Registration with Other Councils: Town Councils
 
+Scenario: BUS-082.4 Verify display of a stored Land Charges application 
+Given I am on Land Charge Registration applications screen
+When I navigate to Land Charge application store page
+Then I can validate number displayed before and after a Land Charge application is stored
 
 

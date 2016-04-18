@@ -17,3 +17,46 @@ end
 When(/^I access the application screen for a K(\d+) the class type is set to WO$/) do |arg1|
  #expect class
 end
+
+When(/^I navigate to Land Charge application store page$/) do 
+ find(:id, "lc_stored").click
+end
+
+Then(/^I can validate number displayed before and after a Land Charge application is stored$/) do
+  bnkstre = all('#work-list').count
+   find(:id, "lc_regn").click
+   page.first(:xpath, '//*[@id="work-list"]/tbody["2"]').click
+   if @formtype == 'K1'
+    select 'LC', from:  "class"
+  elsif  @formtype == 'K2'
+    select 'F', from:  "class"
+  elsif  @formtype == 'K3'
+    select 'PA', from:  "class"
+  elsif  @formtype == 'K4'
+    select 'WO', from:  "class"  
+  elsif  @formtype == 'K6'
+    select 'LC', from:  "class"    
+  else
+    nil
+  end  
+  fill_in('pri_notice',:with =>'127')
+  fill_in('county_0', :with => 'Poole')
+  fill_in('District',:with => 'Devon')
+  fill_in('short_desc', :with =>'free format2werslkfxdlkf')
+  fill_in('forename', :with => 'Joyce')
+  fill_in('Surname', :with => 'Mayer')
+  fill_in('occupation',:with => 'preacher')
+  click_button "continue"
+  fill_in('forename', :with => 'Joyce')
+    fill_in('Surname', :with => 'Mayer')
+    select 'C1', from:  "class"
+    click_button "continue"
+    fill_in('key_number', :with =>'2244095')
+    find(:xpath, "//*[@id='store']").click
+  expect(page).to have_content('Store application')
+  fill_in('store_reason', :with => 'Amazing QAs!')
+  click_button('store')
+  find(:id, "lc_stored").click
+  bnkstre2 = all('#work-list').count
+  expect(bnkstre2).to eq bnkstre + 1
+end

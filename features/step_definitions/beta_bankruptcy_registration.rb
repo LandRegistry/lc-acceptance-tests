@@ -395,7 +395,6 @@ Then(/^I can validate number displayed before and after an application is stored
    find(:id, "bank_stored").click
    bnkstre = all('#work-list').count
    find(:id, "bank_regn").click
-   #puts(bnkstre)
    page.first(:xpath, '//*[@id="work-list"]/tbody["2"]/tr//td[contains(.,"PAB")]').click
    fill_in('court', :with => 'Banana County Court')
   fill_in('ref_no', :with => '888')
@@ -420,10 +419,9 @@ Then(/^I can validate number displayed before and after an application is stored
   fill_in('court_name', :with => 'Banana County Court')
   find(:xpath, "//*[@id='store']").click
   expect(page).to have_content('Store application')
-  fill_in('store_reason', :with => 'Amazing QA!')
+  fill_in('store_reason', :with => 'Amazing QAs!')
   click_button('store')
   find(:id, "bank_stored").click
-  sleep(10)
   bnkstre2 = all('#work-list').count
   expect(bnkstre2).to eq bnkstre + 1
 end
