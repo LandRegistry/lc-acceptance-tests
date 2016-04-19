@@ -25,7 +25,7 @@ end
 
 When(/^I click to launch Bankruptcy search and select a record$/) do
   find(:id,'search_bank').click
-  find(:id,'row_1').click
+  page.first(:xpath, '//*[@id="work-list"]/tbody["2"]/tr//td[contains(.,*)]').click
 end
 
 When(/^I click on the Pre paid button$/) do
@@ -223,4 +223,15 @@ Then(/^I can verify number of application stored before and after a Bankruptcy s
   find(:id, "search_stored").click
   bnkstre2 = all('#work-list').count
   expect(bnkstre2).to eq bnkstre + 1
+end
+
+When(/^I can reject the bankruptcy search application form$/) do
+  url = URI.parse(current_url)
+  expect(page).to have_content('First name to be searched')
+  expect(page).to have_content('Second name to be searched')
+  find_link('reject').visible?
+  click_link 'reject'
+  click_button 'accept-reject'
+  expect(page).to have_content('Your application has been rejected.')
+  visit(url)
 end

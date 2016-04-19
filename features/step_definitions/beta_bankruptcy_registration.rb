@@ -546,3 +546,17 @@ Then(/^I can verify remaining forms on worklist after submitting two out of thre
   countC = countA -2
   puts(countC)
 end
+
+When(/^I can reject the bank reg application form$/) do
+  url = URI.parse(current_url)
+  expect(page).to have_content('Official details')
+  find_link('reject_2').visible?
+  click_link 'reject_2'
+  click_button 'accept-reject'
+  expect(page).to have_content('Your application has been rejected.')
+  visit(url)
+end
+
+Then(/^I can confirm the form no longer exists$/) do
+  expect(page).not_to have_content('Official details')
+end

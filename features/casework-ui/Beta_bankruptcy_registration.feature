@@ -151,6 +151,12 @@ When I click on the link to reject application
 Then I click Ok on the pop up
 And I can see Confirmation message indicating the application has been rejected
 
+Scenario: BUS-120.1 Confirm that a rejected Bankruptcy registration form no longer exists
+Given I am on the bankruptcy registration screen
+When I choose the first available WOB form
+Then I can reject the bank reg application form
+And I can confirm the form no longer exists
+
 Scenario: Register WOB issued by adjudicator
 Given I am on the bankruptcy registration screen
 When I choose the first available WOB form
@@ -186,6 +192,8 @@ Scenario: Confirm remaining bank registration
 Given I am on the bankruptcy registration screen
 When I select an application type of PAB with a single image
 Then I can verify remaining forms on worklist after submitting two out of three applications
+
+
 
 
 

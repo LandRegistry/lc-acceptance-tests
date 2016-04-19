@@ -34,7 +34,7 @@ Scenario: BUS-095 Reclassify a LC Registration form to a WOB and vice versa
   When I can classify the form to a WOB Registration type
   Then I can restore the reclassified WOB Registration form to a K1 LC Registration form
 
-Scenario: BUS-120 Reject Land charge registration application
+Scenario: BUS-120.2 Reject Land charge registration application
   Given I am on the view application screen
   When I have selected to view a specific Land Charges application from the application list
   When I can select the appropiate class of charge
@@ -42,122 +42,128 @@ Scenario: BUS-120 Reject Land charge registration application
   Then I click Ok on the pop up
   And I can see Confirmation message indicating the application has been rejected
   
+Scenario: BUS-120.3 Confirm that a rejected Land charges registration form no longer exists
+  Given I am on Land Charge Registration applications screen
+  When I choose the first available form
+  Then I can reject the land charges application form
+  And I can confirm the form no longer exists
+  
 Scenario: Submit LC Registration with Other estate owner type
-Given I am on Land Charge Registration applications screen
-When I have selected to view a specific Land Charges application from the application list
-When I input standard data for LC registration
-When I can choose other estate owner type and verify the details
-Then I can proceed and process fees
-And the successfully completed Registration banner and number is displayed
+  Given I am on Land Charge Registration applications screen
+  When I have selected to view a specific Land Charges application from the application list
+  When I input standard data for LC registration
+  When I can choose other estate owner type and verify the details
+  Then I can proceed and process fees
+  And the successfully completed Registration banner and number is displayed
   
 Scenario: Submit LC Registration with Complex Names estate owner type
-Given I am on Land Charge Registration applications screen
-When I have selected to view a specific Land Charges application from the application list
-When I input standard data for LC registration
-When I can choose complex names estate owner type and verify the details
-Then I can proceed and process fees
-And the successfully completed Registration banner and number is displayed
+  Given I am on Land Charge Registration applications screen
+  When I have selected to view a specific Land Charges application from the application list
+  When I input standard data for LC registration
+  When I can choose complex names estate owner type and verify the details
+  Then I can proceed and process fees
+  And the successfully completed Registration banner and number is displayed
 
 Scenario: Submit LC Registration with Rural District Council estate owner type
-Given I am on Land Charge Registration applications screen
-When I have selected to view a specific Land Charges application from the application list
-When I input standard data for LC registration
-When I can choose rural district council estate owner type and verify the details
-Then I can proceed and process fees
-And the successfully completed Registration banner and number is displayed
+  Given I am on Land Charge Registration applications screen
+  When I have selected to view a specific Land Charges application from the application list
+  When I input standard data for LC registration
+  When I can choose rural district council estate owner type and verify the details
+  Then I can proceed and process fees
+  And the successfully completed Registration banner and number is displayed
 
 Scenario: Submit LC Registration with County Council estate owner type
-Given I am on Land Charge Registration applications screen
-When I have selected to view a specific Land Charges application from the application list
-When I input standard data for LC registration
-When I can choose county council estate owner type and verify the details
-Then I can proceed and process fees
-And the successfully completed Registration banner and number is displayed
+  Given I am on Land Charge Registration applications screen
+  When I have selected to view a specific Land Charges application from the application list
+  When I input standard data for LC registration
+  When I can choose county council estate owner type and verify the details
+  Then I can proceed and process fees
+  And the successfully completed Registration banner and number is displayed
 
 Scenario: Submit LC Registration with Development Corporation estate owner type
-Given I am on Land Charge Registration applications screen
-When I have selected to view a specific Land Charges application from the application list
-When I input standard data for LC registration
-When I can choose development corporation estate owner type and verify the details
-Then I can proceed and process fees
-And the successfully completed Registration banner and number is displayed
+  Given I am on Land Charge Registration applications screen
+  When I have selected to view a specific Land Charges application from the application list
+  When I input standard data for LC registration
+  When I can choose development corporation estate owner type and verify the details
+  Then I can proceed and process fees
+  And the successfully completed Registration banner and number is displayed
 
 Scenario: Submit LC Registration with Other Council estate owner type
-Given I am on Land Charge Registration applications screen
-When I have selected to view a specific Land Charges application from the application list
-When I input standard data for LC registration
-When I can choose other council estate owner type and verify the details
-Then I can proceed and process fees
-And the successfully completed Registration banner and number is displayed
+  Given I am on Land Charge Registration applications screen
+  When I have selected to view a specific Land Charges application from the application list
+  When I input standard data for LC registration
+  When I can choose other council estate owner type and verify the details
+  Then I can proceed and process fees
+  And the successfully completed Registration banner and number is displayed
 
 Scenario: Submit LC Registration with Parish Council estate owner type
-Given I am on Land Charge Registration applications screen
-When I have selected to view a specific Land Charges application from the application list
-When I input standard data for LC registration
-When I can choose parish council estate owner type and verify the details
-Then I can proceed and process fees
-And the successfully completed Registration banner and number is displayed
+  Given I am on Land Charge Registration applications screen
+  When I have selected to view a specific Land Charges application from the application list
+  When I input standard data for LC registration
+  When I can choose parish council estate owner type and verify the details
+  Then I can proceed and process fees
+  And the successfully completed Registration banner and number is displayed
 
 Scenario: Submit LC Registration with Other Councils: County Councils
-Given I am on Land Charge Registration applications screen
-When I have selected to view a specific Land Charges application from the application list
-When I input standard data for LC registration
-When I can choose other council estate owner type and verify the details
-Then I can proceed and process fees
-And the successfully completed Registration banner and number is displayed
+  Given I am on Land Charge Registration applications screen
+  When I have selected to view a specific Land Charges application from the application list
+  When I input standard data for LC registration
+  When I can choose other council estate owner type and verify the details
+  Then I can proceed and process fees
+  And the successfully completed Registration banner and number is displayed
 
 Scenario: Submit LC Registration with Other Councils: Unitary Authorities 
-Given I am on Land Charge Registration applications screen
-When I have selected to view a specific Land Charges application from the application list
-When I input standard data for LC registration
-When I select Other council from estate owner list
-Then I can submit entries for a unitary authority
-And I can proceed and process fees
-And the successfully completed Registration banner and number is displayed
+  Given I am on Land Charge Registration applications screen
+  When I have selected to view a specific Land Charges application from the application list
+  When I input standard data for LC registration
+  When I select Other council from estate owner list
+  Then I can submit entries for a unitary authority
+  And I can proceed and process fees
+  And the successfully completed Registration banner and number is displayed
 
 Scenario: Submit LC Registration with Other Councils: Borough Councils v.1
-Given I am on Land Charge Registration applications screen
-When I have selected to view a specific Land Charges application from the application list
-When I input standard data for LC registration
-When I select Other council from estate owner list
-Then I can submit entries for a borough council
-And I can proceed and process fees
-And the successfully completed Registration banner and number is displayed
+  Given I am on Land Charge Registration applications screen
+  When I have selected to view a specific Land Charges application from the application list
+  When I input standard data for LC registration
+  When I select Other council from estate owner list
+  Then I can submit entries for a borough council
+  And I can proceed and process fees
+  And the successfully completed Registration banner and number is displayed
 
 Scenario: Submit LC Registration with Other Councils: Borough Councils v.2
-Given I am on Land Charge Registration applications screen
-When I have selected to view a specific Land Charges application from the application list
-When I input standard data for LC registration
-When I select Other council from estate owner list
-Then I can submit entries for a borough councils
-And I can proceed and process fees
-And the successfully completed Registration banner and number is displayed
+  Given I am on Land Charge Registration applications screen
+  When I have selected to view a specific Land Charges application from the application list
+  When I input standard data for LC registration
+  When I select Other council from estate owner list
+  Then I can submit entries for a borough councils
+  And I can proceed and process fees
+  And the successfully completed Registration banner and number is displayed
 
 Scenario: Submit LC Registration with Other Councils: Metropolitan Borough Councils v.1
-Given I am on Land Charge Registration applications screen
-When I have selected to view a specific Land Charges application from the application list
-When I input standard data for LC registration
-When I select Other council from estate owner list
-Then I can submit entries for a metropolitan borough council
-And I can proceed and process fees
-And the successfully completed Registration banner and number is displayed
+  Given I am on Land Charge Registration applications screen
+  When I have selected to view a specific Land Charges application from the application list
+  When I input standard data for LC registration
+  When I select Other council from estate owner list
+  Then I can submit entries for a metropolitan borough council
+  And I can proceed and process fees
+  And the successfully completed Registration banner and number is displayed
 
 Scenario: Submit LC Registration with Other Councils: Metropolitan Borough Councils v.2
-Given I am on Land Charge Registration applications screen
-When I have selected to view a specific Land Charges application from the application list
-When I input standard data for LC registration
-When I select Other council from estate owner list
-Then I can submit entries for a metropolitan borough council v2
-And I can proceed and process fees
-And the successfully completed Registration banner and number is displayed
+  Given I am on Land Charge Registration applications screen
+  When I have selected to view a specific Land Charges application from the application list
+  When I input standard data for LC registration
+  When I select Other council from estate owner list
+  Then I can submit entries for a metropolitan borough council v2
+  And I can proceed and process fees
+  And the successfully completed Registration banner and number is displayed
 
 #Scenario: Submit LC Registration with Other Councils: Parish Councils
 #Scenario: Submit LC Registration with Other Councils: Community Councils 
 #Scenario: Submit LC Registration with Other Councils: Town Councils
 
 Scenario: BUS-082.4 Verify display of a stored Land Charges application 
-Given I am on Land Charge Registration applicationas screen
-When I navigate to Land Charge application store page
-Then I can validate number displayed before and after a Land Charge application is stored
+  Given I am on Land Charge Registration applicationas screen
+  When I navigate to Land Charge application store page
+  Then I can validate number displayed before and after a Land Charge application is stored
 
 

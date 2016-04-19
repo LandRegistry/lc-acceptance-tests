@@ -62,6 +62,12 @@ Given I am on the LR searches screen
 When I navigate to Bankruptcy search store page
 Then I can verify number of application stored before and after a Bankruptcy search
 
+Scenario: BUS-120.3 Confirm that a rejected Bankruptcy Search registration form no longer exists
+  Given I am on the LR searches screen
+  When I click to launch Bankruptcy search and select a record
+  Then I can reject the bankruptcy search application form
+  And I can confirm the form no longer exists
+
 
 
 

@@ -143,6 +143,11 @@ Given I am on the LR searches screen
 When I navigate to Full search store page
 Then I can verify number of application stored before and after a Full search
 
+Scenario: BUS-120.4 Confirm that a rejected Full Search registration form no longer exists
+Given I am on the LR searches screen
+When I select an application type of Full Search the application is displayed
+When I can reject the full search application form
+Then I can confirm the form no longer exists
 
 
 

@@ -27,3 +27,16 @@ Given(/^I am on Land Charge Registration applications screen$/) do
   visit( "#{$FRONTEND_URI}/get_list?appn=lc_regn" )
 end
 
+When(/^I choose the first available form$/) do
+  page.first(:xpath, '//*[@id="work-list"]/tbody["2"]/tr//td[contains(.,*)]').click
+end
+
+When(/^I can reject the land charges application form$/) do
+  url = URI.parse(current_url)
+  expect(page).to have_content('Class of charge')
+  find_link('reject').visible?
+  click_link 'reject'
+  click_button 'accept-reject'
+  expect(page).to have_content('Your application has been rejected.')
+  visit(url)
+end
