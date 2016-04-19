@@ -18,8 +18,8 @@ Given(/^I launch Application Cancellation page$/) do
   
 end 
 
-When(/^I select the first registration application$/) do
-  find(:xpath,'//*[@id="row_1"]').click
+When(/^I select the first available application form$/) do
+  page.first(:xpath, '//*[@id="work-list"]/tbody["2"]/tr//td[contains(.,*)]').click
 end
 
 When(/^I select a K13 registration application$/) do
@@ -279,4 +279,15 @@ end
 
 When(/^I can enter additional information$/) do 
    fill_in "part_cans_text", :with => "smile smile smile!"
+end
+
+When(/^I can reject the cancellation application form$/) do
+  url = URI.parse(current_url)
+  expect(page).to have_content('Retrieve original')
+  expect(page).to have_content('Is this a full or part cancellation')
+  find_link('reject').visible?
+  click_link 'reject'
+  click_button 'accept-reject'
+  expect(page).to have_content('Your application has been rejected.')
+  visit(url)
 end

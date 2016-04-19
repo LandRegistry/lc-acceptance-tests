@@ -8,7 +8,7 @@ So that I can be sure that details are correctly entered onto the land charges r
 
 Scenario: #BUS-067.00 View K11 cancellation form image
 Given I launch Application Cancellation page
-When I select the first registration application
+When I select the first available application form
 When I am on a Large image I can zoom in
 When I am on a Large image I can zoom out
 When I must have a registration number value before the continue button can be clicked
@@ -78,7 +78,7 @@ Then I can verify API output for a cancelled PAB application
 
 Scenario: BUS-171  Select part cancellation option 
 Given I launch Application Cancellation page
-When I select the first registration application
+When I select the first available application form
 And I select part cancellation option
 Then I can click button to continue
 
@@ -108,7 +108,7 @@ And I submit the data
 #EA:Data dependant test. To be reviewed with IH. Same reg number needed for this test
 #Scenario: Part cancellation with a C4 option 
 #Given I launch Application Cancellation page
-#And I select the first registration application
+#And I select the first available application form
 #And I select part cancellation option
 #And I can click button to continue
 #And I choose the C4 cancellation option
@@ -151,6 +151,12 @@ When I select option to return to the application later
 Then I am on Store application page
 And I can enter a reason
 And I can click to store the reason
+
+Scenario: BUS-120.6 Confirm that a rejected cancellation registration form no longer exists
+Given I launch Application Cancellation page
+When I select the first available application form
+When I can reject the cancellation application form
+Then I can confirm the form no longer exists
 
 
 
