@@ -359,7 +359,6 @@ When(/^I can re-key and submit debtor details$/) do
   click_button('continue')
   page.find(:id, "conf_reg_numbers").text
   results = page.find(:id, "conf_reg_numbers").text
-  puts(results)
 end
 
 When(/^I can enter name details$/) do
@@ -559,4 +558,93 @@ end
 
 Then(/^I can confirm the form no longer exists$/) do
   expect(page).not_to have_content('Official details')
+end
+
+When(/^I register a newly stored bankruptcy application$/) do
+  page.first(:xpath, '//*[@id="work-list"]/tbody["2"]').click
+  fill_in('court', :with => 'Banana County Court')
+  fill_in('ref_no', :with => '888')
+  click_button('continue')
+  fill_in('forenames_1', :with => 'Pablo')
+  fill_in('surname_1', :with => 'Perigas')
+  fill_in('occupation', :with => 'Clergy')
+  fill_in('add_1_line1', :with => '55 New Street')
+  fill_in('add_1_line2', :with => 'Middlebrook')
+  fill_in('add_1_line3', :with => 'Winchester')
+  fill_in('add_1_line4', :with => 'Hampshire')
+  fill_in('county_1', :with => 'Hants')
+  fill_in('postcode_1', :with => 'B34 1AA')
+  click_button('continue')
+  fill_in('forename_1', :with => 'Pablo')
+  fill_in('surname_1', :with => 'Perigas') 
+  fill_in('court_name', :with => 'Banana County Court')
+  click_button('continue')
+  fill_in('key_number', :with =>'2244095')
+  find(:xpath, "//*[@id='store']").click
+  expect(page).to have_content('Store application')
+  fill_in('store_reason', :with => 'Amazing QAs!')
+  click_button('store')
+  find(:id, "bank_stored").click
+  page.first(:xpath, '//*[@id="work-list"]/tbody["2"]/tr//td[contains(.,"Amazing QAs!")]').click
+  click_button('continue')
+  click_button('continue')
+  fill_in('forename_1', :with => 'Pablo')
+  fill_in('surname_1', :with => 'Perigas') 
+  fill_in('court_name', :with => 'Banana County Court')
+  click_button('continue')
+  fill_in('key_number', :with =>'2244095')
+  click_button('continue')
+  page.find(:id, "conf_reg_numbers").text
+  results = page.find(:id, "conf_reg_numbers").text
+  find(:id, 'bank_amend').click
+  page.first(:xpath, '//*[@id="work-list"]/tbody["2"]').click
+  today = Date.today.strftime("%d/%m/%Y")
+  fill_in('pab_ref', :with => results)
+  fill_in('pab_date', :with => today)
+  click_button('continue')
+end
+
+When(/^I can amend the newly registered application$/) do
+  fill_in('forenames_1', :with => '')
+  fill_in('forenames_1', :with => 'Frank')
+  fill_in('surname_1', :with => '')
+  fill_in('surname_1', :with => 'Mansford')
+  click_button('continue')
+  click_button('continue')
+  fill_in('key_number', :with =>'2244095')
+  click_button('continue')
+  page.find(:id, "conf_reg_numbers").text
+  results = page.find(:id, "conf_reg_numbers").text
+  find(:xpath, "//*[@id='side-nav']/li[5]/a").click
+  find(:id, 'canc').click
+  page.first(:xpath, '//*[@id="work-list"]/tbody["2"]').click
+  today = Date.today.strftime("%d/%m/%Y")
+  fill_in('reg_no', :with => results)
+  fill_in('reg_date', :with => today)
+end
+
+Then(/^I cancel the amended application$/) do
+  find(:id, 'full_cans').click
+  click_button('continue')
+  click_button('continue')
+  click_button('continue')
+  fill_in('key_number', :with =>'2244095')
+  fill_in('customer_ref', :with =>'213/REC')
+  find(:id, 'direct_debit').click
+  click_button('submit')
+end
+
+Then(/^I cannot cancel the bankruptcy application a second time$/) do
+   page.find(:id, "conf_reg_numbers").text
+  results = page.find(:id, "conf_reg_numbers").text
+  #find(:id, 'canc').click
+  page.first(:xpath, '//*[@id="work-list"]/tbody["2"]').click
+  today = Date.today.strftime("%d/%m/%Y")
+  fill_in('reg_no', :with => results)
+  fill_in('reg_date', :with => today)
+  find(:id, 'full_cans').click
+  expect(page).to have_content('Retrieve original')
+  expect(page).to have_content('Is this a full or part cancellation?')
+  click_button('continue')
+  expect(page).to have_content('Registration has been cancelled - please re-enter')
 end

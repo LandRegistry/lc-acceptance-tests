@@ -165,5 +165,13 @@ Scenario: BUS-082.4 Verify display of a stored Land Charges application
   Given I am on Land Charge Registration applicationas screen
   When I navigate to Land Charge application store page
   Then I can validate number displayed before and after a Land Charge application is stored
-
+  
+Scenario: E2E Regression: Amend and cancel a stored new Land Charge application
+  Given I am on Land Charge Registration applications screen
+  And I store a new Land Charge application
+  When I retrieve and submit the newly stored applcation
+  Then I can rectify the newly registered application
+  Then I can cancel the rectified application
+  #And I cannot cancel the Land Charge application a second time
+  #And I cannot renew the Land Charge application a second time
 

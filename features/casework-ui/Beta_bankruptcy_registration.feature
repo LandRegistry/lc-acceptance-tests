@@ -193,7 +193,12 @@ Given I am on the bankruptcy registration screen
 When I select an application type of PAB with a single image
 Then I can verify remaining forms on worklist after submitting two out of three applications
 
-
+Scenario: E2E Regression: Amend and cancel a stored new bankruptcy application
+Given I am on the bankruptcy registration screen
+And I register a newly stored bankruptcy application
+When I can amend the newly registered application
+Then I cancel the amended application
+And I cannot cancel the bankruptcy application a second time
 
 
 
