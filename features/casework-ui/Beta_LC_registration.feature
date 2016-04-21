@@ -172,6 +172,6 @@ Scenario: E2E Regression: Amend and cancel a stored new Land Charge application
   When I retrieve and submit the newly stored applcation
   Then I can rectify the newly registered application
   Then I can cancel the rectified application
-  #And I cannot cancel the Land Charge application a second time
-  #And I cannot renew the Land Charge application a second time
+  And I cannot cancel the Land Charge application a second time
+
 

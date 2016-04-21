@@ -145,4 +145,20 @@ When(/^I can cancel the rectified application$/) do
   fill_in('customer_ref', :with =>'213/REC')
   find(:id, 'direct_debit').click
   click_button('submit')
+  results = page.find(:id, "conf_reg_numbers").text
+  page.first(:xpath, '//*[@id="work-list"]/tbody["2"]').click
+  fill_in('reg_no', :with => results) 
+end
+
+When(/^I cannot cancel the Land Charge application a second time$/) do
+  today = Date.today.strftime("%d/%m/%Y")
+  fill_in('reg_date', :with => today)
+  click_button('continue')
+  expect(page).to have_content('Registration has been cancelled - please re-enter')
+end
+
+When(/^I cannot renew the Land Charge application a second time$/) do
+  today = Date.today.strftime("%d/%m/%Y")
+  fill_in('reg_date', :with => today)
+  click_button('continue')
 end
