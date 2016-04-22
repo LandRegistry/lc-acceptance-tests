@@ -648,3 +648,4 @@ Then(/^I cannot cancel the bankruptcy application a second time$/) do
   click_button('continue')
   expect(page).to have_content('Registration has been cancelled - please re-enter')
 end
+
