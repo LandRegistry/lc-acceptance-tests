@@ -164,6 +164,7 @@ When(/^I attempt to cancel the new application$/) do
   find(:id, 'full_cans').click
   click_button('continue')
   click_button('continue')
+  click_button('continue')
   fill_in('key_number', :with =>'2244095')
   fill_in('customer_ref', :with => '911')
   find(:id, 'direct_debit').click
