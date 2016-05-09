@@ -46,16 +46,16 @@ Then I can override it with new address details
 Then I can click the complete search button
 
 #EA: Test passes but fails on jenkins.  
-#Scenario: BUS-020 Certificate date stored for a bankruptcy search is in the past 
-#Given I am on the LR searches screen
-#And I click to launch Bankruptcy search and select a record
-#And I am on the bankruptcy search details screen
-#And I enter Names in all fields on Input details page
-#And I click on continue button
-#And I enter valid values in Key number field
-#And I enter fee details I can choose prepaid
-#When I can click the complete search button
-#Then I can confirm via api that certificate stored date is in the past
+Scenario: BUS-020 Certificate date stored for a bankruptcy search is in the past 
+Given I am on the LR searches screen
+And I click to launch Bankruptcy search and select a record
+And I am on the bankruptcy search details screen
+And I enter Names in all fields on Input details page
+And I click on continue button
+And I enter valid values in Key number field
+And I enter fee details I can choose prepaid
+When I can click the complete search button
+Then I can confirm via api that certificate stored date is in the past
 
 Scenario: BUS-082.5 Verify display of a stored Bankruptcy searches 
 Given I am on the LR searches screen																				
