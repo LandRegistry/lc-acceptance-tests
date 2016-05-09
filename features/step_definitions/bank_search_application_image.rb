@@ -126,6 +126,7 @@ end
 
 When(/^I enter valid values in Key number field$/) do
   fill_in('key_number', :with => '2244095')
+  sleep(5)
 end
 
 Then(/^I can override it with new address details$/) do
@@ -142,7 +143,7 @@ Then(/^I can see the expected values prepopulated in Applicant name field$/) do
 end
 
 Then(/^I can see the expected values prepopulated in Address field$/) do 
-  expect(find(:id, 'customer_address').value).to eq 'DX 8249' "\n" 'PLYMOUTH 3'
+  expect(find(:id, 'customer_address').value).to eq '8249' "\n" 'PLYMOUTH 3'
 end
 
 When(/^I enter an invalid value in Key number field$/) do
@@ -168,6 +169,7 @@ Then(/^I can confirm via api that certificate stored date is in the past$/) do
   tday = date.strftime("%Y-%m-%d")
   @reg_api  = RestAPI.new($LAND_CHARGES_URI)
   @search_result = @reg_api.get("/last_search")
+  sleep(5)
   rqst_id = @search_result['request_id']
   @srch_details = @reg_api.get("/request_details/#{rqst_id}")
   expect(@srch_details['request_id']).to eq rqst_id
