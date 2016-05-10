@@ -130,6 +130,7 @@ end
 
 Then(/^I can submit conveyancer details for the part cancellation$/) do
   fill_in('key_number', :with =>'2244095')
+  sleep(5)
   fill_in('customer_ref', :with => '911')
   find(:id, 'direct_debit').click
 end
