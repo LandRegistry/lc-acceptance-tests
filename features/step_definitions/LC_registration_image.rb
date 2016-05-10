@@ -229,7 +229,8 @@ When(/^I parse a new land charge registration for cancellation$/) do
     select 'C1', from:  "class"
     click_button "continue"
     fill_in('key_number', :with =>'2244095')
-    sleep(5)
+    sleep(10)
+    expect(find(:id, 'customer_address').value).to eq 'DX 8249' "\n" 'PLYMOUTH 3'
     fill_in('customer_ref', :with =>'2244095')
     choose "direct_debit"
     choose "dx_address"
