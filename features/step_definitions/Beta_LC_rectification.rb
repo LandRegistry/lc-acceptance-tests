@@ -116,7 +116,7 @@ When(/^the date of registration$/) do
 end
 
 When(/^I am on the view amend screen I can see infilled details$/) do
-    expect(find(:id, 'short_desc').text).to eq '1 The Lane, Some Village'
+    expect(find(:id, 'short_desc').text).to eq 'free format2werslkfxdlkf'
 end
 
 
@@ -138,6 +138,7 @@ When(/^I parse a Land Charge application details for rectification$/) do
   select 'C1', from:  "class"
   click_button "continue"
   fill_in('key_number', :with =>'2244095')
+  sleep(5)
   fill_in('customer_ref', :with =>'2244095')
   choose "direct_debit"
     choose "dx_address"
