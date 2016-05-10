@@ -27,17 +27,17 @@ Then I click continue the applicant details screen is displayed
 And I can see Applicant data input fields for the Bankruptcy search request
 
 #EA: To be run/investigated as independent test on jenkins 
-#Scenario: BUS-012 Capture details of full search request customer
-#Given I am on the LR searches screen
-#When I select an application type of Full Search the application is displayed
-#And I am on the full search details screen
-#When I enter Name in one of the fields on Input details page
-#When I enter a county the details are displayed county edit box 
-#When I click the add additional county a new county edit box is displayed where I enter the next county
-#When I click continue the applicant details screen is displayed
-#And I can capture customer details on the full search screen
-#Then I can click the complete search button
-#And I can validate customer details via the search api
+Scenario: BUS-012 Capture details of full search request customer
+Given I am on the LR searches screen
+When I select an application type of Full Search the application is displayed
+And I am on the full search details screen
+When I enter Name in one of the fields on Input details page
+When I enter a county the details are displayed county edit box 
+When I click the add additional county a new county edit box is displayed where I enter the next county
+When I click continue the applicant details screen is displayed
+And I can capture customer details on the full search screen
+Then I can click the complete search button
+And I can validate customer details via the search api
 
 Scenario: BUS-014 Return expected values associated with a key number for a Full search request
 Given I am on the LR searches screen

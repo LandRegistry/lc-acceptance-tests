@@ -26,7 +26,7 @@ end
 
 Then(/^I can capture customer details on the full search screen$/) do
   fill_in('key_number', :with =>'2244095')
-  sleep(8)
+  sleep(10)
   fill_in('customer_ref', :with => '100/102')
   choose('dx_address')
   choose('pre_paid')
