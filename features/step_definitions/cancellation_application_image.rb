@@ -154,7 +154,7 @@ When(/^I attempt to cancel the new application$/) do
   fill_in('court_name', :with => 'Northants County Court')
   click_button('continue')
   fill_in('key_number', :with =>'2244095')
-  sleep(10)
+  #sleep(10)
   click_button('continue')
   page.find(:id, "conf_reg_numbers").text
   results = page.find(:id, "conf_reg_numbers").text
@@ -165,12 +165,15 @@ When(/^I attempt to cancel the new application$/) do
   fill_in('reg_date', :with => Today)
   find(:id, 'full_cans').click
   click_button('continue')
+  #sleep(5)
   click_button('continue')
-  click_button('continue')
-  puts(results)
   sleep(10)
+  click_button('continue')
+  #sleep(20)
+  #expect(page).to have_content('Key number')
+  #expect(page).to have_content('Conveyancer')
   fill_in('key_number', :with =>'2244095')
-  sleep(10)
+  sleep(20)
   fill_in('customer_ref', :with => '911')
   find(:id, 'direct_debit').click
 end
