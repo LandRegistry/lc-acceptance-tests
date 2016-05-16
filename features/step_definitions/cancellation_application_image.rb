@@ -164,12 +164,10 @@ When(/^I attempt to cancel the new application$/) do
   fill_in('reg_date', :with => Today)
   find(:id, 'full_cans').click
   click_button('continue')
-  sleep(10)
   click_button('continue')
-  sleep(10)
   click_button('continue')
-  sleep(10)
   fill_in('key_number', :with =>'2244095')
+  sleep(10)
   fill_in('customer_ref', :with => '911')
   find(:id, 'direct_debit').click
 end
