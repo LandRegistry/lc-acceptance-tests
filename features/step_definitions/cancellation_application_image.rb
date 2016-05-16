@@ -158,18 +158,15 @@ When(/^I attempt to cancel the new application$/) do
   click_button('continue')
   page.find(:id, "conf_reg_numbers").text
   results = page.find(:id, "conf_reg_numbers").text
-  puts(results)
   visit( "#{$FRONTEND_URI}/get_list?appn=cancel" )
   find(:xpath,'//*[@id="row_1"]').click
   fill_in('reg_no', :with => results)
   Today = Date.today.strftime("%d/%m/%Y")
   fill_in('reg_date', :with => Today)
   find(:id, 'full_cans').click
-  sleep(10)
   click_button('continue')
-  sleep(10)
   click_button('continue')
-  sleep(10)
+  puts(results)
   click_button('continue')
   sleep(10)
   fill_in('key_number', :with =>'2244095')
