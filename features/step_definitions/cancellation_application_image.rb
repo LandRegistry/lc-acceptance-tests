@@ -166,8 +166,8 @@ When(/^I attempt to cancel the new application$/) do
   find(:id, 'full_cans').click
   click_button('continue')
   click_button('continue')
-  puts(results)
   click_button('continue')
+  puts(results)
   sleep(10)
   fill_in('key_number', :with =>'2244095')
   sleep(10)
