@@ -168,7 +168,7 @@ When(/^I attempt to cancel the new application$/) do
   #sleep(5)
   click_button('continue')
   sleep(10)
-  click_button('continue')
+  #click_button('continue')
   #sleep(20)
   #expect(page).to have_content('Key number')
   #expect(page).to have_content('Conveyancer')
