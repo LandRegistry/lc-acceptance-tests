@@ -154,9 +154,11 @@ When(/^I attempt to cancel the new application$/) do
   fill_in('court_name', :with => 'Northants County Court')
   click_button('continue')
   fill_in('key_number', :with =>'2244095')
+  sleep(10)
   click_button('continue')
   page.find(:id, "conf_reg_numbers").text
   results = page.find(:id, "conf_reg_numbers").text
+  puts(results)
   visit( "#{$FRONTEND_URI}/get_list?appn=cancel" )
   find(:xpath,'//*[@id="row_1"]').click
   fill_in('reg_no', :with => results)
@@ -165,7 +167,9 @@ When(/^I attempt to cancel the new application$/) do
   find(:id, 'full_cans').click
   click_button('continue')
   click_button('continue')
+  sleep(10)
   click_button('continue')
+  
   fill_in('key_number', :with =>'2244095')
   sleep(10)
   fill_in('customer_ref', :with => '911')
