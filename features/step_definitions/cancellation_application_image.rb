@@ -164,16 +164,14 @@ When(/^I attempt to cancel the new application$/) do
   Today = Date.today.strftime("%d/%m/%Y")
   fill_in('reg_date', :with => Today)
   find(:id, 'full_cans').click
-  click_button('continue')
-  #sleep(5)
-  click_button('continue')
+  click_button('continue')#first screen
+  sleep(10)
+  find(:id, 'continue').click
+  #click_button('continue')#validation screen
   sleep(10)
   #click_button('continue')
-  #sleep(20)
-  #expect(page).to have_content('Key number')
-  #expect(page).to have_content('Conveyancer')
   fill_in('key_number', :with =>'2244095')
-  sleep(20)
+  sleep(10)
   fill_in('customer_ref', :with => '911')
   find(:id, 'direct_debit').click
 end
