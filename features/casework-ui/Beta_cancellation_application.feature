@@ -58,11 +58,11 @@ And I can retrieve the application details with valid data submitted
 Then I can click button to continue
 
 #EA: Test runs successfully on wifi but fails on diti
-#Scenario: BUS-071/73.1 Confirm that a Bankruptcy application cannot be cancelled twice
-#Given I am on the bankruptcy registration screen
-#And I choose the first available WOB form
-#When I attempt to cancel the new application
-#Then I will still be on the application retrieval page
+Scenario: BUS-071/73.1 Confirm that a Bankruptcy application cannot be cancelled twice
+Given I am on the bankruptcy registration screen
+And I choose the first available WOB form
+When I attempt to cancel the new application
+Then I will still be on the application retrieval page
 
 Scenario: BUS-073/147 A part bankruptcy application cannot be cancelled 
 Given I am on the bankruptcy registration screen
