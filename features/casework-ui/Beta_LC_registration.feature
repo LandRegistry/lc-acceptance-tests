@@ -173,5 +173,29 @@ Scenario: BUS-082.4 Verify display of a stored Land Charges application
   #Then I can rectify the newly registered application
   #Then I can cancel the rectified application
   #And I cannot cancel the Land Charge application a second time
+  
+Scenario: Validate login 
+Given I am on Land Charge and Bankruptcy services login page
+Then I can login and choose an application type:
+|user    |pword   |page	   |
+|        | labour |		   |
+|cssyt2c |        |lcreg   |
+|cssyt2c | labour |bankreg |
+|cssyt2c | labour |lcreg   |
+|cssyt2c | labour |flsrch  |
+|cssyt2c | labour |bksrch  |
+|cssyt2c | labour |jiji33  |
+
+Scenario: Submit different application forms
+Given I am on Land Charge and Bankruptcy services login page
+Then I can submit multiple Bank application forms:
+|user    |pword   |page	   |crtname     |crtref|forename  |surname     |forename2|surname2|occupation |address1      |county                 |pcode |chckforename    |chcksurname|chckcrtname |keyno  |
+|cssyt2c | labour |bankreg |Mango County|  221 |Mary	  |Screwedface |Jonelle  |Joelle  |Nurse      |21 The Street |Buckinghamshire County |LA12AA|Mary            |Screwedface|Mango County|2244095|
+|cssyt2c | labour |bankreg |Jumbo County|  111 |Harry	  |Nikeman     |         |        |Farmer     |21 The Street |Derbyshire County      |DE45YD|Harry           |Nikeman    |Jumbo County|2244095|
+|cssyt2c | labour |bankreg |            |  111 |Harry	  |Nikeman     |         |        |Plumber    |21 The Street |Plymouth County        |PL45YD|Harry           |Nikeman    |Jumbo County|2244095|
+|cssyt2c | labour |lcreg   |            |      |	      |Nikeman     |         |        |Plumber    |21 The Street |Plymouth County        |PL45YD|Harry           |Nikeman    |Jumbo County|2244095|
+|cssyt2c | labour |flsrch  |            |      |     	  |Nikeman     |         |        |Plumber    |21 The Street |Plymouth County        |PL45YD|Harry           |Nikeman    |Jumbo County|2244095|
+|cssyt2c | labour |bksrch  |            |      |     	  |Nikeman     |         |        |Plumber    |21 The Street |Plymouth County        |PL45YD|Harry           |Nikeman    |Jumbo County|2244095|
+  
 
 

@@ -162,3 +162,9 @@ When(/^I cannot renew the Land Charge application a second time$/) do
   fill_in('reg_date', :with => today)
   click_button('continue')
 end
+
+When(/^I am on Land Charge and Bankruptcy services login page$/) do
+  maximise_browser
+  visit("#{$FRONTEND_URI}/login")
+end
+

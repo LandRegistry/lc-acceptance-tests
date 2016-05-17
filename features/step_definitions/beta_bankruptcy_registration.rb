@@ -649,3 +649,114 @@ Then(/^I cannot cancel the bankruptcy application a second time$/) do
   expect(page).to have_content('Registration has been cancelled - please re-enter')
 end
 
+When(/^I can login and choose an application type:$/) do |table|
+  table.hashes.each do |row|
+    fill_in('username', :with => row['user'])
+    fill_in('password', :with => row['pword'])
+    click_button 'login_button'
+    sleep(2)
+    if page.has_xpath?".//*[@id='b']/form/div[3]"
+       sleep(2)
+    puts"Oops! Invalid login details!!"
+    elsif row['page'] == 'bankreg' 
+    find(:id, 'bank_regn').click
+    expect(page).to have_content('Bankruptcy')
+    page.should have_xpath(".//*[@id='content-with-side-nav']/h1")
+    expect(page).to have_no_content('Amendment applications')
+    expect(page).to have_no_content('Stored applications')
+      click_link 'logout_link'
+    elsif row['page'] == 'lcreg' 
+    find(:id, 'lc_regn').click
+      sleep(2)
+      click_link 'logout_link'
+    elsif row['page'] == 'flsrch' 
+    find(:id, 'search_full').click
+      click_link 'logout_link'
+    elsif row['page'] == 'bksrch' 
+    find(:id, 'search_bank').click
+      sleep(2)
+      click_link 'logout_link'
+    elsif row['page'] == '' 
+      sleep(2)
+      click_link 'logout_link'
+    else
+      nil
+    end
+end
+end
+
+Then(/^I can submit multiple Bank application forms:$/) do |table|
+  table.hashes.each do |row|
+    fill_in('username', :with => row['user'])
+    fill_in('password', :with => row['pword'])
+    click_button 'login_button'
+    sleep(2)
+    if page.has_xpath?".//*[@id='b']/form/div[3]"
+       sleep(2)
+    puts"Oops! Invalid login details!!"
+    elsif row['page'] == 'bankreg' 
+    find(:id, 'bank_regn').click
+    if page.has_xpath?".//*[@id='content-with-side-nav']/h1"
+      page.first(:xpath, '//*[@id="work-list"]/tbody["2"]/tr//td[contains(.,*)]').click
+      fill_in('court', :with => row['crtname'])
+      fill_in('ref_no', :with => row['crtref'])
+      click_button 'continue'
+      fname = row['forename']
+      fill_in('forenames_1', :with => fname)
+      fill_in('surname_1', :with => row['surname'])
+      if row['forename2'] != ''
+        click_link"addname"
+        fill_in('forenames_2', :with => row['forename2'])
+        fill_in('surname_2', :with => row['surname2'])
+      else
+        nil
+      end
+      fill_in('occupation', :with => row['occupation'])
+      fill_in('add_1_line1', :with => row['address1'])
+      fill_in('county_1', :with => row['county'])
+      fill_in('postcode_1', :with => row['pcode'])
+      click_button 'continue'
+      fill_in('forename_1', :with => row['chckforename'])
+      fill_in('surname_1', :with => row['chcksurname']) 
+       if page.has_css?"#forename_2"
+          fill_in('forename_2', :with => row['forename2'])
+          fill_in('surname_2', :with => row['surname2'])
+        else
+          nil
+        end
+        if page.has_css?"#court_name"
+         fill_in('court_name', :with => row['crtname'])
+        else
+          nil
+        end
+      click_button('continue')
+      fill_in('key_number', :with =>row['keyno'])
+      click_button('continue')
+      regnumber = page.find(:id, "conf_reg_numbers").text
+      puts(regnumber)
+    end
+      click_link 'logout_link'
+    elsif row['page'] == 'lcreg' 
+    find(:id, 'lc_regn').click
+    puts("Land Charge Registrations Page")
+      click_link 'logout_link'
+    elsif row['page'] == 'flsrch' 
+    find(:id, 'search_full').click
+    puts("Full Search Applications Page")
+      click_link 'logout_link'
+    elsif row['page'] == 'bksrch' 
+    find(:id, 'search_bank').click
+    puts("Bankruptcy Search Applications Page")
+      click_link 'logout_link'
+    elsif row['page'] == '' 
+      sleep(2)
+      click_link 'logout_link'
+    else
+      nil
+  end
+end
+end
+
+
+
+
