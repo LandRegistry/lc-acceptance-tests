@@ -13,6 +13,22 @@ When(/^I have selected to view a specific Land Charges application from the appl
   end
   find(:id, "row_1").click
 end
+When(/^I log in  Land Charges application from the application list$/) do
+  maximise_browser
+  visit( "#{$FRONTEND_URI}/login" )
+  fill_in('username', :with => $LOGIN_USERID)
+  fill_in('password', :with => $LOGIN_PASSWORD)
+  find(:xpath, "//*[@id='login_button']").click
+end
+
+When(/^I select a specific Land Charges application form$/) do
+  maximise_browser
+  visit( "#{$FRONTEND_URI}/login" )
+  fill_in('username', :with => $LOGIN_USERID)
+  fill_in('password', :with => $LOGIN_PASSWORD)
+  find(:xpath, "//*[@id='login_button']").click
+  
+end
 
 When(/^viewing the application screen a dropdown list is visible for class of charge$/) do
   expect(page).to have_content('Class and subclass')
