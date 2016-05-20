@@ -629,7 +629,6 @@ When(/^I can amend the newly registered application$/) do
   today = Date.today.strftime("%d/%m/%Y")
   fill_in('reg_no', :with => results)
   fill_in('reg_date', :with => today)
-  sleep(5)
 end
 
 Then(/^I cancel the amended application$/) do
@@ -638,6 +637,7 @@ Then(/^I cancel the amended application$/) do
   click_button('continue')
   click_button('continue')
   fill_in('key_number', :with =>'2244095')
+  sleep(5)
   fill_in('customer_ref', :with =>'213/REC')
   find(:id, 'direct_debit').click
   click_button('submit')
