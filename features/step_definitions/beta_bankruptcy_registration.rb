@@ -809,6 +809,7 @@ Then(/^I can submit bankruptcy registration forms$/) do |table|
           nil
         end
       click_button('continue')
+      sleep(5)
       fill_in('key_number', :with =>row['keyno'])
       sleep(5)
       click_button('continue')
