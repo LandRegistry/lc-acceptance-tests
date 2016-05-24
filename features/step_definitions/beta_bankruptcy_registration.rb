@@ -809,9 +809,8 @@ Then(/^I can submit bankruptcy registration forms$/) do |table|
           nil
         end
       click_button('continue')
-      sleep(5)
       fill_in('key_number', :with =>row['keyno'])
-      sleep(5)
+      sleep(10)
       click_button('continue')
       regnumber = page.find(:id, "conf_reg_numbers").text
       puts(regnumber)
