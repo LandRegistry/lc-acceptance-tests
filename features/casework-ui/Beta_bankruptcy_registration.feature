@@ -222,13 +222,13 @@ And I click on the login button
 When I navigate to bankruptcy registration worklist
 And I choose the first available application form
 Then I can submit bankruptcy registration forms
-|crtname     |crtref|forename |surname     |forename2|surname2|occupation |address1      |county                 |pcode |chckforename    |chcksurname|chckcrtname |keyno  |
-|Mango County|  221 |Mary	  |Screwedface |Jonelle  |Joelle  |Nurse      |21 The Street |Buckinghamshire County |LA12AA|Mary            |Screwedface|Mango County|2244095|
-|Jumbo County|  111 |Harry	  |Nikeman     |         |        |Farmer     |21 The Street |Derbyshire County      |DE45YD|Harry           |Nikeman    |Jumbo County|2244095|
-|            |  111 |Harry	  |Nikeman     |         |        |Plumber    |21 The Street |Plymouth County        |PL45YD|Harry           |Nikeman    |Jumbo County|2244095|
-|Mickey Mouse|      |Penny    |Bruce       |         |        |Plumber    |21 The Street |Plymouth County        |PL45YD|Harry           |Nikeman    |Jumbo County|2244095|
-|            |      |     	  |Nikeman     |         |        |Plumber    |21 The Street |Plymouth County        |PL45YD|Harry           |Nikeman    |Jumbo County|2244095|
-|Derby County|  221 |Nancy 	  |Nikeman     |         |        |Plumber    |21 The Street |Plymouth County        |PL45YD|Nancy 	         |Nikeman    |Jumbo County|2244095|
+|crtname     |crtref|forename |surname     |forename2|surname2|occupation |address1      |county                 |pcode |chckforename    |chcksurname|chckcrtname    |keyno  |
+|Mango County|  221 |Mary	  |Screwedface |Jonelle  |Joelle  |Nurse      |21 The Street |Buckinghamshire County |LA12AA|Mary            |Screwedface|Mango County   |2244095|
+|Jumbo County|  111 |Harry	  |Nikeman     |         |        |Farmer     |21 The Street |Derbyshire County      |DE45YD|Harry           |Nikeman    |Jumbo County   |2244095|
+|            |  111 |Harry	  |Nikeman     |         |        |Plumber    |21 The Street |Plymouth County        |PL45YD|Harry           |Nikeman    |Jumbo County   |2244095|
+|Mickey Mouse|      |Penny    |Bruce       |         |        |Plumber    |21 The Street |Plymouth County        |PL45YD|Harry           |Nikeman    |Jumbo County   |2244095|
+|            |      |     	  |Nikeman     |         |        |Plumber    |21 The Street |Plymouth County        |PL45YD|Harry           |Nikeman    |Jumbo County   |2244095|
+
   
 Scenario: Correction of Bankruptcy registration
 Given I am on the bankruptcy registration screen
