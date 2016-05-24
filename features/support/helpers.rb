@@ -70,7 +70,7 @@ def click_to_continue
 end
 
 def submit_data
-  click_button "submit"
+  click_button "complete"
 end
 
 def enter_particulars_of_dwelling

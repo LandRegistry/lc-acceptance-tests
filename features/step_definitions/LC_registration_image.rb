@@ -250,7 +250,7 @@ When(/^I parse a new land charge registration for cancellation$/) do
     fill_in('customer_ref', :with =>'2244095')
     choose "direct_debit"
     choose "dx_address"
-    click_button "submit"
+    click_button "complete"
     results = page.find(:id, "conf_reg_numbers").text
     visit( "#{$FRONTEND_URI}/get_list?appn=cancel" )
     find(:xpath,'//*[@id="row_1"]').click
@@ -344,7 +344,7 @@ Then(/^I can proceed and process fees$/) do
   fill_in 'customer_ref', :with => '100/102'
   choose 'dx_address'
   choose 'pre_paid'
-  click_button 'submit'
+  click_button 'complete'
 end
 
  When(/^I can choose (.+) estate owner type and verify the details$/) do |name_type|
@@ -479,7 +479,7 @@ click_button 'continue'
   fill_in 'customer_ref', :with => '100/102'
   choose 'dx_address'
   choose 'pre_paid'
-  click_button 'submit'
+  click_button 'complete'
   page.find(:id, "conf_reg_numbers").text
   results = page.find(:id, "conf_reg_numbers").text
   find(:xpath, "//*[@id='side-nav']/li[7]/a").click 
@@ -494,7 +494,7 @@ Then(/^I can proceed to verification1 page$/) do
   fill_in 'customer_ref', :with => '100/102'
   choose 'dx_address'
   choose 'pre_paid'
-  click_button 'submit'
+  click_button 'complete'
   page.find(:id, "conf_reg_numbers").text
   results = page.find(:id, "conf_reg_numbers").text
   find(:xpath, "//*[@id='side-nav']/li[7]/a").click 

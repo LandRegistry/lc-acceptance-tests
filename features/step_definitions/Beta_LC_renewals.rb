@@ -35,7 +35,7 @@ When(/^I parse a Land Charge application details for renewal$/) do
   fill_in('customer_ref', :with =>'2244095')
   choose "direct_debit"
     choose "dx_address"
-  click_button "submit"
+  click_button "complete"
     
   results = page.find(:id, "conf_reg_numbers").text
   visit("#{$FRONTEND_URI}/get_list?appn=lc_renewal")

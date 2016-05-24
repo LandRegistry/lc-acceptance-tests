@@ -640,7 +640,7 @@ Then(/^I cancel the amended application$/) do
   sleep(5)
   fill_in('customer_ref', :with =>'213/REC')
   find(:id, 'direct_debit').click
-  click_button('submit')
+  click_button('complete')
 end
 
 Then(/^I cannot cancel the bankruptcy application a second time$/) do
