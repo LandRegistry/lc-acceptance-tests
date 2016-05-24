@@ -161,7 +161,7 @@ Then(/^I can see NO values prepopulated in Address field$/) do
 end
 
 Then(/^I can click the complete search button$/) do
-  click_button('submit')
+  click_button('complete')
 end
 
 Then(/^I can confirm via api that certificate stored date is in the past$/) do
