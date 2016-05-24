@@ -250,7 +250,7 @@ When(/^I parse a new land charge registration for cancellation$/) do
     fill_in('customer_ref', :with =>'2244095')
     choose "direct_debit"
     choose "dx_address"
-    click_button "complete"
+    click_button "submit"
     results = page.find(:id, "conf_reg_numbers").text
     visit( "#{$FRONTEND_URI}/get_list?appn=cancel" )
     find(:xpath,'//*[@id="row_1"]').click
@@ -344,7 +344,7 @@ Then(/^I can proceed and process fees$/) do
   fill_in 'customer_ref', :with => '100/102'
   choose 'dx_address'
   choose 'pre_paid'
-  click_button 'complete'
+  click_button 'submit'
 end
 
  When(/^I can choose (.+) estate owner type and verify the details$/) do |name_type|
@@ -479,7 +479,7 @@ click_button 'continue'
   fill_in 'customer_ref', :with => '100/102'
   choose 'dx_address'
   choose 'pre_paid'
-  click_button 'complete'
+  click_button 'submit'
   page.find(:id, "conf_reg_numbers").text
   results = page.find(:id, "conf_reg_numbers").text
   find(:xpath, "//*[@id='side-nav']/li[7]/a").click 
@@ -488,20 +488,6 @@ click_button 'continue'
   submit_new_reg
   end
   
-Then(/^I can proceed to verification1 page$/) do
-  click_button 'continue'
-  fill_in 'key_number', :with =>'2244095'
-  fill_in 'customer_ref', :with => '100/102'
-  choose 'dx_address'
-  choose 'pre_paid'
-  click_button 'complete'
-  page.find(:id, "conf_reg_numbers").text
-  results = page.find(:id, "conf_reg_numbers").text
-  find(:xpath, "//*[@id='side-nav']/li[7]/a").click 
-  find(:xpath, "//*[@id='content']/div[3]/div[3]/a/p").click
-  fill_in('reg_no', :with => results)
-end
-
 When(/^I amend the LC application form$/) do 
 change_estate_owner_to_county_council
 click_to_continue
@@ -509,6 +495,7 @@ end
 
 When(/^I can choose to print centrally$/) do 
 select_needK22_yes
+expect(page).to have_button('complete', :disabled => true)
 select_print_centrally
 complete_correction
 expect(page).to have_content("Your application has successfully corrected.")

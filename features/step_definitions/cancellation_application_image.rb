@@ -177,7 +177,7 @@ When(/^I attempt to cancel the new application$/) do
 end
 
 Then(/^I attempt to cancel the application a second time$/) do
-  click_button('complete')
+  click_button('submit')
   page.find(:id, "conf_reg_numbers").text
   results = page.find(:id, "conf_reg_numbers").text
   visit( "#{$FRONTEND_URI}/get_list?appn=cancel" )
