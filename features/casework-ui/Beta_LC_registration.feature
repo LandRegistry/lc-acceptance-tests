@@ -162,7 +162,7 @@ Scenario: Submit LC Registration with Other Councils: Metropolitan Borough Counc
 #Scenario: Submit LC Registration with Other Councils: Town Councils
 
 Scenario: BUS-082.4 Verify display of a stored Land Charges application 
-  Given I am on Land Charge Registration applicationas screen
+  Given I am on Land Charge Registration applications screen
   When I navigate to Land Charge application store page
   Then I can validate number displayed before and after a Land Charge application is stored
   
@@ -173,5 +173,22 @@ Scenario: BUS-082.4 Verify display of a stored Land Charges application
   #Then I can rectify the newly registered application
   #Then I can cancel the rectified application
   #And I cannot cancel the Land Charge application a second time
+  
+Scenario: Validate login 
+Given I am on Land Charge and Bankruptcy services login page
+Then I can login and choose an application type:
+|user    |pword   |page	   |
+|        | labour |		   |
+|cssyt2c |        |lcreg   |
+|cssyt2c | labour |bankreg |
+|cssyt2c | labour |lcreg   |
+|cssyt2c | labour |flsrch  |
+|cssyt2c | labour |bksrch  |
+|cssyt2c | labour |jiji33  |
+
+
+
+
+
 
 
