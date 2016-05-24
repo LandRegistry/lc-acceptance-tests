@@ -230,6 +230,13 @@ Then I can submit bankruptcy registration forms
 |            |      |     	  |Nikeman     |         |        |Plumber    |21 The Street |Plymouth County        |PL45YD|Harry           |Nikeman    |Jumbo County|2244095|
 |Derby County|  221 |Nancy 	  |Nikeman     |         |        |Plumber    |21 The Street |Plymouth County        |PL45YD|Nancy 	         |Nikeman    |Jumbo County|2244095|
   
-Scenario: E2E Regression: Amend and cancel a stored new bankruptcy application
+Scenario: Correction of Bankruptcy registration
 Given I am on the bankruptcy registration screen
+And I navigate to bankruptcy registration worklist
+And I choose the first available application form
+When I register a new bankruptcy application
+And I can validate registration details for correction
+And I can amend debtor details
+Then I can proceed to bankruptcy verification page
+And I can submit corrections
 

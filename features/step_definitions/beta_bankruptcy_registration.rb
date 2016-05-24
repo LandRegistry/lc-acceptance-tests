@@ -820,3 +820,30 @@ Then(/^I can submit bankruptcy registration forms$/) do |table|
   end 
 end
 end
+
+When(/^I register a new bankruptcy application$/) do
+  bank_reg_details
+  fill_in('key_number', :with =>'2244095')
+  click_button('continue')
+  @results = page.find(:id, "conf_reg_numbers").text
+  navigate_to_homepage
+  launch_correction_pge
+  fill_in('reg_no', :with => @results)
+end
+
+ When(/^I can validate registration details for correction$/) do
+   submit_new_reg
+ end
+ 
+  Then(/^I can amend debtor details$/) do
+  amend_add_debtor
+ end
+ 
+  Then(/^I can proceed to bankruptcy verification page$/) do
+  goto_bank_verification_page
+  end
+  
+  Then(/^I can submit corrections$/) do
+  complete_correction
+  expect(page).to have_content("Your application has successfully corrected.")
+  end

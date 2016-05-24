@@ -84,7 +84,6 @@ When(/^I access the application screen the county Unitary Authority dropdown box
     fill_in('county_0', :with => "Portsmouth")
     find(:id, 'addcounty').click
     fill_in('county_1', :with => 'Poole')   
-    
   else
     nil
   end
@@ -471,5 +470,60 @@ Then(/^I can submit entries for a (.*)$/) do |form_type|
     fill_in 'fullname', :with => la
     fill_in 'area', :with => laa
   end
- 
+end
+
+Then(/^I can submit the LC application$/) do
+verify_classes
+click_button 'continue'
+ fill_in 'key_number', :with =>'2244095'
+  fill_in 'customer_ref', :with => '100/102'
+  choose 'dx_address'
+  choose 'pre_paid'
+  click_button 'submit'
+  page.find(:id, "conf_reg_numbers").text
+  results = page.find(:id, "conf_reg_numbers").text
+  find(:xpath, "//*[@id='side-nav']/li[7]/a").click 
+  find(:xpath, "//*[@id='content']/div[3]/div[3]/a/p").click
+  fill_in('reg_no', :with => results)
+  submit_new_reg
+  end
+  
+Then(/^I can proceed to verification1 page$/) do
+  click_button 'continue'
+  fill_in 'key_number', :with =>'2244095'
+  fill_in 'customer_ref', :with => '100/102'
+  choose 'dx_address'
+  choose 'pre_paid'
+  click_button 'submit'
+  page.find(:id, "conf_reg_numbers").text
+  results = page.find(:id, "conf_reg_numbers").text
+  find(:xpath, "//*[@id='side-nav']/li[7]/a").click 
+  find(:xpath, "//*[@id='content']/div[3]/div[3]/a/p").click
+  fill_in('reg_no', :with => results)
+end
+
+When(/^I amend the LC application form$/) do 
+change_estate_owner_to_county_council
+click_to_continue
+end
+
+When(/^I can choose to print centrally$/) do 
+select_needK22_yes
+select_print_centrally
+complete_correction
+expect(page).to have_content("Your application has successfully corrected.")
+end
+
+When(/^I can choose to print locally$/) do 
+select_needK22_yes
+select_print_locally
+complete_correction
+expect(page).to have_content("Your application has successfully corrected.")
+end
+
+When(/^I can opt not to print K22$/) do 
+select_needK22_no
+page.should have_no_content("Where should the K22 be printed?")
+complete_correction
+expect(page).to have_content("Your application has successfully corrected.")
 end
