@@ -146,10 +146,10 @@ When(/^I parse a Land Charge application details for rectification$/) do
     
   results = page.find(:id, "conf_reg_numbers").text
   visit("#{$FRONTEND_URI}/get_list?appn=lc_rect")
-  within(:xpath, ".//*[@id='row_1']/td[2]") do
-  page.should have_content('K9')
+  within(:id, "work-list") do
+    page.first(:xpath, '//*[@id="work-list"]/tbody["2"]/tr//td[contains(.,"K9")]').click
   end
-  find(:id, "row_1").click
+  #find(:id, "row_1").click
   today = Date.today.strftime("%d/%m/%Y")
   fill_in('reg_date', :with => today)
   fill_in('reg_no', :with => results)

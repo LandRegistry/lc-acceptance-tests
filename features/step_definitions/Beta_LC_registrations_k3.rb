@@ -25,6 +25,7 @@ Given(/^I am on Land Charge Registration applications screen$/) do
   fill_in('password', :with => $LOGIN_PASSWORD)
   click_button('login_button')
   find(:id, 'lc_regn').click
+  sleep(15)
 end
 
 When(/^I choose the first available form$/) do

@@ -6,13 +6,15 @@ When(/^I have selected to view a specific Land Charges application from the appl
   find(:xpath, "//*[@id='login_button']").click
   
   visit( "#{$FRONTEND_URI}/get_list?appn=lc_regn" )
-  within(:xpath, ".//*[@id='row_1']/td[2]") do
-  page.should have_content('K1')
+  within(:id, "work-list") do
+    page.first(:xpath, '//*[@id="work-list"]/tbody["2"]/tr//td[contains(.,"K1")]').click
+  end
+  #page.should have_content('K1')
   @formtype = 'K1'
   puts(@formtype)
   end
-  find(:id, "row_1").click
-end
+  
+#end
 When(/^I log in  Land Charges application from the application list$/) do
   maximise_browser
   visit( "#{$FRONTEND_URI}/login" )
@@ -321,6 +323,7 @@ if @formtype == 'K1'
     nil
   end 
   fill_in('pri_notice',:with =>'LCR/234')
+  fill_in('county_0',:with => 'Devon')
   fill_in('District',:with => 'Devon')
   fill_in('short_desc', :with =>'free format2werslkfxdlkf')
 end
