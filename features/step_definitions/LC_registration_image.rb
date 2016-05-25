@@ -483,8 +483,7 @@ click_button 'continue'
   #if conveyancer section still exists, enter customer ref and submit again
   if page.has_css?"#lc_customer"
     fill_in 'customer_ref', :with => '100/102'
-    sleep(10)
-    find(:id, "submit").click
+    find(:id, "complete").click
   end
   page.find(:id, "conf_reg_numbers").text
   results = page.find(:id, "conf_reg_numbers").text
