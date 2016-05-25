@@ -61,16 +61,16 @@ def launch_correction_pge
   find(:xpath, ".//*[@id='content']/div[2]/div[5]/div[4]/div/ul/li/a").click
 end
 
-def complete_correction
-  click_button "complete"
+def complete_transaction
+  find(:id, "complete").click
 end
 
 def click_to_continue
-  click_button "continue"
+  find(:id, "continue").click
 end
 
 def submit_data
-  click_button "complete"
+  find(:id, "submit").click
 end
 
 def enter_particulars_of_dwelling

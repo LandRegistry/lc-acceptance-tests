@@ -843,6 +843,6 @@ end
   end
   
   Then(/^I can submit corrections$/) do
-  complete_correction
+  complete_transaction
   expect(page).to have_content("Your application has successfully corrected.")
   end

@@ -476,10 +476,16 @@ Then(/^I can submit the LC application$/) do
 verify_classes
 click_button 'continue'
  fill_in 'key_number', :with =>'2244095'
-  fill_in 'customer_ref', :with => '100/102'
   choose 'dx_address'
   choose 'pre_paid'
+  sleep(10)
   find(:id, "submit").click
+  #if conveyancer section still exists, enter customer ref and submit again
+  if page.has_css?"#lc_customer"
+    fill_in 'customer_ref', :with => '100/102'
+    sleep(10)
+    find(:id, "submit").click
+  end
   page.find(:id, "conf_reg_numbers").text
   results = page.find(:id, "conf_reg_numbers").text
   find(:xpath, "//*[@id='side-nav']/li[7]/a").click 
@@ -497,20 +503,20 @@ When(/^I can choose to print centrally$/) do
 select_needK22_yes
 expect(page).to have_button('complete', :disabled => true)
 select_print_centrally
-complete_correction
+complete_transaction
 expect(page).to have_content("Your application has successfully corrected.")
 end
 
 When(/^I can choose to print locally$/) do 
 select_needK22_yes
 select_print_locally
-complete_correction
+complete_transaction
 expect(page).to have_content("Your application has successfully corrected.")
 end
 
 When(/^I can opt not to print K22$/) do 
 select_needK22_no
 page.should have_no_content("Where should the K22 be printed?")
-complete_correction
+complete_transaction
 expect(page).to have_content("Your application has successfully corrected.")
 end
