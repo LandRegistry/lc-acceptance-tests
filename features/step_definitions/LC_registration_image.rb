@@ -479,7 +479,7 @@ click_button 'continue'
   fill_in 'customer_ref', :with => '100/102'
   choose 'dx_address'
   choose 'pre_paid'
-  click_button 'submit'
+  find(:id, "submit").click
   page.find(:id, "conf_reg_numbers").text
   results = page.find(:id, "conf_reg_numbers").text
   find(:xpath, "//*[@id='side-nav']/li[7]/a").click 
