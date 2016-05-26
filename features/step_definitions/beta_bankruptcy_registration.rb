@@ -95,6 +95,7 @@ When(/^I enter the address the details are visible$/) do
   fill_in('add_1_line4', :with => 'Hampshire')
   fill_in('county_1', :with => 'Hants')
   fill_in('postcode_1', :with => 'SO14 1AA')
+  find_link("reject").visible?
 end
 
 When(/^I click to add additional address new fields are visible$/) do
@@ -291,7 +292,7 @@ When(/^I re-register with the previous registration details$/) do
   find(:id, "row_1").click
   fill_in('court', :with => 'Banana County Court')
   fill_in('ref_no', :with => '888')
-  find_link("reject").visible?
+  find_link("reject_2").visible?
   click_button('continue')
 end
 

@@ -68,6 +68,7 @@ end
 
 When(/^I set the address type to DX$/) do
     choose('dx_address') 
+    find_link("reject").visible?
 end
 
 When(/^I enter a county the details are displayed county edit box$/) do
