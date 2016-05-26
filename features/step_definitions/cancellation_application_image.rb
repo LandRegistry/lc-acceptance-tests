@@ -180,6 +180,7 @@ Then(/^I attempt to cancel the application a second time$/) do
   click_button('complete')
   page.find(:id, "conf_reg_numbers").text
   results = page.find(:id, "conf_reg_numbers").text
+  sleep(20)
   visit( "#{$FRONTEND_URI}/get_list?appn=cancel" )
   find(:xpath,'//*[@id="row_1"]').click
   fill_in('reg_no', :with => results)

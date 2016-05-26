@@ -47,9 +47,6 @@ def bank_reg_details()
   click_button('continue')
 end
 
-
-
-
 ####################
 #COMMON METHODS
 ####################
@@ -116,6 +113,7 @@ end
 def select_needK22_no
   choose "K22_no"
 end
+
 def select_print_centrally
   choose "central"
 end

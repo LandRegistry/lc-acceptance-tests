@@ -291,6 +291,7 @@ When(/^I re-register with the previous registration details$/) do
   find(:id, "row_1").click
   fill_in('court', :with => 'Banana County Court')
   fill_in('ref_no', :with => '888')
+  find_link("reject").visible?
   click_button('continue')
 end
 
@@ -329,6 +330,7 @@ When(/^I can submit debtor details$/) do
   fill_in('add_1_line4', :with => 'Hampshire')
   fill_in('county_1', :with => 'Hants')
   fill_in('postcode_1', :with => 'B34 1AA')
+  find_link("reject").visible?
   click_button('continue')
 end
 
@@ -338,6 +340,7 @@ When(/^I can re-key debtor details$/) do
   fill_in('forename_2', :with => 'Randy')
   fill_in('surname_2', :with => 'Moore')
   fill_in('court_name', :with => 'County Court of Portsmouth')
+  find_link("reject").visible?
 end
 
 When(/^I can submit a new particulars of details$/) do
@@ -353,6 +356,7 @@ When(/^I can submit a new particulars of details$/) do
   fill_in('add_1_line4', :with => 'Hampshire')
   fill_in('county_1', :with => 'Hants')
   fill_in('postcode_1', :with => 'B34 1AA')
+  find_link("reject").visible?
   click_button('continue')
 end
 
@@ -362,6 +366,7 @@ When(/^I can re-key and submit debtor details$/) do
   fill_in('forename_2', :with => 'Randy')
   fill_in('surname_2', :with => 'Moore') 
   fill_in('court_name', :with => 'Banana County Court')
+  find_link("reject").visible?
   click_button('continue')
   fill_in('key_number', :with =>'2244095')
   click_button('continue')
@@ -543,10 +548,12 @@ Then(/^I can verify remaining forms on worklist after submitting two out of thre
   fill_in('add_1_line4', :with => 'Hampshire')
   fill_in('county_1', :with => 'Hants')
   fill_in('postcode_1', :with => 'SO14 1AA')
+  find_link("reject").visible?
   click_button('continue')
   fill_in('forename_1', :with => 'Frank')
   fill_in('surname_1', :with => 'Bruno') 
   fill_in('court_name', :with => 'Plantain Chips County')
+  find_link("reject").visible?
   click_button('continue') 
   fill_in('key_number', :with =>'2244095')
   click_button('continue')

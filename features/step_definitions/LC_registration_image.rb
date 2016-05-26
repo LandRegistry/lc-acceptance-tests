@@ -4,17 +4,18 @@ When(/^I have selected to view a specific Land Charges application from the appl
   fill_in('username', :with => $LOGIN_USERID)
   fill_in('password', :with => $LOGIN_PASSWORD)
   find(:xpath, "//*[@id='login_button']").click
-  
-  visit( "#{$FRONTEND_URI}/get_list?appn=lc_regn" )
+  find(:id, 'lc_regn').click
   within(:id, "work-list") do
+    if page.has_content?"K1"
     page.first(:xpath, '//*[@id="work-list"]/tbody["2"]/tr//td[contains(.,"K1")]').click
+    else
+      nil
+    end
   end
-  #page.should have_content('K1')
   @formtype = 'K1'
   puts(@formtype)
   end
   
-#end
 When(/^I log in  Land Charges application from the application list$/) do
   maximise_browser
   visit( "#{$FRONTEND_URI}/login" )
@@ -326,6 +327,7 @@ if @formtype == 'K1'
   fill_in('county_0',:with => 'Devon')
   fill_in('District',:with => 'Devon')
   fill_in('short_desc', :with =>'free format2werslkfxdlkf')
+  find_link("reject").visible?
 end
 
 Then(/^I can proceed and process fees$/) do
@@ -342,11 +344,13 @@ Then(/^I can proceed and process fees$/) do
   else
     nil
   end 
+  find_link("reject").visible?
   click_button 'continue'
   fill_in 'key_number', :with =>'2244095'
   fill_in 'customer_ref', :with => '100/102'
   choose 'dx_address'
   choose 'pre_paid'
+  find_link("reject").visible?
   click_button 'complete'
 end
 
@@ -505,6 +509,7 @@ When(/^I can choose to print centrally$/) do
 select_needK22_yes
 expect(page).to have_button('complete', :disabled => true)
 select_print_centrally
+find_link("reject").visible?
 complete_transaction
 expect(page).to have_content("Your application has successfully corrected.")
 end
@@ -512,6 +517,7 @@ end
 When(/^I can choose to print locally$/) do 
 select_needK22_yes
 select_print_locally
+find_link("reject").visible?
 complete_transaction
 expect(page).to have_content("Your application has successfully corrected.")
 end
@@ -519,6 +525,7 @@ end
 When(/^I can opt not to print K22$/) do 
 select_needK22_no
 page.should have_no_content("Where should the K22 be printed?")
+find_link("reject").visible?
 complete_transaction
 expect(page).to have_content("Your application has successfully corrected.")
 end

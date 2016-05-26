@@ -99,7 +99,7 @@ When(/^I select the Wrong form link$/) do
   click_link 'Choose the correct form type'
   end
 end
-
+##Redundant code = 102 - 116
 When(/^I choose PAB registration form type$/) do
  choose('pab_regn')
 end
