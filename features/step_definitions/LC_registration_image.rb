@@ -351,6 +351,8 @@ Then(/^I can proceed and process fees$/) do
   choose 'dx_address'
   choose 'pre_paid'
   find_link("reject").visible?
+  click_link 'reject'
+  click_button 'cancel-reject'
   click_button 'complete'
 end
 
@@ -477,6 +479,9 @@ Then(/^I can submit entries for a (.*)$/) do |form_type|
     fill_in 'fullname', :with => la
     fill_in 'area', :with => laa
   end
+  find_link('reject').visible?
+  click_link 'reject'
+  click_button 'cancel-reject'
 end
 
 Then(/^I can submit the LC application$/) do

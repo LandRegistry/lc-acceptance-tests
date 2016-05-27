@@ -6,7 +6,6 @@ As a land charges caserworker
 I want to be able to retrieve the original registration data for land charges during rectification
 So that I can view the details of the original application
 
-#EA: Test passes on macbook and manually in diti environment and only dails on jenkins
 Scenario: BUS-090 BUS-092 BUS-125 view and submit a rectification 
 Given I have selected to view a specific Land Charges application from the application list
 And I submit input details for land charge registration

@@ -45,10 +45,16 @@ Then(/^I can validate number displayed before and after a Land Charge applicatio
   fill_in('forename', :with => 'Joyce')
   fill_in('Surname', :with => 'Mayer')
   fill_in('occupation',:with => 'preacher')
+  find_link('reject').visible?
+  click_link 'reject'
+  click_button 'cancel-reject'
   click_button "continue"
   fill_in('forename', :with => 'Joyce')
     fill_in('Surname', :with => 'Mayer')
     select 'C1', from:  "class"
+  find_link('reject').visible?
+  click_link 'reject'
+  click_button 'cancel-reject'
     click_button "continue"
     fill_in('key_number', :with =>'2244095')
     find(:xpath, "//*[@id='store']").click

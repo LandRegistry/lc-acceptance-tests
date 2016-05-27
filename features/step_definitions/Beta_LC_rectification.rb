@@ -142,6 +142,9 @@ When(/^I parse a Land Charge application details for rectification$/) do
   fill_in('customer_ref', :with =>'2244095')
   choose "direct_debit"
     choose "dx_address"
+    find_link('reject').visible?
+  click_link 'reject'
+  click_button 'cancel-reject'
   find(:id, "complete").click
     
   results = page.find(:id, "conf_reg_numbers").text

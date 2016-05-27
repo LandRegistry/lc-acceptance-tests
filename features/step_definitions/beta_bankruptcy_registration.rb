@@ -625,9 +625,15 @@ When(/^I can amend the newly registered application$/) do
   fill_in('forenames_1', :with => 'Frank')
   fill_in('surname_1', :with => '')
   fill_in('surname_1', :with => 'Mansford')
+  find_link('reject').visible?
+  click_link 'reject'
+  click_button 'cancel-reject'
   click_button('continue')
   click_button('continue')
   fill_in('key_number', :with =>'2244095')
+  find_link('reject').visible?
+  click_link 'reject'
+  click_button 'cancel-reject'
   click_button('continue')
   page.find(:id, "conf_reg_numbers").text
   results = page.find(:id, "conf_reg_numbers").text
