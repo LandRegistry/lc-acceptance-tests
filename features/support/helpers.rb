@@ -77,7 +77,17 @@ def enter_particulars_of_dwelling
   fill_in('short_desc', :with =>'free format2werslkfxdlkf')
 end
 
+def reject_application
+  find_link('reject').visible?
+  click_link 'reject'
+  click_button 'cancel-reject'
+end
 
+def accept_application
+  find_link('reject').visible?
+  click_link 'reject'
+  click_button 'accept-reject'
+end
 
 
 #####################

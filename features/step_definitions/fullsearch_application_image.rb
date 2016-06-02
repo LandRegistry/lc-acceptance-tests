@@ -60,9 +60,7 @@ end
 When(/^I enter fee details I can choose prepaid$/) do
   expect(page).to have_content('Fees')
   choose('pre_paid')
-  find_link('reject').visible?
-  click_link 'reject'
-  click_button 'cancel-reject'
+  reject_application
 end
 
 When(/^I change it to choose direct debit$/) do
