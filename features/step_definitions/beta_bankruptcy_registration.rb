@@ -228,12 +228,7 @@ When(/^I register the application$/) do
   fill_in('forenames_1', :with => 'Pablo')
   fill_in('surname_1', :with => 'Perigas')
   fill_in('occupation', :with => 'Dancer')
-  fill_in('add_1_line1', :with => '55 New Street')
-  fill_in('add_1_line2', :with => 'Middlebrook')
-  fill_in('add_1_line3', :with => 'Winchester')
-  fill_in('add_1_line4', :with => 'Hampshire')
-  fill_in('county_1', :with => 'Hants')
-  fill_in('postcode_1', :with => 'HG2 1AA')
+  enter_bank_address_details
   click_button('continue')
   fill_in('forename_1', :with => 'Pablo')
   fill_in('surname_1', :with => 'Perigas') 
@@ -247,12 +242,7 @@ When(/^I register a PAB application without court name$/) do
   fill_in('forenames_1', :with => 'Pablo')
   fill_in('surname_1', :with => 'Perigas')
   fill_in('occupation', :with => 'Dancer')
-  fill_in('add_1_line1', :with => '55 New Street')
-  fill_in('add_1_line2', :with => 'Middlebrook')
-  fill_in('add_1_line3', :with => 'Winchester')
-  fill_in('add_1_line4', :with => 'Hampshire')
-  fill_in('county_1', :with => 'Hants')
-  fill_in('postcode_1', :with => 'HG2 1AA')
+  enter_bank_address_details
   click_button('continue')
   fill_in('forename_1', :with => 'Pablo')
   fill_in('surname_1', :with => 'Perigas') 
@@ -270,12 +260,7 @@ When(/^I register a PAB application with AKA$/) do
   fill_in('forenames_2', :with => 'Benny')
   fill_in('surname_2', :with => 'Hinn')
   fill_in('occupation', :with => 'Clergy')
-  fill_in('add_1_line1', :with => '55 New Street')
-  fill_in('add_1_line2', :with => 'Middlebrook')
-  fill_in('add_1_line3', :with => 'Winchester')
-  fill_in('add_1_line4', :with => 'Hampshire')
-  fill_in('county_1', :with => 'Hants')
-  fill_in('postcode_1', :with => 'B34 1AA')
+  enter_bank_address_details
   click_button('continue')
   fill_in('forename_1', :with => 'Pablo')
   fill_in('surname_1', :with => 'Perigas') 
@@ -325,12 +310,7 @@ When(/^I can submit debtor details$/) do
   fill_in('forenames_2', :with => 'Randy')
   fill_in('surname_2', :with => 'Moore')
   fill_in('occupation', :with => 'Clergy')
-  fill_in('add_1_line1', :with => '55 New Street')
-  fill_in('add_1_line2', :with => 'Middlebrook')
-  fill_in('add_1_line3', :with => 'Winchester')
-  fill_in('add_1_line4', :with => 'Hampshire')
-  fill_in('county_1', :with => 'Hants')
-  fill_in('postcode_1', :with => 'B34 1AA')
+  enter_bank_address_details
   find_link("reject").visible?
   click_button('continue')
 end
@@ -351,12 +331,7 @@ When(/^I can submit a new particulars of details$/) do
   fill_in('forenames_2', :with => 'Randy')
   fill_in('surname_2', :with => 'Moore')
   fill_in('occupation', :with => 'Clergy')
-  fill_in('add_1_line1', :with => '55 New Street')
-  fill_in('add_1_line2', :with => 'Middlebrook')
-  fill_in('add_1_line3', :with => 'Winchester')
-  fill_in('add_1_line4', :with => 'Hampshire')
-  fill_in('county_1', :with => 'Hants')
-  fill_in('postcode_1', :with => 'B34 1AA')
+  enter_bank_address_details
   find_link("reject").visible?
   click_button('continue')
 end
@@ -418,13 +393,8 @@ Then(/^I can validate number displayed before and after an application is stored
   fill_in('forenames_2', :with => 'Benny')
   fill_in('surname_2', :with => 'Hinn')
   fill_in('occupation', :with => 'Clergy')
-  fill_in('add_1_line1', :with => '55 New Street')
-  fill_in('add_1_line2', :with => 'Middlebrook')
-  fill_in('add_1_line3', :with => 'Winchester')
-  fill_in('add_1_line4', :with => 'Hampshire')
-  fill_in('county_1', :with => 'Hants')
-  fill_in('postcode_1', :with => 'B34 1AA')
-  click_button('continue')
+  enter_bank_address_details
+  click_to_continue
   fill_in('forename_1', :with => 'Pablo')
   fill_in('surname_1', :with => 'Perigas') 
    fill_in('forename_2', :with => 'Benny')
@@ -467,8 +437,7 @@ Given(/^I launch the login page$/) do
 end
 
 When(/^I enter valid login details$/) do 
-   fill_in('username', :with => $LOGIN_USERID)
-  fill_in('password', :with => $LOGIN_PASSWORD)
+   submit_valid_creds
 end
 
 When(/^I click on the login button$/) do 
@@ -498,12 +467,7 @@ Then(/^I can verify remaining forms on worklist after submitting two out of thre
   fill_in('forenames_2', :with => 'Benny')
   fill_in('surname_2', :with => 'Hinn')
   fill_in('occupation', :with => 'Clergy')
-  fill_in('add_1_line1', :with => '55 New Street')
-  fill_in('add_1_line2', :with => 'Middlebrook')
-  fill_in('add_1_line3', :with => 'Winchester')
-  fill_in('add_1_line4', :with => 'Hampshire')
-  fill_in('county_1', :with => 'Hants')
-  fill_in('postcode_1', :with => 'B34 1AA')
+  enter_bank_address_details
   click_button('continue')
   fill_in('forename_1', :with => 'Pablo')
   fill_in('surname_1', :with => 'Perigas') 
@@ -584,12 +548,7 @@ When(/^I register a newly stored bankruptcy application$/) do
   fill_in('forenames_1', :with => 'Pablo')
   fill_in('surname_1', :with => 'Perigas')
   fill_in('occupation', :with => 'Clergy')
-  fill_in('add_1_line1', :with => '55 New Street')
-  fill_in('add_1_line2', :with => 'Middlebrook')
-  fill_in('add_1_line3', :with => 'Winchester')
-  fill_in('add_1_line4', :with => 'Hampshire')
-  fill_in('county_1', :with => 'Hants')
-  fill_in('postcode_1', :with => 'B34 1AA')
+  enter_bank_address_details
   click_button('continue')
   fill_in('forename_1', :with => 'Pablo')
   fill_in('surname_1', :with => 'Perigas') 

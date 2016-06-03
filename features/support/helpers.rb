@@ -47,6 +47,15 @@ def bank_reg_details()
   click_button('continue')
 end
 
+def enter_bank_address_details
+  fill_in('add_1_line1', :with => '55 New Street')
+  fill_in('add_1_line2', :with => 'Middlebrook')
+  fill_in('add_1_line3', :with => 'Winchester')
+  fill_in('add_1_line4', :with => 'Hampshire')
+  fill_in('county_1', :with => 'Hants')
+  fill_in('postcode_1', :with => 'B34 1AA')
+end
+
 ####################
 #COMMON METHODS
 ####################
@@ -89,6 +98,11 @@ def accept_application
   click_button 'accept-reject'
 end
 
+def submit_valid_creds
+  fill_in('username', :with => $LOGIN_USERID)
+  fill_in('password', :with => $LOGIN_PASSWORD)
+  click_button('login_button')
+end
 
 #####################
 #LC HELPER METHODS
