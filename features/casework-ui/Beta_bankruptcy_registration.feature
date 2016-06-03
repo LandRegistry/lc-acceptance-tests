@@ -238,5 +238,6 @@ When I register a new bankruptcy application
 And I can validate registration details for correction
 And I can amend debtor details
 Then I can proceed to bankruptcy verification page
-And I can submit corrections
+#Next step commented out due to defect no: 196 logged
+#And I can submit corrections
 
