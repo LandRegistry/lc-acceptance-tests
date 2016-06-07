@@ -491,7 +491,7 @@ click_button 'continue'
   choose 'dx_address'
   choose 'pre_paid'
   sleep(10)
-  find(:id, "submit").click
+  complete_transaction
   #if conveyancer section still exists, enter customer ref and submit again
   if page.has_css?"#lc_customer"
     fill_in 'customer_ref', :with => '100/102'
