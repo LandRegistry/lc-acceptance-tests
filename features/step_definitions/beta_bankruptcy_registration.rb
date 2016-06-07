@@ -808,7 +808,7 @@ end
    submit_new_reg
  end
  
-  Then(/^I can amend debtor details$/) do
+ Then(/^I can amend debtor details$/) do
   amend_add_debtor
  end
  

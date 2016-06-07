@@ -1,7 +1,8 @@
 
+#####THIS FILE CONTAINS METHODS WITH REUSABLE CODE TO AVOID REPETITION########
 #####################
 #BANKRUPTCY HELPER METHODS
-####################
+#####################
 
 def submit_new_reg
   @today = Date.today.strftime("%d/%m/%Y")
