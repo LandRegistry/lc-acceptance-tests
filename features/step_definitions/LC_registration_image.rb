@@ -514,7 +514,6 @@ When(/^I can choose to print centrally$/) do
 select_needK22_yes
 expect(page).to have_button('complete', :disabled => true)
 select_print_centrally
-find_link("reject").visible?
 complete_transaction
 expect(page).to have_content("Your application has successfully corrected.")
 end
@@ -530,7 +529,6 @@ end
 When(/^I can opt not to print K22$/) do 
 select_needK22_no
 page.should have_no_content("Where should the K22 be printed?")
-find_link("reject").visible?
 complete_transaction
 expect(page).to have_content("Your application has successfully corrected.")
 end
