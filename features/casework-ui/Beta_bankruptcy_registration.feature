@@ -214,6 +214,7 @@ Then I can submit multiple Bank application forms:
 |2344dfd | labour |bksrch  |             |      |     	  |Nikeman     |         |        |Plumber    |21 The Street |Plymouth County        |PL45YD|Harry           |Nikeman    |Jumbo County|2244095|
 |cssyt2c | labour |bankreg |Orange County|  111 |Harry	  |Watts       | Pollard | Vicky  |Teacher    |12 My Street  |Derbyshire County      |DE45YD|Harry           |Watts      |Jumbo County|2244095|
 
+#Test below runs successfully on localhost but fails on jenkins as its unable to find key_number on line 786 of bank reg.rb
 #Scenario: Submit bankruptcy application forms
 #Given I am on Land Charge and Bankruptcy services login page
 #And I enter valid login details
