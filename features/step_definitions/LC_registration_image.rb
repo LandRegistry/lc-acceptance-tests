@@ -521,7 +521,6 @@ end
 When(/^I can choose to print locally$/) do 
 select_needK22_yes
 select_print_locally
-find_link("reject").visible?
 complete_transaction
 expect(page).to have_content("Your application has successfully corrected.")
 end
