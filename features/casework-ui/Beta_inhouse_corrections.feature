@@ -14,7 +14,7 @@ And I can validate data returned on Orginal bankruptcy details page
 And I can amend relevant details on Original bankruptcy details page
 And I can click button to continue
 And I validate details submitted on Check details page
-And I can verify K22 option is selected by default on Check details page
+#And I can verify K22 option is selected by default on Check details page
 Then I can click on Complete button
 And I can confirm the correction was successful
 
