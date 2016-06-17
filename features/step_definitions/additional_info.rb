@@ -10,7 +10,8 @@ end
 
 def replace_placeholders(message, original, updated, pab=nil)
     # [ORIG_REGNO] REGD [ORIG_DATE]
-    
+
+    #puts "vvvvv"
     #puts message
     #puts original
     #puts updated
@@ -23,10 +24,9 @@ def replace_placeholders(message, original, updated, pab=nil)
     res = res.gsub("[NEW_REGNO]", updated['registration']['number'].to_s)
     ndate = updated['registration']['date'].sub(/(\d{4})\-(\d\d)\-(\d\d)/, "\\3/\\2/\\1")
     res = res.gsub("[NEW_DATE]", ndate)
-    
+
     if pab
-        
-        res = message.gsub("[ORIG_WOB_REGNO]", original['registration']['number'].to_s)
+        res = res.gsub("[ORIG_WOB_REGNO]", original['registration']['number'].to_s)
         odate = original['registration']['date'].sub(/(\d{4})\-(\d\d)\-(\d\d)/, "\\3/\\2/\\1")
         res = res.gsub("[ORIG_WOB_DATE]", odate)
 
@@ -35,7 +35,21 @@ def replace_placeholders(message, original, updated, pab=nil)
         res = res.gsub("[ORIG_PAB_DATE]", ndate)
     end
 
+    #puts res
+    #puts "^^^^^"
     res
+end
+
+
+def migratify(reg_no, date)
+    PostgreSQL.connect('landcharges')
+    q = PostgreSQL.query("SELECT id, details_id from register where registration_no=#{reg_no} and date='#{date}'")
+    reg_id = q.getvalue(0,0)
+    detl_id = q.getvalue(0,1)
+
+    PostgreSQL.query("INSERT INTO migration_status (register_id, migration_complete, extra_data, date, class_of_charge, original_regn_no) VALUES(#{reg_id}, 't', '{}', '#{date}', 'PAB', #{reg_no})")
+    PostgreSQL.query("UPDATE register_details SET additional_info='KEYED AI' WHERE id=#{detl_id}")
+    PostgreSQL.disconnect()
 end
 
 
@@ -52,6 +66,7 @@ Given(/^an existing (.+?) registration$/) do |coc|
     @existing_data = @registration_api.post("/registrations?suppress_queue=yes&dev_date=2014-06-06", JSON.dump(submit))
     #puts @existing_data
     expect(@registration_api.response.code).to eql "200"
+    @pab_regn = nil
 end
 
 When(/^I part cancel the registration with "([^"]*)" set to "([^"]*)"$/) do |what, desc|
@@ -121,6 +136,94 @@ Given(/^an existing PAB and WOB registration with court details of "([^"]*)" ref
     @pab_regn = get_registration(@existing_data_pab['new_registrations'][0]['date'], @existing_data_pab['new_registrations'][0]['number'])
 end
 
+
+
+Given(/^a migrated PAB and WOB registration with court details of "([^"]*)" ref "([^"]*)"$/) do |court, ref|
+    @wob_court = court
+    @wob_ref = ref
+
+    pab = {"applicant" => {"name" => "Waste of space", "address" => "2 New Street, My Town", "key_number" => "1234567", "reference" => " ", "address_type" => "RM"},
+    "parties" =>[{"names" => [{"type" => "Private Individual", "private" => {"forenames" => ["Mister"], "surname" => "Bankrupt" }}], "trading_name" => " ", "addresses" => [{"county" => "Devon", "address_lines" => ["2 new street", "Plymouth"], "postcode" => "PL3 3PL", "type" => "Residence", "address_string" => "2 new street Plymouth Devon PL3 3PL"}], "occupation" => "", "type" => "Debtor", "residence_withheld" => false,
+        "case_reference" => "#{court} #{ref}"}],
+    "class_of_charge" => "PAB"}
+
+    wob = {"parties" => [{"type" => "Debtor", "trading_name" => " ", "occupation" => "Unemployed", "names" => [{"type" => "Private Individual", "private" => {"surname" => "Bankrupt", "forenames" => ["Mister"]}}],
+    "case_reference" => "#{court} #{ref}",
+    "addresses" => [{"county" => "Devon", "type" => "Residence", "postcode" => "OT1 1AA", "address_lines" => ["1 Other Road", "Otherton"], "address_string" => "1 Other Road Otherton Devon OT1 1AA"}], "residence_withheld" => false}], "class_of_charge" => "WOB",
+    "applicant" => {"key_number" => "1234567", "address" => "49 Camille Circles Port Eulah PP39 6BY", "reference" => " ", "name" => "S & H Legal Group", "address_type" => "RM"}}
+
+    @registration_api = RestAPI.new($LAND_CHARGES_URI)
+    @existing_data_pab = @registration_api.post("/registrations?suppress_queue=yes&dev_date=2014-06-06", JSON.dump(pab))
+    #puts @existing_data_pab
+    expect(@registration_api.response.code).to eql "200"
+
+    @existing_data = @registration_api.post("/registrations?suppress_queue=yes&dev_date=2014-06-16", JSON.dump(wob))
+    #puts @existing_data
+    expect(@registration_api.response.code).to eql "200"
+
+    @pab_regn = get_registration(@existing_data_pab['new_registrations'][0]['date'], @existing_data_pab['new_registrations'][0]['number'])
+
+    pab_no = @existing_data_pab['new_registrations'][0]['number']
+    wob_no = @existing_data['new_registrations'][0]['number']
+
+
+    #PostgreSQL.connect('landcharges')
+    #q = PostgreSQL.query("SELECT id from register where registration_no=#{pab_no} and date='2014-06-06'")
+    #pab_reg_id = q.getvalue(0,0)
+    #q = PostgreSQL.query("SELECT id from register where registration_no=#{wob_no} and date='2014-06-16'")
+    #wob_reg_id = q.getvalue(0,0)
+    #PostgreSQL.query("INSERT INTO migration_status (register_id, migration_complete, extra_data, date, class_of_charge, original_regn_no) VALUES(#{pab_reg_id}, 't', '{}', '2014-06-06', 'PAB', #{pab_no})")
+    #PostgreSQL.query("INSERT INTO migration_status (register_id, migration_complete, extra_data, date, class_of_charge, original_regn_no) VALUES(#{wob_reg_id}, 't', '{}', '2014-06-06', 'PAB', #{wob_no})")
+    #PostgreSQL.disconnect()
+
+    migratify(pab_no, '2014-06-06')
+    migratify(wob_no, '2014-06-16')
+end
+
+
+Given(/^a migrated (.+?) registration$/) do |coc|
+    if coc == 'C1'
+        submit = {"parties" => [{"names" => [{"private" => {"forenames" => ["Joyce", "Lyn"], "surname" => "West"}, "type" => "Private Individual"}], "type" => "Estate Owner"}], "particulars" => {"counties" => ["Devon"], "description" => "45 New street", "district" => "Plymouth"}, "class_of_charge" => "C1", "applicant" => {"address" => "2 New Street", "name" => "Mr Conveyancer", "key_number" => "244095", "reference" => "reference 11", "address_type" => "RM"}}
+    elsif coc == 'WO'
+        submit = {"parties" => [{"names" => [{"private" => {"forenames" => ["Joyce", "Lyn"], "surname" => "West"}, "type" => "Private Individual"}], "type" => "Estate Owner"}], "particulars" => {"counties" => ["Devon"], "description" => "45 New street", "district" => "Plymouth"}, "class_of_charge" => "WO", "applicant" => {"address" => "2 New Street", "name" => "Mr Conveyancer", "key_number" => "244095", "reference" => "reference 11", "address_type" => "RM"}}
+    else
+        puts "ERROR"
+    end
+
+    @registration_api = RestAPI.new($LAND_CHARGES_URI)
+    @existing_data = @registration_api.post("/registrations?suppress_queue=yes&dev_date=2014-06-06", JSON.dump(submit))
+    #puts @existing_data
+    expect(@registration_api.response.code).to eql "200"
+    reg_no = @existing_data['new_registrations'][0]['number']
+
+    #PostgreSQL.connect('landcharges')
+    #q = PostgreSQL.query("SELECT id from register where registration_no=#{reg_no} and date='2014-06-06'")
+    #reg_id = q.getvalue(0,0)
+
+    #PostgreSQL.query("INSERT INTO migration_status (register_id, migration_complete, extra_data, date, class_of_charge, original_regn_no) VALUES(#{reg_id}, 't', '{}', '2014-06-06', 'PAB', #{reg_no})")
+    #PostgreSQL.disconnect()
+    migratify(reg_no, '2014-06-06')
+    @pab_regn = nil
+end
+
+
+
+
+
+Given(/^a migrated C1 registration with a county of "([^"]*)"$/) do |county|
+    submit = {"parties" => [{"names" => [{"private" => {"forenames" => ["Joyce", "Lyn"], "surname" => "West"}, "type" => "Private Individual"}], "type" => "Estate Owner"}], "particulars" => {"counties" => [county], "description" => "Short Desc Here", "district" => "Plymouth"}, "class_of_charge" => "C1", "applicant" => {"address" => "2 New Street", "name" => "Mr Conveyancer", "key_number" => "244095", "reference" => "reference 11", "address_type" => "RM"}}
+
+    @registration_api = RestAPI.new($LAND_CHARGES_URI)
+    @existing_data = @registration_api.post("/registrations?suppress_queue=yes&dev_date=2014-06-06", JSON.dump(submit))
+    expect(@registration_api.response.code).to eql "200"
+
+    migratify(@existing_data['new_registrations'][0]['number'], '2014-06-06')
+end
+
+
+
+
+
 When(/^I amend the WOB's address$/) do
     amendment = {"parties" => [{"type" => "Debtor", "trading_name" => " ", "occupation" => "Unemployed", "names" => [{"type" => "Private Individual", "private" => {"surname" => "Bankrupt", "forenames" => ["Mister"]}}],
     "case_reference" => "#{@wob_court} #{@wob_ref}",
@@ -150,6 +253,10 @@ end
 
 Then(/^the new registration's additional information will read "([^"]*)"$/) do |arg1|
     ai = replace_placeholders(arg1, @original_regn, @new_regn, @pab_regn)
+
+    #puts arg1
+    #puts ai
+
     expect(@new_regn['additional_information']).to eql ai
     
     if @new_regn['expired_date'].nil?

@@ -11,7 +11,7 @@ class PostgreSQL
       user = "lc-documents"
     end
 
-    puts "DB: #{database}; User: #{user}"
+    #puts "DB: #{database}; User: #{user}"
     @@pg = PGconn.connect($POSTGRES_HOST, $POSTGRES_PORT,  '', '', database, user, "lcalpha")
   end
 

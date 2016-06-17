@@ -74,3 +74,26 @@ Scenario: Additional Information
   Then a new registration is created
     And the new registration's additional information will read "PLYMOUTH COUNTY COURT NO 100 OF 2016  THIS REGISTRATION AMENDS [ORIG_WOB_REGNO] DATED [ORIG_WOB_DATE] & [ORIG_PAB_REGNO] DATED [ORIG_PAB_DATE]."
     And the original registration's additional information will read "PLYMOUTH COUNTY COURT NO 100 OF 2016  NAME OF DEBTOR AMENDED TO WILLIAM SMITH BY [NEW_REGNO] REGD [NEW_DATE]."
+
+  Given a migrated PAB and WOB registration with court details of "Plymouth County Court" ref "100 of 2016"
+  When I amend the WOB's debtor name to "William Smith"
+    Then a new registration is created
+    And the new registration's additional information will read "PLYMOUTH COUNTY COURT NO 100 OF 2016  KEYED AI  THIS REGISTRATION AMENDS [ORIG_WOB_REGNO] DATED [ORIG_WOB_DATE] & [ORIG_PAB_REGNO] DATED [ORIG_PAB_DATE]."
+    And the original registration's additional information will read "PLYMOUTH COUNTY COURT NO 100 OF 2016  KEYED AI  NAME OF DEBTOR AMENDED TO WILLIAM SMITH BY [NEW_REGNO] REGD [NEW_DATE]."
+
+  Given a migrated WO registration
+    When I renew the registration
+    Then a new registration is created
+    And the original registration's additional information will read "KEYED AI  RENEWED BY [NEW_REGNO] REGD [NEW_DATE]"
+    And the new registration's additional information will read "KEYED AI  RENEWAL OF [ORIG_REGNO] REGD [ORIG_DATE]"
+
+  Given a migrated C1 registration
+  When I rectify the chargee from "Messrs Tim and Bob" to "Messrs Tim, Bob and Sam"
+  Then the original registration is updated
+    And the original registration's addtional information will read "CHARGEE RECTIFIED TO MESSRS TIM, BOB AND SAM FROM MESSRS TIM AND BOB BY [NEW_REGNO] REGD [NEW_DATE].  KEYED AI"
+
+  Given a migrated C1 registration with a county of "Devon"
+  When I rectify with an additional county of "Dorset"
+  Then a new registration is created
+    And the new registration's additional information will read "PREVIOUSLY REGISTERED ONLY IN COUNTY OF DEVON UNDER [ORIG_REGNO] REGD [ORIG_DATE].  KEYED AI"
+    And the original registration's additional information will read "KEYED AI  CHARGE PREVIOUSLY REGD SOLELY UNDER COUNTY OF DEVON NOW REGD IN ADDITIONAL COUNTY OF DORSET BY [NEW_REGNO] REGD [NEW_DATE]."
