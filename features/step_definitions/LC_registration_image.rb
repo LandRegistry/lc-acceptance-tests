@@ -4,15 +4,18 @@ When(/^I have selected to view a specific Land Charges application from the appl
   fill_in('username', :with => $LOGIN_USERID)
   fill_in('password', :with => $LOGIN_PASSWORD)
   find(:xpath, "//*[@id='login_button']").click
-  
-  visit( "#{$FRONTEND_URI}/get_list?appn=lc_regn" )
-  within(:xpath, ".//*[@id='row_1']/td[2]") do
-  page.should have_content('K1')
+  find(:id, 'lc_regn').click
+  within(:id, "work-list") do
+    if page.has_content?"K1"
+    page.first(:xpath, '//*[@id="work-list"]/tbody["2"]/tr//td[contains(.,"K1")]').click
+    else
+      nil
+    end
+  end
   @formtype = 'K1'
   puts(@formtype)
   end
-  find(:id, "row_1").click
-end
+  
 When(/^I log in  Land Charges application from the application list$/) do
   maximise_browser
   visit( "#{$FRONTEND_URI}/login" )
@@ -84,7 +87,6 @@ When(/^I access the application screen the county Unitary Authority dropdown box
     fill_in('county_0', :with => "Portsmouth")
     find(:id, 'addcounty').click
     fill_in('county_1', :with => 'Poole')   
-    
   else
     nil
   end
@@ -251,7 +253,7 @@ When(/^I parse a new land charge registration for cancellation$/) do
     fill_in('customer_ref', :with =>'2244095')
     choose "direct_debit"
     choose "dx_address"
-    click_button "submit"
+    click_button "complete"
     results = page.find(:id, "conf_reg_numbers").text
     visit( "#{$FRONTEND_URI}/get_list?appn=cancel" )
     find(:xpath,'//*[@id="row_1"]').click
@@ -322,8 +324,10 @@ if @formtype == 'K1'
     nil
   end 
   fill_in('pri_notice',:with =>'LCR/234')
+  fill_in('county_0',:with => 'Devon')
   fill_in('District',:with => 'Devon')
   fill_in('short_desc', :with =>'free format2werslkfxdlkf')
+  find_link("reject").visible?
 end
 
 Then(/^I can proceed and process fees$/) do
@@ -340,12 +344,16 @@ Then(/^I can proceed and process fees$/) do
   else
     nil
   end 
+  find_link("reject").visible?
   click_button 'continue'
   fill_in 'key_number', :with =>'2244095'
   fill_in 'customer_ref', :with => '100/102'
   choose 'dx_address'
   choose 'pre_paid'
-  click_button 'submit'
+  find_link("reject").visible?
+  click_link 'reject'
+  click_button 'cancel-reject'
+  click_button 'complete'
 end
 
  When(/^I can choose (.+) estate owner type and verify the details$/) do |name_type|
@@ -471,5 +479,55 @@ Then(/^I can submit entries for a (.*)$/) do |form_type|
     fill_in 'fullname', :with => la
     fill_in 'area', :with => laa
   end
- 
+  find_link('reject').visible?
+  click_link 'reject'
+  click_button 'cancel-reject'
+end
+
+Then(/^I can submit the LC application$/) do
+verify_classes
+click_button 'continue'
+ fill_in 'key_number', :with =>'2244095'
+  choose 'dx_address'
+  choose 'pre_paid'
+  sleep(10)
+  complete_transaction
+  #if conveyancer section still exists, enter customer ref and submit again
+  if page.has_css?"#lc_customer"
+    fill_in 'customer_ref', :with => '100/102'
+    find(:id, "complete").click
+  end
+  page.find(:id, "conf_reg_numbers").text
+  results = page.find(:id, "conf_reg_numbers").text
+  find(:xpath, "//*[@id='side-nav']/li[7]/a").click 
+  find(:xpath, "//*[@id='content']/div[3]/div[3]/a/p").click
+  fill_in('reg_no', :with => results)
+  submit_new_reg
+  end
+  
+When(/^I amend the LC application form$/) do 
+change_estate_owner_to_county_council
+click_to_continue
+end
+
+When(/^I can choose to print centrally$/) do 
+select_needK22_yes
+expect(page).to have_button('complete', :disabled => true)
+select_print_centrally
+complete_transaction
+expect(page).to have_content("Your application has successfully corrected.")
+end
+
+When(/^I can choose to print locally$/) do 
+select_needK22_yes
+select_print_locally
+complete_transaction
+expect(page).to have_content("Your application has successfully corrected.")
+end
+
+When(/^I can opt not to print K22$/) do 
+select_needK22_no
+page.should have_no_content("Where should the K22 be printed?")
+complete_transaction
+expect(page).to have_content("Your application has successfully corrected.")
 end

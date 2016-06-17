@@ -60,6 +60,7 @@ end
 When(/^I enter fee details I can choose prepaid$/) do
   expect(page).to have_content('Fees')
   choose('pre_paid')
+  reject_application
 end
 
 When(/^I change it to choose direct debit$/) do
@@ -68,6 +69,7 @@ end
 
 When(/^I set the address type to DX$/) do
     choose('dx_address') 
+    find_link("reject").visible?
 end
 
 When(/^I enter a county the details are displayed county edit box$/) do
@@ -203,6 +205,9 @@ Then(/^I can verify number of application stored before and after a Full search$
   fill_in('forename_2', :with => 'Gonzo')
   fill_in('surname_2', :with => 'Great')
   fill_in('county_0', :with => 'Northamptonshire')
+  find_link('reject').visible?
+  click_link 'reject'
+  click_button 'cancel-reject'
   click_button "continue"
   fill_in('key_number', :with => '2244095')
   find(:xpath, "//*[@id='store']").click

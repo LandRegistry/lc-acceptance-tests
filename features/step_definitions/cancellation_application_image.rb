@@ -50,7 +50,7 @@ When(/^I must have a registration number value before the continue button can be
 end
 
 When(/^I submit the data$/) do
-  click_button('submit')
+  click_button('complete')
 end
 
 Then(/^I can click the continue button to go to the next screen$/) do 
@@ -142,12 +142,7 @@ When(/^I attempt to cancel the new application$/) do
   fill_in('forenames_1', :with => 'Johnny')
   fill_in('surname_1', :with => 'Lee')
   fill_in('occupation', :with => 'Dancer')
-  fill_in('add_1_line1', :with => '123 New Street')
-  fill_in('add_1_line2', :with => 'Middlebrook')
-  fill_in('add_1_line3', :with => 'Winchester')
-  fill_in('add_1_line4', :with => 'Hampshire')
-  fill_in('county_1', :with => 'Hants')
-  fill_in('postcode_1', :with => 'SO14 1AA')
+  enter_bank_address_details
   click_button('continue')
   fill_in('forename_1', :with => 'Johnny')
   fill_in('surname_1', :with => 'Lee') 
@@ -177,9 +172,10 @@ When(/^I attempt to cancel the new application$/) do
 end
 
 Then(/^I attempt to cancel the application a second time$/) do
-  click_button('submit')
+  click_button('complete')
   page.find(:id, "conf_reg_numbers").text
   results = page.find(:id, "conf_reg_numbers").text
+  sleep(20)
   visit( "#{$FRONTEND_URI}/get_list?appn=cancel" )
   find(:xpath,'//*[@id="row_1"]').click
   fill_in('reg_no', :with => results)
@@ -194,7 +190,7 @@ expect(page).to have_content("Retrieve original")
 end
 
 Then(/^I can see text to confirm the cancellation$/) do
-expect(find(:id, 'regn_error').text).to have_content("Registration has been cancelled - please re-enter")
+expect(find(:id, 'regn_error').text).to have_content("Application has been cancelled or amended - please re-enter")
 end
 
 Then(/^I can see successful cancellation registration number$/) do
@@ -210,12 +206,7 @@ Then(/^I can verify API output for a cancelled PAB application$/) do
   fill_in('forenames_1', :with => 'Johnny')
   fill_in('surname_1', :with => 'Lee')
   fill_in('occupation', :with => 'Dancer')
-  fill_in('add_1_line1', :with => '123 New Street')
-  fill_in('add_1_line2', :with => 'Middlebrook')
-  fill_in('add_1_line3', :with => 'Winchester')
-  fill_in('add_1_line4', :with => 'Hampshire')
-  fill_in('county_1', :with => 'Hants')
-  fill_in('postcode_1', :with => 'SO14 1AA')
+  enter_bank_address_details
   click_button('continue')
   fill_in('forename_1', :with => 'Johnny')
   fill_in('surname_1', :with => 'Lee') 

@@ -53,7 +53,7 @@ When(/^I click on the Yes for acknowledgement required checkbox is highlighted$/
 end 
 
 When(/^I click on the Submit button$/) do 
-  click_button('submit') 
+  click_button('complete') 
 end 
 
 Given(/^I am on the Application complete screen$/) do

@@ -95,6 +95,7 @@ When(/^I enter the address the details are visible$/) do
   fill_in('add_1_line4', :with => 'Hampshire')
   fill_in('county_1', :with => 'Hants')
   fill_in('postcode_1', :with => 'SO14 1AA')
+  find_link("reject").visible?
 end
 
 When(/^I click to add additional address new fields are visible$/) do
@@ -227,12 +228,7 @@ When(/^I register the application$/) do
   fill_in('forenames_1', :with => 'Pablo')
   fill_in('surname_1', :with => 'Perigas')
   fill_in('occupation', :with => 'Dancer')
-  fill_in('add_1_line1', :with => '55 New Street')
-  fill_in('add_1_line2', :with => 'Middlebrook')
-  fill_in('add_1_line3', :with => 'Winchester')
-  fill_in('add_1_line4', :with => 'Hampshire')
-  fill_in('county_1', :with => 'Hants')
-  fill_in('postcode_1', :with => 'HG2 1AA')
+  enter_bank_address_details
   click_button('continue')
   fill_in('forename_1', :with => 'Pablo')
   fill_in('surname_1', :with => 'Perigas') 
@@ -246,12 +242,7 @@ When(/^I register a PAB application without court name$/) do
   fill_in('forenames_1', :with => 'Pablo')
   fill_in('surname_1', :with => 'Perigas')
   fill_in('occupation', :with => 'Dancer')
-  fill_in('add_1_line1', :with => '55 New Street')
-  fill_in('add_1_line2', :with => 'Middlebrook')
-  fill_in('add_1_line3', :with => 'Winchester')
-  fill_in('add_1_line4', :with => 'Hampshire')
-  fill_in('county_1', :with => 'Hants')
-  fill_in('postcode_1', :with => 'HG2 1AA')
+  enter_bank_address_details
   click_button('continue')
   fill_in('forename_1', :with => 'Pablo')
   fill_in('surname_1', :with => 'Perigas') 
@@ -269,12 +260,7 @@ When(/^I register a PAB application with AKA$/) do
   fill_in('forenames_2', :with => 'Benny')
   fill_in('surname_2', :with => 'Hinn')
   fill_in('occupation', :with => 'Clergy')
-  fill_in('add_1_line1', :with => '55 New Street')
-  fill_in('add_1_line2', :with => 'Middlebrook')
-  fill_in('add_1_line3', :with => 'Winchester')
-  fill_in('add_1_line4', :with => 'Hampshire')
-  fill_in('county_1', :with => 'Hants')
-  fill_in('postcode_1', :with => 'B34 1AA')
+  enter_bank_address_details
   click_button('continue')
   fill_in('forename_1', :with => 'Pablo')
   fill_in('surname_1', :with => 'Perigas') 
@@ -291,6 +277,7 @@ When(/^I re-register with the previous registration details$/) do
   find(:id, "row_1").click
   fill_in('court', :with => 'Banana County Court')
   fill_in('ref_no', :with => '888')
+  find_link("reject_2").visible?
   click_button('continue')
 end
 
@@ -323,12 +310,8 @@ When(/^I can submit debtor details$/) do
   fill_in('forenames_2', :with => 'Randy')
   fill_in('surname_2', :with => 'Moore')
   fill_in('occupation', :with => 'Clergy')
-  fill_in('add_1_line1', :with => '55 New Street')
-  fill_in('add_1_line2', :with => 'Middlebrook')
-  fill_in('add_1_line3', :with => 'Winchester')
-  fill_in('add_1_line4', :with => 'Hampshire')
-  fill_in('county_1', :with => 'Hants')
-  fill_in('postcode_1', :with => 'B34 1AA')
+  enter_bank_address_details
+  find_link("reject").visible?
   click_button('continue')
 end
 
@@ -338,6 +321,7 @@ When(/^I can re-key debtor details$/) do
   fill_in('forename_2', :with => 'Randy')
   fill_in('surname_2', :with => 'Moore')
   fill_in('court_name', :with => 'County Court of Portsmouth')
+  find_link("reject").visible?
 end
 
 When(/^I can submit a new particulars of details$/) do
@@ -347,12 +331,8 @@ When(/^I can submit a new particulars of details$/) do
   fill_in('forenames_2', :with => 'Randy')
   fill_in('surname_2', :with => 'Moore')
   fill_in('occupation', :with => 'Clergy')
-  fill_in('add_1_line1', :with => '55 New Street')
-  fill_in('add_1_line2', :with => 'Middlebrook')
-  fill_in('add_1_line3', :with => 'Winchester')
-  fill_in('add_1_line4', :with => 'Hampshire')
-  fill_in('county_1', :with => 'Hants')
-  fill_in('postcode_1', :with => 'B34 1AA')
+  enter_bank_address_details
+  find_link("reject").visible?
   click_button('continue')
 end
 
@@ -362,6 +342,7 @@ When(/^I can re-key and submit debtor details$/) do
   fill_in('forename_2', :with => 'Randy')
   fill_in('surname_2', :with => 'Moore') 
   fill_in('court_name', :with => 'Banana County Court')
+  find_link("reject").visible?
   click_button('continue')
   fill_in('key_number', :with =>'2244095')
   click_button('continue')
@@ -412,13 +393,8 @@ Then(/^I can validate number displayed before and after an application is stored
   fill_in('forenames_2', :with => 'Benny')
   fill_in('surname_2', :with => 'Hinn')
   fill_in('occupation', :with => 'Clergy')
-  fill_in('add_1_line1', :with => '55 New Street')
-  fill_in('add_1_line2', :with => 'Middlebrook')
-  fill_in('add_1_line3', :with => 'Winchester')
-  fill_in('add_1_line4', :with => 'Hampshire')
-  fill_in('county_1', :with => 'Hants')
-  fill_in('postcode_1', :with => 'B34 1AA')
-  click_button('continue')
+  enter_bank_address_details
+  click_to_continue
   fill_in('forename_1', :with => 'Pablo')
   fill_in('surname_1', :with => 'Perigas') 
    fill_in('forename_2', :with => 'Benny')
@@ -461,8 +437,7 @@ Given(/^I launch the login page$/) do
 end
 
 When(/^I enter valid login details$/) do 
-   fill_in('username', :with => $LOGIN_USERID)
-  fill_in('password', :with => $LOGIN_PASSWORD)
+   submit_valid_creds
 end
 
 When(/^I click on the login button$/) do 
@@ -492,12 +467,7 @@ Then(/^I can verify remaining forms on worklist after submitting two out of thre
   fill_in('forenames_2', :with => 'Benny')
   fill_in('surname_2', :with => 'Hinn')
   fill_in('occupation', :with => 'Clergy')
-  fill_in('add_1_line1', :with => '55 New Street')
-  fill_in('add_1_line2', :with => 'Middlebrook')
-  fill_in('add_1_line3', :with => 'Winchester')
-  fill_in('add_1_line4', :with => 'Hampshire')
-  fill_in('county_1', :with => 'Hants')
-  fill_in('postcode_1', :with => 'B34 1AA')
+  enter_bank_address_details
   click_button('continue')
   fill_in('forename_1', :with => 'Pablo')
   fill_in('surname_1', :with => 'Perigas') 
@@ -543,10 +513,12 @@ Then(/^I can verify remaining forms on worklist after submitting two out of thre
   fill_in('add_1_line4', :with => 'Hampshire')
   fill_in('county_1', :with => 'Hants')
   fill_in('postcode_1', :with => 'SO14 1AA')
+  find_link("reject").visible?
   click_button('continue')
   fill_in('forename_1', :with => 'Frank')
   fill_in('surname_1', :with => 'Bruno') 
   fill_in('court_name', :with => 'Plantain Chips County')
+  find_link("reject").visible?
   click_button('continue') 
   fill_in('key_number', :with =>'2244095')
   click_button('continue')
@@ -576,12 +548,7 @@ When(/^I register a newly stored bankruptcy application$/) do
   fill_in('forenames_1', :with => 'Pablo')
   fill_in('surname_1', :with => 'Perigas')
   fill_in('occupation', :with => 'Clergy')
-  fill_in('add_1_line1', :with => '55 New Street')
-  fill_in('add_1_line2', :with => 'Middlebrook')
-  fill_in('add_1_line3', :with => 'Winchester')
-  fill_in('add_1_line4', :with => 'Hampshire')
-  fill_in('county_1', :with => 'Hants')
-  fill_in('postcode_1', :with => 'B34 1AA')
+  enter_bank_address_details
   click_button('continue')
   fill_in('forename_1', :with => 'Pablo')
   fill_in('surname_1', :with => 'Perigas') 
@@ -617,9 +584,15 @@ When(/^I can amend the newly registered application$/) do
   fill_in('forenames_1', :with => 'Frank')
   fill_in('surname_1', :with => '')
   fill_in('surname_1', :with => 'Mansford')
+  find_link('reject').visible?
+  click_link 'reject'
+  click_button 'cancel-reject'
   click_button('continue')
   click_button('continue')
   fill_in('key_number', :with =>'2244095')
+  find_link('reject').visible?
+  click_link 'reject'
+  click_button 'cancel-reject'
   click_button('continue')
   page.find(:id, "conf_reg_numbers").text
   results = page.find(:id, "conf_reg_numbers").text
@@ -640,7 +613,7 @@ Then(/^I cancel the amended application$/) do
   sleep(5)
   fill_in('customer_ref', :with =>'213/REC')
   find(:id, 'direct_debit').click
-  click_button('submit')
+  click_button('complete')
 end
 
 Then(/^I cannot cancel the bankruptcy application a second time$/) do
@@ -809,9 +782,9 @@ Then(/^I can submit bankruptcy registration forms$/) do |table|
           nil
         end
       click_button('continue')
-      sleep(5)
+      sleep(10)
       fill_in('key_number', :with =>row['keyno'])
-      sleep(5)
+      sleep(10)
       click_button('continue')
       regnumber = page.find(:id, "conf_reg_numbers").text
       puts(regnumber)
@@ -820,3 +793,30 @@ Then(/^I can submit bankruptcy registration forms$/) do |table|
   end 
 end
 end
+
+When(/^I register a new bankruptcy application$/) do
+  bank_reg_details
+  fill_in('key_number', :with =>'2244095')
+  click_button('continue')
+  @results = page.find(:id, "conf_reg_numbers").text
+  navigate_to_homepage
+  launch_correction_pge
+  fill_in('reg_no', :with => @results)
+end
+
+ When(/^I can validate registration details for correction$/) do
+   submit_new_reg
+ end
+ 
+ Then(/^I can amend debtor details$/) do
+  amend_add_debtor
+ end
+ 
+  Then(/^I can proceed to bankruptcy verification page$/) do
+  goto_bank_verification_page
+  end
+  
+  Then(/^I can submit corrections$/) do
+  complete_transaction
+  expect(page).to have_content("Your application has successfully corrected.")
+  end

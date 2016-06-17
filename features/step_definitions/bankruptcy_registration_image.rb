@@ -118,7 +118,7 @@ end
 
 
 Then(/^I click the submit button and the application complete screen is displayed$/) do
-  click_button('submit')
+  click_button('complete')
 end
 
 

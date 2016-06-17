@@ -107,7 +107,7 @@ When(/^I click the check box to confirm verification$/) do
 end
 
 Then(/^I can click submit button to save all new information$/) do 
-  find(:id, 'submit').click
+  find(:id, 'complete').click
 end 
 
 When(/^the amendments application has been submitted the unique identifier is displayed to the user on the screen$/) do
@@ -127,7 +127,7 @@ Given(/^the application has been amended$/) do
    click_link('amend_name')
    click_button('continue')
    find(:id, 'check_box').click
-   click_button('submit')
+   click_button('complete')
    step "the user can return to the amend worklist"
 end
 
@@ -142,7 +142,7 @@ Then(/^the indicator must have a value for amended$/) do
 end
 
 When(/^I can click on the submit button to go to the next screen$/) do
-  click_button('Submit')
+  click_button('complete')
 end
 
 Given(/^I have selected to view a specific record from the worklist$/) do

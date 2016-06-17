@@ -99,7 +99,7 @@ When(/^I select the Wrong form link$/) do
   click_link 'Choose the correct form type'
   end
 end
-
+##Redundant code = 102 - 116
 When(/^I choose PAB registration form type$/) do
  choose('pab_regn')
 end
@@ -142,14 +142,17 @@ When(/^I parse a Land Charge application details for rectification$/) do
   fill_in('customer_ref', :with =>'2244095')
   choose "direct_debit"
     choose "dx_address"
-  click_button "submit"
+    find_link('reject').visible?
+  click_link 'reject'
+  click_button 'cancel-reject'
+  find(:id, "complete").click
     
   results = page.find(:id, "conf_reg_numbers").text
   visit("#{$FRONTEND_URI}/get_list?appn=lc_rect")
-  within(:xpath, ".//*[@id='row_1']/td[2]") do
-  page.should have_content('K9')
+  within(:id, "work-list") do
+    page.first(:xpath, '//*[@id="work-list"]/tbody["2"]/tr//td[contains(.,"K9")]').click
   end
-  find(:id, "row_1").click
+  #find(:id, "row_1").click
   today = Date.today.strftime("%d/%m/%Y")
   fill_in('reg_date', :with => today)
   fill_in('reg_no', :with => results)

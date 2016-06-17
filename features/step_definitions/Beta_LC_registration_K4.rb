@@ -45,10 +45,16 @@ Then(/^I can validate number displayed before and after a Land Charge applicatio
   fill_in('forename', :with => 'Joyce')
   fill_in('Surname', :with => 'Mayer')
   fill_in('occupation',:with => 'preacher')
+  find_link('reject').visible?
+  click_link 'reject'
+  click_button 'cancel-reject'
   click_button "continue"
   fill_in('forename', :with => 'Joyce')
     fill_in('Surname', :with => 'Mayer')
     select 'C1', from:  "class"
+  find_link('reject').visible?
+  click_link 'reject'
+  click_button 'cancel-reject'
     click_button "continue"
     fill_in('key_number', :with =>'2244095')
     find(:xpath, "//*[@id='store']").click
@@ -105,7 +111,7 @@ When(/^I retrieve and submit the newly stored applcation$/) do
   click_button "continue"
   fill_in('key_number', :with =>'2244095')
   choose 'direct_debit'
-  click_button('submit')
+  click_button('complete')
   page.find(:id, "conf_reg_numbers").text
   results = page.find(:id, "conf_reg_numbers").text
   find(:id, "lc_rect").click
@@ -124,7 +130,7 @@ When(/^I can rectify the newly registered application$/) do
    click_button('continue')
    fill_in('key_number', :with =>'2244095')
   choose 'direct_debit'
-  click_button('submit')
+  click_button('complete')
   expect(page).to have_content('Your application has been successfully completed. Registration number is:')
   page.find(:id, "conf_reg_numbers").text
   results = page.find(:id, "conf_reg_numbers").text
@@ -144,7 +150,7 @@ When(/^I can cancel the rectified application$/) do
    fill_in('key_number', :with =>'2244095')
   fill_in('customer_ref', :with =>'213/REC')
   find(:id, 'direct_debit').click
-  click_button('submit')
+  click_button('complete')
   results = page.find(:id, "conf_reg_numbers").text
   page.first(:xpath, '//*[@id="work-list"]/tbody["2"]').click
   fill_in('reg_no', :with => results) 

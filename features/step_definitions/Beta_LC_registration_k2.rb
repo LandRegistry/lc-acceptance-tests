@@ -6,16 +6,16 @@ When(/^I have selected to view a K(\d+) Land Charges application from the applic
   fill_in('password', :with => $LOGIN_PASSWORD)
   click_button('login_button')
   
-  visit( "#{$FRONTEND_URI}/get_list?appn=lc_regn" )
-  within(:xpath, ".//*[@id='row_2']/td[2]") do
-  page.should have_content('K2')
-  @formtype = 'K2'
-  puts(@formtype)
+  find(:id, 'lc_regn').click
+  within(:id, "work-list") do
+    if page.has_content?"K2"
+    page.first(:xpath, '//*[@id="work-list"]/tbody["2"]/tr//td[contains(.,"K2")]').click
+    else
+      nil
+    end
+     @formtype = 'K2'
+    end
   end
-  find(:id, "row_2").click
-end
-
-
 
 When(/^I access the application screen for a K(\d+) the class type is set to F$/) do |arg1|
   #@class = class_display

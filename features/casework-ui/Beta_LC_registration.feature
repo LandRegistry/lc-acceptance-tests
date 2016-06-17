@@ -186,7 +186,32 @@ Then I can login and choose an application type:
 |cssyt2c | labour |bksrch  |
 |cssyt2c | labour |jiji33  |
 
+Scenario: LUS001/2 Correction of Land charge registration with central print option
+Given I am on Land Charge Registration applications screen
+When I have selected to view a specific Land Charges application from the application list
+When I input standard data for LC registration
+When I can choose complex names estate owner type and verify the details
+Then I can submit the LC application
+And I amend the LC application form
+And I can choose to print centrally
 
+Scenario: LUS001/2.1 Correction of Land charge registration with local print option
+Given I am on Land Charge Registration applications screen
+When I have selected to view a specific Land Charges application from the application list
+When I input standard data for LC registration
+When I can choose complex names estate owner type and verify the details
+Then I can submit the LC application
+And I amend the LC application form
+And I can choose to print locally
+
+Scenario: LUS001/2.2 Correction of Land charge registration with no option to print K22
+Given I am on Land Charge Registration applications screen
+When I have selected to view a specific Land Charges application from the application list
+When I input standard data for LC registration
+When I can choose complex names estate owner type and verify the details
+Then I can submit the LC application
+And I amend the LC application form
+And I can opt not to print K22
 
 
 
